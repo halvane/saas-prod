@@ -10,6 +10,7 @@
 - **Database**: PostgreSQL (Neon) + Drizzle ORM
 - **Auth**: JWT cookies (jose library), bcryptjs for passwords
 - **Payments**: Stripe integration
+- **AI**: Vercel AI Gateway + OpenAI SDK (unified API for multiple models)
 - **UI Components**: Radix UI primitives + shadcn/ui
 
 ## Critical Architecture Patterns
@@ -393,7 +394,113 @@ export async function GET() {
 ```
 
 ## Integration Points & External Dependencies
+### Vercel AI Gateway Integration
+**Purpose**: Unified API for multiple AI models with caching, rate limiting, and observability
 
+**Configuration**:
+```env
+# .env file
+OPENAI_API_KEY=sk_your_key_here
+AI_GATEWAY_TOKEN=your_vercel_ai_gateway_token
+AI_MODEL_CHAT=gpt-4o-mini
+AI_MODEL_EMBEDDING=text-embedding-3-small
+AI_ENABLED=true
+AI_MAX_TOKENS=4096
+AI_TEMPERATURE=0.7
+```
+
+**Setup**:
+1. Create account at [vercel.com/ai-gateway](https://vercel.com/ai-gateway)
+2. Get OpenAI API key from [platform.openai.com](https://platform.openai.com)
+3. Configure keys in GitHub Secrets (dev & prod repos)
+4. No markup on tokens - 0% cost increase vs direct API
+
+**Key Files**:
+- `lib/ai/gateway.ts` - Core gateway configuration & model management
+- `app/api/ai/chat/route.ts` - Streaming chat endpoint
+- `app/api/ai/generate/route.ts` - Non-streaming text generation
+- `lib/hooks/useAI.ts` - React hook for frontend integration
+
+**Usage in Components**:
+```typescript
+'use client';
+import { useAI } from '@/lib/hooks/useAI';
+
+export function ChatComponent() {
+  const { messages, isLoading, streamChat } = useAI();
+
+  const handleSend = async (message: string) => {
+    await streamChat(message); // Real-time streaming
+  };
+
+  return (
+    <div>
+      {messages.map((msg) => (
+        <p key={msg.content}>{msg.role}: {msg.content}</p>
+      ))}
+      <button onClick={() => handleSend('Hello AI!')} disabled={isLoading}>
+        {isLoading ? 'Loading...' : 'Send'}
+      </button>
+    </div>
+  );
+}
+```
+
+**API Endpoints**:
+
+**POST /api/ai/chat** - Streaming response
+```json
+// Request
+{ "message": "What's the weather?", "model": "gpt-4o-mini" }
+
+// Response: ReadableStream with real-time text chunks
+```
+
+**POST /api/ai/generate** - Non-streaming response
+```json
+// Request
+{ "prompt": "Generate a tweet", "model": "gpt-4o-mini", "maxTokens": 280 }
+
+// Response
+{
+  "text": "Generated text here...",
+  "usage": { "promptTokens": 10, "completionTokens": 25, "totalTokens": 35 },
+  "finishReason": "stop"
+}
+```
+
+**Features**:
+- ✅ Unified API - seamlessly switch between models
+- ✅ Caching - reduce redundant requests
+- ✅ Spend Monitoring - track costs per model
+- ✅ Failover - automatic retries to fallback providers
+- ✅ OpenAI Compatible - use with OpenAI SDK if needed
+- ✅ Real-time Streaming - Server-Sent Events support
+- ✅ Full Observability - headers for analytics
+
+**Best Practices**:
+1. Always check `isConfigured()` before making requests
+2. Set reasonable `maxTokens` to control costs
+3. Use streaming for long-form content
+4. Use non-streaming for quick responses
+5. Never expose API keys in client code
+6. Validate user input before sending to AI
+7. Cache results when appropriate
+8. Monitor usage in Vercel dashboard
+
+**Switching Models**:
+```typescript
+// Runtime model selection
+await streamChat(message, 'gpt-4'); // Override default
+
+// Available models (via AI Gateway):
+// - gpt-4o (latest, best reasoning)
+// - gpt-4o-mini (fast, cheaper)
+// - gpt-3.5-turbo (legacy, cheapest)
+// - claude-3-opus (anthropic)
+// - claude-3-sonnet (anthropic)
+// See: https://vercel.com/docs/ai-gateway/models
+```
 ### Stripe Webhook Handling
 - Endpoint: `POST /api/stripe/webhook`
 - Events: `customer.subscription.created`, `customer.subscription.updated`, `customer.subscription.deleted`
