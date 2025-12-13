@@ -22,6 +22,34 @@
       "when": 1765656375443,
       "tag": "0002_loving_sinister_six",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1765660649240,
+      "tag": "0003_lumpy_the_santerians",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1765661552232,
+      "tag": "0004_bright_dreaming_celestial",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1765662266508,
+      "tag": "0005_steep_silvermane",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1765662392860,
+      "tag": "0006_stiff_johnny_storm",
+      "breakpoints": true
     }
   ]
 }

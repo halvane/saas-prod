@@ -532,10 +532,18 @@ await logActivity(teamId, userId, 'SIGN_IN', ipAddress);
   - Settings page shows connected store URL and status.
 
 ### AI Integration
-- Uses Vercel AI Gateway via `lib/ai/gateway.ts`.
-- Unified API for multiple models (OpenAI, etc.).
-- Requires `AI_GATEWAY_API_KEY` or `OPENAI_API_KEY`.
-- Properly configured to use AI Gateway endpoint with OAuth provider.
+- **MANDATORY**: Use Vercel AI Gateway via `lib/ai/gateway.ts` and `@ai-sdk/gateway`.
+- **FORBIDDEN**: Do NOT use `@ai-sdk/openai` or direct OpenAI API calls.
+- Unified API for multiple models (OpenAI, Anthropic, etc.) via Vercel.
+- Requires `AI_GATEWAY_API_KEY` (starts with `vck_`).
+- Properly configured to use AI Gateway endpoint (`https://gateway.ai.vercel.com/openai/v1`).
+
+### AI Development Rules
+1. **Always use `lib/ai/gateway.ts`**: Never instantiate providers manually.
+2. **Use `lib/ai/models.ts`**: Import models from here (e.g., `getModel('fast')`).
+3. **No Direct SDKs**: Do not install or use `openai`, `@ai-sdk/openai`, or `anthropic` SDKs directly.
+4. **Error Handling**: Handle `GatewayInternalServerError` (credit card required) gracefully.
+5. **Model Selection**: Use `fast` (gpt-4o-mini) for high-volume tasks to avoid rate limits.
 
 ## Known Limitations & Notes
 
@@ -553,3 +561,26 @@ await logActivity(teamId, userId, 'SIGN_IN', ipAddress);
 - **Debug**: Next.js includes sourcemaps - use browser DevTools
 - **Passwords**: Stored as bcryptjs hash - never log plaintext
 - **Team queries**: Always include `isNull(users.deletedAt)` for soft deletes
+
+### 12. Brand Intelligence System
+The platform includes a sophisticated system for extracting and analyzing brand data from URLs.
+
+**Key Components:**
+- **Scraper**: `lib/brand-scraper/service.ts` (Cheerio-based)
+- **API**: `app/api/brand/scrape/route.ts` (Orchestrates scraping + AI analysis)
+- **Database**: `brand_settings` (Deep JSON fields) and `brand_products` tables
+- **UI**: `components/custom/Pages/SettingsPage.tsx`
+
+**Data Flow:**
+1. User enters URL in Settings.
+2. API calls `scrapeBrandFromUrl` to get raw HTML data (metadata, products, text).
+3. API calls Vercel AI Gateway (gpt-4o-mini) to analyze the raw data and generate strategic insights (Archetype, USPs, Angles).
+4. Data is returned to UI for review.
+5. User saves data -> `saveBrandSettings` action updates `brand_settings` and `brand_products` tables.
+
+**Rules for Modification:**
+- When modifying the scraper, ensure `cheerio` selectors are robust.
+- When updating the AI prompt in `route.ts`, maintain the strict JSON output format.
+- Always handle the `products` array when saving/loading brand settings.
+- The `brand_products` table is linked to `brand_settings` via `brandId`.
+

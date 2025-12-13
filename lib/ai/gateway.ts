@@ -14,7 +14,7 @@
  * - Full observability with headers
  */
 
-import { createOpenAI } from '@ai-sdk/openai';
+import { createGateway } from '@ai-sdk/gateway';
 import { LanguageModel } from 'ai';
 
 export interface AIGatewayConfig {
@@ -27,22 +27,21 @@ export interface AIGatewayConfig {
 
 class AIGateway {
   private apiKey: string;
-  private baseURL: string;
+  private baseURL?: string;
   private defaultModel: string;
   private maxTokens: number;
   private temperature: number;
-  private provider: ReturnType<typeof createOpenAI>;
+  private provider: ReturnType<typeof createGateway>;
 
   constructor(config: AIGatewayConfig) {
     this.apiKey = config.apiKey;
-    // Use Vercel AI Gateway endpoint (compatible with OpenAI API)
-    this.baseURL = config.baseURL || 'https://api.vercel.com/v1';
-    this.defaultModel = config.defaultModel || process.env.AI_MODEL_CHAT || 'gpt-4o-mini';
+    this.baseURL = config.baseURL || process.env.AI_GATEWAY_URL;
+    this.defaultModel = config.defaultModel || process.env.AI_MODEL_CHAT || 'openai/gpt-4o-mini';
     this.maxTokens = config.maxTokens || parseInt(process.env.AI_MAX_TOKENS || '4096');
     this.temperature = config.temperature ?? parseFloat(process.env.AI_TEMPERATURE || '0.7');
 
-    // Initialize the OpenAI provider with Vercel AI Gateway configuration
-    this.provider = createOpenAI({
+    // Initialize the Vercel Gateway provider
+    this.provider = createGateway({
       baseURL: this.baseURL,
       apiKey: this.apiKey,
     });

@@ -1,6 +1,7 @@
 /**
  * Example AI Chat Component
  * Demonstrates how to use Vercel AI Gateway with useAI hook
+ * Uses standardized AIProcessingLoader for consistent loading state
  */
 
 'use client';
@@ -9,11 +10,22 @@ import { useAI } from '@/lib/hooks/useAI';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card } from '@/components/ui/card';
+import { AIProcessingLoader } from '@/components/custom/AI/AIProcessingLoader';
+import { Sparkles } from 'lucide-react';
 import { useState } from 'react';
+
+const chatSteps = [
+  'Processing your message...',
+  'Analyzing context...',
+  'Generating response...',
+  'Finalizing output...'
+];
 
 export function AIChat() {
   const { messages, isLoading, streamChat, clearMessages } = useAI();
   const [input, setInput] = useState('');
+  const [chatProgress, setChatProgress] = useState(0);
+  const [chatStep, setChatStep] = useState(0);
 
   const handleSend = async () => {
     if (!input.trim() || isLoading) return;
@@ -21,15 +33,53 @@ export function AIChat() {
     const message = input;
     setInput('');
 
+    // Setup progress simulation
+    setChatProgress(5);
+    setChatStep(0);
+    const progressInterval = setInterval(() => {
+      setChatProgress((prev) => {
+        if (prev >= 95) {
+          clearInterval(progressInterval);
+          return prev;
+        }
+        const increment = Math.random() * 15 + 5;
+        const newProgress = Math.min(prev + increment, 95);
+        const stepIndex = Math.floor((newProgress / 100) * chatSteps.length);
+        setChatStep(Math.min(stepIndex, chatSteps.length - 1));
+        return newProgress;
+      });
+    }, 300);
+
     try {
       await streamChat(message);
+      setChatProgress(100);
+      setChatStep(chatSteps.length - 1);
+      clearInterval(progressInterval);
+      setTimeout(() => {
+        setChatProgress(0);
+        setChatStep(0);
+      }, 500);
     } catch (error) {
+      clearInterval(progressInterval);
+      setChatProgress(0);
+      setChatStep(0);
       console.error('Chat error:', error);
     }
   };
 
   return (
     <div className="flex flex-col h-screen max-w-2xl mx-auto">
+      {/* AI Processing Loader */}
+      <AIProcessingLoader
+        isOpen={isLoading}
+        title="⚡ AI is Thinking..."
+        subtitle="Analyzing your message and generating response"
+        steps={chatSteps}
+        currentStep={chatStep}
+        progress={chatProgress}
+        icon={<Sparkles className="w-12 h-12 text-[#8B5CF6] animate-spin" />}
+      />
+
       {/* Messages */}
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
         {messages.length === 0 ? (
@@ -52,11 +102,6 @@ export function AIChat() {
               <p className="text-gray-800">{msg.content}</p>
             </Card>
           ))
-        )}
-        {isLoading && (
-          <Card className="p-4 bg-gray-100 mr-12">
-            <p className="text-sm text-gray-500">Thinking...</p>
-          </Card>
         )}
       </div>
 

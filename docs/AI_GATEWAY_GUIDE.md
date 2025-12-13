@@ -21,9 +21,15 @@ Complete integration of Vercel's AI Gateway for Purlema SaaS Platform.
 
 Add to `.env` locally:
 ```
+# Vercel AI Gateway Key (starts with vck_) OR OpenAI Key (starts with sk-)
+AI_GATEWAY_API_KEY=vck_your_key_here
+# OR
 OPENAI_API_KEY=sk_your_key_here
-AI_GATEWAY_TOKEN=your_gateway_token
-AI_MODEL_CHAT=gpt-4o-mini
+
+# Optional: Custom Gateway URL (defaults to https://gateway.ai.vercel.com/openai/v1 for vck_ keys)
+# AI_GATEWAY_URL=https://gateway.ai.vercel.com/openai/v1
+
+AI_MODEL_CHAT=openai/gpt-4o-mini
 AI_MODEL_EMBEDDING=text-embedding-3-small
 AI_ENABLED=true
 AI_MAX_TOKENS=4096

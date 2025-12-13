@@ -7,20 +7,20 @@
 import { gateway } from './gateway';
 
 // Get the configured provider from the gateway
-const openai = gateway.getProvider();
+const provider = gateway.getProvider();
 
 export const AI_MODELS = {
   // Fast, cheap, for simple tasks
-  fast: openai('gpt-4o-mini'),
+  fast: provider('openai/gpt-4o-mini'),
 
   // Standard, balanced performance and cost
-  standard: openai('gpt-4-turbo'),
+  standard: provider('openai/gpt-4-turbo'),
 
   // Advanced, best quality (use sparingly)
-  advanced: openai('gpt-4o'),
+  advanced: provider('openai/gpt-4o'),
 
   // Structured output (for JSON responses)
-  structured: openai('gpt-4o'),
+  structured: provider('openai/gpt-4o'),
 };
 
 /**

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Textarea } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { AIProcessingLoader } from '@/components/custom/AI/AIProcessingLoader';
 import { Sparkles, Lightbulb } from 'lucide-react';
 
 const examples = [
@@ -11,6 +12,13 @@ const examples = [
   'Instagram growth strategies that actually work'
 ];
 
+const generationSteps = [
+  'Analyzing your idea...',
+  'Generating content variations...',
+  'Optimizing for engagement...',
+  'Finalizing content...'
+];
+
 interface BrainDumpProps {
   onProceed: (data: any) => void;
 }
@@ -18,14 +26,42 @@ interface BrainDumpProps {
 export function BrainDump({ onProceed }: BrainDumpProps) {
   const [idea, setIdea] = useState('');
   const [isGenerating, setIsGenerating] = useState(false);
+  const [generationProgress, setGenerationProgress] = useState(0);
+  const [generationStep, setGenerationStep] = useState(0);
 
   const handleGenerate = async () => {
     if (!idea) return;
     setIsGenerating(true);
+    setGenerationProgress(5);
+    setGenerationStep(0);
+
+    // Simulate progress
+    const progressInterval = setInterval(() => {
+      setGenerationProgress((prev) => {
+        if (prev >= 95) {
+          clearInterval(progressInterval);
+          return prev;
+        }
+        const increment = Math.random() * 15 + 8;
+        const newProgress = Math.min(prev + increment, 95);
+        const stepIndex = Math.floor((newProgress / 100) * generationSteps.length);
+        setGenerationStep(Math.min(stepIndex, generationSteps.length - 1));
+        return newProgress;
+      });
+    }, 350);
+
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1500));
-    onProceed({ idea, topic: idea });
-    setIsGenerating(false);
+    setGenerationProgress(100);
+    setGenerationStep(generationSteps.length - 1);
+    clearInterval(progressInterval);
+
+    setTimeout(() => {
+      onProceed({ idea, topic: idea });
+      setIsGenerating(false);
+      setGenerationProgress(0);
+      setGenerationStep(0);
+    }, 500);
   };
 
   const handleExampleClick = (example: string) => {
@@ -34,6 +70,17 @@ export function BrainDump({ onProceed }: BrainDumpProps) {
 
   return (
     <div className="space-y-6 animate-fadeIn">
+      {/* AI Processing Loader */}
+      <AIProcessingLoader
+        isOpen={isGenerating}
+        title="⚡ Generating Your Content..."
+        subtitle={`Working on: "${idea.substring(0, 40)}${idea.length > 40 ? '...' : ''}"`}
+        steps={generationSteps}
+        currentStep={generationStep}
+        progress={generationProgress}
+        icon={<Sparkles className="w-12 h-12 text-[#8B5CF6] animate-spin" />}
+      />
+
       <div className="flex items-center gap-3 mb-6">
         <div className="p-3 bg-gradient-to-br from-[#8B5CF6] to-[#7C3AED] rounded-lg">
           <Sparkles className="w-6 h-6 text-white" />

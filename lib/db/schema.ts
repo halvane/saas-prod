@@ -33,6 +33,52 @@ export const shopifyIntegrations = pgTable('shopify_integrations', {
   updatedAt: timestamp('updated_at').notNull().defaultNow(),
 });
 
+export const brandSettings = pgTable('brand_settings', {
+  id: serial('id').primaryKey(),
+  userId: integer('user_id')
+    .notNull()
+    .references(() => users.id)
+    .unique(),
+  brandName: varchar('brand_name', { length: 255 }),
+  brandUrl: varchar('brand_url', { length: 255 }),
+  brandLogo: text('brand_logo'),
+  brandColors: text('brand_colors'), // Stored as JSON string
+  brandVoice: varchar('brand_voice', { length: 50 }),
+  brandAudience: text('brand_audience'),
+  brandIndustry: varchar('brand_industry', { length: 100 }),
+  brandValues: text('brand_values'),
+  brandStory: text('brand_story'),
+  brandImages: text('brand_images'), // Stored as JSON string
+  
+  // Deep Brand Understanding
+  brandTagline: text('brand_tagline'),
+  brandMission: text('brand_mission'),
+  brandArchetype: varchar('brand_archetype', { length: 50 }),
+  brandUniqueSellingPoints: text('brand_usps'), // JSON array
+  brandPainPoints: text('brand_pain_points'), // JSON array
+  brandCustomerDesires: text('brand_customer_desires'), // JSON array
+  adAngles: text('ad_angles'), // JSON array
+  socialMediaHandles: text('social_media_handles'), // JSON object
+  
+  createdAt: timestamp('created_at').notNull().defaultNow(),
+  updatedAt: timestamp('updated_at').notNull().defaultNow(),
+});
+
+export const brandProducts = pgTable('brand_products', {
+  id: serial('id').primaryKey(),
+  brandId: integer('brand_id')
+    .notNull()
+    .references(() => brandSettings.id, { onDelete: 'cascade' }),
+  name: varchar('name', { length: 255 }).notNull(),
+  description: text('description'),
+  price: varchar('price', { length: 50 }),
+  imageUrl: text('image_url'),
+  productUrl: text('product_url'),
+  metadata: text('metadata'), // JSON string
+  createdAt: timestamp('created_at').notNull().defaultNow(),
+  updatedAt: timestamp('updated_at').notNull().defaultNow(),
+});
+
 export const teams = pgTable('teams', {
   id: serial('id').primaryKey(),
   name: varchar('name', { length: 100 }).notNull(),
