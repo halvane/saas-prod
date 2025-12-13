@@ -15,6 +15,13 @@
       "when": 1765653000417,
       "tag": "0001_happy_strong_guy",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1765656375443,
+      "tag": "0002_loving_sinister_six",
+      "breakpoints": true
     }
   ]
 }

@@ -517,6 +517,26 @@ All critical operations log to `activityLogs` table:
 await logActivity(teamId, userId, 'SIGN_IN', ipAddress);
 ```
 
+### Integrations
+- **Social Media**: Uses `upload-post` API via `lib/upload-post/service.ts`.
+  - Fetches connected accounts from user's Upload-Post profile.
+  - Supports Instagram, Facebook, LinkedIn, Twitter, YouTube, TikTok, Pinterest.
+  - Routes: `/api/upload-post/callback` (implicit in OAuth flow).
+  - Displays connected accounts in Settings with usernames and icons.
+
+- **Shopify**: Uses OAuth flow via `lib/shopify/service.ts`.
+  - Stores tokens in `shopify_integrations` table.
+  - Routes: `/api/shopify/auth`, `/api/shopify/callback`.
+  - Requires `SHOPIFY_API_KEY`, `SHOPIFY_API_SECRET`, `SHOPIFY_APP_URL`.
+  - Provides `getShopifyProducts(userId)` and `getShopifyBlogs(userId)` functions.
+  - Settings page shows connected store URL and status.
+
+### AI Integration
+- Uses Vercel AI Gateway via `lib/ai/gateway.ts`.
+- Unified API for multiple models (OpenAI, etc.).
+- Requires `AI_GATEWAY_API_KEY` or `OPENAI_API_KEY`.
+- Properly configured to use AI Gateway endpoint with OAuth provider.
+
 ## Known Limitations & Notes
 
 1. **Error Handling**: Missing global `error.tsx` files - add to `(dashboard)/` for error boundaries

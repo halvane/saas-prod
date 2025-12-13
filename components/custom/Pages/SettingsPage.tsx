@@ -4,20 +4,26 @@ import React from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input, Select } from '@/components/ui/input';
-import { Settings, Palette, Globe, Bell, Shield, Zap, Share2, Instagram, Facebook, Linkedin, Twitter, Youtube } from 'lucide-react';
-import { connectSocialMedia, getConnectedAccounts } from '@/app/(dashboard)/settings/actions';
+import { Settings, Palette, Globe, Bell, Shield, Zap, Share2, Instagram, Facebook, Linkedin, Twitter, Youtube, ShoppingBag, CheckCircle, ExternalLink } from 'lucide-react';
+import { connectSocialMedia, getConnectedAccounts, getShopifyStatus } from '@/app/(dashboard)/settings/actions';
 import { toast } from 'sonner';
 
 export function SettingsPage() {
   const [isConnecting, setIsConnecting] = React.useState(false);
   const [connectedAccounts, setConnectedAccounts] = React.useState<any[]>([]);
+  const [shopifyShop, setShopifyShop] = React.useState('');
+  const [shopifyStatus, setShopifyStatus] = React.useState<{ shopUrl: string } | null>(null);
 
   React.useEffect(() => {
-    const fetchAccounts = async () => {
-      const accounts = await getConnectedAccounts();
+    const fetchData = async () => {
+      const [accounts, shopify] = await Promise.all([
+        getConnectedAccounts(),
+        getShopifyStatus()
+      ]);
       setConnectedAccounts(accounts);
+      setShopifyStatus(shopify);
     };
-    fetchAccounts();
+    fetchData();
   }, []);
 
   const handleConnectSocial = async () => {
@@ -32,6 +38,21 @@ export function SettingsPage() {
     } finally {
       setIsConnecting(false);
     }
+  };
+
+  const handleConnectShopify = () => {
+    if (!shopifyShop) {
+      toast.error('Please enter your Shopify store URL');
+      return;
+    }
+    
+    // Clean up shop URL
+    let shop = shopifyShop.replace('https://', '').replace('http://', '').replace(/\/$/, '');
+    if (!shop.includes('.myshopify.com')) {
+      shop += '.myshopify.com';
+    }
+
+    window.location.href = `/api/shopify/auth?shop=${shop}`;
   };
 
   const getPlatformIcon = (platform: string) => {
@@ -126,6 +147,58 @@ export function SettingsPage() {
             >
               {isConnecting ? 'Connecting...' : 'Connect Accounts'}
             </Button>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Blog & E-commerce Integration */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <ShoppingBag className="w-5 h-5 text-[#10B981]" />
+            Blog & E-commerce
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <p className="text-sm text-gray-500">
+              Connect your Shopify store to sync products and blogs.
+            </p>
+            
+            {shopifyStatus ? (
+              <div className="flex items-center justify-between p-4 bg-green-50 border border-green-100 rounded-lg">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-white rounded-full shadow-sm">
+                    <ShoppingBag className="w-5 h-5 text-[#95BF47]" />
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-medium text-gray-900">Connected to Shopify</h4>
+                    <p className="text-xs text-gray-500">{shopifyStatus.shopUrl}</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="flex items-center gap-1 text-xs font-medium text-green-700 bg-green-100 px-2 py-1 rounded-full">
+                    <CheckCircle className="w-3 h-3" />
+                    Active
+                  </span>
+                </div>
+              </div>
+            ) : (
+              <div className="flex gap-2">
+                <Input 
+                  placeholder="your-store.myshopify.com" 
+                  value={shopifyShop}
+                  onChange={(e) => setShopifyShop(e.target.value)}
+                  className="flex-1"
+                />
+                <Button 
+                  onClick={handleConnectShopify}
+                  className="bg-[#95BF47] hover:bg-[#82A83B] text-white"
+                >
+                  Connect Shopify
+                </Button>
+              </div>
+            )}
           </div>
         </CardContent>
       </Card>

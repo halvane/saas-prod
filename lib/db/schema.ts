@@ -21,6 +21,18 @@ export const users = pgTable('users', {
   uploadPostSynced: boolean('upload_post_synced').notNull().default(false),
 });
 
+export const shopifyIntegrations = pgTable('shopify_integrations', {
+  id: serial('id').primaryKey(),
+  userId: integer('user_id')
+    .notNull()
+    .references(() => users.id),
+  shopUrl: varchar('shop_url', { length: 255 }).notNull(),
+  accessToken: text('access_token').notNull(),
+  scope: text('scope').notNull(),
+  createdAt: timestamp('created_at').notNull().defaultNow(),
+  updatedAt: timestamp('updated_at').notNull().defaultNow(),
+});
+
 export const teams = pgTable('teams', {
   id: serial('id').primaryKey(),
   name: varchar('name', { length: 100 }).notNull(),

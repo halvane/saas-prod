@@ -5,6 +5,20 @@ import { db } from '@/lib/db/drizzle';
 import { users } from '@/lib/db/schema';
 import { getUser } from '@/lib/db/queries';
 import { createUserProfile, generateJwt, getUserProfile } from '@/lib/upload-post/service';
+import { getShopifyIntegration } from '@/lib/shopify/service';
+
+export async function getShopifyStatus() {
+  const user = await getUser();
+  if (!user) return null;
+  
+  const integration = await getShopifyIntegration(user.id);
+  if (!integration) return null;
+
+  return {
+    shopUrl: integration.shopUrl,
+    connectedAt: integration.createdAt,
+  };
+}
 
 export async function getConnectedAccounts() {
   const user = await getUser();

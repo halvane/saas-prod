@@ -4,7 +4,10 @@
  * https://vercel.com/docs/ai-sdk
  */
 
-import { openai } from '@ai-sdk/openai';
+import { gateway } from './gateway';
+
+// Get the configured provider from the gateway
+const openai = gateway.getProvider();
 
 export const AI_MODELS = {
   // Fast, cheap, for simple tasks
