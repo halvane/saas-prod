@@ -1,0 +1,1 @@
+ALTER TABLE "users" ADD COLUMN "upload_post_synced" boolean DEFAULT false NOT NULL;

@@ -40,7 +40,6 @@ export async function POST(req: Request) {
     const result = await generateText({
       model: gateway.getModel(model),
       prompt,
-      maxTokens: maxTokens || 4096,
       temperature: temperature ?? undefined,
     });
 
@@ -52,23 +51,5 @@ export async function POST(req: Request) {
   } catch (error) {
     console.error('Generate API error:', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
-  }
-}
-      { success: true, response },
-      { status: 200 }
-    );
-  } catch (error) {
-    if (error instanceof z.ZodError) {
-      return NextResponse.json(
-        { success: false, error: 'Invalid request format' },
-        { status: 400 }
-      );
-    }
-
-    console.error('AI generation error:', error);
-    return NextResponse.json(
-      { success: false, error: 'Failed to generate response' },
-      { status: 500 }
-    );
   }
 }

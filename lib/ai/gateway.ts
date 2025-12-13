@@ -46,15 +46,7 @@ class AIGateway {
    * Uses OpenAI SDK with Vercel AI Gateway endpoint
    */
   getModel(model: string = this.defaultModel): LanguageModel {
-    return openai(model, {
-      apiKey: this.apiKey,
-      baseURL: this.baseURL,
-      // Headers for Vercel AI Gateway observability
-      headers: {
-        'X-Vercel-AI-Gateway': 'true',
-        'X-App-ID': process.env.VERCEL_PROJECT_NAME || 'purlema-saas',
-      },
-    });
+    return openai(model);
   }
 
   /**

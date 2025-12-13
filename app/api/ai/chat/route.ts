@@ -27,7 +27,6 @@ export async function POST(req: Request) {
     const result = streamText({
       model: gateway.getModel(model),
       messages: [{ role: 'user', content: message }],
-      maxTokens: 4096,
     });
 
     // Convert to readable stream for streaming response

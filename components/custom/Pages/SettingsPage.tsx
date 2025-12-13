@@ -4,9 +4,46 @@ import React from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input, Select } from '@/components/ui/input';
-import { Settings, Palette, Globe, Bell, Shield, Zap } from 'lucide-react';
+import { Settings, Palette, Globe, Bell, Shield, Zap, Share2, Instagram, Facebook, Linkedin, Twitter, Youtube } from 'lucide-react';
+import { connectSocialMedia, getConnectedAccounts } from '@/app/(dashboard)/settings/actions';
+import { toast } from 'sonner';
 
 export function SettingsPage() {
+  const [isConnecting, setIsConnecting] = React.useState(false);
+  const [connectedAccounts, setConnectedAccounts] = React.useState<any[]>([]);
+
+  React.useEffect(() => {
+    const fetchAccounts = async () => {
+      const accounts = await getConnectedAccounts();
+      setConnectedAccounts(accounts);
+    };
+    fetchAccounts();
+  }, []);
+
+  const handleConnectSocial = async () => {
+    setIsConnecting(true);
+    try {
+      const url = await connectSocialMedia();
+      if (url) {
+        window.location.href = url;
+      }
+    } catch (error) {
+      toast.error('Failed to connect social media');
+    } finally {
+      setIsConnecting(false);
+    }
+  };
+
+  const getPlatformIcon = (platform: string) => {
+    const p = platform.toLowerCase();
+    if (p.includes('instagram')) return <Instagram className="w-4 h-4 text-pink-600" />;
+    if (p.includes('facebook')) return <Facebook className="w-4 h-4 text-blue-600" />;
+    if (p.includes('linkedin')) return <Linkedin className="w-4 h-4 text-blue-700" />;
+    if (p.includes('twitter') || p.includes('x')) return <Twitter className="w-4 h-4 text-black" />;
+    if (p.includes('youtube')) return <Youtube className="w-4 h-4 text-red-600" />;
+    return <Globe className="w-4 h-4 text-gray-600" />;
+  };
+
   return (
     <div className="space-y-6 animate-fadeIn">
       {/* Header */}
@@ -46,6 +83,49 @@ export function SettingsPage() {
                 { value: 'utc', label: 'UTC' }
               ]}
             />
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Social Media Integration */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Share2 className="w-5 h-5 text-[#EC4899]" />
+            Social Media Integration
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <p className="text-sm text-gray-500">
+              Connect your social media accounts to enable auto-posting.
+            </p>
+            
+            {connectedAccounts.length > 0 && (
+              <div className="flex flex-wrap gap-3 mb-4">
+                {connectedAccounts.map((account) => (
+                  <div 
+                    key={account.platform} 
+                    className="flex items-center gap-2 px-3 py-2 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-50 transition-colors"
+                  >
+                    {getPlatformIcon(account.platform)}
+                    <div className="flex flex-col">
+                      <span className="text-xs font-medium text-gray-900 capitalize">{account.platform}</span>
+                      <span className="text-[10px] text-gray-500">{account.username}</span>
+                    </div>
+                    <div className="w-2 h-2 rounded-full bg-green-500 ml-2" />
+                  </div>
+                ))}
+              </div>
+            )}
+
+            <Button 
+              onClick={handleConnectSocial} 
+              disabled={isConnecting}
+              className="bg-gradient-to-r from-pink-500 to-violet-500 text-white"
+            >
+              {isConnecting ? 'Connecting...' : 'Connect Accounts'}
+            </Button>
           </div>
         </CardContent>
       </Card>

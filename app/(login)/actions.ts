@@ -25,6 +25,7 @@ import {
   validatedAction,
   validatedActionWithUser
 } from '@/lib/auth/middleware';
+import { createUserProfile } from '@/lib/upload-post/service';
 
 async function logActivity(
   teamId: number | null | undefined,
@@ -211,6 +212,16 @@ export const signUp = validatedAction(signUpSchema, async (data, formData) => {
     logActivity(teamId, createdUser.id, ActivityType.SIGN_UP),
     setSession(createdUser)
   ]);
+
+  try {
+    const username = `user_${createdUser.id}`;
+    await createUserProfile(username);
+    await db.update(users)
+      .set({ uploadPostSynced: true })
+      .where(eq(users.id, createdUser.id));
+  } catch (error) {
+    console.error('Failed to sync with Upload-Post during signup:', error);
+  }
 
   const redirectTo = formData.get('redirect') as string | null;
   if (redirectTo === 'checkout') {

@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
     const stream = await streamAIChatResponse(messages, model);
 
     // Convert to Web Stream API for Next.js
-    return new NextResponse(stream.toReadableStream(), {
+    return new NextResponse(stream.toTextStreamResponse().body, {
       headers: {
         'Content-Type': 'text/event-stream',
         'Cache-Control': 'no-cache',
