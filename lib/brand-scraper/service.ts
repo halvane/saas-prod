@@ -23,18 +23,47 @@ interface ProductData {
   currency?: string;
   url?: string;
   image?: string;
+  metadata?: Record<string, any>;
 }
 
 export async function scrapeBrandFromUrl(url: string): Promise<BrandData> {
   try {
-    const response = await fetch(url, {
-      headers: {
-        'User-Agent': 'Mozilla/5.0 (compatible; PurlemaBrandScraper/2.0; +https://purlema.com)',
-      },
-    });
+    const fetchWithFallback = async (targetUrl: string, retries = 1): Promise<Response> => {
+      try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 15000);
+        
+        const res = await fetch(targetUrl, {
+          headers: {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+            'Accept-Language': 'en-US,en;q=0.5',
+          },
+          signal: controller.signal
+        });
+        
+        clearTimeout(timeoutId);
+        return res;
+      } catch (err: any) {
+        if (retries > 0) {
+          // If DNS error and no www, try adding www
+          if ((err.cause?.code === 'ENOTFOUND' || err.cause?.code === 'EAI_AGAIN') && !targetUrl.includes('://www.')) {
+            const newUrl = targetUrl.replace('://', '://www.');
+            console.log(`[Scraper] DNS failed for ${targetUrl}, retrying with ${newUrl}`);
+            return fetchWithFallback(newUrl, retries - 1);
+          }
+          // General retry
+          await new Promise(r => setTimeout(r, 1000));
+          return fetchWithFallback(targetUrl, retries - 1);
+        }
+        throw err;
+      }
+    };
+
+    const response = await fetchWithFallback(url);
 
     if (!response.ok) {
-      throw new Error(`Failed to fetch website: ${response.statusText}`);
+      throw new Error(`Failed to fetch website: ${response.status} ${response.statusText}`);
     }
 
     const html = await response.text();
@@ -58,9 +87,13 @@ export async function scrapeBrandFromUrl(url: string): Promise<BrandData> {
       products,
       socialLinks,
     };
-  } catch (error) {
+  } catch (error: any) {
     console.error('Brand scraping error:', error);
-    throw new Error('Failed to scrape brand data from URL');
+    // Return a more specific error message
+    if (error.cause?.code === 'ENOTFOUND') {
+      throw new Error(`Could not find website "${url}". Please check the URL and try again.`);
+    }
+    throw new Error(error.message || 'Failed to scrape brand data from URL');
   }
 }
 
@@ -312,7 +345,30 @@ function extractProducts($: cheerio.CheerioAPI, baseUrl: string): ProductData[] 
     $(productSelectors.join(', ')).each((_, el) => {
       const name = $(el).find('h3, h2, h4, .product-title, .title, .name, .woocommerce-loop-product__title').first().text().trim();
       const price = $(el).find('.price, .money, .amount, .current-price').first().text().trim();
-      const image = $(el).find('img').attr('src') || $(el).find('img').attr('data-src');
+      
+      // Enhanced image extraction
+      let image = $(el).find('img').attr('src') || 
+                  $(el).find('img').attr('data-src') || 
+                  $(el).find('source').attr('srcset')?.split(',')[0]?.split(' ')[0] ||
+                  $(el).find('img').attr('srcset')?.split(',')[0]?.split(' ')[0];
+      
+      // Extract alt text for visual context
+      const altText = $(el).find('img').attr('alt') || '';
+
+      // Try background image if no img tag
+      if (!image) {
+        const bgImage = $(el).find('[style*="background-image"]').css('background-image');
+        if (bgImage) {
+          image = bgImage.replace(/^url\(['"]?/, '').replace(/['"]?\)$/, '');
+        }
+      }
+
+      // Try finding image in previous sibling (common in list layouts)
+      if (!image) {
+        const prevImg = $(el).prev().find('img').attr('src');
+        if (prevImg) image = prevImg;
+      }
+
       const link = $(el).find('a').attr('href') || ($(el).is('a') ? $(el).attr('href') : undefined);
       
       if (name) {
@@ -320,7 +376,11 @@ function extractProducts($: cheerio.CheerioAPI, baseUrl: string): ProductData[] 
           name,
           price,
           image: image ? resolveUrl(image, baseUrl) : undefined,
-          url: link ? resolveUrl(link, baseUrl) : undefined
+          url: link ? resolveUrl(link, baseUrl) : undefined,
+          metadata: {
+            visual_context: altText ? `Image shows: ${altText}` : 'Product image',
+            source: 'scraped'
+          }
         });
       }
     });
@@ -382,4 +442,47 @@ function resolveUrl(url: string, baseUrl: string): string {
   } catch {
     return url;
   }
+}
+
+export function matchImagesToProducts(products: ProductData[], images: string[]): ProductData[] {
+  const usedImages = new Set<string>();
+  
+  // First pass: Try to match by product name in image URL
+  let matchedProducts = products.map(product => {
+    if (product.image) {
+      usedImages.add(product.image);
+      return product;
+    }
+
+    const slug = product.name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+    // Try to find an image that contains the product name
+    const match = images.find(img => {
+      if (usedImages.has(img)) return false;
+      const imgName = img.split('/').pop()?.toLowerCase() || '';
+      return imgName.includes(slug) || slug.includes(imgName.split('.')[0]);
+    });
+
+    if (match) {
+      usedImages.add(match);
+      return { ...product, image: match };
+    }
+
+    return product;
+  });
+
+  // Second pass: Assign remaining high-quality images to products that still lack images
+  // But only if we have enough images and they look like product images (not logos/icons)
+  matchedProducts = matchedProducts.map(product => {
+    if (product.image) return product;
+
+    const nextImage = images.find(img => !usedImages.has(img));
+    if (nextImage) {
+      usedImages.add(nextImage);
+      return { ...product, image: nextImage };
+    }
+
+    return product;
+  });
+
+  return matchedProducts;
 }

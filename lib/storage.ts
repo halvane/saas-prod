@@ -18,8 +18,10 @@ export async function uploadAsset(
   
   const { url } = await put(path, body, { 
     access: 'public',
-    // Add any default token config here if needed, 
-    // but usually it picks up BLOB_READ_WRITE_TOKEN from env
+    addRandomSuffix: false, // We manage uniqueness via content hashing
+    // Allow overwriting if the file already exists (since it's the same hash)
+    // This prevents "Blob already exists" errors
+    token: process.env.BLOB_READ_WRITE_TOKEN, 
   });
 
   return url;

@@ -11,39 +11,39 @@ import { getShopifyIntegration } from '@/lib/shopify/service';
 import { uploadAsset } from '@/lib/storage';
 
 // Helper to process and upload images to Vercel Blob
-async function processImage(url: string | null | undefined, folder: string): Promise<string | null> {
-  if (!url) return null;
+async function processImage(imageUrl: string | null | undefined, folder: string): Promise<string | null> {
+  if (!imageUrl) return null;
   
   // If it's already a Vercel Blob URL, return it as is
-  if (url.includes('public.blob.vercel-storage.com')) {
-    return url;
+  if (imageUrl.includes('public.blob.vercel-storage.com')) {
+    return imageUrl;
   }
 
   // Check if token is present
   if (!process.env.BLOB_READ_WRITE_TOKEN) {
     console.error('[processImage] ❌ BLOB_READ_WRITE_TOKEN is missing in environment variables');
-    return url;
+    return imageUrl;
   }
 
   try {
-    console.log(`[processImage] Processing image: ${url.substring(0, 50)}...`);
+    console.log(`[processImage] Processing image: ${imageUrl.substring(0, 50)}...`);
     
     let buffer: Buffer;
     let ext = 'jpg';
 
     // Handle Data URLs directly
-    if (url.startsWith('data:')) {
+    if (imageUrl.startsWith('data:')) {
       console.log('[processImage] Detected Data URL');
-      const base64Data = url.split(',')[1];
+      const base64Data = imageUrl.split(',')[1];
       buffer = Buffer.from(base64Data, 'base64');
-      const mimeType = url.split(';')[0].split(':')[1];
+      const mimeType = imageUrl.split(';')[0].split(':')[1];
       ext = mimeType.split('/')[1] || 'png';
     } else {
       console.log(`[processImage] Downloading image from URL`);
-      const response = await fetch(url);
+      const response = await fetch(imageUrl);
       if (!response.ok) {
         console.warn(`[processImage] Failed to fetch image: ${response.statusText}`);
-        return url; // Fallback to original URL
+        return imageUrl; // Fallback to original URL
       }
       const arrayBuffer = await response.arrayBuffer();
       buffer = Buffer.from(arrayBuffer);
@@ -60,13 +60,15 @@ async function processImage(url: string | null | undefined, folder: string): Pro
     const filename = `${hash}.${ext}`;
     
     console.log(`[processImage] Uploading to Blob (Hash: ${hash}): ${folder}/${filename}`);
-    // Vercel Blob 'put' will overwrite if exists, ensuring we have the file but no duplicates
-    const blobUrl = await uploadAsset(filename, buffer, folder);
+    
+    // Use allowOverwrite: true to avoid errors if the file already exists (since we use content hashing, it's the same file)
+    const { url: blobUrl } = await uploadAsset(filename, buffer, folder);
+    
     console.log(`[processImage] ✅ Upload success: ${blobUrl}`);
     return blobUrl;
   } catch (error) {
     console.error('[processImage] ❌ Error processing image:', error);
-    return url; // Fallback to original URL
+    return imageUrl; // Fallback to original URL
   }
 }
 
@@ -90,6 +92,11 @@ export async function getBrandSettings() {
     .from(brandProducts)
     .where(eq(brandProducts.brandId, s.id));
 
+  const parsedProducts = products.map(p => ({
+    ...p,
+    metadata: p.metadata ? JSON.parse(p.metadata as string) : {}
+  }));
+
   return {
     ...s,
     brandColors: s.brandColors ? JSON.parse(s.brandColors) : [],
@@ -98,7 +105,7 @@ export async function getBrandSettings() {
     brandPainPoints: s.brandPainPoints ? JSON.parse(s.brandPainPoints as string) : [],
     customerDesires: s.brandCustomerDesires ? JSON.parse(s.brandCustomerDesires as string) : [],
     adAngles: s.adAngles ? JSON.parse(s.adAngles as string) : [],
-    products: products || [],
+    products: parsedProducts || [],
   };
 }
 
@@ -123,13 +130,32 @@ export async function saveBrandSettings(data: any) {
   // Process images before saving
   const processedLogo = await processImage(data.brandLogo, 'brand-logos');
   
-  let processedBrandImages: string[] = [];
+  let processedBrandImages: any[] = [];
   if (data.brandImages && Array.isArray(data.brandImages)) {
     processedBrandImages = await Promise.all(
-      data.brandImages.map((img: string) => processImage(img, 'brand-assets'))
-    ) as string[];
-    // Filter out nulls just in case
-    processedBrandImages = processedBrandImages.filter(Boolean);
+      data.brandImages.map(async (img: string | { url: string, metadata?: any }) => {
+        const url = typeof img === 'string' ? img : img.url;
+        const processedUrl = await processImage(url, 'brand-assets');
+        
+        // Ensure we store as object with metadata structure
+        if (typeof img === 'string') {
+          return { 
+            url: processedUrl, 
+            metadata: { 
+              source: 'scraped',
+              analyzed: false,
+              context: 'brand_asset'
+            } 
+          };
+        }
+        return { 
+          ...img, 
+          url: processedUrl 
+        };
+      })
+    );
+    // Filter out items where url is null (though processImage usually returns original url on failure)
+    processedBrandImages = processedBrandImages.filter(img => img && img.url);
   }
 
   const existing = await db
@@ -216,6 +242,28 @@ export async function saveBrandSettings(data: any) {
   revalidatePath('/(dashboard)/settings');
   
   console.log('[saveBrandSettings] ✅ Save operation completed successfully');
+  return { success: true };
+}
+
+export async function deleteBrandSettings() {
+  const user = await getUser();
+  if (!user) throw new Error('Unauthorized');
+
+  const settings = await db
+    .select()
+    .from(brandSettings)
+    .where(eq(brandSettings.userId, user.id))
+    .limit(1);
+
+  if (settings.length > 0) {
+    const brandId = settings[0].id;
+    // Delete products first
+    await db.delete(brandProducts).where(eq(brandProducts.brandId, brandId));
+    // Delete settings
+    await db.delete(brandSettings).where(eq(brandSettings.id, brandId));
+  }
+
+  revalidatePath('/settings');
   return { success: true };
 }
 

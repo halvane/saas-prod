@@ -4,10 +4,21 @@ import React from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input, Select } from '@/components/ui/input';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogFooter, DialogClose } from '@/components/ui/dialog';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import { Label } from '@/components/ui/label';
-import { Settings, Palette, Globe, Bell, Shield, Zap, Share2, Instagram, Facebook, Linkedin, Twitter, Youtube, ShoppingBag, CheckCircle, ExternalLink, Upload, Plus, X, ChevronDown, ChevronUp, Loader2, Target, Lightbulb, Heart, ShoppingCart, Tag, BrainCircuit, Sparkles, Image as ImageIcon } from 'lucide-react';
-import { connectSocialMedia, getConnectedAccounts, getShopifyStatus, getBrandSettings, saveBrandSettings } from '@/app/(dashboard)/settings/actions';
+import { Settings, Palette, Globe, Bell, Shield, Zap, Share2, Instagram, Facebook, Linkedin, Twitter, Youtube, ShoppingBag, CheckCircle, ExternalLink, Upload, Plus, X, ChevronDown, ChevronUp, Loader2, Target, Lightbulb, Heart, ShoppingCart, Tag, BrainCircuit, Sparkles, Image as ImageIcon, Trash2, Edit2 } from 'lucide-react';
+import { connectSocialMedia, getConnectedAccounts, getShopifyStatus, getBrandSettings, saveBrandSettings, deleteBrandSettings } from '@/app/(dashboard)/settings/actions';
 import { AIProcessingLoader } from '@/components/custom/AI/AIProcessingLoader';
 import { toast } from 'sonner';
 
@@ -23,8 +34,15 @@ export function SettingsPage() {
   const [scrapingProgress, setScrapingProgress] = React.useState(0);
   const [scrapingStep, setScrapingStep] = React.useState(0);
 
+  // UI State
+  const [isEditingUrl, setIsEditingUrl] = React.useState(false);
+  const [isDeleting, setIsDeleting] = React.useState(false);
+  const [hasSavedData, setHasSavedData] = React.useState(false);
+  const [isDirty, setIsDirty] = React.useState(false);
+
   // Manual Add State
   const [isAddProductOpen, setIsAddProductOpen] = React.useState(false);
+  const [selectedProduct, setSelectedProduct] = React.useState<any>(null);
   const [newProduct, setNewProduct] = React.useState({ name: '', price: '', description: '', imageUrl: '', productUrl: '' });
   const [newAssetUrl, setNewAssetUrl] = React.useState('');
 
@@ -55,7 +73,23 @@ export function SettingsPage() {
   const [brandIndustry, setBrandIndustry] = React.useState('');
   const [brandValues, setBrandValues] = React.useState('');
   const [brandStory, setBrandStory] = React.useState('');
-  const [brandImages, setBrandImages] = React.useState<string[]>([]);
+  
+  interface BrandAsset {
+    url: string;
+    metadata: {
+      alt?: string;
+      description?: string;
+      tags?: string[];
+      colors?: string[];
+      mood?: string;
+      marketing_angles?: string[];
+      analyzed?: boolean;
+      source?: string;
+      context?: string;
+    };
+  }
+
+  const [brandImages, setBrandImages] = React.useState<BrandAsset[]>([]);
 
   const sanitizeImageUrl = React.useCallback((url: string) => {
     if (!url) return '';
@@ -66,11 +100,33 @@ export function SettingsPage() {
   }, []);
 
   const dedupeImages = React.useCallback(
-    (images: string[]) => {
-      const normalized = images
-        .filter(Boolean)
-        .map((img) => sanitizeImageUrl(img));
-      return Array.from(new Set(normalized)).slice(0, 12);
+    (images: (string | BrandAsset)[]) => {
+      const uniqueMap = new Map<string, BrandAsset>();
+      
+      images.forEach(img => {
+        if (!img) return;
+        const url = typeof img === 'string' ? img : img.url;
+        const cleanUrl = sanitizeImageUrl(url);
+        
+        if (!uniqueMap.has(cleanUrl)) {
+          if (typeof img === 'string') {
+            uniqueMap.set(cleanUrl, { 
+              url: cleanUrl, 
+              metadata: { 
+                source: 'scraped', 
+                analyzed: false,
+                context: 'brand_asset',
+                marketing_angles: [],
+                tags: []
+              } 
+            });
+          } else {
+            uniqueMap.set(cleanUrl, { ...img, url: cleanUrl });
+          }
+        }
+      });
+
+      return Array.from(uniqueMap.values()).slice(0, 12);
     },
     [sanitizeImageUrl]
   );
@@ -112,6 +168,7 @@ export function SettingsPage() {
       setShopifyStatus(shopify);
 
       if (brandSettings) {
+        setHasSavedData(true);
         setBrandName(brandSettings.brandName || '');
         setBrandUrl(brandSettings.brandUrl || '');
         setBrandLogo(brandSettings.brandLogo || null);
@@ -138,6 +195,42 @@ export function SettingsPage() {
     };
     fetchData();
   }, [dedupeImages]);
+
+  const handleDeleteBrandData = async () => {
+    setIsDeleting(true);
+    try {
+      await deleteBrandSettings();
+      
+      // Reset all local state
+      setBrandName('');
+      setBrandUrl('');
+      setBrandLogo(null);
+      setBrandColors(['#8B5CF6', '#EC4899', '#10B981']);
+      setBrandVoice('');
+      setBrandAudience('');
+      setBrandIndustry('');
+      setBrandValues('');
+      setBrandStory('');
+      setBrandImages([]);
+      setBrandArchetype('');
+      setBrandTagline('');
+      setBrandMission('');
+      setBrandUsps([]);
+      setBrandPainPoints([]);
+      setCustomerDesires([]);
+      setAdAngles([]);
+      setProducts([]);
+      
+      setHasSavedData(false);
+      setIsEditingUrl(false); // Reset edit mode
+      
+      toast.success('Brand data deleted successfully');
+    } catch (error) {
+      toast.error('Failed to delete brand data');
+    } finally {
+      setIsDeleting(false);
+    }
+  };
 
   const handleConnectSocial = async () => {
     setIsConnecting(true);
@@ -188,13 +281,15 @@ export function SettingsPage() {
 
   const [isSaving, setIsSaving] = React.useState(false);
 
-  const handleSaveBrandDNA = async () => {
+  const handleSaveBrandDNA = async (dataOverride?: any) => {
     setIsSaving(true);
     try {
-      const cleanedImages = dedupeImages(brandImages);
-      setBrandImages(cleanedImages);
+      const cleanedImages = dedupeImages(dataOverride?.brandImages || brandImages);
+      if (!dataOverride) {
+        setBrandImages(cleanedImages);
+      }
       
-      const dataToSave = {
+      const dataToSave = dataOverride || {
         brandName,
         brandUrl,
         brandLogo,
@@ -217,15 +312,16 @@ export function SettingsPage() {
       
       console.log('[handleSaveBrandDNA] Saving data to DB:', {
         brandName: dataToSave.brandName,
-        imagesCount: dataToSave.brandImages.length,
-        uspsCount: dataToSave.brandUsps.length,
-        productsCount: dataToSave.products.length
+        imagesCount: dataToSave.brandImages?.length,
+        uspsCount: dataToSave.brandUsps?.length,
+        productsCount: dataToSave.products?.length
       });
       
       const result = await saveBrandSettings(dataToSave);
       console.log('[handleSaveBrandDNA] Save result:', result);
       
       toast.success('✨ Brand DNA saved to database!');
+      setIsDirty(false);
       
       // Reload data from DB to confirm persistence and get updated Blob URLs
       setTimeout(async () => {
@@ -496,169 +592,281 @@ export function SettingsPage() {
                   <BrainCircuit className="w-5 h-5 text-purple-600" />
                   AI Brand Analysis
                 </label>
-                <p className="text-sm text-gray-600 mb-4">
-                  Enter your website URL to automatically extract brand identity, products, and generate strategic marketing angles using AI.
-                </p>
-                <div className="flex gap-3">
-                  <Input
-                    placeholder="https://example.com"
-                    value={brandUrl}
-                    onChange={(e) => setBrandUrl(e.target.value)}
-                    className="flex-1 h-11"
-                    disabled={isScrapingBrand}
-                  />
-                  <Button
-                    onClick={async () => {
-                      if (!brandUrl) {
-                        toast.error('Please enter a website URL');
-                        return;
-                      }
-                      setIsScrapingBrand(true);
-                      setScrapingProgress(5);
-                      setScrapingStep(0);
-
-                      // Simulate progress updates
-                      const progressInterval = setInterval(() => {
-                        setScrapingProgress((prev) => {
-                          if (prev >= 95) {
-                            // Don't clear interval here, let it hang at 95% until done
-                            return prev;
+                
+                {hasSavedData && !isEditingUrl ? (
+                  <div className="flex items-center justify-between bg-white/50 p-4 rounded-lg border border-purple-100">
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 bg-green-100 rounded-full">
+                        <CheckCircle className="w-5 h-5 text-green-600" />
+                      </div>
+                      <div>
+                        <h4 className="font-medium text-gray-900">Analysis Active</h4>
+                        <p className="text-sm text-gray-500">{brandUrl}</p>
+                      </div>
+                    </div>
+                    <div className="flex gap-2">
+                      <Button 
+                        variant="outline" 
+                        size="sm" 
+                        onClick={() => setIsEditingUrl(true)}
+                        className="gap-2"
+                      >
+                        <Edit2 className="w-4 h-4" /> Re-Analyze
+                      </Button>
+                      
+                      <AlertDialog>
+                        <AlertDialogTrigger asChild>
+                          <Button variant="destructive" size="sm" className="gap-2">
+                            <Trash2 className="w-4 h-4" /> Delete Data
+                          </Button>
+                        </AlertDialogTrigger>
+                        <AlertDialogContent>
+                          <AlertDialogHeader>
+                            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                            <AlertDialogDescription>
+                              This will permanently delete all your brand settings, products, and analysis data. This action cannot be undone.
+                            </AlertDialogDescription>
+                          </AlertDialogHeader>
+                          <AlertDialogFooter>
+                            <AlertDialogCancel>Cancel</AlertDialogCancel>
+                            <AlertDialogAction onClick={handleDeleteBrandData} className="bg-red-600 hover:bg-red-700">
+                              {isDeleting ? 'Deleting...' : 'Delete Everything'}
+                            </AlertDialogAction>
+                          </AlertDialogFooter>
+                        </AlertDialogContent>
+                      </AlertDialog>
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    <p className="text-sm text-gray-600 mb-4">
+                      Enter your website URL to automatically extract brand identity, products, and generate strategic marketing angles using AI.
+                    </p>
+                    <div className="flex gap-3">
+                      <Input
+                        placeholder="https://example.com"
+                        value={brandUrl}
+                        onChange={(e) => setBrandUrl(e.target.value)}
+                        className="flex-1 h-11"
+                        disabled={isScrapingBrand}
+                      />
+                      <Button
+                        onClick={async () => {
+                          if (!brandUrl) {
+                            toast.error('Please enter a website URL');
+                            return;
                           }
-                          const increment = Math.random() * 15 + 2; // Slower increment
-                          const newProgress = Math.min(prev + increment, 95);
-                          
-                          // Update step based on progress
-                          const stepIndex = Math.floor((newProgress / 100) * scrapingSteps.length);
-                          setScrapingStep(Math.min(stepIndex, scrapingSteps.length - 1));
-                          
-                          return newProgress;
-                        });
-                      }, 800); // Slower updates
+                          setIsScrapingBrand(true);
+                          setScrapingProgress(5);
+                          setScrapingStep(0);
 
-                      try {
-                        // Set a long timeout (60s) for deep AI analysis
-                        const controller = new AbortController();
-                        const timeoutId = setTimeout(() => controller.abort(), 60000);
+                          // Simulate progress updates
+                          const progressInterval = setInterval(() => {
+                            setScrapingProgress((prev) => {
+                              if (prev >= 95) {
+                                // Don't clear interval here, let it hang at 95% until done
+                                return prev;
+                              }
+                              const increment = Math.random() * 15 + 2; // Slower increment
+                              const newProgress = Math.min(prev + increment, 95);
+                              
+                              // Update step based on progress
+                              const stepIndex = Math.floor((newProgress / 100) * scrapingSteps.length);
+                              setScrapingStep(Math.min(stepIndex, scrapingSteps.length - 1));
+                              
+                              return newProgress;
+                            });
+                          }, 800); // Slower updates
 
-                        const response = await fetch('/api/brand/scrape', {
-                          method: 'POST',
-                          headers: { 'Content-Type': 'application/json' },
-                          body: JSON.stringify({ url: brandUrl }),
-                          signal: controller.signal
-                        });
-                        
-                        clearTimeout(timeoutId);
-                        
-                        if (!response.ok) {
-                          const error = await response.json().catch(() => ({}));
-                          throw new Error(error.error || `Analysis failed (${response.status})`);
-                        }
-                        
-                        const data = await response.json();
-                        
-                        console.log('[Brand Analysis] Received data from API:', {
-                          name: data.name,
-                          logo: !!data.logo,
-                          colors: data.colors?.length,
-                          images: data.images?.length,
-                          tone: !!data.tone,
-                          audience: !!data.audience,
-                          industry: !!data.industry,
-                          story: !!data.story,
-                          mission: !!data.mission,
-                          usps: data.usps?.length,
-                          painPoints: data.painPoints?.length,
-                          adAngles: data.adAngles?.length,
-                          allKeys: Object.keys(data)
-                        });
-                        
-                        // Mark as complete
-                        setScrapingProgress(100);
-                        setScrapingStep(scrapingSteps.length - 1);
-                        clearInterval(progressInterval);
-                        
-                        // Populate ALL brand data fields
-                        if (data.colors?.length > 0) setBrandColors(data.colors.slice(0, 5));
-                        if (data.name) setBrandName(data.name);
-                        if (data.logo) setBrandLogo(data.logo);
-                        if (data.tone) setBrandVoice(data.tone);
-                        if (data.audience) setBrandAudience(data.audience);
-                        if (data.industry) setBrandIndustry(data.industry);
-                        if (data.values) setBrandValues(data.values);
-                        if (data.story) setBrandStory(data.story);
-                        
-                        // Merge images instead of replacing
-                        if (data.images?.length > 0) {
-                          setBrandImages(prev => dedupeImages([...prev, ...data.images]));
-                        }
-                        
-                        // Deep data
-                        if (data.archetype) setBrandArchetype(data.archetype);
-                        if (data.tagline) setBrandTagline(data.tagline);
-                        if (data.mission) setBrandMission(data.mission);
-                        if (data.usps) setBrandUsps(data.usps);
-                        if (data.painPoints) setBrandPainPoints(data.painPoints);
-                        if (data.customerDesires) setCustomerDesires(data.customerDesires);
-                        if (data.adAngles) setAdAngles(data.adAngles);
-                        
-                        // Map scraper product format (image, url) to DB format (imageUrl, productUrl)
-                        if (data.products && Array.isArray(data.products)) {
-                          const mappedProducts = data.products.map((p: any) => ({
-                            name: p.name,
-                            description: p.description,
-                            price: p.price,
-                            imageUrl: p.image || p.imageUrl, // Handle both formats
-                            productUrl: p.url || p.productUrl, // Handle both formats
-                            metadata: {
-                              currency: p.currency,
-                              ...p.metadata
+                          try {
+                            // Set a long timeout (60s) for deep AI analysis
+                            const controller = new AbortController();
+                            const timeoutId = setTimeout(() => controller.abort(), 60000);
+
+                            const response = await fetch('/api/brand/scrape', {
+                              method: 'POST',
+                              headers: { 'Content-Type': 'application/json' },
+                              body: JSON.stringify({ url: brandUrl }),
+                              signal: controller.signal
+                            });
+                            
+                            clearTimeout(timeoutId);
+                            
+                            if (!response.ok) {
+                              const error = await response.json().catch(() => ({}));
+                              throw new Error(error.error || `Analysis failed (${response.status})`);
                             }
-                          }));
-                          
-                          // Merge products: Only add new ones based on productUrl
-                          setProducts(prev => {
-                            const existingUrls = new Set(prev.map(p => p.productUrl));
-                            const newProducts = mappedProducts.filter((p: any) => !existingUrls.has(p.productUrl));
-                            return [...prev, ...newProducts];
-                          });
-                        }
-                        
-                        console.log('[Brand Analysis] State updated. Check fields below.');
-                        
-                        setTimeout(() => {
-                          toast.success('🎉 Brand analysis complete!');
-                          setIsScrapingBrand(false);
-                        }, 500);
-                      } catch (error: any) {
-                        clearInterval(progressInterval);
-                        setIsScrapingBrand(false);
-                        
-                        if (error.name === 'AbortError') {
-                          toast.error('Analysis timed out. The server is taking too long to respond.');
-                        } else if (error.message?.includes('NetworkError') || error.message?.includes('Failed to fetch')) {
-                          toast.error('Connection failed. Please check if the server is running.');
-                        } else {
-                          toast.error(error.message || 'Failed to import brand data');
-                        }
-                        console.error('Brand scraping error:', error);
-                      }
-                    }}
-                    disabled={isScrapingBrand || !brandUrl}
-                    className="bg-gradient-to-r from-purple-600 to-pink-600 text-white h-11 px-6"
-                  >
-                    {isScrapingBrand ? (
-                      <>
-                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                        Analyzing...
-                      </>
-                    ) : (
-                      <>
-                        <Globe className="w-4 h-4 mr-2" />
-                        Analyze Brand
-                      </>
-                    )}
-                  </Button>
-                </div>
+                            
+                            const data = await response.json();
+                            
+                            console.log('[Brand Analysis] Received data from API:', {
+                              name: data.name,
+                              logo: !!data.logo,
+                              colors: data.colors?.length,
+                              images: data.images?.length,
+                              tone: !!data.tone,
+                              audience: !!data.audience,
+                              industry: !!data.industry,
+                              story: !!data.story,
+                              mission: !!data.mission,
+                              usps: data.usps?.length,
+                              painPoints: data.painPoints?.length,
+                              adAngles: data.adAngles?.length,
+                              allKeys: Object.keys(data)
+                            });
+                            
+                            // Mark as complete
+                            setScrapingProgress(100);
+                            setScrapingStep(scrapingSteps.length - 1);
+                            clearInterval(progressInterval);
+                            
+                            // Populate ALL brand data fields
+                            if (data.colors?.length > 0) setBrandColors(data.colors.slice(0, 5));
+                            if (data.name) setBrandName(data.name);
+                            if (data.logo) setBrandLogo(data.logo);
+                            if (data.tone) setBrandVoice(data.tone);
+                            if (data.audience) setBrandAudience(data.audience);
+                            if (data.industry) setBrandIndustry(data.industry);
+                            if (data.values) setBrandValues(data.values);
+                            if (data.story) setBrandStory(data.story);
+                            
+                            // Merge images instead of replacing
+                            if (data.images?.length > 0) {
+                              setBrandImages(prev => dedupeImages([...prev, ...data.images]));
+                            }
+                            
+                            // Deep data
+                            if (data.archetype) setBrandArchetype(data.archetype);
+                            if (data.tagline) setBrandTagline(data.tagline);
+                            if (data.mission) setBrandMission(data.mission);
+                            if (data.usps) setBrandUsps(data.usps);
+                            if (data.painPoints) setBrandPainPoints(data.painPoints);
+                            if (data.customerDesires) setCustomerDesires(data.customerDesires);
+                            if (data.adAngles) setAdAngles(data.adAngles);
+                            
+                            // Map scraper product format (image, url) to DB format (imageUrl, productUrl)
+                            let mappedProducts: any[] = [];
+                            if (data.products && Array.isArray(data.products)) {
+                              mappedProducts = data.products.map((p: any) => ({
+                                name: p.name,
+                                description: p.description,
+                                price: p.price,
+                                imageUrl: p.image || p.imageUrl, // Handle both formats
+                                productUrl: p.url || p.productUrl, // Handle both formats
+                                metadata: {
+                                  currency: p.currency,
+                                  source: 'scraped',
+                                  analyzed: false,
+                                  marketing_angles: [],
+                                  visual_context: '',
+                                  detected_objects: [],
+                                  colors: [],
+                                  ...p.metadata
+                                }
+                              }));
+                              
+                              // Merge products: Only add new ones based on productUrl
+                              setProducts(prev => {
+                                const existingUrls = new Set(prev.map(p => p.productUrl));
+                                const newProducts = mappedProducts.filter((p: any) => !existingUrls.has(p.productUrl));
+                                return [...prev, ...newProducts];
+                              });
+                            }
+                            
+                            console.log('[Brand Analysis] State updated. Check fields below.');
+                            
+                            // Auto-save logic
+                            const mergedImages = data.images?.length > 0 
+                              ? dedupeImages([...brandImages, ...data.images]) 
+                              : brandImages;
+                              
+                            const mergedProducts = [...products];
+                            const existingUrls = new Set(products.map(p => p.productUrl));
+                            mappedProducts.forEach(p => {
+                              if (!existingUrls.has(p.productUrl)) {
+                                mergedProducts.push(p);
+                              }
+                            });
+
+                            const autoSaveData = {
+                              brandName: data.name || brandName,
+                              brandUrl: brandUrl,
+                              brandLogo: data.logo || brandLogo,
+                              brandColors: data.colors?.length > 0 ? data.colors.slice(0, 5) : brandColors,
+                              brandVoice: data.tone || brandVoice,
+                              brandAudience: data.audience || brandAudience,
+                              brandIndustry: data.industry || brandIndustry,
+                              brandValues: data.values || brandValues,
+                              brandStory: data.story || brandStory,
+                              brandImages: mergedImages,
+                              brandArchetype: data.archetype || brandArchetype,
+                              brandTagline: data.tagline || brandTagline,
+                              brandMission: data.mission || brandMission,
+                              brandUsps: data.usps || brandUsps,
+                              brandPainPoints: data.painPoints || brandPainPoints,
+                              customerDesires: data.customerDesires || customerDesires,
+                              adAngles: data.adAngles || adAngles,
+                              products: mergedProducts
+                            };
+
+                            await handleSaveBrandDNA(autoSaveData);
+
+                            setTimeout(() => {
+                              toast.success('🎉 Brand analysis complete & saved!');
+                              setIsScrapingBrand(false);
+                              setHasSavedData(true);
+                              setIsEditingUrl(false);
+                            }, 500);
+                          } catch (error: any) {
+                            clearInterval(progressInterval);
+                            setIsScrapingBrand(false);
+                            
+                            if (error.name === 'AbortError') {
+                              toast.error('Analysis timed out. The server is taking too long to respond.');
+                            } else if (error.message?.includes('NetworkError') || error.message?.includes('Failed to fetch')) {
+                              toast.error('Connection failed. Please check if the server is running.');
+                            } else {
+                              toast.error(error.message || 'Failed to import brand data');
+                            }
+                            console.error('Brand scraping error:', error);
+                          }
+                        }}
+                        disabled={isScrapingBrand || !brandUrl}
+                        className="bg-gradient-to-r from-purple-600 to-pink-600 text-white h-11 px-6"
+                      >
+                        {isScrapingBrand ? (
+                          <>
+                            <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                            Analyzing...
+                          </>
+                        ) : (
+                          <>
+                            <Globe className="w-4 h-4 mr-2" />
+                            Analyze Brand
+                          </>
+                        )}
+                      </Button>
+                      {isEditingUrl && (
+                        <Button variant="ghost" onClick={() => setIsEditingUrl(false)}>
+                          Cancel
+                        </Button>
+                      )}
+                      {!isScrapingBrand && (
+                        <Button 
+                          variant="outline" 
+                          onClick={() => {
+                            setHasSavedData(true);
+                            setIsEditingUrl(false);
+                            setIsDirty(true);
+                          }}
+                          className="h-11"
+                        >
+                          Enter Manually
+                        </Button>
+                      )}
+                    </div>
+                  </>
+                )}
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -813,14 +1021,7 @@ export function SettingsPage() {
                             placeholder="Short description..."
                           />
                         </div>
-                        <div className="space-y-2">
-                          <Label>Product URL</Label>
-                          <Input 
-                            value={newProduct.productUrl} 
-                            onChange={(e) => setNewProduct({...newProduct, productUrl: e.target.value})}
-                            placeholder="https://..."
-                          />
-                        </div>
+                        {/* Product URL removed as per request */}
                         <div className="space-y-2">
                           <Label>Image</Label>
                           <div className="flex gap-2">
@@ -861,30 +1062,31 @@ export function SettingsPage() {
                 {products.length > 0 ? (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {products.map((product, i) => (
-                      <div key={i} className="border rounded-lg overflow-hidden bg-white shadow-sm hover:shadow-md transition-shadow flex flex-col">
-                        <div className="aspect-video bg-gray-100 relative">
+                      <div 
+                        key={i} 
+                        className="border rounded-lg overflow-hidden bg-white shadow-sm hover:shadow-md transition-shadow flex flex-col cursor-pointer group"
+                        onClick={() => setSelectedProduct(product)}
+                      >
+                        <div className="aspect-video bg-gray-100 relative overflow-hidden">
                           {product.imageUrl ? (
-                            <img src={product.imageUrl} alt={product.name} className="w-full h-full object-cover" />
+                            <img src={product.imageUrl} alt={product.name} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
                           ) : (
                             <div className="w-full h-full flex items-center justify-center text-gray-400">
                               <ShoppingBag className="w-8 h-8" />
                             </div>
                           )}
-                          <div className="absolute top-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded">
+                          <div className="absolute top-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded backdrop-blur-sm">
                             {product.price || 'N/A'}
+                          </div>
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
+                            <span className="bg-white/90 text-gray-900 text-xs font-medium px-3 py-1.5 rounded-full shadow-sm backdrop-blur-sm">
+                              View Details
+                            </span>
                           </div>
                         </div>
                         <div className="p-3 flex-1 flex flex-col">
-                          <h5 className="font-medium text-sm line-clamp-1 mb-1">{product.name}</h5>
+                          <h5 className="font-medium text-sm line-clamp-1 mb-1 group-hover:text-purple-600 transition-colors">{product.name}</h5>
                           <p className="text-xs text-gray-500 line-clamp-2 mb-2 flex-1">{product.description}</p>
-                          <a 
-                            href={product.productUrl} 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="text-xs text-purple-600 hover:underline flex items-center gap-1 mt-auto"
-                          >
-                            View Product <ExternalLink className="w-3 h-3" />
-                          </a>
                         </div>
                       </div>
                     ))}
@@ -896,6 +1098,70 @@ export function SettingsPage() {
                     <p className="text-xs text-gray-400 mt-1">Enter your website URL above to automatically extract products.</p>
                   </div>
                 )}
+
+                {/* Product Details Dialog */}
+                <Dialog open={!!selectedProduct} onOpenChange={(open) => !open && setSelectedProduct(null)}>
+                  <DialogContent className="max-w-2xl">
+                    <DialogHeader>
+                      <DialogTitle>Product Details</DialogTitle>
+                    </DialogHeader>
+                    {selectedProduct && (
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden border">
+                          {selectedProduct.imageUrl ? (
+                            <img src={selectedProduct.imageUrl} alt={selectedProduct.name} className="w-full h-full object-contain" />
+                          ) : (
+                            <div className="w-full h-full flex items-center justify-center text-gray-400">
+                              <ShoppingBag className="w-16 h-16" />
+                            </div>
+                          )}
+                        </div>
+                        <div className="space-y-4">
+                          <div>
+                            <h3 className="text-xl font-semibold text-gray-900">{selectedProduct.name}</h3>
+                            <p className="text-lg font-medium text-purple-600 mt-1">{selectedProduct.price || 'Price not available'}</p>
+                          </div>
+                          
+                          <div className="space-y-1">
+                            <label className="text-xs font-medium text-gray-500 uppercase tracking-wider">Description</label>
+                            <p className="text-sm text-gray-700 leading-relaxed">
+                              {selectedProduct.description || 'No description available.'}
+                            </p>
+                          </div>
+
+                          {selectedProduct.metadata && Object.keys(selectedProduct.metadata).length > 0 && (
+                            <div className="space-y-1">
+                              <label className="text-xs font-medium text-gray-500 uppercase tracking-wider">AI Insights</label>
+                              <div className="bg-gray-50 rounded-md p-3 text-xs font-mono text-gray-600 space-y-2 max-h-48 overflow-y-auto">
+                                {Object.entries(selectedProduct.metadata)
+                                  .filter(([key]) => !['source', 'analyzed', 'context', 'detected_objects'].includes(key))
+                                  .map(([key, value]) => (
+                                  <div key={key} className="flex flex-col gap-1 border-b border-gray-200 last:border-0 pb-2 last:pb-0">
+                                    <span className="font-semibold text-purple-700 capitalize">
+                                      {key === 'visual_context' ? 'Visual Description' : key.replace(/_/g, ' ')}:
+                                    </span>
+                                    <span className="text-gray-600 break-words whitespace-pre-wrap">
+                                      {Array.isArray(value) 
+                                        ? value.join(', ') 
+                                        : typeof value === 'object' && value !== null
+                                          ? JSON.stringify(value, null, 2)
+                                          : String(value)
+                                      }
+                                    </span>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+
+                          <div className="pt-4">
+                            {/* Product URL removed as per request */}
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </DialogContent>
+                </Dialog>
               </div>
 
               {/* Brand Images */}
@@ -911,7 +1177,7 @@ export function SettingsPage() {
                         accept="image/*"
                         className="absolute inset-0 opacity-0 cursor-pointer w-full"
                         onChange={(e) => handleFileUpload(e, (url) => {
-                          setBrandImages([...brandImages, url]);
+                          setBrandImages(dedupeImages([...brandImages, url]));
                           toast.success('Image added! Click Save to persist.');
                         })}
                       />
@@ -923,29 +1189,69 @@ export function SettingsPage() {
                 </div>
                 
                 {brandImages.length > 0 ? (
-                  <div className="grid grid-cols-2 gap-3 md:grid-cols-4 lg:grid-cols-6">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
                     {brandImages.map((image, index) => (
                       <div
                         key={index}
-                        className="relative group rounded-lg overflow-hidden bg-white aspect-square border border-gray-200"
+                        className="group relative aspect-square bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden hover:shadow-md transition-all"
                       >
+                        {/* Checkerboard pattern for transparency */}
+                        <div className="absolute inset-0 opacity-[0.05]" 
+                             style={{ backgroundImage: 'radial-gradient(#000 1px, transparent 1px)', backgroundSize: '10px 10px' }} 
+                        />
+                        
                         <img
-                          src={getDisplayImage(image)}
-                          alt={`Brand image ${index + 1}`}
-                          className="w-full h-full object-contain p-2"
+                          src={getDisplayImage(image.url)}
+                          alt={`Brand asset ${index + 1}`}
+                          className="w-full h-full object-contain p-3 transition-transform duration-300 group-hover:scale-105"
                           loading="lazy"
                           onError={(e) => {
-                            e.currentTarget.style.opacity = '0';
+                            const img = e.currentTarget;
+                            // If optimization fails, try original URL
+                            if (img.src.includes('wsrv.nl')) {
+                              img.src = image.url;
+                            } else {
+                              img.style.display = 'none';
+                              img.parentElement?.classList.add('flex', 'items-center', 'justify-center', 'bg-gray-50');
+                              const icon = document.createElement('div');
+                              icon.innerHTML = '<svg class="w-8 h-8 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>';
+                              img.parentElement?.appendChild(icon);
+                            }
                           }}
                         />
-                        <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all flex items-center justify-center">
+                        
+                        {/* Overlay Actions */}
+                        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2 backdrop-blur-[2px]">
+                          <Dialog>
+                            <DialogTrigger asChild>
+                              <div className="absolute inset-0 cursor-pointer" />
+                            </DialogTrigger>
+                            <DialogContent className="max-w-4xl w-full p-0 overflow-hidden bg-white rounded-lg shadow-2xl border-0">
+                              <DialogTitle className="sr-only">Asset Preview</DialogTitle>
+                              <div className="relative w-full h-[80vh] flex items-center justify-center bg-gray-100">
+                                <img 
+                                  src={image.url} 
+                                  alt="Asset preview" 
+                                  className="max-w-full max-h-full object-contain" 
+                                />
+                                <DialogClose className="absolute top-4 right-4 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-colors z-50">
+                                  <X className="w-6 h-6" />
+                                  <span className="sr-only">Close</span>
+                                </DialogClose>
+                              </div>
+                            </DialogContent>
+                          </Dialog>
+                          
                           <Button
-                            size="sm"
-                            variant="ghost"
-                            onClick={() => setBrandImages(brandImages.filter((_, i) => i !== index))}
-                            className="opacity-0 group-hover:opacity-100 text-white bg-red-600 hover:bg-red-700"
+                            size="icon"
+                            variant="destructive"
+                            className="h-8 w-8 rounded-full relative z-10"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setBrandImages(brandImages.filter((_, i) => i !== index));
+                            }}
                           >
-                            <X className="w-4 h-4" />
+                            <Trash2 className="w-4 h-4" />
                           </Button>
                         </div>
                       </div>
@@ -961,22 +1267,24 @@ export function SettingsPage() {
               </div>
 
               {/* Save Button */}
-              <div className="pt-4 border-t">
-                <Button 
-                  onClick={handleSaveBrandDNA}
-                  disabled={isSaving}
-                  className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:shadow-lg transition-shadow h-12 text-lg"
-                >
-                  {isSaving ? (
-                    <>
-                      <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                      Saving Brand DNA...
-                    </>
-                  ) : (
-                    'Save Brand DNA & Intelligence'
-                  )}
-                </Button>
-              </div>
+              {isDirty && (
+                <div className="pt-4 border-t">
+                  <Button 
+                    onClick={() => handleSaveBrandDNA()}
+                    disabled={isSaving}
+                    className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:shadow-lg transition-shadow h-12 text-lg"
+                  >
+                    {isSaving ? (
+                      <>
+                        <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                        Saving Brand DNA...
+                      </>
+                    ) : (
+                      'Save Changes'
+                    )}
+                  </Button>
+                </div>
+              )}
             </div>
           </CardContent>
         )}
@@ -1029,7 +1337,7 @@ export function SettingsPage() {
         <Button 
           variant="primary" 
           size="large"
-          onClick={handleSaveBrandDNA}
+          onClick={() => handleSaveBrandDNA()}
           disabled={isSaving}
         >
           {isSaving ? (
