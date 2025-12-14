@@ -1,0 +1,1 @@
+ALTER TABLE "teams" ADD COLUMN "credits" integer DEFAULT 0 NOT NULL;

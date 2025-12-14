@@ -2,76 +2,58 @@ import React from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Users, DollarSign, FileText, Zap, TrendingUp, TrendingDown, Activity } from 'lucide-react';
 
-const metrics = [
-  {
-    label: 'Total Users',
-    value: '1,247',
-    change: '+12%',
-    trend: 'up',
-    icon: Users,
-    color: '#8B5CF6'
-  },
-  {
-    label: 'MRR',
-    value: '$24,890',
-    change: '+8%',
-    trend: 'up',
-    icon: DollarSign,
-    color: '#10B981'
-  },
-  {
-    label: 'Posts Created',
-    value: '45,230',
-    change: '+23%',
-    trend: 'up',
-    icon: FileText,
-    color: '#3B82F6'
-  },
-  {
-    label: 'API Uptime',
-    value: '98.7%',
-    change: '-0.3%',
-    trend: 'down',
-    icon: Zap,
-    color: '#F59E0B'
-  }
-];
+interface AdminDashboardProps {
+  stats: {
+    totalUsers: number;
+    totalTeams: number;
+    mrr: number;
+    recentActivity: any[];
+    planDistribution: any[];
+  };
+}
 
-const recentActivity = [
-  {
-    type: 'user',
-    message: 'New user: sarah@example.com (Pro Plan)',
-    time: '2 minutes ago',
-    action: null
-  },
-  {
-    type: 'warning',
-    message: 'API limit reached: marcus@agency.com',
-    time: '15 minutes ago',
-    action: 'Increase Quota'
-  },
-  {
-    type: 'error',
-    message: 'Payment failed: john@startup.io',
-    time: '1 hour ago',
-    action: 'Send Reminder'
-  }
-];
+export function AdminDashboard({ stats }: AdminDashboardProps) {
+  const metrics = [
+    {
+      label: 'Total Users',
+      value: stats.totalUsers.toLocaleString(),
+      change: '+12%', // This would need historical data to be real
+      trend: 'up',
+      icon: Users,
+      color: '#8B5CF6'
+    },
+    {
+      label: 'MRR',
+      value: `$${stats.mrr.toLocaleString()}`,
+      change: '+8%',
+      trend: 'up',
+      icon: DollarSign,
+      color: '#10B981'
+    },
+    {
+      label: 'Teams',
+      value: stats.totalTeams.toLocaleString(),
+      change: '+23%',
+      trend: 'up',
+      icon: FileText,
+      color: '#3B82F6'
+    },
+    {
+      label: 'API Uptime',
+      value: '99.9%',
+      change: '+0.1%',
+      trend: 'up',
+      icon: Zap,
+      color: '#F59E0B'
+    }
+  ];
 
-const planDistribution = [
-  { plan: 'Free', users: 420, revenue: '$0' },
-  { plan: 'Starter', users: 530, revenue: '$15,370' },
-  { plan: 'Pro', users: 250, revenue: '$24,750' },
-  { plan: 'Business', users: 47, revenue: '$9,353' }
-];
-
-export function AdminDashboard() {
   return (
     <div className="space-y-8 animate-fadeIn">
       {/* Header */}
       <div>
         <h2 className="gradient-text mb-2">Dashboard Overview</h2>
-        <p className="text-[#6B7280]">Welcome back, Marcus. Here's what's happening today.</p>
+        <p className="text-[#6B7280]">Welcome back. Here's what's happening today.</p>
       </div>
 
       {/* Key Metrics */}
@@ -128,7 +110,7 @@ export function AdminDashboard() {
               ))}
             </div>
             <div className="mt-4 pt-4 border-t border-[#E5E7EB] flex items-center justify-between text-sm">
-              <span className="text-[#6B7280]">Current: <span className="font-semibold text-[#1F2937]">$24,890</span></span>
+              <span className="text-[#6B7280]">Current: <span className="font-semibold text-[#1F2937]">${stats.mrr.toLocaleString()}</span></span>
               <span className="text-[#6B7280]">Target: <span className="font-semibold text-[#8B5CF6]">$30,000</span></span>
             </div>
           </CardContent>
@@ -141,8 +123,8 @@ export function AdminDashboard() {
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              {planDistribution.map((plan, idx) => {
-                const percentage = (plan.users / 1247) * 100;
+              {stats.planDistribution.map((plan, idx) => {
+                const percentage = stats.totalUsers > 0 ? (plan.users / stats.totalUsers) * 100 : 0;
                 
                 return (
                   <div key={idx}>
@@ -164,8 +146,7 @@ export function AdminDashboard() {
               })}
             </div>
             <div className="mt-6 pt-4 border-t border-[#E5E7EB] text-sm text-[#6B7280]">
-              Total MRR: <span className="font-semibold text-[#1F2937]">$49,473</span> • 
-              Avg per User: <span className="font-semibold text-[#1F2937]">$39.68</span>
+              Total MRR: <span className="font-semibold text-[#1F2937]">${stats.mrr.toLocaleString()}</span>
             </div>
           </CardContent>
         </Card>
@@ -186,7 +167,7 @@ export function AdminDashboard() {
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
-            {recentActivity.map((activity, idx) => (
+            {stats.recentActivity.length > 0 ? stats.recentActivity.map((activity, idx) => (
               <div key={idx} className="flex items-start justify-between p-4 rounded-lg hover:bg-[#F9FAFB] transition-colors">
                 <div className="flex-1">
                   <p className="text-sm text-[#1F2937] mb-1">{activity.message}</p>
@@ -198,7 +179,9 @@ export function AdminDashboard() {
                   </button>
                 )}
               </div>
-            ))}
+            )) : (
+              <p className="text-sm text-gray-500 text-center py-4">No recent activity</p>
+            )}
           </div>
         </CardContent>
       </Card>

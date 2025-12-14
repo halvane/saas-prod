@@ -62,7 +62,7 @@ Provide a deep strategic analysis. You MUST fill every field with detailed, high
         model: getModel('fast'),
         schema: brandAnalysisSchema,
         prompt,
-        system: 'You are an expert Brand Strategist and Marketing Director. Your goal is to deeply analyze a brand to create high-converting ad campaigns. You MUST fill every field with detailed, high-quality strategic insights. Never return empty values - always infer from available context.',
+        system: 'You are an expert Brand Strategist and Marketing Director. Your goal is to deeply analyze a brand to create high-converting ad campaigns. You MUST fill every field with detailed, high-quality strategic insights. Never return empty values - always infer from available context. IMPORTANT: Return ONLY the JSON object containing the analysis data.',
       });
 
       console.log('[AI Analysis] Successfully generated structured response');

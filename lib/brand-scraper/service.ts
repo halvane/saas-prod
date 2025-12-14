@@ -193,14 +193,55 @@ function extractImages($: cheerio.CheerioAPI, baseUrl: string): string[] {
   const images = new Set<string>();
   
   $('img').each((_, el) => {
-    const src = $(el).attr('src');
-    if (src && !src.includes('icon') && !src.includes('logo') && !src.startsWith('data:')) {
+    const $el = $(el);
+    let src = $el.attr('src');
+    const dataSrc = $el.attr('data-src') || $el.attr('data-lazy-src') || $el.attr('data-original');
+    const srcset = $el.attr('srcset') || $el.attr('data-srcset');
+    
+    // Prefer data-src if available (lazy loading)
+    if (dataSrc) {
+      src = dataSrc;
+    } 
+    // Parse srcset if no src or data-src
+    else if (srcset) {
+      // srcset format: "url1 1x, url2 2x" or "url1 300w, url2 600w"
+      const srcCandidates = srcset.split(',').map(s => s.trim().split(/\s+/)[0]);
+      if (srcCandidates.length > 0) {
+        // Take the last one (usually largest/highest quality)
+        src = srcCandidates[srcCandidates.length - 1];
+      }
+    }
+
+    if (src && !src.startsWith('data:')) {
+      // Filter out icons, logos, and common placeholders
+      const lowerSrc = src.toLowerCase();
+      if (lowerSrc.includes('icon') || 
+          lowerSrc.includes('logo') || 
+          lowerSrc.includes('placeholder') || 
+          lowerSrc.includes('spacer') || 
+          lowerSrc.includes('blank') ||
+          lowerSrc.includes('pixel') ||
+          lowerSrc.includes('transparent') ||
+          lowerSrc.includes('button') ||
+          lowerSrc.includes('arrow') ||
+          lowerSrc.includes('nav') ||
+          lowerSrc.includes('menu')) {
+        return;
+      }
+
       // Filter out small images (likely icons/spacers)
-      const width = $(el).attr('width');
-      const height = $(el).attr('height');
+      const width = $el.attr('width');
+      const height = $el.attr('height');
+      
       if ((width && parseInt(width) < 100) || (height && parseInt(height) < 100)) return;
       
-      images.add(resolveUrl(src, baseUrl));
+      // Filter out images that are likely hidden
+      if ($el.css('display') === 'none' || $el.css('visibility') === 'hidden') return;
+
+      const resolved = resolveUrl(src, baseUrl);
+      if (resolved && resolved.startsWith('http')) {
+        images.add(resolved);
+      }
     }
   });
 
@@ -226,7 +267,17 @@ function cleanText(text: string): string {
 
 function extractProducts($: cheerio.CheerioAPI, baseUrl: string): ProductData[] {
   const products: ProductData[] = [];
+  const seenUrls = new Set<string>();
   
+  // Helper to add unique products
+  const addProduct = (p: ProductData) => {
+    if (p.name && !seenUrls.has(p.url || p.name)) {
+      products.push(p);
+      if (p.url) seenUrls.add(p.url);
+      else seenUrls.add(p.name);
+    }
+  };
+
   // 1. Extract from Schema.org Product
   $('script[type="application/ld+json"]').each((_, el) => {
     try {
@@ -235,7 +286,7 @@ function extractProducts($: cheerio.CheerioAPI, baseUrl: string): ProductData[] 
       
       for (const item of data) {
         if (item['@type'] === 'Product') {
-          products.push({
+          addProduct({
             name: item.name,
             description: item.description,
             image: item.image ? (Array.isArray(item.image) ? item.image[0] : item.image) : undefined,
@@ -250,17 +301,50 @@ function extractProducts($: cheerio.CheerioAPI, baseUrl: string): ProductData[] 
 
   // 2. If no schema products, try common e-commerce selectors
   if (products.length === 0) {
-    $('.product-card, .product-item, .grid-view-item').each((_, el) => {
-      const name = $(el).find('h3, .product-title, .title').text().trim();
-      const price = $(el).find('.price, .money').text().trim();
-      const image = $(el).find('img').attr('src');
-      const link = $(el).find('a').attr('href');
+    const productSelectors = [
+      '.product-card', '.product-item', '.grid-view-item',
+      '[class*="product-card"]', '[class*="product-item"]',
+      '.shop-item', '.collection-item',
+      'article[class*="product"]',
+      '.woocommerce-LoopProduct-link'
+    ];
+
+    $(productSelectors.join(', ')).each((_, el) => {
+      const name = $(el).find('h3, h2, h4, .product-title, .title, .name, .woocommerce-loop-product__title').first().text().trim();
+      const price = $(el).find('.price, .money, .amount, .current-price').first().text().trim();
+      const image = $(el).find('img').attr('src') || $(el).find('img').attr('data-src');
+      const link = $(el).find('a').attr('href') || ($(el).is('a') ? $(el).attr('href') : undefined);
       
       if (name) {
-        products.push({
+        addProduct({
           name,
           price,
           image: image ? resolveUrl(image, baseUrl) : undefined,
+          url: link ? resolveUrl(link, baseUrl) : undefined
+        });
+      }
+    });
+  }
+
+  // 3. Fallback: Look for Pricing Cards (SaaS/Service products)
+  if (products.length === 0) {
+    const pricingSelectors = [
+      '.pricing-card', '.pricing-table', '.plan-card',
+      '[class*="pricing-card"]', '[class*="plan-card"]',
+      '[class*="price-table"]'
+    ];
+
+    $(pricingSelectors.join(', ')).each((_, el) => {
+      const name = $(el).find('h3, h2, h4, .plan-name, .title').first().text().trim();
+      const price = $(el).find('.price, .amount, .plan-price').first().text().trim();
+      const description = $(el).find('.description, .features, ul').first().text().trim().substring(0, 200);
+      const link = $(el).find('a[href*="checkout"], a[href*="buy"], a[class*="button"]').attr('href');
+
+      if (name && price) {
+        addProduct({
+          name: `${name} Plan`,
+          description,
+          price,
           url: link ? resolveUrl(link, baseUrl) : undefined
         });
       }
@@ -292,8 +376,9 @@ function resolveUrl(url: string, baseUrl: string): string {
   if (url.startsWith('//')) return `https:${url}`;
   
   try {
-    const base = new URL(baseUrl);
-    return new URL(url, base.origin).href;
+    // Use the full baseUrl to correctly resolve relative paths
+    // e.g. new URL('image.jpg', 'https://site.com/shop/') -> 'https://site.com/shop/image.jpg'
+    return new URL(url, baseUrl).href;
   } catch {
     return url;
   }

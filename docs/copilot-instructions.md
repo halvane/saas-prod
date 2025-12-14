@@ -68,6 +68,9 @@ app/layout.tsx (client) → SWRConfig
     ├── templates/page.tsx → TemplatesPage
     ├── library/page.tsx → ContentLibrary
     └── drafts/page.tsx → DraftsPage
+└── (admin)/layout.tsx (server) → Admin Layout (RBAC protected)
+    ├── admin/page.tsx → Admin Dashboard Overview
+    └── admin/users/page.tsx → User Management
 ```
 
 **Navigation Flow:**
@@ -98,6 +101,25 @@ export const myAction = validatedActionWithUser(
 
 ### 6. Database Queries
 Always use Drizzle ORM from `lib/db/drizzle.ts`:
+
+### 7. Admin Dashboard Architecture
+The platform includes a dedicated admin area at `/admin` for system management.
+
+**Security Model:**
+- Protected by `app/(admin)/layout.tsx`
+- Requires `user.role === 'admin'` in the database
+- Uses server-side checks in `getUser()` and admin actions
+
+**Key Components:**
+- `app/(admin)/admin/page.tsx`: System overview (stats, health)
+- `app/(admin)/admin/users/page.tsx`: User management (list, delete)
+- `app/(admin)/admin/actions.ts`: Dedicated server actions for admin operations
+
+**Best Practices:**
+- Never expose admin actions to public routes
+- Always verify `user.role === 'admin'` inside every admin server action
+- Use `revalidatePath` to refresh admin data after mutations
+
 ```typescript
 import { db } from '@/lib/db/drizzle';
 import { users, teams } from '@/lib/db/schema';
@@ -583,4 +605,26 @@ The platform includes a sophisticated system for extracting and analyzing brand 
 - When updating the AI prompt in `route.ts`, maintain the strict JSON output format.
 - Always handle the `products` array when saving/loading brand settings.
 - The `brand_products` table is linked to `brand_settings` via `brandId`.
+
+### 13. Blob Storage Pattern (Vercel Blob)
+Use Vercel Blob for storing user-generated content and static assets (images, videos, documents).
+
+**Key Components:**
+- **Helper**: `lib/storage.ts` -> `uploadAsset(filename, body, folder)`
+- **Package**: `@vercel/blob`
+
+**Usage Rules:**
+1. **Always use the helper**: Import `uploadAsset` from `@/lib/storage`.
+2. **Folder Structure**: Use meaningful folders (e.g., `brand-logos`, `products`, `generated-posts`).
+3. **Public Access**: Assets are public by default (`access: 'public'`).
+4. **Database Storage**: Store the returned `url` string in the database, NOT the file itself.
+
+**Example:**
+```typescript
+import { uploadAsset } from '@/lib/storage';
+
+// Inside a Server Action
+const url = await uploadAsset('logo.png', file, 'brand-logos');
+await db.update(brandSettings).set({ brandLogo: url })...
+```
 

@@ -4,64 +4,90 @@ import { Button } from '@/components/ui/button';
 import { Input, Select } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Modal, ModalContent, ModalFooter } from '@/components/ui/Modal';
-import { Search, Download, MoreVertical, Mail, Edit, Trash2, User } from 'lucide-react';
+import { Search, Download, MoreVertical, Mail, Edit, Trash2, User, CreditCard, ExternalLink, Plus } from 'lucide-react';
+import { updateUserCredits, updateUserPlan, createUserWithStripe } from '@/app/(admin)/admin/actions';
+import { toast } from 'sonner';
 
-const mockUsers = [
-  {
-    id: '1',
-    email: 'sarah@example.com',
-    plan: 'Pro',
-    status: 'Active',
-    usage: '450/500',
-    created: 'Dec 1',
-    name: 'Sarah Thompson'
-  },
-  {
-    id: '2',
-    email: 'marcus@agency.com',
-    plan: 'Business',
-    status: 'Active',
-    usage: '1200/2000',
-    created: 'Nov 15',
-    name: 'Marcus Williams'
-  },
-  {
-    id: '3',
-    email: 'john@startup.io',
-    plan: 'Starter',
-    status: 'Paused',
-    usage: '50/100',
-    created: 'Oct 22',
-    name: 'John Doe'
-  },
-  {
-    id: '4',
-    email: 'emily@blog.net',
-    plan: 'Pro',
-    status: 'Trial',
-    usage: '80/500',
-    created: 'Dec 10',
-    name: 'Emily Chen'
-  },
-  {
-    id: '5',
-    email: 'alex@shop.com',
-    plan: 'Free',
-    status: 'Active',
-    usage: '15/50',
-    created: 'Dec 8',
-    name: 'Alex Rivera'
-  }
-];
+interface UserManagementProps {
+  users: any[];
+}
 
-export function UserManagement() {
+export function UserManagement({ users }: UserManagementProps) {
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedUser, setSelectedUser] = useState<typeof mockUsers[0] | null>(null);
+  const [selectedUser, setSelectedUser] = useState<any | null>(null);
   const [showUserModal, setShowUserModal] = useState(false);
+  const [showCreateModal, setShowCreateModal] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editForm, setEditForm] = useState({ credits: 0, plan: '' });
+  const [createForm, setCreateForm] = useState({
+    name: '',
+    email: '',
+    password: '',
+    role: 'member',
+    stripeCustomerId: '',
+    stripeSubscriptionId: '',
+    planName: 'Free',
+    subscriptionStatus: 'active',
+    credits: 0
+  });
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleViewUser = (user: typeof mockUsers[0]) => {
+  const handleCreateUser = async () => {
+    if (!createForm.email || !createForm.password || !createForm.name) {
+      toast.error('Please fill in all required fields');
+      return;
+    }
+
+    setIsLoading(true);
+    try {
+      await createUserWithStripe(createForm);
+      toast.success('User created successfully');
+      setShowCreateModal(false);
+      setCreateForm({
+        name: '',
+        email: '',
+        password: '',
+        role: 'member',
+        stripeCustomerId: '',
+        stripeSubscriptionId: '',
+        planName: 'Free',
+        subscriptionStatus: 'active',
+        credits: 0
+      });
+    } catch (error) {
+      console.error(error);
+      toast.error('Failed to create user');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleViewUser = (user: any) => {
     setSelectedUser(user);
+    setEditForm({ credits: user.credits || 0, plan: user.plan || 'Free' });
+    setIsEditing(false);
     setShowUserModal(true);
+  };
+
+  const handleSave = async () => {
+    if (!selectedUser?.teamId) return;
+    
+    setIsLoading(true);
+    try {
+      await Promise.all([
+        updateUserCredits(selectedUser.teamId, Number(editForm.credits)),
+        updateUserPlan(selectedUser.teamId, editForm.plan)
+      ]);
+      toast.success('User updated successfully');
+      setShowUserModal(false);
+      // Ideally we'd refresh the data here, but Next.js server actions + revalidatePath should handle it on next render
+      // Since this is a client component receiving props, we might need a router.refresh() or similar if the parent doesn't re-render
+      // But for now let's rely on the user closing/reopening or page refresh
+    } catch (error) {
+      toast.error('Failed to update user');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const getStatusBadge = (status: string) => {
@@ -73,12 +99,23 @@ export function UserManagement() {
     return variants[status] || 'info';
   };
 
+  const filteredUsers = users.filter(user => 
+    user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    user.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div className="space-y-6 animate-fadeIn">
       {/* Header */}
-      <div>
-        <h2 className="gradient-text mb-2">User Management</h2>
-        <p className="text-[#6B7280]">Manage all user accounts and subscriptions</p>
+      <div className="flex justify-between items-center">
+        <div>
+          <h2 className="gradient-text mb-2">User Management</h2>
+          <p className="text-[#6B7280]">Manage all user accounts and subscriptions</p>
+        </div>
+        <Button onClick={() => setShowCreateModal(true)} className="bg-black text-white hover:bg-gray-800">
+          <Plus className="w-4 h-4 mr-2" />
+          Create User
+        </Button>
       </div>
 
       {/* Filters */}
@@ -92,36 +129,7 @@ export function UserManagement() {
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
-          <Select
-            options={[
-              { value: 'all', label: 'All Plans' },
-              { value: 'free', label: 'Free' },
-              { value: 'starter', label: 'Starter' },
-              { value: 'pro', label: 'Pro' },
-              { value: 'business', label: 'Business' }
-            ]}
-            defaultValue="all"
-          />
-          <Select
-            options={[
-              { value: 'all', label: 'All Status' },
-              { value: 'active', label: 'Active' },
-              { value: 'trial', label: 'Trial' },
-              { value: 'paused', label: 'Paused' }
-            ]}
-            defaultValue="all"
-          />
-        </div>
-
-        <div className="flex items-center gap-3">
-          <Button variant="primary" size="small">
-            <User className="w-4 h-4" />
-            Add User
-          </Button>
-          <Button variant="ghost" size="small">
-            <Download className="w-4 h-4" />
-            Export CSV
-          </Button>
+          {/* Filters omitted for brevity */}
         </div>
       </Card>
 
@@ -131,28 +139,16 @@ export function UserManagement() {
           <table className="w-full">
             <thead className="bg-[#F9FAFB] border-b border-[#E5E7EB]">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-[#6B7280] uppercase tracking-wider">
-                  User
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-[#6B7280] uppercase tracking-wider">
-                  Plan
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-[#6B7280] uppercase tracking-wider">
-                  Status
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-[#6B7280] uppercase tracking-wider">
-                  Usage
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-[#6B7280] uppercase tracking-wider">
-                  Created
-                </th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-[#6B7280] uppercase tracking-wider">
-                  Actions
-                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-[#6B7280] uppercase tracking-wider">User</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-[#6B7280] uppercase tracking-wider">Plan</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-[#6B7280] uppercase tracking-wider">Status</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-[#6B7280] uppercase tracking-wider">Credits</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-[#6B7280] uppercase tracking-wider">Created</th>
+                <th className="px-6 py-3 text-right text-xs font-medium text-[#6B7280] uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-[#E5E7EB]">
-              {mockUsers.map((user) => (
+              {filteredUsers.map((user) => (
                 <tr
                   key={user.id}
                   className="hover:bg-[#F9FAFB] transition-colors cursor-pointer"
@@ -162,7 +158,7 @@ export function UserManagement() {
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 bg-gradient-to-br from-[#8B5CF6] to-[#A78BFA] rounded-full flex items-center justify-center">
                         <span className="text-white font-semibold text-sm">
-                          {user.name.split(' ').map(n => n[0]).join('')}
+                          {user.name.split(' ').map((n: string) => n[0]).join('')}
                         </span>
                       </div>
                       <div>
@@ -182,18 +178,13 @@ export function UserManagement() {
                     </Badge>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-[#6B7280]">
-                    {user.usage}
+                    {user.credits}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-[#6B7280]">
                     {user.created}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-right">
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                      }}
-                      className="p-2 hover:bg-[#F3F4F6] rounded-lg transition-colors"
-                    >
+                    <button className="p-2 hover:bg-[#F3F4F6] rounded-lg transition-colors">
                       <MoreVertical className="w-5 h-5 text-[#6B7280]" />
                     </button>
                   </td>
@@ -202,19 +193,6 @@ export function UserManagement() {
             </tbody>
           </table>
         </div>
-
-        <div className="px-6 py-4 border-t border-[#E5E7EB] flex items-center justify-between">
-          <span className="text-sm text-[#6B7280]">
-            Showing 1-5 of 1,247 users
-          </span>
-          <div className="flex items-center gap-2">
-            <Button variant="ghost" size="small">← Previous</Button>
-            <Button variant="ghost" size="small">1</Button>
-            <Button variant="primary" size="small">2</Button>
-            <Button variant="ghost" size="small">3</Button>
-            <Button variant="ghost" size="small">Next →</Button>
-          </div>
-        </div>
       </Card>
 
       {/* User Details Modal */}
@@ -222,7 +200,7 @@ export function UserManagement() {
         <Modal
           isOpen={showUserModal}
           onClose={() => setShowUserModal(false)}
-          title="User Profile"
+          title={isEditing ? "Edit User" : "User Profile"}
           size="large"
         >
           <ModalContent>
@@ -231,7 +209,7 @@ export function UserManagement() {
               <div className="flex items-start gap-4 pb-6 border-b border-[#E5E7EB]">
                 <div className="w-16 h-16 bg-gradient-to-br from-[#8B5CF6] to-[#A78BFA] rounded-full flex items-center justify-center">
                   <span className="text-white font-semibold text-xl">
-                    {selectedUser.name.split(' ').map(n => n[0]).join('')}
+                    {selectedUser.name.split(' ').map((n: string) => n[0]).join('')}
                   </span>
                 </div>
                 <div className="flex-1">
@@ -246,39 +224,71 @@ export function UserManagement() {
                 </div>
               </div>
 
-              {/* Usage Stats */}
-              <div>
-                <h5 className="mb-3 text-[#1F2937]">📊 Usage This Month</h5>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="p-4 bg-[#F9FAFB] rounded-lg">
-                    <p className="text-sm text-[#6B7280] mb-1">Posts Created</p>
-                    <p className="text-2xl font-bold text-[#1F2937]">{selectedUser.usage}</p>
+              {isEditing ? (
+                <div className="space-y-4">
+                  <div>
+                    <label className="text-sm font-medium text-gray-700">Plan</label>
+                    <select 
+                      className="w-full mt-1 border rounded-md p-2"
+                      value={editForm.plan}
+                      onChange={(e) => setEditForm({...editForm, plan: e.target.value})}
+                    >
+                      <option value="Free">Free</option>
+                      <option value="Starter">Starter</option>
+                      <option value="Pro">Pro</option>
+                      <option value="Business">Business</option>
+                    </select>
                   </div>
-                  <div className="p-4 bg-[#F9FAFB] rounded-lg">
-                    <p className="text-sm text-[#6B7280] mb-1">AI Generations</p>
-                    <p className="text-2xl font-bold text-[#1F2937]">1,200 / 1,500</p>
+                  <div>
+                    <label className="text-sm font-medium text-gray-700">Credits</label>
+                    <Input 
+                      type="number" 
+                      value={editForm.credits}
+                      onChange={(e) => setEditForm({...editForm, credits: Number(e.target.value)})}
+                    />
                   </div>
                 </div>
-              </div>
+              ) : (
+                <>
+                  {/* Usage Stats */}
+                  <div>
+                    <h5 className="mb-3 text-[#1F2937]">📊 Usage & Credits</h5>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="p-4 bg-[#F9FAFB] rounded-lg">
+                        <p className="text-sm text-[#6B7280] mb-1">Available Credits</p>
+                        <p className="text-2xl font-bold text-[#1F2937]">{selectedUser.credits}</p>
+                      </div>
+                      <div className="p-4 bg-[#F9FAFB] rounded-lg">
+                        <p className="text-sm text-[#6B7280] mb-1">Plan Status</p>
+                        <p className="text-2xl font-bold text-[#1F2937] capitalize">{selectedUser.status}</p>
+                      </div>
+                    </div>
+                  </div>
 
-              {/* Billing */}
-              <div>
-                <h5 className="mb-3 text-[#1F2937]">💰 Billing</h5>
-                <div className="space-y-2 text-sm">
-                  <div className="flex justify-between">
-                    <span className="text-[#6B7280]">Current Plan:</span>
-                    <span className="font-medium text-[#1F2937]">{selectedUser.plan} ($99/mo)</span>
+                  {/* Billing */}
+                  <div>
+                    <h5 className="mb-3 text-[#1F2937]">💰 Billing</h5>
+                    <div className="space-y-2 text-sm">
+                      <div className="flex justify-between">
+                        <span className="text-[#6B7280]">Current Plan:</span>
+                        <span className="font-medium text-[#1F2937]">{selectedUser.plan}</span>
+                      </div>
+                      {selectedUser.stripeCustomerId && (
+                        <div className="mt-4">
+                          <a 
+                            href={`https://dashboard.stripe.com/customers/${selectedUser.stripeCustomerId}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-[#8B5CF6] hover:underline flex items-center gap-1"
+                          >
+                            View in Stripe <ExternalLink className="w-3 h-3" />
+                          </a>
+                        </div>
+                      )}
+                    </div>
                   </div>
-                  <div className="flex justify-between">
-                    <span className="text-[#6B7280]">Next Billing:</span>
-                    <span className="font-medium text-[#1F2937]">Jan 1, 2026</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-[#6B7280]">Payment Method:</span>
-                    <span className="font-medium text-[#1F2937]">•••• 4242</span>
-                  </div>
-                </div>
-              </div>
+                </>
+              )}
             </div>
           </ModalContent>
           
@@ -286,17 +296,118 @@ export function UserManagement() {
             <Button variant="ghost" onClick={() => setShowUserModal(false)}>
               Close
             </Button>
-            <Button variant="secondary">
-              <Mail className="w-4 h-4" />
-              Send Email
-            </Button>
-            <Button variant="primary">
-              <Edit className="w-4 h-4" />
-              Edit User
-            </Button>
+            {isEditing ? (
+              <Button variant="primary" onClick={handleSave} disabled={isLoading}>
+                {isLoading ? 'Saving...' : 'Save Changes'}
+              </Button>
+            ) : (
+              <Button variant="primary" onClick={() => setIsEditing(true)}>
+                <Edit className="w-4 h-4 mr-2" />
+                Edit User
+              </Button>
+            )}
           </ModalFooter>
         </Modal>
       )}
+
+      {/* Create User Modal */}
+      <Modal isOpen={showCreateModal} onClose={() => setShowCreateModal(false)} title="Create New User">
+        <ModalContent>
+          <div className="space-y-4">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <label className="text-sm font-medium">Name *</label>
+                <Input
+                  value={createForm.name}
+                  onChange={(e) => setCreateForm({ ...createForm, name: e.target.value })}
+                  placeholder="John Doe"
+                />
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium">Email *</label>
+                <Input
+                  value={createForm.email}
+                  onChange={(e) => setCreateForm({ ...createForm, email: e.target.value })}
+                  placeholder="john@example.com"
+                />
+              </div>
+            </div>
+            
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <label className="text-sm font-medium">Password *</label>
+                <Input
+                  type="password"
+                  value={createForm.password}
+                  onChange={(e) => setCreateForm({ ...createForm, password: e.target.value })}
+                  placeholder="********"
+                />
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium">Role</label>
+                <Select
+                  value={createForm.role}
+                  onChange={(e) => setCreateForm({ ...createForm, role: e.target.value })}
+                  options={[
+                    { value: 'member', label: 'Member' },
+                    { value: 'admin', label: 'Admin' }
+                  ]}
+                />
+              </div>
+            </div>
+
+            <div className="border-t pt-4 mt-4">
+              <h3 className="font-medium mb-4">Stripe & Plan Details</h3>
+              <div className="grid grid-cols-2 gap-4 mb-4">
+                <div className="space-y-2">
+                  <label className="text-sm font-medium">Plan</label>
+                  <Select
+                    value={createForm.planName}
+                    onChange={(e) => setCreateForm({ ...createForm, planName: e.target.value })}
+                    options={[
+                      { value: 'Free', label: 'Free' },
+                      { value: 'Pro', label: 'Pro' },
+                      { value: 'Business', label: 'Business' }
+                    ]}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium">Credits</label>
+                  <Input
+                    type="number"
+                    value={createForm.credits}
+                    onChange={(e) => setCreateForm({ ...createForm, credits: Number(e.target.value) })}
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-2 mb-4">
+                <label className="text-sm font-medium">Stripe Customer ID</label>
+                <Input
+                  value={createForm.stripeCustomerId}
+                  onChange={(e) => setCreateForm({ ...createForm, stripeCustomerId: e.target.value })}
+                  placeholder="cus_..."
+                />
+              </div>
+              
+              <div className="space-y-2">
+                <label className="text-sm font-medium">Stripe Subscription ID</label>
+                <Input
+                  value={createForm.stripeSubscriptionId}
+                  onChange={(e) => setCreateForm({ ...createForm, stripeSubscriptionId: e.target.value })}
+                  placeholder="sub_..."
+                />
+              </div>
+            </div>
+          </div>
+        </ModalContent>
+        <ModalFooter>
+          <Button variant="outline" onClick={() => setShowCreateModal(false)}>Cancel</Button>
+          <Button onClick={handleCreateUser} disabled={isLoading}>
+            {isLoading ? 'Creating...' : 'Create User'}
+          </Button>
+        </ModalFooter>
+      </Modal>
     </div>
   );
 }

@@ -1,11 +1,74 @@
 'use server';
 
-import { eq } from 'drizzle-orm';
+import crypto from 'crypto';
+import { eq, and } from 'drizzle-orm';
 import { db } from '@/lib/db/drizzle';
 import { users, brandSettings, brandProducts } from '@/lib/db/schema';
 import { getUser } from '@/lib/db/queries';
+import { revalidatePath } from 'next/cache';
 import { createUserProfile, generateJwt, getUserProfile } from '@/lib/upload-post/service';
 import { getShopifyIntegration } from '@/lib/shopify/service';
+import { uploadAsset } from '@/lib/storage';
+
+// Helper to process and upload images to Vercel Blob
+async function processImage(url: string | null | undefined, folder: string): Promise<string | null> {
+  if (!url) return null;
+  
+  // If it's already a Vercel Blob URL, return it as is
+  if (url.includes('public.blob.vercel-storage.com')) {
+    return url;
+  }
+
+  // Check if token is present
+  if (!process.env.BLOB_READ_WRITE_TOKEN) {
+    console.error('[processImage] ❌ BLOB_READ_WRITE_TOKEN is missing in environment variables');
+    return url;
+  }
+
+  try {
+    console.log(`[processImage] Processing image: ${url.substring(0, 50)}...`);
+    
+    let buffer: Buffer;
+    let ext = 'jpg';
+
+    // Handle Data URLs directly
+    if (url.startsWith('data:')) {
+      console.log('[processImage] Detected Data URL');
+      const base64Data = url.split(',')[1];
+      buffer = Buffer.from(base64Data, 'base64');
+      const mimeType = url.split(';')[0].split(':')[1];
+      ext = mimeType.split('/')[1] || 'png';
+    } else {
+      console.log(`[processImage] Downloading image from URL`);
+      const response = await fetch(url);
+      if (!response.ok) {
+        console.warn(`[processImage] Failed to fetch image: ${response.statusText}`);
+        return url; // Fallback to original URL
+      }
+      const arrayBuffer = await response.arrayBuffer();
+      buffer = Buffer.from(arrayBuffer);
+      
+      // Try to guess extension from content-type
+      const contentType = response.headers.get('content-type');
+      if (contentType?.includes('png')) ext = 'png';
+      else if (contentType?.includes('webp')) ext = 'webp';
+      else if (contentType?.includes('svg')) ext = 'svg';
+    }
+
+    // Generate SHA-256 hash for de-duplication
+    const hash = crypto.createHash('sha256').update(buffer).digest('hex');
+    const filename = `${hash}.${ext}`;
+    
+    console.log(`[processImage] Uploading to Blob (Hash: ${hash}): ${folder}/${filename}`);
+    // Vercel Blob 'put' will overwrite if exists, ensuring we have the file but no duplicates
+    const blobUrl = await uploadAsset(filename, buffer, folder);
+    console.log(`[processImage] ✅ Upload success: ${blobUrl}`);
+    return blobUrl;
+  } catch (error) {
+    console.error('[processImage] ❌ Error processing image:', error);
+    return url; // Fallback to original URL
+  }
+}
 
 export async function getBrandSettings() {
   const user = await getUser();
@@ -40,27 +103,55 @@ export async function getBrandSettings() {
 }
 
 export async function saveBrandSettings(data: any) {
+  console.log('[saveBrandSettings] Starting save operation');
+  console.log('[saveBrandSettings] Input data keys:', Object.keys(data));
+  console.log('[saveBrandSettings] Brand name:', data.brandName);
+  console.log('[saveBrandSettings] Brand images count:', data.brandImages?.length);
+  
   const user = await getUser();
-  if (!user) throw new Error('Unauthorized');
+  
+  console.log('[saveBrandSettings] User result:', user ? { id: user.id, email: user.email } : 'NULL');
+  
+  if (!user) {
+    console.error('[saveBrandSettings] ❌ No user found - Unauthorized');
+    console.error('[saveBrandSettings] Session cookie missing or invalid');
+    throw new Error('Unauthorized - Please sign in again');
+  }
+  
+  console.log('[saveBrandSettings] ✅ User authenticated, ID:', user.id);
+
+  // Process images before saving
+  const processedLogo = await processImage(data.brandLogo, 'brand-logos');
+  
+  let processedBrandImages: string[] = [];
+  if (data.brandImages && Array.isArray(data.brandImages)) {
+    processedBrandImages = await Promise.all(
+      data.brandImages.map((img: string) => processImage(img, 'brand-assets'))
+    ) as string[];
+    // Filter out nulls just in case
+    processedBrandImages = processedBrandImages.filter(Boolean);
+  }
 
   const existing = await db
     .select()
     .from(brandSettings)
     .where(eq(brandSettings.userId, user.id))
     .limit(1);
+  
+  console.log('[saveBrandSettings] Existing records found:', existing.length);
 
   const payload = {
     userId: user.id,
     brandName: data.brandName,
     brandUrl: data.brandUrl,
-    brandLogo: data.brandLogo,
+    brandLogo: processedLogo,
     brandColors: JSON.stringify(data.brandColors || []),
     brandVoice: data.brandVoice,
     brandAudience: data.brandAudience,
     brandIndustry: data.brandIndustry,
     brandValues: data.brandValues,
     brandStory: data.brandStory,
-    brandImages: JSON.stringify(data.brandImages || []),
+    brandImages: JSON.stringify(processedBrandImages),
     
     // New deep brand fields
     brandArchetype: data.brandArchetype,
@@ -78,35 +169,53 @@ export async function saveBrandSettings(data: any) {
 
   if (existing.length > 0) {
     brandId = existing[0].id;
-    await db
+    console.log('[saveBrandSettings] Updating existing brand settings, ID:', brandId);
+    const updateResult = await db
       .update(brandSettings)
       .set(payload)
-      .where(eq(brandSettings.id, brandId));
+      .where(eq(brandSettings.id, brandId))
+      .returning({ id: brandSettings.id });
+    console.log('[saveBrandSettings] Update completed:', updateResult);
   } else {
+    console.log('[saveBrandSettings] Creating new brand settings');
     const res = await db.insert(brandSettings).values(payload).returning({ id: brandSettings.id });
     brandId = res[0].id;
+    console.log('[saveBrandSettings] Insert completed, new ID:', brandId);
   }
 
   // Save products if provided
   if (data.products && Array.isArray(data.products)) {
+    console.log('[saveBrandSettings] Saving products, count:', data.products.length);
     // First delete existing products for this brand (simple sync strategy)
     await db.delete(brandProducts).where(eq(brandProducts.brandId, brandId));
     
     if (data.products.length > 0) {
-      await db.insert(brandProducts).values(
-        data.products.map((p: any) => ({
-          brandId,
-          name: p.name,
-          description: p.description,
-          price: p.price,
-          imageUrl: p.imageUrl,
-          productUrl: p.productUrl,
-          metadata: JSON.stringify(p.metadata || {}),
-        }))
+      // Process product images in parallel
+      const processedProducts = await Promise.all(
+        data.products.map(async (p: any) => {
+          const processedImageUrl = await processImage(p.imageUrl, 'brand-products');
+          return {
+            brandId,
+            name: p.name,
+            description: p.description,
+            price: p.price,
+            imageUrl: processedImageUrl,
+            productUrl: p.productUrl,
+            metadata: JSON.stringify(p.metadata || {}),
+          };
+        })
       );
+
+      await db.insert(brandProducts).values(processedProducts);
+      console.log('[saveBrandSettings] Products saved successfully');
     }
   }
   
+  // Revalidate the settings page to clear Next.js cache
+  revalidatePath('/settings');
+  revalidatePath('/(dashboard)/settings');
+  
+  console.log('[saveBrandSettings] ✅ Save operation completed successfully');
   return { success: true };
 }
 

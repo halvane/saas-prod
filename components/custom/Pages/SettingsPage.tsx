@@ -4,7 +4,9 @@ import React from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input, Select } from '@/components/ui/input';
-import { Settings, Palette, Globe, Bell, Shield, Zap, Share2, Instagram, Facebook, Linkedin, Twitter, Youtube, ShoppingBag, CheckCircle, ExternalLink, Upload, Plus, X, ChevronDown, ChevronUp, Loader2, Target, Lightbulb, Heart, ShoppingCart, Tag, BrainCircuit, Sparkles } from 'lucide-react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from '@/components/ui/dialog';
+import { Label } from '@/components/ui/label';
+import { Settings, Palette, Globe, Bell, Shield, Zap, Share2, Instagram, Facebook, Linkedin, Twitter, Youtube, ShoppingBag, CheckCircle, ExternalLink, Upload, Plus, X, ChevronDown, ChevronUp, Loader2, Target, Lightbulb, Heart, ShoppingCart, Tag, BrainCircuit, Sparkles, Image as ImageIcon } from 'lucide-react';
 import { connectSocialMedia, getConnectedAccounts, getShopifyStatus, getBrandSettings, saveBrandSettings } from '@/app/(dashboard)/settings/actions';
 import { AIProcessingLoader } from '@/components/custom/AI/AIProcessingLoader';
 import { toast } from 'sonner';
@@ -20,6 +22,22 @@ export function SettingsPage() {
   const [isScrapingBrand, setIsScrapingBrand] = React.useState(false);
   const [scrapingProgress, setScrapingProgress] = React.useState(0);
   const [scrapingStep, setScrapingStep] = React.useState(0);
+
+  // Manual Add State
+  const [isAddProductOpen, setIsAddProductOpen] = React.useState(false);
+  const [newProduct, setNewProduct] = React.useState({ name: '', price: '', description: '', imageUrl: '', productUrl: '' });
+  const [newAssetUrl, setNewAssetUrl] = React.useState('');
+
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>, callback: (url: string) => void) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        callback(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   const scrapingSteps = [
     'Analyzing website content...',
@@ -38,6 +56,40 @@ export function SettingsPage() {
   const [brandValues, setBrandValues] = React.useState('');
   const [brandStory, setBrandStory] = React.useState('');
   const [brandImages, setBrandImages] = React.useState<string[]>([]);
+
+  const sanitizeImageUrl = React.useCallback((url: string) => {
+    if (!url) return '';
+    const trimmed = url.trim();
+    if (trimmed.startsWith('//')) return `https:${trimmed}`;
+    if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) return trimmed;
+    return `https://${trimmed.replace(/^https?:\/\//, '')}`;
+  }, []);
+
+  const dedupeImages = React.useCallback(
+    (images: string[]) => {
+      const normalized = images
+        .filter(Boolean)
+        .map((img) => sanitizeImageUrl(img));
+      return Array.from(new Set(normalized)).slice(0, 12);
+    },
+    [sanitizeImageUrl]
+  );
+
+  const getDisplayImage = React.useCallback(
+    (url: string) => {
+      const clean = sanitizeImageUrl(url);
+      if (!clean) return '';
+      
+      // If it's a Vercel Blob URL, return it directly (it's already optimized/CDN)
+      if (clean.includes('public.blob.vercel-storage.com')) {
+        return clean;
+      }
+      
+      // Otherwise use wsrv.nl for external image optimization
+      return `https://wsrv.nl/?url=${encodeURIComponent(clean)}&w=900&h=900&fit=inside&output=webp`;
+    },
+    [sanitizeImageUrl]
+  );
 
   // Deep Brand Analysis Fields
   const [brandArchetype, setBrandArchetype] = React.useState('');
@@ -71,7 +123,7 @@ export function SettingsPage() {
         setBrandIndustry(brandSettings.brandIndustry || '');
         setBrandValues(brandSettings.brandValues || '');
         setBrandStory(brandSettings.brandStory || '');
-        setBrandImages(brandSettings.brandImages || []);
+        setBrandImages(dedupeImages(brandSettings.brandImages || []));
         
         // Load deep brand data
         setBrandArchetype(brandSettings.brandArchetype || '');
@@ -85,7 +137,7 @@ export function SettingsPage() {
       }
     };
     fetchData();
-  }, []);
+  }, [dedupeImages]);
 
   const handleConnectSocial = async () => {
     setIsConnecting(true);
@@ -134,9 +186,15 @@ export function SettingsPage() {
     }
   };
 
+  const [isSaving, setIsSaving] = React.useState(false);
+
   const handleSaveBrandDNA = async () => {
+    setIsSaving(true);
     try {
-      await saveBrandSettings({
+      const cleanedImages = dedupeImages(brandImages);
+      setBrandImages(cleanedImages);
+      
+      const dataToSave = {
         brandName,
         brandUrl,
         brandLogo,
@@ -146,7 +204,7 @@ export function SettingsPage() {
         brandIndustry,
         brandValues,
         brandStory,
-        brandImages,
+        brandImages: cleanedImages,
         brandArchetype,
         brandTagline,
         brandMission,
@@ -155,11 +213,41 @@ export function SettingsPage() {
         customerDesires,
         adAngles,
         products
+      };
+      
+      console.log('[handleSaveBrandDNA] Saving data to DB:', {
+        brandName: dataToSave.brandName,
+        imagesCount: dataToSave.brandImages.length,
+        uspsCount: dataToSave.brandUsps.length,
+        productsCount: dataToSave.products.length
       });
-      toast.success('✨ Brand DNA saved successfully!');
+      
+      const result = await saveBrandSettings(dataToSave);
+      console.log('[handleSaveBrandDNA] Save result:', result);
+      
+      toast.success('✨ Brand DNA saved to database!');
+      
+      // Reload data from DB to confirm persistence and get updated Blob URLs
+      setTimeout(async () => {
+        const freshData = await getBrandSettings();
+        console.log('[handleSaveBrandDNA] Fresh data from DB:', {
+          brandName: freshData?.brandName,
+          imagesCount: freshData?.brandImages?.length,
+          hasArchetype: !!freshData?.brandArchetype
+        });
+        
+        if (freshData) {
+          // Update local state with the new Blob URLs
+          setBrandLogo(freshData.brandLogo);
+          setBrandImages(freshData.brandImages);
+          setProducts(freshData.products);
+        }
+      }, 500);
     } catch (error) {
-      console.error('Failed to save brand DNA:', error);
-      toast.error('Failed to save Brand DNA');
+      console.error('[handleSaveBrandDNA] ❌ Failed to save brand DNA:', error);
+      toast.error(`Failed to save Brand DNA: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    } finally {
+      setIsSaving(false);
     }
   };
 
@@ -433,10 +521,10 @@ export function SettingsPage() {
                       const progressInterval = setInterval(() => {
                         setScrapingProgress((prev) => {
                           if (prev >= 95) {
-                            clearInterval(progressInterval);
+                            // Don't clear interval here, let it hang at 95% until done
                             return prev;
                           }
-                          const increment = Math.random() * 20 + 5;
+                          const increment = Math.random() * 15 + 2; // Slower increment
                           const newProgress = Math.min(prev + increment, 95);
                           
                           // Update step based on progress
@@ -445,18 +533,25 @@ export function SettingsPage() {
                           
                           return newProgress;
                         });
-                      }, 400);
+                      }, 800); // Slower updates
 
                       try {
+                        // Set a long timeout (60s) for deep AI analysis
+                        const controller = new AbortController();
+                        const timeoutId = setTimeout(() => controller.abort(), 60000);
+
                         const response = await fetch('/api/brand/scrape', {
                           method: 'POST',
                           headers: { 'Content-Type': 'application/json' },
-                          body: JSON.stringify({ url: brandUrl })
+                          body: JSON.stringify({ url: brandUrl }),
+                          signal: controller.signal
                         });
                         
+                        clearTimeout(timeoutId);
+                        
                         if (!response.ok) {
-                          const error = await response.json();
-                          throw new Error(error.error || 'Failed to scrape website');
+                          const error = await response.json().catch(() => ({}));
+                          throw new Error(error.error || `Analysis failed (${response.status})`);
                         }
                         
                         const data = await response.json();
@@ -491,7 +586,11 @@ export function SettingsPage() {
                         if (data.industry) setBrandIndustry(data.industry);
                         if (data.values) setBrandValues(data.values);
                         if (data.story) setBrandStory(data.story);
-                        if (data.images?.length > 0) setBrandImages(data.images.slice(0, 10));
+                        
+                        // Merge images instead of replacing
+                        if (data.images?.length > 0) {
+                          setBrandImages(prev => dedupeImages([...prev, ...data.images]));
+                        }
                         
                         // Deep data
                         if (data.archetype) setBrandArchetype(data.archetype);
@@ -501,7 +600,28 @@ export function SettingsPage() {
                         if (data.painPoints) setBrandPainPoints(data.painPoints);
                         if (data.customerDesires) setCustomerDesires(data.customerDesires);
                         if (data.adAngles) setAdAngles(data.adAngles);
-                        if (data.products) setProducts(data.products);
+                        
+                        // Map scraper product format (image, url) to DB format (imageUrl, productUrl)
+                        if (data.products && Array.isArray(data.products)) {
+                          const mappedProducts = data.products.map((p: any) => ({
+                            name: p.name,
+                            description: p.description,
+                            price: p.price,
+                            imageUrl: p.image || p.imageUrl, // Handle both formats
+                            productUrl: p.url || p.productUrl, // Handle both formats
+                            metadata: {
+                              currency: p.currency,
+                              ...p.metadata
+                            }
+                          }));
+                          
+                          // Merge products: Only add new ones based on productUrl
+                          setProducts(prev => {
+                            const existingUrls = new Set(prev.map(p => p.productUrl));
+                            const newProducts = mappedProducts.filter((p: any) => !existingUrls.has(p.productUrl));
+                            return [...prev, ...newProducts];
+                          });
+                        }
                         
                         console.log('[Brand Analysis] State updated. Check fields below.');
                         
@@ -512,7 +632,14 @@ export function SettingsPage() {
                       } catch (error: any) {
                         clearInterval(progressInterval);
                         setIsScrapingBrand(false);
-                        toast.error(error.message || 'Failed to import brand data');
+                        
+                        if (error.name === 'AbortError') {
+                          toast.error('Analysis timed out. The server is taking too long to respond.');
+                        } else if (error.message?.includes('NetworkError') || error.message?.includes('Failed to fetch')) {
+                          toast.error('Connection failed. Please check if the server is running.');
+                        } else {
+                          toast.error(error.message || 'Failed to import brand data');
+                        }
                         console.error('Brand scraping error:', error);
                       }
                     }}
@@ -645,12 +772,93 @@ export function SettingsPage() {
               </div>
 
               {/* Products Section */}
-              {products.length > 0 && (
-                <div className="pt-6 border-t">
-                  <h4 className="font-medium text-gray-900 mb-4 flex items-center gap-2">
+              <div className="pt-6 border-t">
+                <div className="flex items-center justify-between mb-4">
+                  <h4 className="font-medium text-gray-900 flex items-center gap-2">
                     <ShoppingBag className="w-5 h-5 text-purple-600" />
                     Identified Products ({products.length})
                   </h4>
+                  <Dialog open={isAddProductOpen} onOpenChange={setIsAddProductOpen}>
+                    <DialogTrigger asChild>
+                      <Button variant="outline" size="sm" className="gap-2">
+                        <Plus className="w-4 h-4" /> Add Product
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent>
+                      <DialogHeader>
+                        <DialogTitle>Add Manual Product</DialogTitle>
+                      </DialogHeader>
+                      <div className="space-y-4 py-4">
+                        <div className="space-y-2">
+                          <Label>Product Name</Label>
+                          <Input 
+                            value={newProduct.name} 
+                            onChange={(e) => setNewProduct({...newProduct, name: e.target.value})}
+                            placeholder="e.g. Premium Plan"
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <Label>Price</Label>
+                          <Input 
+                            value={newProduct.price} 
+                            onChange={(e) => setNewProduct({...newProduct, price: e.target.value})}
+                            placeholder="e.g. $29/mo"
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <Label>Description</Label>
+                          <Input 
+                            value={newProduct.description} 
+                            onChange={(e) => setNewProduct({...newProduct, description: e.target.value})}
+                            placeholder="Short description..."
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <Label>Product URL</Label>
+                          <Input 
+                            value={newProduct.productUrl} 
+                            onChange={(e) => setNewProduct({...newProduct, productUrl: e.target.value})}
+                            placeholder="https://..."
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <Label>Image</Label>
+                          <div className="flex gap-2">
+                            <Input 
+                              value={newProduct.imageUrl} 
+                              onChange={(e) => setNewProduct({...newProduct, imageUrl: e.target.value})}
+                              placeholder="Image URL or Upload..."
+                              className="flex-1"
+                            />
+                            <div className="relative">
+                              <input
+                                type="file"
+                                accept="image/*"
+                                className="absolute inset-0 opacity-0 cursor-pointer w-full"
+                                onChange={(e) => handleFileUpload(e, (url) => setNewProduct({...newProduct, imageUrl: url}))}
+                              />
+                              <Button variant="outline" size="icon">
+                                <Upload className="w-4 h-4" />
+                              </Button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <DialogFooter>
+                        <Button onClick={() => {
+                          if (newProduct.name) {
+                            setProducts([...products, newProduct]);
+                            setNewProduct({ name: '', price: '', description: '', imageUrl: '', productUrl: '' });
+                            setIsAddProductOpen(false);
+                            toast.success('Product added! Click Save to persist.');
+                          }
+                        }}>Add Product</Button>
+                      </DialogFooter>
+                    </DialogContent>
+                  </Dialog>
+                </div>
+                
+                {products.length > 0 ? (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {products.map((product, i) => (
                       <div key={i} className="border rounded-lg overflow-hidden bg-white shadow-sm hover:shadow-md transition-shadow flex flex-col">
@@ -681,26 +889,54 @@ export function SettingsPage() {
                       </div>
                     ))}
                   </div>
-                </div>
-              )}
+                ) : (
+                  <div className="text-center p-8 border-2 border-dashed border-gray-200 rounded-lg bg-gray-50">
+                    <ShoppingBag className="w-10 h-10 text-gray-300 mx-auto mb-3" />
+                    <p className="text-sm text-gray-500 font-medium">No products identified yet</p>
+                    <p className="text-xs text-gray-400 mt-1">Enter your website URL above to automatically extract products.</p>
+                  </div>
+                )}
+              </div>
 
               {/* Brand Images */}
-              {brandImages.length > 0 && (
-                <div className="pt-6 border-t">
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+              <div className="pt-6 border-t">
+                <div className="flex items-center justify-between mb-4">
+                  <label className="block text-sm font-medium text-gray-700">
                     📸 Brand Assets
                   </label>
+                  <div className="flex gap-2">
+                    <div className="relative">
+                      <input
+                        type="file"
+                        accept="image/*"
+                        className="absolute inset-0 opacity-0 cursor-pointer w-full"
+                        onChange={(e) => handleFileUpload(e, (url) => {
+                          setBrandImages([...brandImages, url]);
+                          toast.success('Image added! Click Save to persist.');
+                        })}
+                      />
+                      <Button variant="outline" size="sm" className="gap-2">
+                        <Upload className="w-4 h-4" /> Upload Image
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+                
+                {brandImages.length > 0 ? (
                   <div className="grid grid-cols-2 gap-3 md:grid-cols-4 lg:grid-cols-6">
                     {brandImages.map((image, index) => (
                       <div
                         key={index}
-                        className="relative group rounded-lg overflow-hidden bg-gray-100 aspect-square border border-gray-200"
+                        className="relative group rounded-lg overflow-hidden bg-white aspect-square border border-gray-200"
                       >
                         <img
-                          src={image}
+                          src={getDisplayImage(image)}
                           alt={`Brand image ${index + 1}`}
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-contain p-2"
                           loading="lazy"
+                          onError={(e) => {
+                            e.currentTarget.style.opacity = '0';
+                          }}
                         />
                         <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all flex items-center justify-center">
                           <Button
@@ -715,16 +951,30 @@ export function SettingsPage() {
                       </div>
                     ))}
                   </div>
-                </div>
-              )}
+                ) : (
+                  <div className="text-center p-8 border-2 border-dashed border-gray-200 rounded-lg bg-gray-50">
+                    <ImageIcon className="w-10 h-10 text-gray-300 mx-auto mb-3" />
+                    <p className="text-sm text-gray-500 font-medium">No brand assets yet</p>
+                    <p className="text-xs text-gray-400 mt-1">Upload images or analyze your website to populate.</p>
+                  </div>
+                )}
+              </div>
 
               {/* Save Button */}
               <div className="pt-4 border-t">
                 <Button 
                   onClick={handleSaveBrandDNA}
+                  disabled={isSaving}
                   className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:shadow-lg transition-shadow h-12 text-lg"
                 >
-                  Save Brand DNA & Intelligence
+                  {isSaving ? (
+                    <>
+                      <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                      Saving Brand DNA...
+                    </>
+                  ) : (
+                    'Save Brand DNA & Intelligence'
+                  )}
                 </Button>
               </div>
             </div>
@@ -776,8 +1026,20 @@ export function SettingsPage() {
 
       {/* Save Button */}
       <div className="flex justify-end">
-        <Button variant="primary" size="large">
-          Save All Settings
+        <Button 
+          variant="primary" 
+          size="large"
+          onClick={handleSaveBrandDNA}
+          disabled={isSaving}
+        >
+          {isSaving ? (
+            <>
+              <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+              Saving...
+            </>
+          ) : (
+            'Save All Settings'
+          )}
         </Button>
       </div>
     </div>
