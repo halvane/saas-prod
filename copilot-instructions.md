@@ -1,5 +1,16 @@
 # Purlema SaaS Platform - AI Copilot Instructions
 
+## CRITICAL RULES
+
+### 1. NO TODO LISTS
+- ❌ **FORBIDDEN**: Creating todo lists in responses
+- ❌ **FORBIDDEN**: Proposing "next steps" as a checklist
+- ❌ **FORBIDDEN**: Creating implementation plan markdown files
+- ✅ **MANDATORY**: Directly implement all requested features
+- ✅ **MANDATORY**: If a task has multiple parts, implement all of them in the same response
+- ✅ **MANDATORY**: Use `multi_replace_string_in_file` for simultaneous multiple modifications
+- 📝 **Exception**: User explicitly asks "create a todo list" or "make a plan"
+
 ## Architecture Overview
 
 **Viral Loop Engine** is a multi-tenant SaaS content management platform built on Next.js 15 (App Router) with Drizzle ORM, PostgreSQL, and Stripe integration. The platform enables teams to create, schedule, and manage social media content across multiple platforms.
@@ -21,7 +32,11 @@ The entire system revolves around **teams**. Every user belongs to at least one 
 users → teamMembers ← teams
 ```
 **Key Points:**
-- All data queries MUST filter by `teamId` (see `lib/db/queries.ts`)
+- **STRICT**: Every piece of data (brand, content, settings, products) MUST be linked to a `userId` or `teamId`.
+- **ISOLATION**: DB queries must ALWAYS filter by the connected user/team (`where: { userId: user.id }` or `teamId`).
+- **CUSTOMIZATION**: Displayed content must be unique to the connected user. No global or shared content by default.
+- **CACHE**: Watch out for cache keys and revalidation (Next.js), they must be scoped by user to avoid data leaks between tenants.
+- **PERSISTENCE**: Brand data (Brand DNA) must persist between sessions and reloads.
 - Use `getTeamForUser()` to get the authenticated user's team
 - Role-based permissions: `member` vs `owner` per team
 - Activity logs always include `teamId` for audit trails

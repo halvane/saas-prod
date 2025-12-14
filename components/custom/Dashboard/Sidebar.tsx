@@ -1,7 +1,7 @@
 'use client';
 
 import React, { ReactNode } from 'react';
-import { Calendar, Layout, Settings, FileText, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Calendar, Layout, Settings, FileText, Sparkles, ChevronLeft, ChevronRight, Palette } from 'lucide-react';
 
 interface SidebarProps {
   currentPage?: string;
@@ -85,6 +85,13 @@ export function Sidebar({
             label="Templates" 
             active={currentPage === 'templates'}
             onClick={() => handleNavItem('templates')}
+            collapsed={sidebarCollapsed}
+          />
+          <NavItem 
+            icon={<Palette />} 
+            label="Brand DNA" 
+            active={currentPage === 'brand'}
+            onClick={() => handleNavItem('brand')}
             collapsed={sidebarCollapsed}
           />
           <NavItem 

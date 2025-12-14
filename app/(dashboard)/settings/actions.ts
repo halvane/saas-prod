@@ -62,7 +62,7 @@ async function processImage(imageUrl: string | null | undefined, folder: string)
     console.log(`[processImage] Uploading to Blob (Hash: ${hash}): ${folder}/${filename}`);
     
     // Use allowOverwrite: true to avoid errors if the file already exists (since we use content hashing, it's the same file)
-    const { url: blobUrl } = await uploadAsset(filename, buffer, folder);
+    const blobUrl = await uploadAsset(filename, buffer, folder);
     
     console.log(`[processImage] ✅ Upload success: ${blobUrl}`);
     return blobUrl;
@@ -73,8 +73,13 @@ async function processImage(imageUrl: string | null | undefined, folder: string)
 }
 
 export async function getBrandSettings() {
+  console.log('[getBrandSettings] Fetching brand settings');
   const user = await getUser();
-  if (!user) return null;
+  if (!user) {
+    console.log('[getBrandSettings] No user found');
+    return null;
+  }
+  console.log('[getBrandSettings] User found:', user.id);
 
   const settings = await db
     .select()
@@ -82,7 +87,12 @@ export async function getBrandSettings() {
     .where(eq(brandSettings.userId, user.id))
     .limit(1);
 
-  if (settings.length === 0) return null;
+  if (settings.length === 0) {
+    console.log('[getBrandSettings] No settings found for user');
+    return null;
+  }
+
+  console.log('[getBrandSettings] Settings found, ID:', settings[0].id);
 
   const s = settings[0];
   
@@ -92,19 +102,36 @@ export async function getBrandSettings() {
     .from(brandProducts)
     .where(eq(brandProducts.brandId, s.id));
 
-  const parsedProducts = products.map(p => ({
-    ...p,
-    metadata: p.metadata ? JSON.parse(p.metadata as string) : {}
-  }));
+  const parsedProducts = products.map(p => {
+    try {
+      return {
+        ...p,
+        metadata: p.metadata ? JSON.parse(p.metadata as string) : {}
+      };
+    } catch (e) {
+      console.error('[getBrandSettings] Error parsing product metadata:', e);
+      return { ...p, metadata: {} };
+    }
+  });
+
+  const safeParse = (json: string | null, fallback: any = []) => {
+    if (!json) return fallback;
+    try {
+      return JSON.parse(json);
+    } catch (e) {
+      console.error('[getBrandSettings] Error parsing JSON:', e);
+      return fallback;
+    }
+  };
 
   return {
     ...s,
-    brandColors: s.brandColors ? JSON.parse(s.brandColors) : [],
-    brandImages: s.brandImages ? JSON.parse(s.brandImages) : [],
-    brandUsps: s.brandUniqueSellingPoints ? JSON.parse(s.brandUniqueSellingPoints as string) : [],
-    brandPainPoints: s.brandPainPoints ? JSON.parse(s.brandPainPoints as string) : [],
-    customerDesires: s.brandCustomerDesires ? JSON.parse(s.brandCustomerDesires as string) : [],
-    adAngles: s.adAngles ? JSON.parse(s.adAngles as string) : [],
+    brandColors: safeParse(s.brandColors),
+    brandImages: safeParse(s.brandImages),
+    brandUsps: safeParse(s.brandUniqueSellingPoints),
+    brandPainPoints: safeParse(s.brandPainPoints),
+    customerDesires: safeParse(s.brandCustomerDesires),
+    adAngles: safeParse(s.adAngles),
     products: parsedProducts || [],
   };
 }
@@ -240,6 +267,8 @@ export async function saveBrandSettings(data: any) {
   // Revalidate the settings page to clear Next.js cache
   revalidatePath('/settings');
   revalidatePath('/(dashboard)/settings');
+  revalidatePath('/brand');
+  revalidatePath('/(dashboard)/brand');
   
   console.log('[saveBrandSettings] ✅ Save operation completed successfully');
   return { success: true };

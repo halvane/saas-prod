@@ -5,6 +5,7 @@ import { Sparkles, Plus, Eye, LogOut, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { NotificationCenter } from '@/components/ui/NotificationCenter';
 import { useRouter } from 'next/navigation';
+import { signOut } from '@/app/(login)/actions';
 
 interface HeaderProps {
   onNavigate?: (page: string) => void;
@@ -41,6 +42,11 @@ export function Header({ onNavigate, onCreateCampaign, sidebarOpen, onToggleSide
       }
     }
     setShowProfileMenu(false);
+  };
+
+  const handleSignOut = async () => {
+    await signOut();
+    // The server action will handle the redirect
   };
 
   return (
@@ -124,7 +130,10 @@ export function Header({ onNavigate, onCreateCampaign, sidebarOpen, onToggleSide
                     >
                       ⚙️ Settings
                     </button>
-                    <button className="w-full text-left px-3 py-2 rounded-lg hover:bg-[#FEE2E2] transition-colors text-sm text-[#EF4444]">
+                    <button
+                      onClick={handleSignOut}
+                      className="w-full text-left px-3 py-2 rounded-lg hover:bg-[#FEE2E2] transition-colors text-sm text-[#EF4444]"
+                    >
                       <LogOut className="w-4 h-4 inline mr-2" />
                       Sign Out
                     </button>

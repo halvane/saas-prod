@@ -4,9 +4,10 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   error?: string;
   icon?: React.ReactNode;
+  brandColor?: string;
 }
 
-export function Input({ label, error, icon, className = '', ...props }: InputProps) {
+export function Input({ label, error, icon, brandColor, className = '', ...props }: InputProps) {
   return (
     <div className="w-full">
       {label && (
@@ -21,12 +22,30 @@ export function Input({ label, error, icon, className = '', ...props }: InputPro
           </div>
         )}
         <input
-          className={`w-full px-4 py-3 border-2 border-[#E5E7EB] rounded-lg text-base transition-all duration-200 
-            focus:outline-none focus:border-[#8B5CF6] focus:ring-4 focus:ring-[#8B5CF6]/10
+          className={`w-full px-4 py-3 border-2 rounded-lg text-base transition-all duration-200 
+            focus:outline-none focus:ring-4
             disabled:bg-[#F3F4F6] disabled:cursor-not-allowed
             ${icon ? 'pl-10' : ''}
             ${error ? 'border-[#EF4444] focus:border-[#EF4444] focus:ring-[#EF4444]/10' : ''}
             ${className}`}
+          style={{
+            borderColor: error ? '#EF4444' : brandColor ? `${brandColor}40` : '#E5E7EB',
+            ...(props.style || {})
+          }}
+          onFocus={(e) => {
+            if (!error && brandColor) {
+              e.currentTarget.style.borderColor = brandColor;
+              e.currentTarget.style.boxShadow = `0 0 0 4px ${brandColor}1a`;
+            }
+            props.onFocus?.(e);
+          }}
+          onBlur={(e) => {
+            if (!error && brandColor) {
+              e.currentTarget.style.borderColor = `${brandColor}40`;
+              e.currentTarget.style.boxShadow = 'none';
+            }
+            props.onBlur?.(e);
+          }}
           {...props}
         />
       </div>
@@ -40,9 +59,10 @@ export function Input({ label, error, icon, className = '', ...props }: InputPro
 interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   label?: string;
   error?: string;
+  brandColor?: string;
 }
 
-export function Textarea({ label, error, className = '', ...props }: TextareaProps) {
+export function Textarea({ label, error, brandColor, className = '', ...props }: TextareaProps) {
   return (
     <div className="w-full">
       {label && (
@@ -51,11 +71,29 @@ export function Textarea({ label, error, className = '', ...props }: TextareaPro
         </label>
       )}
       <textarea
-        className={`w-full px-4 py-3 border-2 border-[#E5E7EB] rounded-lg text-base transition-all duration-200 
-          focus:outline-none focus:border-[#8B5CF6] focus:ring-4 focus:ring-[#8B5CF6]/10
+        className={`w-full px-4 py-3 border-2 rounded-lg text-base transition-all duration-200 
+          focus:outline-none focus:ring-4
           disabled:bg-[#F3F4F6] disabled:cursor-not-allowed resize-vertical min-h-[120px]
           ${error ? 'border-[#EF4444] focus:border-[#EF4444] focus:ring-[#EF4444]/10' : ''}
           ${className}`}
+        style={{
+          borderColor: error ? '#EF4444' : brandColor ? `${brandColor}40` : '#E5E7EB',
+          ...(props.style || {})
+        }}
+        onFocus={(e) => {
+          if (!error && brandColor) {
+            e.currentTarget.style.borderColor = brandColor;
+            e.currentTarget.style.boxShadow = `0 0 0 4px ${brandColor}1a`;
+          }
+          props.onFocus?.(e);
+        }}
+        onBlur={(e) => {
+          if (!error && brandColor) {
+            e.currentTarget.style.borderColor = `${brandColor}40`;
+            e.currentTarget.style.boxShadow = 'none';
+          }
+          props.onBlur?.(e);
+        }}
         {...props}
       />
       {error && (
@@ -69,9 +107,10 @@ interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
   label?: string;
   error?: string;
   options: { value: string; label: string }[];
+  brandColor?: string;
 }
 
-export function Select({ label, error, options, className = '', ...props }: SelectProps) {
+export function Select({ label, error, options, brandColor, className = '', ...props }: SelectProps) {
   return (
     <div className="w-full">
       {label && (
@@ -80,16 +119,32 @@ export function Select({ label, error, options, className = '', ...props }: Sele
         </label>
       )}
       <select
-        className={`w-full px-4 py-3 pr-10 border-2 border-[#E5E7EB] rounded-lg text-base transition-all duration-200 
-          focus:outline-none focus:border-[#8B5CF6] focus:ring-4 focus:ring-[#8B5CF6]/10
+        className={`w-full px-4 py-3 pr-10 border-2 rounded-lg text-base transition-all duration-200 
+          focus:outline-none focus:ring-4
           disabled:bg-[#F3F4F6] disabled:cursor-not-allowed appearance-none bg-white
           ${error ? 'border-[#EF4444] focus:border-[#EF4444] focus:ring-[#EF4444]/10' : ''}
           ${className}`}
         style={{
+          borderColor: error ? '#EF4444' : brandColor ? `${brandColor}40` : '#E5E7EB',
           backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236B7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E")`,
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'right 12px center',
-          backgroundSize: '20px'
+          backgroundSize: '20px',
+          ...(props.style || {})
+        }}
+        onFocus={(e) => {
+          if (!error && brandColor) {
+            e.currentTarget.style.borderColor = brandColor;
+            e.currentTarget.style.boxShadow = `0 0 0 4px ${brandColor}1a`;
+          }
+          props.onFocus?.(e);
+        }}
+        onBlur={(e) => {
+          if (!error && brandColor) {
+            e.currentTarget.style.borderColor = `${brandColor}40`;
+            e.currentTarget.style.boxShadow = 'none';
+          }
+          props.onBlur?.(e);
         }}
         {...props}
       >

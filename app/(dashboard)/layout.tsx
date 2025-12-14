@@ -96,6 +96,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       case 'calendar':
         router.push('/timeline');
         break;
+      case 'brand':
+        router.push('/brand');
+        break;
       case 'radar':
         router.push('/radar');
         break;

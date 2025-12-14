@@ -9,7 +9,7 @@ export default async function AdminLayout({
   const user = await getUser();
 
   if (!user || user.role !== 'admin') {
-    redirect('/');
+    redirect('/sign-in');
   }
 
   return (
