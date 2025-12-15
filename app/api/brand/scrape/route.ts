@@ -195,7 +195,7 @@ export async function POST(req: NextRequest) {
     if (analysis && analysis.detectedProducts && analysis.detectedProducts.length > 0) {
       // If scraper found nothing, use AI detected products
       if (enhancedProducts.length === 0) {
-        enhancedProducts = analysis.detectedProducts.map(p => ({
+        enhancedProducts = analysis.detectedProducts.map((p: any) => ({
           name: p.name,
           description: p.description,
           price: p.price,
@@ -209,7 +209,7 @@ export async function POST(req: NextRequest) {
         // If scraper found products, try to enhance them with AI insights
         // This is a simple merge strategy - could be improved with fuzzy matching
         enhancedProducts = enhancedProducts.map(p => {
-          const aiMatch = analysis.detectedProducts?.find(ap => ap.name.includes(p.name) || p.name.includes(ap.name));
+          const aiMatch = analysis.detectedProducts?.find((ap: any) => ap.name.includes(p.name) || p.name.includes(ap.name));
           return {
             ...p,
             metadata: {

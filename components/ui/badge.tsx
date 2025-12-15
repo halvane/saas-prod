@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface BadgeProps {
-  variant?: 'success' | 'warning' | 'error' | 'info' | 'platform';
+  variant?: 'success' | 'warning' | 'error' | 'info' | 'platform' | 'default' | 'secondary' | 'outline';
   platform?: 'instagram' | 'linkedin' | 'twitter' | 'pinterest' | 'tiktok' | 'youtube' | 'blog' | 'facebook';
   children: React.ReactNode;
   className?: string;
@@ -15,7 +15,10 @@ export function Badge({ variant = 'info', platform, children, className = '' }: 
     warning: 'bg-[#FEF3C7] text-[#92400E]',
     error: 'bg-[#FEE2E2] text-[#991B1B]',
     info: 'bg-[#DBEAFE] text-[#1E40AF]',
-    platform: ''
+    platform: '',
+    default: 'bg-primary text-primary-foreground hover:bg-primary/80',
+    secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
+    outline: 'text-foreground border border-input hover:bg-accent hover:text-accent-foreground'
   };
   
   const platformStyles = {

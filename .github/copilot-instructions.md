@@ -1,5 +1,5 @@
 # Purlema SaaS Platform - AI Copilot Instructions
-
+the #purlema-ai-platform is repository of my old proejct done in node and  react we will use it  to migrate few fueatures to this new saas architecture onky for inspiration never implement there , when you get idea from there make sure to convert it to nextjs format adapted to saas proejct architecture
 ## CRITICAL RULES
 
 ### 1. NO TODO LISTS
@@ -642,4 +642,27 @@ import { uploadAsset } from '@/lib/storage';
 const url = await uploadAsset('logo.png', file, 'brand-logos');
 await db.update(brandSettings).set({ brandLogo: url })...
 ```
+
+
+### 14. Scalable AI Template Architecture
+The platform uses a token-efficient, vector-search-based architecture for managing thousands of templates.
+
+**Core Components:**
+- **Database**: 
+  - \	emplates\: Stores HTML/CSS and a minified JSON schema (\llmSchema\) for the LLM.
+  - \	emplate_embeddings\: Stores vector embeddings of template descriptions for semantic search.
+- **Ingestion**: \lib/ai/templates/ingestion.ts\ analyzes templates to generate metadata and embeddings.
+- **Search**: \lib/ai/templates/search.ts\ uses cosine similarity to find templates matching a user prompt.
+- **Generation**: \lib/ai/templates/generation.ts\ uses the LLM to populate the *minified schema* (not the full HTML), saving 99% of tokens.
+- **Rendering**: \lib/templates/renderer.ts\ merges the LLM-generated content and \BrandDNA\ settings into the HTML/CSS using standard CSS variables.
+
+**Workflow:**
+1. **Search**: User prompt -> Vector Search -> Top 5 Templates.
+2. **Generate**: Selected Template Schema + User Content -> LLM -> Content JSON.
+3. **Render**: HTML/CSS + Content JSON + Brand Settings -> Final HTML.
+
+**Standard CSS Variables:**
+All templates must use these variables for automatic brand adaptation:
+- \--brand-primary\, \--brand-secondary\, \--brand-accent\
+- \--font-heading\, \--font-body\
 

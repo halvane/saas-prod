@@ -6,6 +6,8 @@ import {
   timestamp,
   integer,
   boolean,
+  json,
+  vector,
 } from 'drizzle-orm/pg-core';
 import { relations } from 'drizzle-orm';
 
@@ -201,3 +203,83 @@ export enum ActivityType {
   INVITE_TEAM_MEMBER = 'INVITE_TEAM_MEMBER',
   ACCEPT_INVITATION = 'ACCEPT_INVITATION',
 }
+
+export const templates = pgTable('templates', {
+  id: text('id').primaryKey(),
+  name: varchar('name', { length: 255 }).notNull(),
+  description: text('description'),
+  htmlTemplate: text('html_template').notNull(),
+  cssTemplate: text('css_template').notNull(),
+  llmSchema: json('llm_schema').notNull(), // Minified JSON schema for LLM
+  visualEditorData: json('visual_editor_data'), // Stores the canvas state (elements, etc.)
+  variables: json('variables'), // Default variable values (colors, text, images) - nullable for existing templates
+  semanticTags: json('semantic_tags'), // Array of strings
+  category: varchar('category', { length: 50 }),
+  platform: json('platform'), // Array of strings: ["instagram", "linkedin"]
+  thumbnailUrl: text('thumbnail_url'),
+  previewUrl: text('preview_url'),
+  isPublic: boolean('is_public').default(false),
+  isActive: boolean('is_active').default(true),
+  width: integer('width'),
+  height: integer('height'),
+  usageCount: integer('usage_count').default(0),
+  thumbsUpCount: integer('thumbs_up_count').default(0),
+  thumbsDownCount: integer('thumbs_down_count').default(0),
+  createdAt: timestamp('created_at').notNull().defaultNow(),
+  updatedAt: timestamp('updated_at').notNull().defaultNow(),
+});
+
+export const templateEmbeddings = pgTable('template_embeddings', {
+  id: serial('id').primaryKey(),
+  templateId: text('template_id')
+    .notNull()
+    .references(() => templates.id, { onDelete: 'cascade' }),
+  embedding: vector('embedding', { dimensions: 1536 }), // OpenAI text-embedding-3-small
+  sourceText: text('source_text'), // Text used to generate embedding
+  createdAt: timestamp('created_at').notNull().defaultNow(),
+});
+
+export const templatesRelations = relations(templates, ({ many }) => ({
+  embeddings: many(templateEmbeddings),
+}));
+
+export const templateEmbeddingsRelations = relations(templateEmbeddings, ({ one }) => ({
+  template: one(templates, {
+    fields: [templateEmbeddings.templateId],
+    references: [templates.id],
+  }),
+}));
+
+export type Template = typeof templates.$inferSelect;
+export type NewTemplate = typeof templates.$inferInsert;
+export type TemplateEmbedding = typeof templateEmbeddings.$inferSelect;
+export type NewTemplateEmbedding = typeof templateEmbeddings.$inferInsert;
+
+export const generatedTemplateValues = pgTable('generated_template_values', {
+  id: serial('id').primaryKey(),
+  userId: integer('user_id')
+    .notNull()
+    .references(() => users.id, { onDelete: 'cascade' }),
+  templateId: text('template_id')
+    .notNull()
+    .references(() => templates.id, { onDelete: 'cascade' }),
+  values: json('values').notNull(), // The generated values matching llmSchema
+  version: integer('version').default(1),
+  createdAt: timestamp('created_at').notNull().defaultNow(),
+  updatedAt: timestamp('updated_at').notNull().defaultNow(),
+});
+
+export const generatedTemplateValuesRelations = relations(generatedTemplateValues, ({ one }) => ({
+  user: one(users, {
+    fields: [generatedTemplateValues.userId],
+    references: [users.id],
+  }),
+  template: one(templates, {
+    fields: [generatedTemplateValues.templateId],
+    references: [templates.id],
+  }),
+}));
+
+export type GeneratedTemplateValue = typeof generatedTemplateValues.$inferSelect;
+export type NewGeneratedTemplateValue = typeof generatedTemplateValues.$inferInsert;
+

@@ -9,6 +9,7 @@ import { revalidatePath } from 'next/cache';
 import { createUserProfile, generateJwt, getUserProfile } from '@/lib/upload-post/service';
 import { getShopifyIntegration } from '@/lib/shopify/service';
 import { uploadAsset } from '@/lib/storage';
+import { regenerateAllTemplatesForUser } from '@/lib/templates/service';
 
 // Helper to process and upload images to Vercel Blob
 async function processImage(imageUrl: string | null | undefined, folder: string): Promise<string | null> {
@@ -270,6 +271,16 @@ export async function saveBrandSettings(data: any) {
   revalidatePath('/brand');
   revalidatePath('/(dashboard)/brand');
   
+  // Trigger template generation
+  try {
+    console.log('[saveBrandSettings] Triggering template generation...');
+    await regenerateAllTemplatesForUser(user.id);
+    console.log('[saveBrandSettings] Template generation triggered successfully');
+  } catch (error) {
+    console.error('[saveBrandSettings] Template generation failed:', error);
+    // Don't fail the save operation if generation fails
+  }
+
   console.log('[saveBrandSettings] ✅ Save operation completed successfully');
   return { success: true };
 }

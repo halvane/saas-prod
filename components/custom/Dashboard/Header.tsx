@@ -1,11 +1,16 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Sparkles, Plus, Eye, LogOut, Menu, X } from 'lucide-react';
+import { Sparkles, Plus, Eye, LogOut, Menu, X, ShieldCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { NotificationCenter } from '@/components/ui/NotificationCenter';
 import { useRouter } from 'next/navigation';
 import { signOut } from '@/app/(login)/actions';
+import useSWR from 'swr';
+import { User } from '@/lib/db/schema';
+import Link from 'next/link';
+
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 interface HeaderProps {
   onNavigate?: (page: string) => void;
@@ -17,6 +22,7 @@ interface HeaderProps {
 export function Header({ onNavigate, onCreateCampaign, sidebarOpen, onToggleSidebar }: HeaderProps) {
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const router = useRouter();
+  const { data: user } = useSWR<User>('/api/user', fetcher);
 
   const handleCreateCampaign = () => {
     if (onCreateCampaign) {
@@ -73,6 +79,19 @@ export function Header({ onNavigate, onCreateCampaign, sidebarOpen, onToggleSide
 
           {/* Action Buttons & User Menu */}
           <div className="flex items-center gap-3">
+            {user?.role === 'admin' && (
+              <Button 
+                asChild 
+                variant="ghost" 
+                size="small"
+                className="hidden md:inline-flex text-red-600 hover:text-red-700 hover:bg-red-50"
+              >
+                <Link href="/admin">
+                  <ShieldCheck className="w-4 h-4 mr-2" />
+                  Admin
+                </Link>
+              </Button>
+            )}
             <Button 
               variant="secondary" 
               size="small"

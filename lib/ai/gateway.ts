@@ -15,7 +15,7 @@
  */
 
 import { createGateway } from '@ai-sdk/gateway';
-import { LanguageModel } from 'ai';
+import { LanguageModel, EmbeddingModel } from 'ai';
 
 export interface AIGatewayConfig {
   apiKey: string;
@@ -53,6 +53,13 @@ class AIGateway {
    */
   getModel(model: string = this.defaultModel): LanguageModel {
     return this.provider(model);
+  }
+
+  /**
+   * Get a configured embedding model
+   */
+  getEmbeddingModel(model: string = 'text-embedding-3-small'): EmbeddingModel<string> {
+    return this.provider.textEmbeddingModel(model);
   }
 
   /**

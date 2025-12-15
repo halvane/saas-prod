@@ -7,7 +7,7 @@ interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
 }
 
-export function Card({
+export const Card = React.forwardRef<HTMLDivElement, CardProps>(({
   variant = 'standard',
   platformColor,
   hover = true,
@@ -16,7 +16,7 @@ export function Card({
   onClick,
   style,
   ...props
-}: CardProps) {
+}, ref) => {
   const baseStyles = 'rounded-xl p-6 transition-all duration-300';
   
   const variants = {
@@ -29,6 +29,7 @@ export function Card({
   
   return (
     <div
+      ref={ref}
       className={`${baseStyles} ${variants[variant]} ${hoverStyles} ${className}`}
       onClick={onClick}
       style={style}
@@ -43,22 +44,27 @@ export function Card({
       {children}
     </div>
   );
+});
+Card.displayName = "Card";
+
+export function CardHeader({ children, className = '', ...props }: React.HTMLAttributes<HTMLDivElement> & { children: React.ReactNode; className?: string }) {
+  return <div className={`mb-4 ${className}`} {...props}>{children}</div>;
 }
 
-export function CardHeader({ children, className = '' }: { children: React.ReactNode; className?: string }) {
-  return <div className={`mb-4 ${className}`}>{children}</div>;
+export function CardTitle({ children, className = '', ...props }: React.HTMLAttributes<HTMLHeadingElement> & { children: React.ReactNode; className?: string }) {
+  return <h4 className={className} {...props}>{children}</h4>;
 }
 
-export function CardTitle({ children, className = '' }: { children: React.ReactNode; className?: string }) {
-  return <h4 className={className}>{children}</h4>;
+export function CardDescription({ children, className = '', ...props }: React.HTMLAttributes<HTMLParagraphElement> & { children: React.ReactNode; className?: string }) {
+  return <p className={`text-sm text-gray-500 ${className}`} {...props}>{children}</p>;
 }
 
-export function CardContent({ children, className = '' }: { children: React.ReactNode; className?: string }) {
-  return <div className={className}>{children}</div>;
+export function CardContent({ children, className = '', ...props }: React.HTMLAttributes<HTMLDivElement> & { children: React.ReactNode; className?: string }) {
+  return <div className={className} {...props}>{children}</div>;
 }
 
-export function CardFooter({ children, className = '' }: { children: React.ReactNode; className?: string }) {
-  return <div className={`mt-4 pt-4 border-t border-[#E5E7EB] ${className}`}>{children}</div>;
+export function CardFooter({ children, className = '', ...props }: React.HTMLAttributes<HTMLDivElement> & { children: React.ReactNode; className?: string }) {
+  return <div className={`mt-4 pt-4 border-t border-[#E5E7EB] ${className}`} {...props}>{children}</div>;
 }
 
 
