@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import type { CustomTemplate, VisualElement } from '../types';
 import { DEMO_TEMPLATES_FALLBACK } from '../data/demoTemplates';
 import { extractElementsFromHTMLAsync } from '../utils/extractElements';
+import { getTemplateWithMatrixAction } from '@/app/(dashboard)/templates/actions';
 
 export function useTemplateLoader(
   setVisualElements: (elements: VisualElement[]) => void,
@@ -9,10 +10,30 @@ export function useTemplateLoader(
   setRawCssTemplate: (css: string) => void,
   setVariableValues: (values: Record<string, any>) => void,
   setSelectedTemplate: (template: CustomTemplate) => void,
-  toast: any
+  toast: any,
+  brandSettings?: any,
+  setIsExtracting?: (isExtracting: boolean) => void
 ) {
   const [templates, setTemplates] = useState<CustomTemplate[]>([]);
   const [isLoadingTemplates, setIsLoadingTemplates] = useState(false);
+
+  // Helper to fetch stock images
+  const fetchStockImage = async (keyword: string): Promise<string | null> => {
+    try {
+      const response = await fetch(`/api/stock?q=${encodeURIComponent(keyword)}&provider=pixabay&per_page=3`);
+      if (response.ok) {
+        const data = await response.json();
+        if (data && data.length > 0) {
+          // Return a random image from the top 3 results to add variety
+          const randomIndex = Math.floor(Math.random() * Math.min(data.length, 3));
+          return data[randomIndex].src.large || data[randomIndex].src.medium;
+        }
+      }
+    } catch (error) {
+      console.error('Failed to fetch stock image:', error);
+    }
+    return null;
+  };
 
   const loadTemplates = async () => {
     setIsLoadingTemplates(true);
@@ -38,15 +59,6 @@ export function useTemplateLoader(
   };
 
   const parseHTMLToVisualElements = async (template: CustomTemplate) => {
-    console.log('🔄 parseHTMLToVisualElements called with:', {
-      name: template.name,
-      hasHTML: !!template.htmlTemplate,
-      hasCSS: !!template.cssTemplate,
-      hasVariables: !!template.variables,
-      variablesType: typeof template.variables,
-      variablesKeys: Object.keys(template.variables || {}),
-      variablesRaw: JSON.stringify(template.variables, null, 2)
-    });
 
     // Store raw templates for variable substitution
     setRawHtmlTemplate(template.htmlTemplate || '');
@@ -54,75 +66,147 @@ export function useTemplateLoader(
 
     // Initialize variable values
     const initialValues: Record<string, any> = {};
-    if (template.variables && typeof template.variables === 'object') {
-      Object.entries(template.variables).forEach(([key, value]) => {
-        // Handle different variable structures
+    
+    // Ensure template.variables exists and is an object
+    const templateVars = template.variables && typeof template.variables === 'object' 
+      ? template.variables 
+      : {};
+    
+    if (Object.keys(templateVars).length > 0) {
+      const variableEntries = Object.entries(templateVars);
+      
+      // Process variables in parallel to fetch stock images if needed
+      await Promise.all(variableEntries.map(async ([key, value]) => {
+        // 1. Get default value from template definition
+        let val = '';
         if (typeof value === 'object' && value !== null) {
-          // Structure: { type: 'text', label: 'Label', default: 'Value' }
           const def = (value as any).default;
-          initialValues[key] = (def !== undefined && def !== null) ? String(def) : '';
+          val = (def !== undefined && def !== null) ? String(def) : '';
         } else {
-          // Direct value: 'Value'
-          initialValues[key] = (value !== undefined && value !== null) ? String(value) : '';
+          val = (value !== undefined && value !== null) ? String(value) : '';
         }
-        console.log(`📌 Variable ${key}:`, initialValues[key]);
-      });
+        
+        // Skip if still empty after template defaults
+        if (!val) {
+          console.warn(`⚠️ Variable ${key} has no default value, will keep placeholder`);
+        }
+
+        // 2. Smart Population from Brand Settings
+        if (brandSettings) {
+          const lowerKey = key.toLowerCase();
+          
+          // Text Variables
+          if (lowerKey === 'brand_name' || lowerKey === 'brandname') {
+            if (brandSettings.brandName) val = brandSettings.brandName;
+          } else if (lowerKey === 'tagline' || lowerKey === 'brand_tagline') {
+            if (brandSettings.brandTagline) val = brandSettings.brandTagline;
+          } else if (lowerKey === 'website' || lowerKey === 'url') {
+            if (brandSettings.brandUrl) val = brandSettings.brandUrl;
+          } else if (lowerKey.includes('product_name') || lowerKey.includes('productname')) {
+            if (brandSettings.products && brandSettings.products.length > 0) {
+              val = brandSettings.products[0].name;
+            }
+          } else if (lowerKey === 'price') {
+            if (brandSettings.products && brandSettings.products.length > 0 && brandSettings.products[0].price) {
+              val = brandSettings.products[0].price;
+            }
+          }
+          
+          // Image Variables
+          else if (lowerKey.includes('image') || lowerKey.includes('photo') || lowerKey.includes('bg') || lowerKey.includes('background')) {
+            let imageFound = false;
+
+            // A. Try Brand Logo
+            if (lowerKey.includes('logo') && brandSettings.brandLogo) {
+              val = brandSettings.brandLogo;
+              imageFound = true;
+            }
+            
+            // B. Try Product Image
+            if (!imageFound && lowerKey.includes('product') && brandSettings.products && brandSettings.products.length > 0) {
+              const p = brandSettings.products[0];
+              const pUrl = typeof p.imageUrl === 'string' ? p.imageUrl : (p.imageUrl as any)?.url;
+              if (pUrl) {
+                val = pUrl;
+                imageFound = true;
+              }
+            }
+
+            // C. Try Brand Images
+            if (!imageFound && brandSettings.brandImages && brandSettings.brandImages.length > 0) {
+              // Pick a random image from brand images to add variety, or sequential based on key hash?
+              // For now, just pick the first one or random
+              const imgs = brandSettings.brandImages;
+              const img = imgs[Math.floor(Math.random() * imgs.length)];
+              const url = typeof img === 'string' ? img : (img as any)?.url;
+              if (url) {
+                val = url;
+                imageFound = true;
+              }
+            }
+
+            // D. Fallback to Stock Images (Pixabay/Unsplash)
+            if (!imageFound) {
+              // Determine keyword
+              let keyword = 'business'; // Default
+              if (brandSettings.brandIndustry) keyword = brandSettings.brandIndustry;
+              if (lowerKey.includes('host')) keyword = 'portrait professional';
+              if (lowerKey.includes('guest')) keyword = 'portrait business';
+              if (lowerKey.includes('product')) keyword = 'product packaging';
+              if (lowerKey.includes('food')) keyword = 'food';
+              if (lowerKey.includes('tech')) keyword = 'technology';
+              
+              const stockUrl = await fetchStockImage(keyword);
+              if (stockUrl) {
+                val = stockUrl;
+                imageFound = true;
+              } else {
+                // Ultimate fallback if API fails
+                val = 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80';
+                imageFound = true;
+              }
+            }
+          }
+        }
+
+        initialValues[key] = val;
+      }));
     }
     
-    console.log('📦 All initial variable values:', initialValues);
     setVariableValues(initialValues);
 
     // Apply variables to HTML/CSS
     let processedHTML = template.htmlTemplate || '';
     let processedCSS = template.cssTemplate || '';
     
-    console.log('📋 BEFORE replacement - HTML preview:', processedHTML.substring(0, 300));
-    
-    // Apply variables if they exist
-    if (template.variables && typeof template.variables === 'object') {
-      console.log('📝 Applying variables:', Object.keys(template.variables));
-      Object.entries(template.variables).forEach(([key, value]) => {
+    // CRITICAL: Use initialValues (brand settings + defaults) for replacement, NOT template.variables
+    // This ensures brand customization is applied to the visual preview
+    if (Object.keys(initialValues).length > 0) {
+      Object.entries(initialValues).forEach(([key, value]) => {
+        // Skip CSS variables (they use -- prefix, not {{ }} syntax)
+        if (key.startsWith('--')) {
+          return;
+        }
+        
         const varPattern = new RegExp(`\\{\\{${key}\\}\\}`, 'g');
         
-        // Get default value from variable structure
-        let defaultValue;
-        if (typeof value === 'object' && value !== null) {
-          const def = (value as any).default;
-          defaultValue = (def !== undefined && def !== null) ? String(def) : '';
-        } else {
-          defaultValue = (value !== undefined && value !== null) ? String(value) : '';
-        }
+        // Use the computed value from initialValues (includes brand settings)
+        const replacementValue = (value !== undefined && value !== null && value !== '') 
+          ? String(value) 
+          : `{{${key}}}`; // Keep placeholder if no value
         
-        const beforeHTML = processedHTML.includes(`{{${key}}}`);
-        const beforeCSS = processedCSS.includes(`{{${key}}}`);
+        // CRITICAL: Escape special characters in replacement value to prevent breaking CSS
+        // This is especially important for URLs and gradients
+        const safeReplacementValue = replacementValue.replace(/\\/g, '\\\\');
         
-        console.log(`  🔍 Looking for {{${key}}} (value: "${defaultValue}") - HTML: ${beforeHTML}, CSS: ${beforeCSS}`);
-        
-        processedHTML = processedHTML.replace(varPattern, String(defaultValue || ''));
-        processedCSS = processedCSS.replace(varPattern, String(defaultValue || ''));
-        
-        if (beforeHTML || beforeCSS) {
-          console.log(`  ✅ Replaced {{${key}}} with: "${defaultValue}"`);
-        }
+        processedHTML = processedHTML.replace(varPattern, safeReplacementValue);
+        processedCSS = processedCSS.replace(varPattern, safeReplacementValue);
       });
       
-      // Check if any placeholders remain and clean them up
-      const remainingPlaceholders = processedHTML.match(/\{\{[^}]+\}\}/g);
-      if (remainingPlaceholders) {
-        console.warn('⚠️ Remaining placeholders found and removed:', remainingPlaceholders);
-        processedHTML = processedHTML.replace(/\{\{[^}]+\}\}/g, '');
-        processedCSS = processedCSS.replace(/\{\{[^}]+\}\}/g, '');
-      } else {
-        console.log('✅ All placeholders replaced successfully');
-      }
+      // Check if any placeholders remain
+      // DO NOT REMOVE THEM! If we remove them, the src becomes empty string ""
+      // Keep them for the extractor to see
     }
-
-    console.log('✨ Processed result:', {
-      htmlLength: processedHTML.length,
-      cssLength: processedCSS.length,
-      htmlPreview: processedHTML.substring(0, 300) + '...',
-      cssPreview: processedCSS.substring(0, 200) + '...'
-    });
 
     // Update template with processed HTML/CSS
     setSelectedTemplate({
@@ -133,8 +217,21 @@ export function useTemplateLoader(
       cssTemplate: processedCSS
     });
 
-    // Extract visual elements from the processed HTML/CSS for interactive editing
-    console.log('🎨 Extracting visual elements for interactive editing...');
+    // NEW LOGIC: Check if template already has JSON elements
+    if ((template as any).elements && Array.isArray((template as any).elements) && (template as any).elements.length > 0) {
+      setVisualElements((template as any).elements);
+      toast({
+        title: '✅ Template loaded instantly',
+        description: 'Loaded from high-performance JSON format',
+      });
+      return;
+    }
+
+    // FALLBACK: Extract visual elements from the processed HTML/CSS for interactive editing
+    
+    // Set extraction state to show loader
+    if (setIsExtracting) setIsExtracting(true);
+    
     const elements = await extractElementsFromHTMLAsync(
       processedHTML,
       processedCSS,
@@ -142,8 +239,10 @@ export function useTemplateLoader(
       template.height || 1080
     );
     
-    console.log(`✅ Extracted ${elements.length} interactive elements`);
     setVisualElements(elements);
+    
+    // Clear extraction state
+    if (setIsExtracting) setIsExtracting(false);
     
     toast({
       title: '✅ Template loaded successfully',
@@ -159,14 +258,17 @@ export function useTemplateLoader(
         return;
       }
 
-      const response = await fetch(`/api/admin/custom-templates/${templateId}`);
-      if (response.ok) {
-        const loadedTemplate = await response.json();
-        parseHTMLToVisualElements(loadedTemplate);
+      // Use server action to get template with matrix data populated
+      const loadedTemplate = await getTemplateWithMatrixAction(templateId);
+      
+      if (loadedTemplate) {
+        // Cast to any because the type definition might not match exactly what we return (mappedVariables)
+        parseHTMLToVisualElements(loadedTemplate as any);
       } else {
         throw new Error('Failed to load template');
       }
     } catch (error: any) {
+      console.error('Error loading template:', error);
       toast({
         title: 'Erreur',
         description: error.message || 'Impossible de charger le template',

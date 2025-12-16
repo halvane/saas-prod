@@ -7,6 +7,21 @@ export const STANDARD_CSS_VARIABLES = [
   '--brand-logo',
 ];
 
+// Simple color utility to lighten/darken hex
+function adjustColor(color: string, amount: number) {
+    try {
+        return '#' + color.replace(/^#/, '').replace(/../g, color => ('0' + Math.min(255, Math.max(0, parseInt(color, 16) + amount)).toString(16)).substr(-2));
+    } catch (e) { return color; }
+}
+
+// Convert hex to RGB for opacity support
+function hexToRgb(hex: string) {
+    try {
+        const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+        return result ? `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}` : '0, 0, 0';
+    } catch (e) { return '0, 0, 0'; }
+}
+
 export interface RenderOptions {
   html: string;
   css: string;
@@ -48,8 +63,20 @@ export function mergeTemplate({ html, css, variables, brandSettings }: RenderOpt
     const rootStyles = `
       :root {
         --brand-primary: ${primary};
+        --brand-primary-light: ${adjustColor(primary, 40)};
+        --brand-primary-dark: ${adjustColor(primary, -40)};
+        --brand-primary-rgb: ${hexToRgb(primary)};
+        
         --brand-secondary: ${secondary};
+        --brand-secondary-light: ${adjustColor(secondary, 40)};
+        --brand-secondary-dark: ${adjustColor(secondary, -40)};
+        --brand-secondary-rgb: ${hexToRgb(secondary)};
+        
         --brand-accent: ${accent};
+        --brand-accent-light: ${adjustColor(accent, 40)};
+        --brand-accent-dark: ${adjustColor(accent, -40)};
+        --brand-accent-rgb: ${hexToRgb(accent)};
+        
         --font-heading: ${brandSettings.brandFont || 'sans-serif'};
         --font-body: ${brandSettings.brandFont || 'sans-serif'};
       }

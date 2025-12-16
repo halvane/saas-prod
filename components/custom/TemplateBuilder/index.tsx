@@ -11,21 +11,27 @@ import { ImageSelectorModal } from './components/ImageSelectorModal';
 import { TopActionBar } from './components/TopActionBar';
 import { ZoomControls } from './components/ZoomControls';
 import { EditorToolbar, type EditorTool } from './EditorToolbar';
-import { TextPanel, MediaPanel, ElementsPanel, LayersPanel } from './components/ToolPanels';
+import { TextPanel, MediaPanel, ElementsPanel, LayersPanel, DEFAULT_VARIABLES } from './components/ToolPanels';
 import { ContextMenu } from './components/ContextMenu';
 
 import { useTemplateState } from './hooks/useTemplateState';
 import { useVisualElements } from './hooks/useVisualElements';
 import { useKeyboardShortcuts } from './hooks/useKeyboardShortcuts';
 import { useTemplateLoader } from './hooks/useTemplateLoader';
+import { extractElementsFromHTMLAsync } from './utils/extractElements';
+import { getBrandSettings } from '@/app/(dashboard)/settings/actions';
 
-import type { CustomTemplate } from './types';
+import type { CustomTemplate, VisualElement } from './types';
 import './styles.css';
 
 export default function CustomTemplateBuilderVisual() {
   const params = useParams();
   const id = params?.id as string;
   const router = useRouter();
+
+  // Brand Settings State
+  const [brandSettings, setBrandSettingsState] = useState<any>(null);
+  const [brandAssets, setBrandAssets] = useState<{ images: any[]; products: any[] } | null>(null);
 
   // Toast wrapper for compatibility
   const customToast = (props: { title: string; description?: string }) => {
@@ -65,6 +71,9 @@ export default function CustomTemplateBuilderVisual() {
     redo,
     saveToHistory,
   } = useVisualElements(selectedTemplate, canvasBackground);
+  
+  // Extraction loading state
+  const [isExtracting, setIsExtracting] = useState(false);
 
   // Template loader
   const {
@@ -78,8 +87,158 @@ export default function CustomTemplateBuilderVisual() {
     setRawCssTemplate,
     setVariableValues,
     setSelectedTemplate,
-    customToast
+    customToast,
+    brandSettings,
+    setIsExtracting // Pass extraction state setter
   );
+
+  useEffect(() => {
+    const fetchBrandData = async () => {
+      try {
+        const settings = await getBrandSettings();
+        if (settings) {
+          setBrandAssets({
+            images: settings.brandImages || [],
+            products: settings.products || []
+          });
+
+          // Construct brand variables for substitution
+          const brandVars: Record<string, any> = { ...DEFAULT_VARIABLES };
+          
+          if (settings.brandName) {
+            brandVars.brand_name = settings.brandName;
+            brandVars.brandName = settings.brandName;
+            brandVars.BRAND_NAME = settings.brandName;
+          }
+          
+          if (settings.brandTagline) {
+            brandVars.tagline = settings.brandTagline;
+            brandVars.TAGLINE = settings.brandTagline;
+          }
+
+          // Products
+          if (settings.products && settings.products.length > 0) {
+            const p = settings.products[0];
+            brandVars.product_name = p.name;
+            brandVars.productName = p.name;
+            brandVars.PRODUCT_NAME = p.name;
+            
+            if (p.price) {
+              brandVars.price = p.price;
+              brandVars.PRICE = p.price;
+            }
+            
+            if (p.imageUrl) {
+              const url = typeof p.imageUrl === 'string' ? p.imageUrl : (p.imageUrl as any).url;
+              if (url) {
+                brandVars.product_image = url;
+                brandVars.productImage = url;
+                brandVars.PRODUCT_IMAGE = url;
+              }
+            }
+          }
+
+          // Brand Images
+          if (settings.brandImages && settings.brandImages.length > 0) {
+            const img = settings.brandImages[0];
+            const url = typeof img === 'string' ? img : (img as any).url;
+            if (url) {
+              brandVars.hero_image = url;
+              brandVars.heroImage = url;
+              brandVars.HERO_IMAGE = url;
+            }
+          }
+
+          // Update variable values
+          setVariableValues(prev => ({ ...prev, ...brandVars }));
+        }
+      } catch (err) {
+        console.error("Failed to fetch brand settings:", err instanceof Error ? err.message : err);
+      }
+    };
+    fetchBrandData();
+  }, []);
+
+  // Effect to update visual elements when variables change (live substitution)
+  useEffect(() => {
+    if (visualElements.length === 0 || Object.keys(variableValues).length === 0) return;
+
+    let hasChanges = false;
+    const newElements = visualElements.map(el => {
+      let updated = false;
+      let newEl = { ...el };
+
+      // Replace text content
+      if (el.type === 'text' && el.content && el.content.includes('{{')) {
+        Object.entries(variableValues).forEach(([key, value]) => {
+          const pattern = new RegExp(`\\{\\{${key}\\}\\}`, 'gi'); // Case insensitive
+          if (pattern.test(newEl.content!)) {
+            newEl.content = newEl.content!.replace(pattern, String(value));
+            updated = true;
+          }
+        });
+      }
+
+      // Replace image src
+      if (el.type === 'image' && el.src && el.src.includes('{{')) {
+        Object.entries(variableValues).forEach(([key, value]) => {
+          const pattern = new RegExp(`\\{\\{${key}\\}\\}`, 'gi');
+          if (pattern.test(newEl.src!)) {
+            let strValue = String(value);
+            // Handle object values for images
+            if (typeof value === 'object' && value !== null) {
+               if ('src' in value) strValue = (value as any).src;
+               else if ('url' in value) strValue = (value as any).url;
+            }
+            newEl.src = newEl.src!.replace(pattern, strValue);
+            updated = true;
+          }
+        });
+      }
+
+      // Replace background image
+      if ((el.type === 'rectangle' || el.type === 'circle') && el.backgroundImage && el.backgroundImage.includes('{{')) {
+        Object.entries(variableValues).forEach(([key, value]) => {
+          const pattern = new RegExp(`\\{\\{${key}\\}\\}`, 'gi');
+          if (pattern.test(newEl.backgroundImage!)) {
+             let strValue = String(value);
+             if (typeof value === 'object' && value !== null) {
+               if ('src' in value) strValue = (value as any).src;
+               else if ('url' in value) strValue = (value as any).url;
+             }
+             newEl.backgroundImage = newEl.backgroundImage!.replace(pattern, strValue);
+             updated = true;
+          }
+        });
+      }
+
+      if (updated) hasChanges = true;
+      return newEl;
+    });
+
+    if (hasChanges) {
+      setVisualElements(newElements);
+    }
+  }, [variableValues, visualElements.length]); // Only run when variables change or elements count changes (initial load)
+
+  // Handle adding HTML snippets (Sections/Blocks)
+  const handleAddHtml = async (html: string) => {
+    const newElements = await extractElementsFromHTMLAsync(
+      html, 
+      '', 
+      selectedTemplate.width || 1080, 
+      selectedTemplate.height || 1080
+    );
+    
+    // Ensure unique IDs
+    const uniqueElements = newElements.map(el => ({
+      ...el,
+      id: `element-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
+    }));
+    setVisualElements(prev => [...prev, ...uniqueElements]);
+    saveToHistory();
+    customToast({ title: 'Section added', description: 'New elements added to canvas' });
+  };
 
   // UI state
   const [activeSidebarTab, setActiveSidebarTab] = useState<'templates' | 'text' | 'elements' | 'photos' | 'uploads' | 'ai' | 'versions'>('text');
@@ -159,7 +318,7 @@ export default function CustomTemplateBuilderVisual() {
     moveElementZIndex,
     undo,
     redo,
-    setTool,
+    setTool: setTool as (tool: string) => void,
     setSelectedElementId,
     setShowKeyboardShortcuts,
     updateElement,
@@ -284,7 +443,7 @@ export default function CustomTemplateBuilderVisual() {
       const deltaX = currentX - elementDragStart.x;
       const deltaY = currentY - elementDragStart.y;
       
-      let updates: Partial<VisualElement> = {};
+      const updates: Partial<VisualElement> = {};
       
       // Special handling for Text scaling (Corner handles only)
       const isTextCorner = elementDragStart.elementType === 'text' && ['tl', 'tr', 'bl', 'br'].includes(resizeHandle);
@@ -333,7 +492,9 @@ export default function CustomTemplateBuilderVisual() {
       }
       
       // Store pending resize update
-      pendingUpdate.current = updates;
+      if (Object.keys(updates).length > 0) {
+        pendingUpdate.current = { x: updates.x ?? 0, y: updates.y ?? 0 };
+      }
     } else {
       // Handle dragging
       const deltaX = currentX - elementDragStart.startX;
@@ -398,11 +559,43 @@ export default function CustomTemplateBuilderVisual() {
 
   const handleSave = async () => {
     setIsSaving(true);
-    // Implement actual save logic here
-    await new Promise(resolve => setTimeout(resolve, 500));
-    setLastSaved(new Date());
-    setIsSaving(false);
-    toast('Design saved successfully');
+    try {
+      // Generate high-fidelity HTML/CSS for preview/export
+      const { html, css } = generateHtmlFromElements(
+        visualElements,
+        selectedTemplate.width || 1080,
+        selectedTemplate.height || 1080,
+        canvasBackground
+      );
+
+      const templateData = {
+        ...selectedTemplate,
+        name: templateName,
+        elements: visualElements, // Save the JSON source of truth
+        htmlTemplate: html,       // Save generated HTML for backward compatibility
+        cssTemplate: css,         // Save generated CSS for backward compatibility
+        variables: variableValues,
+        updatedAt: new Date().toISOString(),
+      };
+
+      const response = await fetch(`/api/admin/custom-templates/${selectedTemplate.id || 'new'}`, {
+        method: selectedTemplate.id ? 'PUT' : 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(templateData),
+      });
+
+      if (!response.ok) throw new Error('Failed to save template');
+
+      const savedTemplate = await response.json();
+      setSelectedTemplate(savedTemplate);
+      setLastSaved(new Date());
+      customToast({ title: 'Saved successfully', description: 'Template saved to database' });
+    } catch (error) {
+      console.error('Save error:', error);
+      customToast({ title: 'Error saving', description: 'Could not save template' });
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   const handleExport = () => {
@@ -449,11 +642,11 @@ export default function CustomTemplateBuilderVisual() {
         {/* Main Content Area - Canvas + Right Panel */}
         <div className="flex-1 flex overflow-hidden relative bg-gray-50">
           {/* Center Canvas Area */}
-          <div className="flex-1 flex flex-col items-center justify-center p-12 overflow-auto relative">
+          <div className="flex-1 flex flex-col items-center justify-center p-12 overflow-hidden relative">
             {/* Tool Panels - Rendered absolutely within the editor area */}
             {tool === 'text' && <TextPanel onClose={() => setTool('select')} addElement={addElement} />}
-            {tool === 'image' && <MediaPanel onClose={() => setTool('select')} addElement={addElement} />}
-            {tool === 'elements' && <ElementsPanel onClose={() => setTool('select')} addElement={addElement} />}
+            {tool === 'image' && <MediaPanel onClose={() => setTool('select')} addElement={addElement} brandAssets={brandAssets} />}
+            {tool === 'elements' && <ElementsPanel onClose={() => setTool('select')} addElement={addElement} onAddHtml={handleAddHtml} brandAssets={brandAssets} />}
             {tool === 'layers' && (
               <LayersPanel 
                 elements={visualElements} 
@@ -476,7 +669,7 @@ export default function CustomTemplateBuilderVisual() {
                 zoom={zoom}
                 setZoom={setZoom}
                 canvasBackground="#ffffff"
-                tool={tool === 'pen' || tool === 'eraser' ? tool : 'select'}
+                tool="select"
                 previewUrl={previewUrl}
                 isDragging={false}
                 dragStart={null}
@@ -498,6 +691,7 @@ export default function CustomTemplateBuilderVisual() {
                 saveToHistory={saveToHistory}
                 toast={customToast}
                 textInputRef={textInputRef}
+                isExtracting={isExtracting}
               />
               
               {/* Context Menu */}
@@ -543,6 +737,7 @@ export default function CustomTemplateBuilderVisual() {
             moveElementZIndex={moveElementZIndex}
             setShowImageSelector={setShowImageSelector}
             setActiveImageVariable={setActiveImageVariable}
+            setSelectedElementId={setSelectedElementId}
           />
         </div>
       </div>
@@ -570,7 +765,6 @@ export default function CustomTemplateBuilderVisual() {
           });
           
           // Parse the template to apply variables and extract visual elements
-          console.log('📥 Single template selected from library, parsing:', template.name);
           parseHTMLToVisualElements(template);
         }}
       />
@@ -584,6 +778,7 @@ export default function CustomTemplateBuilderVisual() {
         updateElement={updateElement}
         saveToHistory={saveToHistory}
         toast={customToast}
+        brandAssets={brandAssets}
       />
     </div>
   );

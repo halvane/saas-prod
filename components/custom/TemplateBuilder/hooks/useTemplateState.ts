@@ -11,13 +11,6 @@ export function useTemplateState() {
 
   // Generate Blob URL for preview
   useEffect(() => {
-    console.log('🎨 Generating preview with:', {
-      htmlLength: selectedTemplate.htmlTemplate?.length || 0,
-      cssLength: selectedTemplate.cssTemplate?.length || 0,
-      htmlPreview: selectedTemplate.htmlTemplate?.substring(0, 100) || 'empty',
-      hasPlaceholders: selectedTemplate.htmlTemplate?.includes('{{') || false
-    });
-
     const content = `<!DOCTYPE html>
 <html>
 <head>
@@ -58,8 +51,6 @@ export function useTemplateState() {
     const blob = new Blob([content], { type: 'text/html' });
     const url = URL.createObjectURL(blob);
     setPreviewUrl(url);
-    
-    console.log('✅ Preview URL generated:', url);
 
     return () => {
       URL.revokeObjectURL(url);

@@ -1,0 +1,114 @@
+[
+  {
+    "id": "header-modern-nav",
+    "name": "Modern Nav Header",
+    "type": "section",
+    "category": "header",
+    "content": "<div style=\"position:absolute;top:0;left:0;width:100%;height:160px;display:flex;align-items:center;justify-content:space-between;padding:0 60px;z-index:10;background:linear-gradient(to bottom, rgba(0,0,0,0.4), transparent)\"><div style=\"font-size:32px;font-weight:900;color:var(--brand-secondary);text-transform:uppercase;letter-spacing:2px;text-shadow:0 2px 10px rgba(0,0,0,0.2)\">{{brand_name}}</div><div style=\"display:flex;gap:30px\"><div style=\"width:40px;height:2px;background:var(--brand-secondary)\"></div><div style=\"width:30px;height:2px;background:var(--brand-secondary)\"></div></div></div>",
+    "thumbnail": ""
+  },
+  {
+    "id": "header-centered-logo",
+    "name": "Centered Logo Header",
+    "type": "section",
+    "category": "header",
+    "content": "<div style=\"position:absolute;top:0;left:0;width:100%;height:180px;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:10\"><div style=\"width:80px;height:80px;background:var(--brand-primary);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:15px;box-shadow:0 10px 20px rgba(0,0,0,0.1)\"><span style=\"color:var(--brand-secondary);font-size:32px;font-weight:bold\">B</span></div><div style=\"font-size:16px;font-weight:600;color:var(--brand-primary);letter-spacing:4px;text-transform:uppercase\">{{tagline}}</div></div>",
+    "thumbnail": ""
+  },
+  {
+    "id": "hero-impact-overlay",
+    "name": "Impact Hero Overlay",
+    "type": "section",
+    "category": "hero",
+    "content": "<div style=\"position:absolute;top:0;left:0;width:100%;height:600px;z-index:5\"><img src=\"{{hero_image}}\" style=\"width:100%;height:100%;object-fit:cover\"/><div style=\"position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.8))\"></div><div style=\"position:absolute;bottom:60px;left:60px;right:60px\"><h1 style=\"margin:0 0 20px 0;color:#fff;font-size:90px;font-weight:900;line-height:0.9;text-transform:uppercase;font-family:var(--font-heading);text-shadow:0 10px 30px rgba(0,0,0,0.3)\">{{headline}}</h1><div style=\"width:100px;height:6px;background:var(--brand-accent);margin-bottom:30px\"></div><p style=\"color:rgba(255,255,255,0.9);font-size:28px;font-weight:400;max-width:600px;line-height:1.4\">{{subheadline}}</p></div></div>",
+    "thumbnail": ""
+  },
+  {
+    "id": "hero-split-modern",
+    "name": "Split Modern Hero",
+    "type": "section",
+    "category": "hero",
+    "content": "<div style=\"position:absolute;top:0;left:0;width:100%;height:500px;display:flex;z-index:5\"><div style=\"flex:1;padding:60px;display:flex;flex-direction:column;justify-content:center;background:rgba(255,255,255,0.9)\"><h1 style=\"margin:0 0 20px 0;color:var(--brand-primary);font-size:72px;font-weight:800;line-height:1\">{{headline}}</h1><p style=\"color:var(--brand-primary-dark);font-size:24px;line-height:1.5\">{{subheadline}}</p></div><div style=\"flex:1;position:relative\"><img src=\"{{hero_image}}\" style=\"width:100%;height:100%;object-fit:cover\"/></div></div>",
+    "thumbnail": ""
+  },
+  {
+    "id": "product-glass-card",
+    "name": "Glass Product Card",
+    "type": "section",
+    "category": "product",
+    "content": "<div style=\"position:absolute;top:0;left:0;width:100%;height:600px;display:flex;align-items:center;justify-content:center;z-index:5\"><div style=\"width:500px;background:rgba(255,255,255,0.1);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.2);border-radius:24px;padding:40px;box-shadow:0 20px 50px rgba(0,0,0,0.15)\"><img src=\"{{product_image}}\" style=\"width:100%;height:400px;object-fit:cover;border-radius:16px;margin-bottom:30px;box-shadow:0 10px 30px rgba(0,0,0,0.1)\"/><div style=\"display:flex;justify-content:space-between;align-items:center\"><div style=\"color:var(--brand-secondary);font-size:32px;font-weight:700\">{{product_name}}</div><div style=\"background:var(--brand-accent);color:var(--brand-secondary);padding:10px 20px;border-radius:50px;font-weight:bold;font-size:20px\">{{price}}</div></div></div></div>",
+    "thumbnail": ""
+  },
+  {
+    "id": "product-feature-list",
+    "name": "Product Feature List",
+    "type": "section",
+    "category": "product",
+    "content": "<div style=\"position:absolute;top:0;left:0;width:100%;height:400px;display:flex;align-items:center;padding:0 80px;z-index:5\"><div style=\"flex:1\"><img src=\"{{product_image}}\" style=\"width:300px;height:300px;object-fit:cover;border-radius:50%;border:10px solid rgba(255,255,255,0.2)\"/></div><div style=\"flex:1.5;padding-left:40px\"><div style=\"display:flex;align-items:center;margin-bottom:20px\"><div style=\"width:40px;height:40px;background:var(--brand-accent);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-right:20px;color:#fff\">✓</div><div style=\"font-size:24px;font-weight:600;color:var(--brand-secondary)\">{{feature_1}}</div></div><div style=\"display:flex;align-items:center;margin-bottom:20px\"><div style=\"width:40px;height:40px;background:var(--brand-accent);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-right:20px;color:#fff\">✓</div><div style=\"font-size:24px;font-weight:600;color:var(--brand-secondary)\">{{feature_2}}</div></div><div style=\"display:flex;align-items:center\"><div style=\"width:40px;height:40px;background:var(--brand-accent);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-right:20px;color:#fff\">✓</div><div style=\"font-size:24px;font-weight:600;color:var(--brand-secondary)\">{{feature_3}}</div></div></div></div>",
+    "thumbnail": ""
+  },
+  {
+    "id": "footer-social-minimal",
+    "name": "Minimal Social Footer",
+    "type": "section",
+    "category": "footer",
+    "content": "<div style=\"position:absolute;top:0;left:0;width:100%;height:150px;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:10\"><div style=\"display:flex;gap:30px;margin-bottom:20px\"><div style=\"width:40px;height:40px;background:var(--brand-secondary);border-radius:50%;opacity:0.8\"></div><div style=\"width:40px;height:40px;background:var(--brand-secondary);border-radius:50%;opacity:0.8\"></div><div style=\"width:40px;height:40px;background:var(--brand-secondary);border-radius:50%;opacity:0.8\"></div></div><div style=\"color:var(--brand-secondary);font-size:18px;letter-spacing:2px;opacity:0.8\">{{website}}</div></div>",
+    "thumbnail": ""
+  },
+  {
+    "id": "footer-bold-cta",
+    "name": "Bold CTA Footer",
+    "type": "section",
+    "category": "footer",
+    "content": "<div style=\"position:absolute;top:0;left:0;width:100%;height:250px;display:flex;align-items:center;justify-content:center;z-index:10\"><button style=\"background:var(--brand-accent);color:#fff;border:none;padding:25px 80px;font-size:32px;font-weight:800;border-radius:12px;cursor:pointer;text-transform:uppercase;letter-spacing:2px;box-shadow:0 10px 30px rgba(0,0,0,0.2);transition:transform 0.2s\">{{cta}}</button></div>",
+    "thumbnail": ""
+  },
+  {
+    "id": "overlay-dark-gradient",
+    "name": "Dark Gradient Overlay",
+    "type": "section",
+    "category": "overlay",
+    "content": "<div style=\"position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg, #1a1a1a 0%, #2d3748 100%);z-index:0\"></div>",
+    "thumbnail": ""
+  },
+  {
+    "id": "overlay-brand-mesh",
+    "name": "Brand Mesh Overlay",
+    "type": "section",
+    "category": "overlay",
+    "content": "<div style=\"position:absolute;top:0;left:0;width:100%;height:100%;background:radial-gradient(circle at 0% 0%, var(--brand-primary) 0%, transparent 50%), radial-gradient(circle at 100% 100%, var(--brand-accent) 0%, transparent 50%);background-color:var(--brand-secondary);z-index:0;opacity:0.8\"></div>",
+    "thumbnail": ""
+  },
+  {
+    "id": "testimonial-modern-card",
+    "name": "Modern Testimonial Card",
+    "type": "section",
+    "category": "content",
+    "content": "<div style=\"position:absolute;top:0;left:0;width:100%;height:400px;display:flex;align-items:center;justify-content:center;z-index:5\"><div style=\"background:#fff;padding:40px;border-radius:20px;box-shadow:0 20px 40px rgba(0,0,0,0.1);max-width:800px;text-align:center\"><div style=\"color:var(--brand-accent);font-size:60px;line-height:1;margin-bottom:20px\">\"</div><p style=\"font-size:28px;font-style:italic;color:var(--brand-primary);margin-bottom:30px;line-height:1.4\">{{quote}}</p><div style=\"display:flex;align-items:center;justify-content:center;gap:15px\"><img src=\"{{avatar}}\" style=\"width:60px;height:60px;border-radius:50%;object-fit:cover\"/><div style=\"text-align:left\"><div style=\"font-weight:bold;font-size:18px;color:var(--brand-primary)\">{{author}}</div><div style=\"color:var(--brand-primary-light);font-size:14px\">{{role}}</div></div></div></div></div>",
+    "thumbnail": ""
+  },
+  {
+    "id": "features-grid-4",
+    "name": "Four Column Features",
+    "type": "section",
+    "category": "content",
+    "content": "<div style=\"position:absolute;top:0;left:0;width:100%;height:300px;display:flex;align-items:center;justify-content:space-between;padding:0 60px;z-index:5\"><div style=\"text-align:center;flex:1\"><div style=\"font-size:40px;margin-bottom:15px\">🚀</div><h3 style=\"font-size:20px;font-weight:bold;color:var(--brand-primary);margin-bottom:10px\">{{feat1_title}}</h3><p style=\"font-size:14px;color:var(--brand-primary-light)\">{{feat1_desc}}</p></div><div style=\"text-align:center;flex:1\"><div style=\"font-size:40px;margin-bottom:15px\">⚡</div><h3 style=\"font-size:20px;font-weight:bold;color:var(--brand-primary);margin-bottom:10px\">{{feat2_title}}</h3><p style=\"font-size:14px;color:var(--brand-primary-light)\">{{feat2_desc}}</p></div><div style=\"text-align:center;flex:1\"><div style=\"font-size:40px;margin-bottom:15px\">🛡️</div><h3 style=\"font-size:20px;font-weight:bold;color:var(--brand-primary);margin-bottom:10px\">{{feat3_title}}</h3><p style=\"font-size:14px;color:var(--brand-primary-light)\">{{feat3_desc}}</p></div><div style=\"text-align:center;flex:1\"><div style=\"font-size:40px;margin-bottom:15px\">💎</div><h3 style=\"font-size:20px;font-weight:bold;color:var(--brand-primary);margin-bottom:10px\">{{feat4_title}}</h3><p style=\"font-size:14px;color:var(--brand-primary-light)\">{{feat4_desc}}</p></div></div>",
+    "thumbnail": ""
+  },
+  {
+    "id": "tailwind-stats-simple",
+    "name": "Simple Stats (Tailwind Style)",
+    "type": "section",
+    "category": "content",
+    "content": "<div style=\"position:absolute;top:0;left:0;width:100%;height:200px;display:flex;align-items:center;justify-content:center;background:#f9fafb;z-index:5\"><div style=\"display:flex;gap:80px;text-align:center\"><div style=\"display:flex;flex-direction:column\"><span style=\"font-size:48px;font-weight:800;color:var(--brand-primary)\">{{stat1_val}}</span><span style=\"font-size:16px;font-weight:500;color:var(--brand-primary-light);text-transform:uppercase;letter-spacing:1px\">{{stat1_label}}</span></div><div style=\"width:1px;height:60px;background:#e5e7eb\"></div><div style=\"display:flex;flex-direction:column\"><span style=\"font-size:48px;font-weight:800;color:var(--brand-primary)\">{{stat2_val}}</span><span style=\"font-size:16px;font-weight:500;color:var(--brand-primary-light);text-transform:uppercase;letter-spacing:1px\">{{stat2_label}}</span></div><div style=\"width:1px;height:60px;background:#e5e7eb\"></div><div style=\"display:flex;flex-direction:column\"><span style=\"font-size:48px;font-weight:800;color:var(--brand-primary)\">{{stat3_val}}</span><span style=\"font-size:16px;font-weight:500;color:var(--brand-primary-light);text-transform:uppercase;letter-spacing:1px\">{{stat3_label}}</span></div></div></div>",
+    "thumbnail": ""
+  },
+  {
+    "id": "tailwind-pricing-card",
+    "name": "Pricing Card (Tailwind Style)",
+    "type": "section",
+    "category": "content",
+    "content": "<div style=\"position:absolute;top:0;left:0;width:100%;height:500px;display:flex;align-items:center;justify-content:center;z-index:5\"><div style=\"width:400px;background:#fff;border-radius:16px;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);padding:40px;border:1px solid #e5e7eb\"><div style=\"text-align:center;margin-bottom:30px\"><h3 style=\"font-size:24px;font-weight:600;color:var(--brand-primary);margin-bottom:10px\">{{plan_name}}</h3><div style=\"display:flex;align-items:baseline;justify-content:center\"><span style=\"font-size:48px;font-weight:800;color:var(--brand-primary)\">{{price}}</span><span style=\"font-size:18px;color:var(--brand-primary-light);margin-left:5px\">/mo</span></div></div><ul style=\"list-style:none;padding:0;margin:0 0 30px 0\"><li style=\"display:flex;align-items:center;margin-bottom:15px;color:var(--brand-primary-light);font-size:16px\"><span style=\"color:var(--brand-accent);margin-right:10px\">✓</span>{{feat1}}</li><li style=\"display:flex;align-items:center;margin-bottom:15px;color:var(--brand-primary-light);font-size:16px\"><span style=\"color:var(--brand-accent);margin-right:10px\">✓</span>{{feat2}}</li><li style=\"display:flex;align-items:center;margin-bottom:15px;color:var(--brand-primary-light);font-size:16px\"><span style=\"color:var(--brand-accent);margin-right:10px\">✓</span>{{feat3}}</li></ul><button style=\"width:100%;padding:15px;background:var(--brand-accent);color:#fff;border:none;border-radius:8px;font-weight:600;font-size:16px;cursor:pointer;transition:opacity 0.2s\">{{cta}}</button></div></div>",
+    "thumbnail": ""
+  }
+]

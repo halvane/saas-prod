@@ -765,8 +765,8 @@ export function TemplateManagement({ initialTemplates }: { initialTemplates: Tem
                       <Button
                         variant="ghost"
                         size="icon"
-                        onClick={() => router.push(`/admin/templates/${template.id}/visual`)}
-                        title="Visual Editor"
+                        onClick={() => router.push(`/admin/custom-template/${template.id}`)}
+                        title="View Template"
                       >
                         <LayoutTemplate className="h-4 w-4" />
                       </Button>

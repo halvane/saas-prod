@@ -1,6 +1,7 @@
 import { generateObject } from 'ai';
 import { z } from 'zod';
 import { gateway } from '@/lib/ai/gateway';
+import { getModel } from '@/lib/ai/models';
 import { db } from '@/lib/db/drizzle';
 import { brandSettings, brandProducts, templates, generatedTemplateValues } from '@/lib/db/schema';
 import { eq } from 'drizzle-orm';
@@ -86,7 +87,7 @@ Instructions:
   // 3. Call AI Gateway
   try {
     const { object } = await generateObject({
-      model: gateway.getModel('gpt-4o'), // Use a capable model for batch generation
+      model: getModel('advanced'), // Use a capable model for batch generation
       schema: BatchTemplateValuesSchema,
       prompt: prompt,
       temperature: 0.7,

@@ -21,6 +21,7 @@ interface ImageSelectorModalProps {
   updateElement: (id: string, updates: Partial<VisualElement>) => void;
   saveToHistory: () => void;
   toast: any;
+  brandAssets?: { images: any[]; products: any[] } | null;
 }
 
 export function ImageSelectorModal({
@@ -32,10 +33,12 @@ export function ImageSelectorModal({
   updateElement,
   saveToHistory,
   toast,
+  brandAssets,
 }: ImageSelectorModalProps) {
   const [stockQuery, setStockQuery] = useState('');
   const [stockImages, setStockImages] = useState<any[]>([]);
   const [isLoadingStock, setIsLoadingStock] = useState(false);
+  const [stockType, setStockType] = useState<'photo' | 'illustration' | 'vector'>('photo');
   const [aiPrompt, setAiPrompt] = useState('');
   const [isGeneratingAi, setIsGeneratingAi] = useState(false);
   const [generatedImages, setGeneratedImages] = useState<string[]>([]);
@@ -44,18 +47,12 @@ export function ImageSelectorModal({
     if (!stockQuery) return;
     setIsLoadingStock(true);
     try {
-      // Adapted for Next.js environment
-      const apiKey = process.env.NEXT_PUBLIC_PEXELS_API_KEY;
-      if (!apiKey) {
-        toast({ title: 'Erreur', description: 'Clé API Pexels manquante', variant: 'destructive' });
-        return;
-      }
-      const res = await fetch(`https://api.pexels.com/v1/search?query=${encodeURIComponent(stockQuery)}&per_page=12`, {
-        headers: { Authorization: apiKey }
-      });
+      const res = await fetch(`/api/stock?q=${encodeURIComponent(stockQuery)}&type=${stockType}`);
       const data = await res.json();
-      if (data.photos) {
-        setStockImages(data.photos);
+      if (data.results) {
+        setStockImages(data.results);
+      } else {
+        setStockImages([]);
       }
     } catch (e) {
       toast({ title: 'Erreur', description: 'Impossible de charger les images', variant: 'destructive' });
@@ -86,31 +83,134 @@ export function ImageSelectorModal({
         <DialogHeader>
           <DialogTitle>Sélectionner une image</DialogTitle>
           <DialogDescription>
-            Choisissez une image depuis la banque d'images ou générez-en une avec l'IA.
+            Choisissez une image depuis Pixabay/Pexels ou générez-en une avec l'IA.
           </DialogDescription>
         </DialogHeader>
 
-        <Tabs defaultValue="stock" className="flex-1 flex flex-col overflow-hidden">
-          <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="stock">Banque d'images (Pexels)</TabsTrigger>
+        <Tabs defaultValue="brand" className="flex-1 flex flex-col overflow-hidden">
+          <TabsList className="grid w-full grid-cols-3">
+            <TabsTrigger value="brand">Mes Images</TabsTrigger>
+            <TabsTrigger value="stock">Banque d'images</TabsTrigger>
             <TabsTrigger value="ai">Génération IA</TabsTrigger>
           </TabsList>
 
+          <TabsContent value="brand" className="flex-1 flex flex-col overflow-hidden mt-4">
+            <div className="flex-1 overflow-y-auto pr-2">
+              {(!brandAssets || (brandAssets.images.length === 0 && brandAssets.products.length === 0)) ? (
+                <div className="h-full flex flex-col items-center justify-center text-gray-400">
+                  <ImageIcon className="h-12 w-12 mb-2 opacity-20" />
+                  <p>Aucune image de marque disponible</p>
+                  <p className="text-sm mt-1">Ajoutez des images dans les paramètres</p>
+                </div>
+              ) : (
+                <div className="space-y-6">
+                  {brandAssets.images.length > 0 && (
+                    <div>
+                      <h3 className="text-sm font-semibold mb-3 text-gray-700">Images de marque</h3>
+                      <div className="grid grid-cols-3 gap-4">
+                        {brandAssets.images.map((img: any, idx: number) => {
+                          const imgUrl = typeof img === 'string' ? img : img?.url || img?.src;
+                          return (
+                            <div
+                              key={idx}
+                              className="group relative aspect-video bg-gray-100 rounded-lg overflow-hidden cursor-pointer hover:ring-2 hover:ring-primary transition-all"
+                              onClick={() => selectImage(imgUrl)}
+                            >
+                              <img
+                                src={imgUrl}
+                                alt={`Brand image ${idx + 1}`}
+                                className="w-full h-full object-cover"
+                              />
+                              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
+                                <Button size="sm" variant="secondary">
+                                  Utiliser
+                                </Button>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
+                  {brandAssets.products.length > 0 && (
+                    <div>
+                      <h3 className="text-sm font-semibold mb-3 text-gray-700">Images de produits</h3>
+                      <div className="grid grid-cols-3 gap-4">
+                        {brandAssets.products.map((product: any, idx: number) => {
+                          const imgUrl = typeof product.imageUrl === 'string' ? product.imageUrl : product.imageUrl?.url || product.imageUrl?.src;
+                          if (!imgUrl) return null;
+                          return (
+                            <div
+                              key={idx}
+                              className="group relative aspect-video bg-gray-100 rounded-lg overflow-hidden cursor-pointer hover:ring-2 hover:ring-primary transition-all"
+                              onClick={() => selectImage(imgUrl)}
+                            >
+                              <img
+                                src={imgUrl}
+                                alt={product.name || `Product ${idx + 1}`}
+                                className="w-full h-full object-cover"
+                              />
+                              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
+                                <Button size="sm" variant="secondary">
+                                  Utiliser
+                                </Button>
+                              </div>
+                              {product.name && (
+                                <div className="absolute bottom-1 left-1 bg-black/50 text-white text-[10px] px-2 py-0.5 rounded">
+                                  {product.name}
+                                </div>
+                              )}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          </TabsContent>
+
           <TabsContent value="stock" className="flex-1 flex flex-col overflow-hidden mt-4">
-            <div className="flex gap-2 mb-4">
-              <Input
-                placeholder="Rechercher des photos (ex: nature, business, tech)..."
-                value={stockQuery}
-                onChange={(e) => setStockQuery(e.target.value)}
-                onKeyDown={(e) => e.key === 'Enter' && searchStockPhotos()}
-              />
-              <Button onClick={searchStockPhotos} disabled={isLoadingStock}>
-                {isLoadingStock ? (
-                  <Loader2 className="h-4 w-4 animate-spin" />
-                ) : (
-                  <Search className="h-4 w-4" />
-                )}
-              </Button>
+            <div className="flex flex-col gap-2 mb-4">
+              <div className="flex gap-2">
+                <Input
+                  placeholder="Rechercher (ex: nature, business, tech)..."
+                  value={stockQuery}
+                  onChange={(e) => setStockQuery(e.target.value)}
+                  onKeyDown={(e) => e.key === 'Enter' && searchStockPhotos()}
+                />
+                <Button onClick={searchStockPhotos} disabled={isLoadingStock}>
+                  {isLoadingStock ? (
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                  ) : (
+                    <Search className="h-4 w-4" />
+                  )}
+                </Button>
+              </div>
+              <div className="flex gap-2">
+                <Button 
+                  variant={stockType === 'photo' ? 'default' : 'outline'} 
+                  size="sm" 
+                  onClick={() => setStockType('photo')}
+                >
+                  Photos
+                </Button>
+                <Button 
+                  variant={stockType === 'illustration' ? 'default' : 'outline'} 
+                  size="sm" 
+                  onClick={() => setStockType('illustration')}
+                >
+                  Illustrations
+                </Button>
+                <Button 
+                  variant={stockType === 'vector' ? 'default' : 'outline'} 
+                  size="sm" 
+                  onClick={() => setStockType('vector')}
+                >
+                  Vectors
+                </Button>
+              </div>
             </div>
 
             <div className="flex-1 overflow-y-auto pr-2">
@@ -125,7 +225,7 @@ export function ImageSelectorModal({
                     <div
                       key={img.id}
                       className="group relative aspect-video bg-gray-100 rounded-lg overflow-hidden cursor-pointer hover:ring-2 hover:ring-primary transition-all"
-                      onClick={() => selectImage(img.src.large)}
+                      onClick={() => selectImage(img.src.medium)}
                     >
                       <img
                         src={img.src.medium}
@@ -136,6 +236,9 @@ export function ImageSelectorModal({
                         <Button size="sm" variant="secondary">
                           Utiliser
                         </Button>
+                      </div>
+                      <div className="absolute bottom-1 right-1 bg-black/50 text-white text-[10px] px-1 rounded opacity-70">
+                        {img.provider}
                       </div>
                     </div>
                   ))}

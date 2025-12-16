@@ -29,12 +29,18 @@ export async function extractElementsFromHTMLAsync(
         return;
       }
 
+      // Copy styles from main document to ensure variables and fonts are available
+      const mainStyles = Array.from(document.querySelectorAll('style, link[rel="stylesheet"]'))
+        .map(el => el.outerHTML)
+        .join('\n');
+
       // Write HTML and CSS to iframe
       iframeDoc.open();
       iframeDoc.write(`
         <!DOCTYPE html>
         <html>
         <head>
+          ${mainStyles}
           <style>
             * { margin: 0; padding: 0; box-sizing: border-box; }
             html, body { 
@@ -50,6 +56,35 @@ export async function extractElementsFromHTMLAsync(
         </html>
       `);
       iframeDoc.close();
+
+      // PRE-PROCESS: Inject placeholders for variable images to prevent layout collapse
+      // This fixes the "ecrasé" (crushed) issue where broken images have 0x0 size
+      const images = iframeDoc.querySelectorAll('img');
+      
+      images.forEach(img => {
+        const src = img.getAttribute('src');
+        if (src && src.includes('{{')) {
+          // Store original src in data attribute
+          img.setAttribute('data-original-src', src);
+          
+          // CRITICAL: Preserve existing inline styles before modifying
+          const existingStyle = img.getAttribute('style') || '';
+          
+          // Use a neutral placeholder that will hold space
+          // We use a data URI to avoid network requests and ensure immediate availability
+          // A 400x300 gray rectangle
+          img.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23e2e8f0'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='24' fill='%2394a3b8'%3EVariable Image%3C/text%3E%3C/svg%3E";
+          
+          // Add minimum size WITHOUT destroying existing inline styles
+          // Only set these if they don't already exist
+          if (!img.style.minWidth) img.style.minWidth = '50px';
+          if (!img.style.minHeight) img.style.minHeight = '50px';
+          if (!img.style.display || img.style.display === '') img.style.display = 'block';
+          
+          // Store the original style string for later retrieval
+          img.setAttribute('data-original-style', existingStyle);
+        }
+      });
 
       // Wait for styles to apply and images to load
       setTimeout(() => {
@@ -72,12 +107,26 @@ export async function extractElementsFromHTMLAsync(
               return;
             }
             
-            // Skip elements that are too small or hidden
-            if (rect.width < 1 || rect.height < 1) {
+            // VISIBILITY CHECK
+            // Skip elements that are explicitly hidden
+            if (computedStyle.display === 'none' || computedStyle.visibility === 'hidden' || computedStyle.opacity === '0') {
               return;
             }
+
+            // SIZE CHECK
+            // Images and Text might report 0 size if not loaded yet, but we should keep them
+            const isImage = el.tagName === 'IMG';
             
-            if (computedStyle.display === 'none' || computedStyle.visibility === 'hidden' || computedStyle.opacity === '0') {
+            // Check for direct text content (ignoring whitespace)
+            const hasDirectText = Array.from(el.childNodes).some(
+              node => node.nodeType === Node.TEXT_NODE && node.textContent?.trim().length! > 0
+            );
+            
+            // Also check if it's a leaf node with text (e.g. <span>Text</span>)
+            const isLeafWithText = el.children.length === 0 && el.textContent?.trim().length! > 0;
+
+            // If it's very small (effectively invisible) and NOT content, skip it
+            if ((rect.width < 1 || rect.height < 1) && !isImage && !hasDirectText && !isLeafWithText) {
               return;
             }
 
@@ -97,43 +146,77 @@ export async function extractElementsFromHTMLAsync(
             // Check if element has visible background (color or gradient/image)
             const hasVisibleBackground = 
               (computedStyle.backgroundColor && computedStyle.backgroundColor !== 'rgba(0, 0, 0, 0)' && computedStyle.backgroundColor !== 'transparent') ||
-              (computedStyle.backgroundImage && computedStyle.backgroundImage !== 'none');
+              (computedStyle.backgroundImage && computedStyle.backgroundImage !== 'none') ||
+              (computedStyle.boxShadow && computedStyle.boxShadow !== 'none') ||
+              (computedStyle.backdropFilter && computedStyle.backdropFilter !== 'none') ||
+              (el.getAttribute('style')?.includes('background')) ||
+              (el.getAttribute('style')?.includes('backdrop-filter')) ||
+              (el.getAttribute('style')?.includes('box-shadow')); // Fallback check for inline styles
 
-            if (className.includes('visual-canvas') || className.includes('container') || className.includes('wrapper')) {
-              // This is likely a container
+            // Check if element has visible border
+            const hasVisibleBorder = 
+              parseFloat(computedStyle.borderWidth) > 0 && 
+              computedStyle.borderColor !== 'transparent' && 
+              computedStyle.borderColor !== 'rgba(0, 0, 0, 0)';
+
+            // Skip invisible layout containers
+            // If it has no visible background, no visible border, and has children (is a container)
+            if (!hasVisibleBackground && !hasVisibleBorder && el.children.length > 0 && !isImage) {
+              // If no direct text content, it's just a layout wrapper -> skip
+              // BUT: If it has a gradient background defined in style attribute but computed as image, we should keep it
               
-              // If it has a visible background, we keep it as a rectangle (background layer)
-              if (!hasVisibleBackground) {
-                // No background, so check if it has direct text content
-                const hasDirectTextContent = Array.from(el.childNodes).some(
-                  node => node.nodeType === Node.TEXT_NODE && node.textContent?.trim()
-                );
-                
-                // If no background and no direct text, and has children, it's just a layout wrapper -> skip
-                if (!hasDirectTextContent && el.children.length > 0) {
-                  return; 
-                }
+              const isRootLike = rect.width >= templateWidth * 0.9 && rect.height >= templateHeight * 0.9;
+              
+              if (!hasDirectText && !isRootLike) {
+                return; 
               }
             }
 
-            if (el.tagName === 'IMG') {
+            if (isImage) {
               type = 'image';
-              src = (el as HTMLImageElement).src;
-            } else if (el.textContent?.trim()) {
-              // Check if it's primarily a text element
-              const hasTextContent = el.childNodes.length > 0 && 
-                Array.from(el.childNodes).some(node => node.nodeType === Node.TEXT_NODE && node.textContent?.trim());
+              // Use getAttribute to get the raw value (e.g. {{variable}}) instead of resolved URL
+              // This is CRITICAL for preserving variables and handling broken links gracefully
+              const originalSrc = el.getAttribute('data-original-src');
+              const rawSrc = originalSrc || el.getAttribute('src');
+              src = rawSrc || (el as HTMLImageElement).src || '';
               
-              if (hasTextContent || el.children.length === 0) {
-                type = 'text';
-                content = el.textContent.trim();
-              }
+              // Remove debug logs
+              /* console.log('📷 Image extracted:', { 
+                id, 
+                rawSrc, 
+                finalSrc: src,
+                outerHTML: el.outerHTML,
+                hasSrcAttribute: el.hasAttribute('src')
+              }); */
+            } else if (hasDirectText || isLeafWithText) {
+              type = 'text';
+              content = el.textContent?.trim() || '';
             }
 
             // Check if it's a circle based on border-radius
+            // BUT: Don't convert images to circles - images can have border-radius:50% and still be images
             const borderRadius = parseFloat(computedStyle.borderRadius);
-            if (borderRadius >= Math.min(rect.width, rect.height) / 2) {
+            if (!isImage && borderRadius >= Math.min(rect.width, rect.height) / 2) {
               type = 'circle';
+            }
+
+            // Calculate dimensions with fallback for collapsed images
+            let width = Math.round(rect.width);
+            let height = Math.round(rect.height);
+
+            if (type === 'image' && (width < 1 || height < 1)) {
+               console.warn(`⚠️ Image ${id} was collapsed (0x0). Forcing default size.`);
+               width = 200;
+               height = 200;
+            }
+            
+            // CRITICAL: Preserve original inline styles to prevent CSS loss
+            // For images with placeholders, use the original style we saved
+            let rawStyle = el.getAttribute('data-original-style') || el.getAttribute('style') || '';
+            
+            // DEBUG: Log rawStyle for images
+            if (type === 'image' && rawStyle) {
+              console.log('🔍 Image rawStyle captured:', { id, rawStyle, borderRadius });
             }
 
             // Create visual element
@@ -142,13 +225,14 @@ export async function extractElementsFromHTMLAsync(
               type,
               x: Math.round(left),
               y: Math.round(top),
-              width: Math.round(rect.width),
-              height: Math.round(rect.height),
+              width,
+              height,
               zIndex: zIndex++,
               opacity: parseFloat(computedStyle.opacity) || 1,
               rotation: 0,
               visible: computedStyle.display !== 'none' && computedStyle.visibility !== 'hidden',
-              locked: false,
+              locked: computedStyle.pointerEvents === 'none',
+              rawStyle, // Preserve all inline styles
             };
 
             // Add type-specific properties
@@ -166,16 +250,79 @@ export async function extractElementsFromHTMLAsync(
               visualElement.textTransform = (computedStyle.textTransform as any) || 'none';
               visualElement.textShadow = computedStyle.textShadow !== 'none' ? computedStyle.textShadow : undefined;
               visualElement.WebkitTextStroke = computedStyle.webkitTextStroke !== 'none' ? computedStyle.webkitTextStroke : undefined;
+              
+              // Preserve text background and padding
+              if (computedStyle.backgroundColor && computedStyle.backgroundColor !== 'rgba(0, 0, 0, 0)') {
+                visualElement.backgroundColor = computedStyle.backgroundColor;
+              }
+              if (computedStyle.padding && computedStyle.padding !== '0px') {
+                visualElement.padding = computedStyle.padding;
+              }
+              if (computedStyle.borderRadius && parseFloat(computedStyle.borderRadius) > 0) {
+                visualElement.borderRadius = parseFloat(computedStyle.borderRadius);
+              }
+              if (computedStyle.border && computedStyle.border !== 'none') {
+                visualElement.border = computedStyle.border;
+              }
+              if (computedStyle.boxShadow && computedStyle.boxShadow !== 'none') {
+                visualElement.boxShadow = computedStyle.boxShadow;
+              }
+              if (computedStyle.backgroundImage && computedStyle.backgroundImage !== 'none') {
+                visualElement.backgroundImage = computedStyle.backgroundImage;
+              }
             } else if (type === 'image') {
               visualElement.src = src;
               visualElement.objectFit = (computedStyle.objectFit as any) || 'cover';
+              
+              // Preserve border properties for images (e.g., circular images with border-radius:50%)
+              if (borderRadius > 0) {
+                visualElement.borderRadius = borderRadius;
+              }
+              if (computedStyle.border && computedStyle.border !== 'none') {
+                visualElement.border = computedStyle.border;
+              }
+              if (parseFloat(computedStyle.borderWidth) > 0) {
+                visualElement.borderWidth = parseFloat(computedStyle.borderWidth);
+                visualElement.borderColor = computedStyle.borderColor || '#000000';
+                visualElement.borderStyle = (computedStyle.borderStyle as any) || 'solid';
+              }
             } else if (type === 'rectangle' || type === 'circle') {
               visualElement.backgroundColor = computedStyle.backgroundColor || 'transparent';
-              visualElement.backgroundImage = computedStyle.backgroundImage !== 'none' ? computedStyle.backgroundImage : undefined;
+              
+              // Try to get raw background image from inline style first to preserve variables
+              let bgImage = computedStyle.backgroundImage !== 'none' ? computedStyle.backgroundImage : undefined;
+              
+              // Check inline style for variables in background-image
+              const inlineStyle = el.getAttribute('style');
+              if (inlineStyle) {
+                // Look for background-image or background shorthand with variables
+                // Matches: background-image: url('{{var}}') or background: ... url('{{var}}') ...
+                const bgMatch = inlineStyle.match(/(?:^|;\s*)(?:background-image|background)\s*:.*?url\(['"]?([^'")]+)['"]?\)/i);
+                if (bgMatch && bgMatch[1].includes('{{')) {
+                   bgImage = `url('${bgMatch[1]}')`;
+                }
+              }
+
+              visualElement.backgroundImage = bgImage;
               visualElement.borderRadius = borderRadius || 0;
               visualElement.borderWidth = parseFloat(computedStyle.borderWidth) || 0;
               visualElement.borderColor = computedStyle.borderColor || '#000000';
               visualElement.borderStyle = (computedStyle.borderStyle as any) || 'solid';
+              
+              // Preserve additional CSS properties that might disappear
+              if (computedStyle.boxShadow && computedStyle.boxShadow !== 'none') {
+                visualElement.boxShadow = computedStyle.boxShadow;
+              }
+              if (computedStyle.backdropFilter && computedStyle.backdropFilter !== 'none') {
+                visualElement.backdropFilter = computedStyle.backdropFilter;
+              }
+              // Preserve background size/position for gradients
+              if (computedStyle.backgroundSize && computedStyle.backgroundSize !== 'auto') {
+                visualElement.backgroundSize = computedStyle.backgroundSize;
+              }
+              if (computedStyle.backgroundPosition && computedStyle.backgroundPosition !== '0% 0%') {
+                visualElement.backgroundPosition = computedStyle.backgroundPosition;
+              }
             }
 
             elements.push(visualElement);
@@ -184,14 +331,13 @@ export async function extractElementsFromHTMLAsync(
           // Clean up iframe
           document.body.removeChild(iframe);
           
-          console.log(`🎨 Extracted ${elements.length} visual elements from HTML`);
           resolve(elements);
         } catch (error) {
           console.error('Error processing iframe elements:', error);
           document.body.removeChild(iframe);
           resolve([]);
         }
-      }, 500); // Increased timeout to ensure CSS and images are fully loaded
+      }, 1000); // Increased timeout to ensure CSS and images are fully loaded
     } catch (error) {
       console.error('Error extracting elements from HTML:', error);
       resolve([]);

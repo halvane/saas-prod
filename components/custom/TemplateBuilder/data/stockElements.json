@@ -1,0 +1,7426 @@
+[
+  {
+    "category": "shapes",
+    "items": [
+      {
+        "label": "Rectangle",
+        "icon": "Square",
+        "type": "rectangle",
+        "payload": {}
+      },
+      {
+        "label": "Circle",
+        "icon": "Circle",
+        "type": "circle",
+        "payload": {}
+      },
+      {
+        "label": "Triangle",
+        "icon": "Triangle",
+        "type": "image",
+        "payload": {
+          "src": "https://api.iconify.design/mdi:triangle.svg?color=%23666"
+        }
+      },
+      {
+        "label": "Star",
+        "icon": "Star",
+        "type": "image",
+        "payload": {
+          "src": "https://api.iconify.design/mdi:star.svg?color=%23666"
+        }
+      },
+      {
+        "label": "Heart",
+        "icon": "Heart",
+        "type": "image",
+        "payload": {
+          "src": "https://api.iconify.design/mdi:heart.svg?color=%23666"
+        }
+      },
+      {
+        "label": "Hexagon",
+        "icon": "Hexagon",
+        "type": "image",
+        "payload": {
+          "src": "https://api.iconify.design/mdi:hexagon.svg?color=%23666"
+        }
+      },
+      {
+        "label": "Octagon",
+        "icon": "Octagon",
+        "type": "image",
+        "payload": {
+          "src": "https://api.iconify.design/mdi:octagon.svg?color=%23666"
+        }
+      },
+      {
+        "label": "Pentagon",
+        "icon": "Pentagon",
+        "type": "image",
+        "payload": {
+          "src": "https://api.iconify.design/mdi:pentagon.svg?color=%23666"
+        }
+      },
+      {
+        "label": "Cloud",
+        "icon": "Cloud",
+        "type": "image",
+        "payload": {
+          "src": "https://api.iconify.design/mdi:cloud.svg?color=%23666"
+        }
+      },
+      {
+        "label": "Message",
+        "icon": "MessageCircle",
+        "type": "image",
+        "payload": {
+          "src": "https://api.iconify.design/mdi:message.svg?color=%23666"
+        }
+      },
+      {
+        "label": "Zap",
+        "icon": "Zap",
+        "type": "image",
+        "payload": {
+          "src": "https://api.iconify.design/mdi:lightning-bolt.svg?color=%23666"
+        }
+      },
+      {
+        "label": "Sun",
+        "icon": "Sun",
+        "type": "image",
+        "payload": {
+          "src": "https://api.iconify.design/mdi:white-balance-sunny.svg?color=%23666"
+        }
+      },
+      {
+        "label": "Moon",
+        "icon": "Moon",
+        "type": "image",
+        "payload": {
+          "src": "https://api.iconify.design/mdi:moon-waning-crescent.svg?color=%23666"
+        }
+      },
+      {
+        "label": "Check",
+        "icon": "Check",
+        "type": "image",
+        "payload": {
+          "src": "https://api.iconify.design/mdi:check-bold.svg?color=%23666"
+        }
+      },
+      {
+        "label": "X",
+        "icon": "X",
+        "type": "image",
+        "payload": {
+          "src": "https://api.iconify.design/mdi:close-thick.svg?color=%23666"
+        }
+      },
+      {
+        "label": "Shield",
+        "icon": "Shield",
+        "type": "image",
+        "payload": {
+          "src": "https://api.iconify.design/mdi:shield.svg?color=%23666"
+        }
+      },
+      {
+        "label": "Tag",
+        "icon": "Tag",
+        "type": "image",
+        "payload": {
+          "src": "https://api.iconify.design/mdi:tag.svg?color=%23666"
+        }
+      },
+      {
+        "label": "Bookmark",
+        "icon": "Bookmark",
+        "type": "image",
+        "payload": {
+          "src": "https://api.iconify.design/mdi:bookmark.svg?color=%23666"
+        }
+      },
+      {
+        "label": "Arrow R",
+        "icon": "ArrowRight",
+        "type": "image",
+        "payload": {
+          "src": "https://api.iconify.design/mdi:arrow-right.svg?color=%23666"
+        }
+      },
+      {
+        "label": "Arrow L",
+        "icon": "ArrowLeft",
+        "type": "image",
+        "payload": {
+          "src": "https://api.iconify.design/mdi:arrow-left.svg?color=%23666"
+        }
+      },
+      {
+        "label": "Diamond",
+        "icon": "Diamond",
+        "type": "image",
+        "payload": {
+          "src": "https://api.iconify.design/mdi:cards-diamond.svg?color=%23666"
+        }
+      },
+      {
+        "label": "Ring",
+        "icon": "CircleDot",
+        "type": "image",
+        "payload": {
+          "src": "https://api.iconify.design/mdi:ring.svg?color=%23666"
+        }
+      },
+      {
+        "label": "User",
+        "icon": "User",
+        "type": "image",
+        "payload": {
+          "src": "https://api.iconify.design/mdi:account.svg?color=%23666"
+        }
+      },
+      {
+        "label": "Home",
+        "icon": "Home",
+        "type": "image",
+        "payload": {
+          "src": "https://api.iconify.design/mdi:home.svg?color=%23666"
+        }
+      },
+      {
+        "label": "Settings",
+        "icon": "Settings",
+        "type": "image",
+        "payload": {
+          "src": "https://api.iconify.design/mdi:cog.svg?color=%23666"
+        }
+      },
+      {
+        "label": "Search",
+        "icon": "Search",
+        "type": "image",
+        "payload": {
+          "src": "https://api.iconify.design/mdi:magnify.svg?color=%23666"
+        }
+      },
+      {
+        "label": "Bell",
+        "icon": "Bell",
+        "type": "image",
+        "payload": {
+          "src": "https://api.iconify.design/mdi:bell.svg?color=%23666"
+        }
+      },
+      {
+        "label": "Camera",
+        "icon": "Camera",
+        "type": "image",
+        "payload": {
+          "src": "https://api.iconify.design/mdi:camera.svg?color=%23666"
+        }
+      },
+      {
+        "label": "Video",
+        "icon": "Video",
+        "type": "image",
+        "payload": {
+          "src": "https://api.iconify.design/mdi:video.svg?color=%23666"
+        }
+      },
+      {
+        "label": "Music",
+        "icon": "Music",
+        "type": "image",
+        "payload": {
+          "src": "https://api.iconify.design/mdi:music-note.svg?color=%23666"
+        }
+      },
+      {
+        "label": "Map",
+        "icon": "Map",
+        "type": "image",
+        "payload": {
+          "src": "https://api.iconify.design/mdi:map-marker.svg?color=%23666"
+        }
+      },
+      {
+        "label": "Calendar",
+        "icon": "Calendar",
+        "type": "image",
+        "payload": {
+          "src": "https://api.iconify.design/mdi:calendar.svg?color=%23666"
+        }
+      },
+      {
+        "label": "Clock",
+        "icon": "Clock",
+        "type": "image",
+        "payload": {
+          "src": "https://api.iconify.design/mdi:clock.svg?color=%23666"
+        }
+      },
+      {
+        "label": "Phone",
+        "icon": "Phone",
+        "type": "image",
+        "payload": {
+          "src": "https://api.iconify.design/mdi:phone.svg?color=%23666"
+        }
+      },
+      {
+        "label": "Mail",
+        "icon": "Mail",
+        "type": "image",
+        "payload": {
+          "src": "https://api.iconify.design/mdi:email.svg?color=%23666"
+        }
+      },
+      {
+        "label": "Lock",
+        "icon": "Lock",
+        "type": "image",
+        "payload": {
+          "src": "https://api.iconify.design/mdi:lock.svg?color=%23666"
+        }
+      },
+      {
+        "label": "Unlock",
+        "icon": "Unlock",
+        "type": "image",
+        "payload": {
+          "src": "https://api.iconify.design/mdi:lock-open.svg?color=%23666"
+        }
+      },
+      {
+        "label": "Eye",
+        "icon": "Eye",
+        "type": "image",
+        "payload": {
+          "src": "https://api.iconify.design/mdi:eye.svg?color=%23666"
+        }
+      },
+      {
+        "label": "Eye Off",
+        "icon": "EyeOff",
+        "type": "image",
+        "payload": {
+          "src": "https://api.iconify.design/mdi:eye-off.svg?color=%23666"
+        }
+      },
+      {
+        "label": "Trash",
+        "icon": "Trash2",
+        "type": "image",
+        "payload": {
+          "src": "https://api.iconify.design/mdi:delete.svg?color=%23666"
+        }
+      },
+      {
+        "label": "Edit",
+        "icon": "Edit",
+        "type": "image",
+        "payload": {
+          "src": "https://api.iconify.design/mdi:pencil.svg?color=%23666"
+        }
+      },
+      {
+        "label": "Share",
+        "icon": "Share",
+        "type": "image",
+        "payload": {
+          "src": "https://api.iconify.design/mdi:share-variant.svg?color=%23666"
+        }
+      },
+      {
+        "label": "Download",
+        "icon": "Download",
+        "type": "image",
+        "payload": {
+          "src": "https://api.iconify.design/mdi:download.svg?color=%23666"
+        }
+      },
+      {
+        "label": "Upload",
+        "icon": "Upload",
+        "type": "image",
+        "payload": {
+          "src": "https://api.iconify.design/mdi:upload.svg?color=%23666"
+        }
+      },
+      {
+        "label": "Filter",
+        "icon": "Filter",
+        "type": "image",
+        "payload": {
+          "src": "https://api.iconify.design/mdi:filter.svg?color=%23666"
+        }
+      },
+      {
+        "label": "Sort",
+        "icon": "List",
+        "type": "image",
+        "payload": {
+          "src": "https://api.iconify.design/mdi:sort.svg?color=%23666"
+        }
+      },
+      {
+        "label": "Grid",
+        "icon": "Grid",
+        "type": "image",
+        "payload": {
+          "src": "https://api.iconify.design/mdi:grid.svg?color=%23666"
+        }
+      },
+      {
+        "label": "List",
+        "icon": "List",
+        "type": "image",
+        "payload": {
+          "src": "https://api.iconify.design/mdi:format-list-bulleted.svg?color=%23666"
+        }
+      },
+      {
+        "label": "Menu",
+        "icon": "Menu",
+        "type": "image",
+        "payload": {
+          "src": "https://api.iconify.design/mdi:menu.svg?color=%23666"
+        }
+      },
+      {
+        "label": "More",
+        "icon": "MoreHorizontal",
+        "type": "image",
+        "payload": {
+          "src": "https://api.iconify.design/mdi:dots-horizontal.svg?color=%23666"
+        }
+      }
+    ]
+  },
+  {
+    "category": "frames",
+    "items": [
+      {
+        "label": "Phone",
+        "icon": "Smartphone",
+        "type": "rectangle",
+        "payload": {
+          "width": 180,
+          "height": 320,
+          "borderRadius": 24,
+          "border": "4px solid #333",
+          "backgroundColor": "transparent"
+        }
+      },
+      {
+        "label": "Tablet",
+        "icon": "Tablet",
+        "type": "rectangle",
+        "payload": {
+          "width": 240,
+          "height": 320,
+          "borderRadius": 16,
+          "border": "4px solid #333",
+          "backgroundColor": "transparent"
+        }
+      },
+      {
+        "label": "Browser",
+        "icon": "Layout",
+        "type": "rectangle",
+        "payload": {
+          "width": 300,
+          "height": 200,
+          "borderRadius": 8,
+          "border": "2px solid #ccc",
+          "backgroundColor": "#fff",
+          "boxShadow": "0 4px 6px -1px rgba(0, 0, 0, 0.1)"
+        }
+      },
+      {
+        "label": "Polaroid",
+        "icon": "Image",
+        "type": "rectangle",
+        "payload": {
+          "width": 220,
+          "height": 260,
+          "backgroundColor": "#fff",
+          "padding": "16px 16px 60px 16px",
+          "boxShadow": "0 4px 6px rgba(0,0,0,0.1)"
+        }
+      },
+      {
+        "label": "Circle Frame",
+        "icon": "CircleDashed",
+        "type": "circle",
+        "payload": {
+          "width": 200,
+          "height": 200,
+          "border": "4px solid #333",
+          "backgroundColor": "transparent"
+        }
+      },
+      {
+        "label": "Frame 1",
+        "icon": "Layout",
+        "type": "rectangle",
+        "payload": {
+          "width": 200,
+          "height": 200,
+          "border": "5px double #d97706",
+          "borderRadius": 24,
+          "backgroundColor": "transparent"
+        }
+      },
+      {
+        "label": "Frame 2",
+        "icon": "Layout",
+        "type": "rectangle",
+        "payload": {
+          "width": 200,
+          "height": 200,
+          "border": "3px dotted #16a34a",
+          "borderRadius": 0,
+          "backgroundColor": "transparent"
+        }
+      },
+      {
+        "label": "Frame 3",
+        "icon": "Layout",
+        "type": "rectangle",
+        "payload": {
+          "width": 200,
+          "height": 200,
+          "border": "6px double #9333ea",
+          "borderRadius": 16,
+          "backgroundColor": "transparent"
+        }
+      },
+      {
+        "label": "Frame 4",
+        "icon": "Layout",
+        "type": "rectangle",
+        "payload": {
+          "width": 200,
+          "height": 200,
+          "border": "3px double #666",
+          "borderRadius": 24,
+          "backgroundColor": "transparent"
+        }
+      },
+      {
+        "label": "Frame 5",
+        "icon": "Layout",
+        "type": "rectangle",
+        "payload": {
+          "width": 200,
+          "height": 200,
+          "border": "6px double #333",
+          "borderRadius": 0,
+          "backgroundColor": "transparent"
+        }
+      },
+      {
+        "label": "Frame 6",
+        "icon": "Layout",
+        "type": "rectangle",
+        "payload": {
+          "width": 200,
+          "height": 200,
+          "border": "5px double #666",
+          "borderRadius": 8,
+          "backgroundColor": "transparent"
+        }
+      },
+      {
+        "label": "Frame 7",
+        "icon": "Layout",
+        "type": "rectangle",
+        "payload": {
+          "width": 200,
+          "height": 200,
+          "border": "2px dashed #666",
+          "borderRadius": 999,
+          "backgroundColor": "transparent"
+        }
+      },
+      {
+        "label": "Frame 8",
+        "icon": "Layout",
+        "type": "rectangle",
+        "payload": {
+          "width": 200,
+          "height": 200,
+          "border": "7px dashed #000",
+          "borderRadius": 999,
+          "backgroundColor": "transparent"
+        }
+      },
+      {
+        "label": "Frame 9",
+        "icon": "Layout",
+        "type": "rectangle",
+        "payload": {
+          "width": 200,
+          "height": 200,
+          "border": "6px dashed #666",
+          "borderRadius": 999,
+          "backgroundColor": "transparent"
+        }
+      },
+      {
+        "label": "Frame 10",
+        "icon": "Layout",
+        "type": "rectangle",
+        "payload": {
+          "width": 200,
+          "height": 200,
+          "border": "5px dashed #000",
+          "borderRadius": 0,
+          "backgroundColor": "transparent"
+        }
+      },
+      {
+        "label": "Frame 11",
+        "icon": "Layout",
+        "type": "rectangle",
+        "payload": {
+          "width": 200,
+          "height": 200,
+          "border": "3px dotted #d97706",
+          "borderRadius": 16,
+          "backgroundColor": "transparent"
+        }
+      },
+      {
+        "label": "Frame 12",
+        "icon": "Layout",
+        "type": "rectangle",
+        "payload": {
+          "width": 200,
+          "height": 200,
+          "border": "8px dotted #333",
+          "borderRadius": 999,
+          "backgroundColor": "transparent"
+        }
+      },
+      {
+        "label": "Frame 13",
+        "icon": "Layout",
+        "type": "rectangle",
+        "payload": {
+          "width": 200,
+          "height": 200,
+          "border": "2px double #333",
+          "borderRadius": 0,
+          "backgroundColor": "transparent"
+        }
+      },
+      {
+        "label": "Frame 14",
+        "icon": "Layout",
+        "type": "rectangle",
+        "payload": {
+          "width": 200,
+          "height": 200,
+          "border": "5px double #16a34a",
+          "borderRadius": 16,
+          "backgroundColor": "transparent"
+        }
+      },
+      {
+        "label": "Frame 15",
+        "icon": "Layout",
+        "type": "rectangle",
+        "payload": {
+          "width": 200,
+          "height": 200,
+          "border": "6px solid #2563eb",
+          "borderRadius": 24,
+          "backgroundColor": "transparent"
+        }
+      },
+      {
+        "label": "Frame 16",
+        "icon": "Layout",
+        "type": "rectangle",
+        "payload": {
+          "width": 200,
+          "height": 200,
+          "border": "6px double #333",
+          "borderRadius": 24,
+          "backgroundColor": "transparent"
+        }
+      },
+      {
+        "label": "Frame 17",
+        "icon": "Layout",
+        "type": "rectangle",
+        "payload": {
+          "width": 200,
+          "height": 200,
+          "border": "4px dotted #000",
+          "borderRadius": 16,
+          "backgroundColor": "transparent"
+        }
+      },
+      {
+        "label": "Frame 18",
+        "icon": "Layout",
+        "type": "rectangle",
+        "payload": {
+          "width": 200,
+          "height": 200,
+          "border": "2px dotted #2563eb",
+          "borderRadius": 0,
+          "backgroundColor": "transparent"
+        }
+      },
+      {
+        "label": "Frame 19",
+        "icon": "Layout",
+        "type": "rectangle",
+        "payload": {
+          "width": 200,
+          "height": 200,
+          "border": "2px double #16a34a",
+          "borderRadius": 8,
+          "backgroundColor": "transparent"
+        }
+      },
+      {
+        "label": "Frame 20",
+        "icon": "Layout",
+        "type": "rectangle",
+        "payload": {
+          "width": 200,
+          "height": 200,
+          "border": "8px dashed #dc2626",
+          "borderRadius": 24,
+          "backgroundColor": "transparent"
+        }
+      },
+      {
+        "label": "Frame 21",
+        "icon": "Layout",
+        "type": "rectangle",
+        "payload": {
+          "width": 200,
+          "height": 200,
+          "border": "4px solid #9333ea",
+          "borderRadius": 16,
+          "backgroundColor": "transparent"
+        }
+      },
+      {
+        "label": "Frame 22",
+        "icon": "Layout",
+        "type": "rectangle",
+        "payload": {
+          "width": 200,
+          "height": 200,
+          "border": "2px dashed #000",
+          "borderRadius": 8,
+          "backgroundColor": "transparent"
+        }
+      },
+      {
+        "label": "Frame 23",
+        "icon": "Layout",
+        "type": "rectangle",
+        "payload": {
+          "width": 200,
+          "height": 200,
+          "border": "7px solid #dc2626",
+          "borderRadius": 8,
+          "backgroundColor": "transparent"
+        }
+      },
+      {
+        "label": "Frame 24",
+        "icon": "Layout",
+        "type": "rectangle",
+        "payload": {
+          "width": 200,
+          "height": 200,
+          "border": "7px dashed #333",
+          "borderRadius": 16,
+          "backgroundColor": "transparent"
+        }
+      },
+      {
+        "label": "Frame 25",
+        "icon": "Layout",
+        "type": "rectangle",
+        "payload": {
+          "width": 200,
+          "height": 200,
+          "border": "7px dashed #666",
+          "borderRadius": 0,
+          "backgroundColor": "transparent"
+        }
+      },
+      {
+        "label": "Frame 26",
+        "icon": "Layout",
+        "type": "rectangle",
+        "payload": {
+          "width": 200,
+          "height": 200,
+          "border": "5px double #dc2626",
+          "borderRadius": 24,
+          "backgroundColor": "transparent"
+        }
+      },
+      {
+        "label": "Frame 27",
+        "icon": "Layout",
+        "type": "rectangle",
+        "payload": {
+          "width": 200,
+          "height": 200,
+          "border": "7px dotted #d97706",
+          "borderRadius": 8,
+          "backgroundColor": "transparent"
+        }
+      },
+      {
+        "label": "Frame 28",
+        "icon": "Layout",
+        "type": "rectangle",
+        "payload": {
+          "width": 200,
+          "height": 200,
+          "border": "8px double #9333ea",
+          "borderRadius": 8,
+          "backgroundColor": "transparent"
+        }
+      },
+      {
+        "label": "Frame 29",
+        "icon": "Layout",
+        "type": "rectangle",
+        "payload": {
+          "width": 200,
+          "height": 200,
+          "border": "5px solid #16a34a",
+          "borderRadius": 24,
+          "backgroundColor": "transparent"
+        }
+      },
+      {
+        "label": "Frame 30",
+        "icon": "Layout",
+        "type": "rectangle",
+        "payload": {
+          "width": 200,
+          "height": 200,
+          "border": "5px dashed #666",
+          "borderRadius": 8,
+          "backgroundColor": "transparent"
+        }
+      },
+      {
+        "label": "Frame 31",
+        "icon": "Layout",
+        "type": "rectangle",
+        "payload": {
+          "width": 200,
+          "height": 200,
+          "border": "3px dashed #666",
+          "borderRadius": 16,
+          "backgroundColor": "transparent"
+        }
+      },
+      {
+        "label": "Frame 32",
+        "icon": "Layout",
+        "type": "rectangle",
+        "payload": {
+          "width": 200,
+          "height": 200,
+          "border": "3px double #2563eb",
+          "borderRadius": 16,
+          "backgroundColor": "transparent"
+        }
+      },
+      {
+        "label": "Frame 33",
+        "icon": "Layout",
+        "type": "rectangle",
+        "payload": {
+          "width": 200,
+          "height": 200,
+          "border": "3px double #000",
+          "borderRadius": 24,
+          "backgroundColor": "transparent"
+        }
+      },
+      {
+        "label": "Frame 34",
+        "icon": "Layout",
+        "type": "rectangle",
+        "payload": {
+          "width": 200,
+          "height": 200,
+          "border": "6px dotted #d97706",
+          "borderRadius": 8,
+          "backgroundColor": "transparent"
+        }
+      },
+      {
+        "label": "Frame 35",
+        "icon": "Layout",
+        "type": "rectangle",
+        "payload": {
+          "width": 200,
+          "height": 200,
+          "border": "2px dotted #666",
+          "borderRadius": 8,
+          "backgroundColor": "transparent"
+        }
+      },
+      {
+        "label": "Frame 36",
+        "icon": "Layout",
+        "type": "rectangle",
+        "payload": {
+          "width": 200,
+          "height": 200,
+          "border": "6px double #333",
+          "borderRadius": 8,
+          "backgroundColor": "transparent"
+        }
+      },
+      {
+        "label": "Frame 37",
+        "icon": "Layout",
+        "type": "rectangle",
+        "payload": {
+          "width": 200,
+          "height": 200,
+          "border": "2px solid #d97706",
+          "borderRadius": 8,
+          "backgroundColor": "transparent"
+        }
+      },
+      {
+        "label": "Frame 38",
+        "icon": "Layout",
+        "type": "rectangle",
+        "payload": {
+          "width": 200,
+          "height": 200,
+          "border": "5px dashed #333",
+          "borderRadius": 24,
+          "backgroundColor": "transparent"
+        }
+      },
+      {
+        "label": "Frame 39",
+        "icon": "Layout",
+        "type": "rectangle",
+        "payload": {
+          "width": 200,
+          "height": 200,
+          "border": "4px dotted #2563eb",
+          "borderRadius": 8,
+          "backgroundColor": "transparent"
+        }
+      },
+      {
+        "label": "Frame 40",
+        "icon": "Layout",
+        "type": "rectangle",
+        "payload": {
+          "width": 200,
+          "height": 200,
+          "border": "4px solid #16a34a",
+          "borderRadius": 24,
+          "backgroundColor": "transparent"
+        }
+      },
+      {
+        "label": "Frame 41",
+        "icon": "Layout",
+        "type": "rectangle",
+        "payload": {
+          "width": 200,
+          "height": 200,
+          "border": "2px solid #666",
+          "borderRadius": 999,
+          "backgroundColor": "transparent"
+        }
+      },
+      {
+        "label": "Frame 42",
+        "icon": "Layout",
+        "type": "rectangle",
+        "payload": {
+          "width": 200,
+          "height": 200,
+          "border": "4px solid #2563eb",
+          "borderRadius": 24,
+          "backgroundColor": "transparent"
+        }
+      },
+      {
+        "label": "Frame 43",
+        "icon": "Layout",
+        "type": "rectangle",
+        "payload": {
+          "width": 200,
+          "height": 200,
+          "border": "7px double #16a34a",
+          "borderRadius": 8,
+          "backgroundColor": "transparent"
+        }
+      },
+      {
+        "label": "Frame 44",
+        "icon": "Layout",
+        "type": "rectangle",
+        "payload": {
+          "width": 200,
+          "height": 200,
+          "border": "4px solid #16a34a",
+          "borderRadius": 999,
+          "backgroundColor": "transparent"
+        }
+      },
+      {
+        "label": "Frame 45",
+        "icon": "Layout",
+        "type": "rectangle",
+        "payload": {
+          "width": 200,
+          "height": 200,
+          "border": "5px dashed #9333ea",
+          "borderRadius": 8,
+          "backgroundColor": "transparent"
+        }
+      }
+    ]
+  },
+  {
+    "category": "buttons",
+    "items": [
+      {
+        "label": "Watch Outline",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Watch",
+          "backgroundColor": "transparent",
+          "color": "#14b8a6",
+          "border": "2px solid #14b8a6",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Read More Flat",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Read More",
+          "backgroundColor": "#f43f5e",
+          "color": "#fff",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Learn More Flat",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Learn More",
+          "backgroundColor": "#9333ea",
+          "color": "#fff",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Play Outline",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Play",
+          "backgroundColor": "transparent",
+          "color": "#16a34a",
+          "border": "2px solid #16a34a",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Book Now Flat",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Book Now",
+          "backgroundColor": "#f43f5e",
+          "color": "#fff",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Contact Us Outline",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Contact Us",
+          "backgroundColor": "transparent",
+          "color": "#d97706",
+          "border": "2px solid #d97706",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Download Flat",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Download",
+          "backgroundColor": "#16a34a",
+          "color": "#fff",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Book Now Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Book Now",
+          "backgroundColor": "#d97706",
+          "color": "#fff",
+          "borderRadius": 999,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Vote Flat",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Vote",
+          "backgroundColor": "#2563eb",
+          "color": "#fff",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Get Started Outline",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Get Started",
+          "backgroundColor": "transparent",
+          "color": "#9333ea",
+          "border": "2px solid #9333ea",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Contact Us Outline",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Contact Us",
+          "backgroundColor": "transparent",
+          "color": "#fff",
+          "border": "2px solid #fff",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Listen Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Listen",
+          "backgroundColor": "#16a34a",
+          "color": "#fff",
+          "borderRadius": 999,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Contact Us Outline",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Contact Us",
+          "backgroundColor": "transparent",
+          "color": "#14b8a6",
+          "border": "2px solid #14b8a6",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Join Us Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Join Us",
+          "backgroundColor": "#8b5cf6",
+          "color": "#fff",
+          "borderRadius": 999,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Buy Now Outline",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Buy Now",
+          "backgroundColor": "transparent",
+          "color": "#000000",
+          "border": "2px solid #000000",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Join Us Flat",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Join Us",
+          "backgroundColor": "#0ea5e9",
+          "color": "#fff",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Read More Flat",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Read More",
+          "backgroundColor": "#2563eb",
+          "color": "#fff",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Download Flat",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Download",
+          "backgroundColor": "#14b8a6",
+          "color": "#fff",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Get Started Outline",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Get Started",
+          "backgroundColor": "transparent",
+          "color": "#dc2626",
+          "border": "2px solid #dc2626",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Book Now Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Book Now",
+          "backgroundColor": "#16a34a",
+          "color": "#fff",
+          "borderRadius": 999,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Contact Us Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Contact Us",
+          "backgroundColor": "#d97706",
+          "color": "#fff",
+          "borderRadius": 999,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Join Us Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Join Us",
+          "backgroundColor": "#d97706",
+          "color": "#fff",
+          "borderRadius": 999,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Shop Now Outline",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Shop Now",
+          "backgroundColor": "transparent",
+          "color": "#f43f5e",
+          "border": "2px solid #f43f5e",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Learn More Flat",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Learn More",
+          "backgroundColor": "#dc2626",
+          "color": "#fff",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Read More Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Read More",
+          "backgroundColor": "#16a34a",
+          "color": "#fff",
+          "borderRadius": 999,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Download Flat",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Download",
+          "backgroundColor": "#dc2626",
+          "color": "#fff",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Shop Now Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Shop Now",
+          "backgroundColor": "#dc2626",
+          "color": "#fff",
+          "borderRadius": 999,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Shop Now Outline",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Shop Now",
+          "backgroundColor": "transparent",
+          "color": "#0ea5e9",
+          "border": "2px solid #0ea5e9",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Learn More Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Learn More",
+          "backgroundColor": "#16a34a",
+          "color": "#fff",
+          "borderRadius": 999,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Get Started Outline",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Get Started",
+          "backgroundColor": "transparent",
+          "color": "#8b5cf6",
+          "border": "2px solid #8b5cf6",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Shop Now Flat",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Shop Now",
+          "backgroundColor": "#2563eb",
+          "color": "#fff",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Get Started Outline",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Get Started",
+          "backgroundColor": "transparent",
+          "color": "#0ea5e9",
+          "border": "2px solid #0ea5e9",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Shop Now Flat",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Shop Now",
+          "backgroundColor": "#14b8a6",
+          "color": "#fff",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Shop Now Outline",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Shop Now",
+          "backgroundColor": "transparent",
+          "color": "#fff",
+          "border": "2px solid #fff",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Get Started Flat",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Get Started",
+          "backgroundColor": "#000000",
+          "color": "#fff",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Download Outline",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Download",
+          "backgroundColor": "transparent",
+          "color": "#2563eb",
+          "border": "2px solid #2563eb",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Read More Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Read More",
+          "backgroundColor": "#d97706",
+          "color": "#fff",
+          "borderRadius": 999,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Watch Outline",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Watch",
+          "backgroundColor": "transparent",
+          "color": "#dc2626",
+          "border": "2px solid #dc2626",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Read More Outline",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Read More",
+          "backgroundColor": "transparent",
+          "color": "#2563eb",
+          "border": "2px solid #2563eb",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Buy Now Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Buy Now",
+          "backgroundColor": "#14b8a6",
+          "color": "#fff",
+          "borderRadius": 999,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Subscribe Outline",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Subscribe",
+          "backgroundColor": "transparent",
+          "color": "#14b8a6",
+          "border": "2px solid #14b8a6",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Read More Outline",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Read More",
+          "backgroundColor": "transparent",
+          "color": "#8b5cf6",
+          "border": "2px solid #8b5cf6",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Listen Flat",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Listen",
+          "backgroundColor": "#dc2626",
+          "color": "#fff",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Watch Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Watch",
+          "backgroundColor": "#8b5cf6",
+          "color": "#fff",
+          "borderRadius": 999,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Read More Outline",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Read More",
+          "backgroundColor": "transparent",
+          "color": "#f43f5e",
+          "border": "2px solid #f43f5e",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Contact Us Flat",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Contact Us",
+          "backgroundColor": "#ec4899",
+          "color": "#fff",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Shop Now Flat",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Shop Now",
+          "backgroundColor": "#d97706",
+          "color": "#fff",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Join Us Flat",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Join Us",
+          "backgroundColor": "#fff",
+          "color": "#000",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Read More Outline",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Read More",
+          "backgroundColor": "transparent",
+          "color": "#9333ea",
+          "border": "2px solid #9333ea",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Sign Up Flat",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Sign Up",
+          "backgroundColor": "#16a34a",
+          "color": "#fff",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Buy Now Flat",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Buy Now",
+          "backgroundColor": "#f43f5e",
+          "color": "#fff",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Get Started Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Get Started",
+          "backgroundColor": "#dc2626",
+          "color": "#fff",
+          "borderRadius": 999,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Watch Flat",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Watch",
+          "backgroundColor": "#16a34a",
+          "color": "#fff",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Join Us Flat",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Join Us",
+          "backgroundColor": "#16a34a",
+          "color": "#fff",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Join Us Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Join Us",
+          "backgroundColor": "#14b8a6",
+          "color": "#fff",
+          "borderRadius": 999,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Play Flat",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Play",
+          "backgroundColor": "#9333ea",
+          "color": "#fff",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Subscribe Outline",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Subscribe",
+          "backgroundColor": "transparent",
+          "color": "#000000",
+          "border": "2px solid #000000",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Book Now Flat",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Book Now",
+          "backgroundColor": "#16a34a",
+          "color": "#fff",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Subscribe Outline",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Subscribe",
+          "backgroundColor": "transparent",
+          "color": "#16a34a",
+          "border": "2px solid #16a34a",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Contact Us Flat",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Contact Us",
+          "backgroundColor": "#9333ea",
+          "color": "#fff",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Contact Us Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Contact Us",
+          "backgroundColor": "#000000",
+          "color": "#fff",
+          "borderRadius": 999,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Buy Now Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Buy Now",
+          "backgroundColor": "#8b5cf6",
+          "color": "#fff",
+          "borderRadius": 999,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Join Us Outline",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Join Us",
+          "backgroundColor": "transparent",
+          "color": "#8b5cf6",
+          "border": "2px solid #8b5cf6",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Get Started Outline",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Get Started",
+          "backgroundColor": "transparent",
+          "color": "#2563eb",
+          "border": "2px solid #2563eb",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Play Outline",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Play",
+          "backgroundColor": "transparent",
+          "color": "#dc2626",
+          "border": "2px solid #dc2626",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Play Flat",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Play",
+          "backgroundColor": "#000000",
+          "color": "#fff",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Learn More Flat",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Learn More",
+          "backgroundColor": "#0ea5e9",
+          "color": "#fff",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Get Started Flat",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Get Started",
+          "backgroundColor": "#9333ea",
+          "color": "#fff",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Subscribe Flat",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Subscribe",
+          "backgroundColor": "#fff",
+          "color": "#000",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Listen Flat",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Listen",
+          "backgroundColor": "#000000",
+          "color": "#fff",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Book Now Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Book Now",
+          "backgroundColor": "#ec4899",
+          "color": "#fff",
+          "borderRadius": 999,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Join Us Outline",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Join Us",
+          "backgroundColor": "transparent",
+          "color": "#f43f5e",
+          "border": "2px solid #f43f5e",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Book Now Outline",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Book Now",
+          "backgroundColor": "transparent",
+          "color": "#14b8a6",
+          "border": "2px solid #14b8a6",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Buy Now Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Buy Now",
+          "backgroundColor": "#000000",
+          "color": "#fff",
+          "borderRadius": 999,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Listen Outline",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Listen",
+          "backgroundColor": "transparent",
+          "color": "#ec4899",
+          "border": "2px solid #ec4899",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Listen Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Listen",
+          "backgroundColor": "#ec4899",
+          "color": "#fff",
+          "borderRadius": 999,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Book Now Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Book Now",
+          "backgroundColor": "#dc2626",
+          "color": "#fff",
+          "borderRadius": 999,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Sign Up Outline",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Sign Up",
+          "backgroundColor": "transparent",
+          "color": "#dc2626",
+          "border": "2px solid #dc2626",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Read More Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Read More",
+          "backgroundColor": "#000000",
+          "color": "#fff",
+          "borderRadius": 999,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Contact Us Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Contact Us",
+          "backgroundColor": "#0ea5e9",
+          "color": "#fff",
+          "borderRadius": 999,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Download Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Download",
+          "backgroundColor": "#ec4899",
+          "color": "#fff",
+          "borderRadius": 999,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Sign Up Outline",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Sign Up",
+          "backgroundColor": "transparent",
+          "color": "#ec4899",
+          "border": "2px solid #ec4899",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Vote Outline",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Vote",
+          "backgroundColor": "transparent",
+          "color": "#2563eb",
+          "border": "2px solid #2563eb",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Watch Outline",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Watch",
+          "backgroundColor": "transparent",
+          "color": "#d97706",
+          "border": "2px solid #d97706",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Subscribe Flat",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Subscribe",
+          "backgroundColor": "#f43f5e",
+          "color": "#fff",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Play Outline",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Play",
+          "backgroundColor": "transparent",
+          "color": "#9333ea",
+          "border": "2px solid #9333ea",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Get Started Flat",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Get Started",
+          "backgroundColor": "#f43f5e",
+          "color": "#fff",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Get Started Flat",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Get Started",
+          "backgroundColor": "#ec4899",
+          "color": "#fff",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Vote Outline",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Vote",
+          "backgroundColor": "transparent",
+          "color": "#dc2626",
+          "border": "2px solid #dc2626",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Get Started Flat",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Get Started",
+          "backgroundColor": "#16a34a",
+          "color": "#fff",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Contact Us Outline",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Contact Us",
+          "backgroundColor": "transparent",
+          "color": "#ec4899",
+          "border": "2px solid #ec4899",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Subscribe Outline",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Subscribe",
+          "backgroundColor": "transparent",
+          "color": "#f43f5e",
+          "border": "2px solid #f43f5e",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Watch Outline",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Watch",
+          "backgroundColor": "transparent",
+          "color": "#f43f5e",
+          "border": "2px solid #f43f5e",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Book Now Outline",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Book Now",
+          "backgroundColor": "transparent",
+          "color": "#2563eb",
+          "border": "2px solid #2563eb",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Subscribe Flat",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Subscribe",
+          "backgroundColor": "#9333ea",
+          "color": "#fff",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Listen Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Listen",
+          "backgroundColor": "#8b5cf6",
+          "color": "#fff",
+          "borderRadius": 999,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Listen Flat",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Listen",
+          "backgroundColor": "#16a34a",
+          "color": "#fff",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Get Started Outline",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Get Started",
+          "backgroundColor": "transparent",
+          "color": "#d97706",
+          "border": "2px solid #d97706",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Sign Up Outline",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Sign Up",
+          "backgroundColor": "transparent",
+          "color": "#16a34a",
+          "border": "2px solid #16a34a",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Read More Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Read More",
+          "backgroundColor": "#14b8a6",
+          "color": "#fff",
+          "borderRadius": 999,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Sign Up Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Sign Up",
+          "backgroundColor": "#0ea5e9",
+          "color": "#fff",
+          "borderRadius": 999,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Listen Outline",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Listen",
+          "backgroundColor": "transparent",
+          "color": "#d97706",
+          "border": "2px solid #d97706",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Get Started Flat",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Get Started",
+          "backgroundColor": "#2563eb",
+          "color": "#fff",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Download Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Download",
+          "backgroundColor": "#d97706",
+          "color": "#fff",
+          "borderRadius": 999,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Buy Now Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Buy Now",
+          "backgroundColor": "#fff",
+          "color": "#000",
+          "borderRadius": 999,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Listen Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Listen",
+          "backgroundColor": "#d97706",
+          "color": "#fff",
+          "borderRadius": 999,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Get Started Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Get Started",
+          "backgroundColor": "#f43f5e",
+          "color": "#fff",
+          "borderRadius": 999,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Play Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Play",
+          "backgroundColor": "#8b5cf6",
+          "color": "#fff",
+          "borderRadius": 999,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Learn More Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Learn More",
+          "backgroundColor": "#9333ea",
+          "color": "#fff",
+          "borderRadius": 999,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Read More Outline",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Read More",
+          "backgroundColor": "transparent",
+          "color": "#d97706",
+          "border": "2px solid #d97706",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Play Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Play",
+          "backgroundColor": "#fff",
+          "color": "#000",
+          "borderRadius": 999,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Play Outline",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Play",
+          "backgroundColor": "transparent",
+          "color": "#8b5cf6",
+          "border": "2px solid #8b5cf6",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Listen Flat",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Listen",
+          "backgroundColor": "#ec4899",
+          "color": "#fff",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Subscribe Outline",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Subscribe",
+          "backgroundColor": "transparent",
+          "color": "#d97706",
+          "border": "2px solid #d97706",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Contact Us Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Contact Us",
+          "backgroundColor": "#dc2626",
+          "color": "#fff",
+          "borderRadius": 999,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Read More Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Read More",
+          "backgroundColor": "#2563eb",
+          "color": "#fff",
+          "borderRadius": 999,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Download Outline",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Download",
+          "backgroundColor": "transparent",
+          "color": "#dc2626",
+          "border": "2px solid #dc2626",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Play Flat",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Play",
+          "backgroundColor": "#f43f5e",
+          "color": "#fff",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Vote Flat",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Vote",
+          "backgroundColor": "#d97706",
+          "color": "#fff",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Learn More Flat",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Learn More",
+          "backgroundColor": "#16a34a",
+          "color": "#fff",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Contact Us Outline",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Contact Us",
+          "backgroundColor": "transparent",
+          "color": "#8b5cf6",
+          "border": "2px solid #8b5cf6",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Read More Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Read More",
+          "backgroundColor": "#dc2626",
+          "color": "#fff",
+          "borderRadius": 999,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Sign Up Outline",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Sign Up",
+          "backgroundColor": "transparent",
+          "color": "#000000",
+          "border": "2px solid #000000",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Subscribe Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Subscribe",
+          "backgroundColor": "#fff",
+          "color": "#000",
+          "borderRadius": 999,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Watch Outline",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Watch",
+          "backgroundColor": "transparent",
+          "color": "#ec4899",
+          "border": "2px solid #ec4899",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Learn More Flat",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Learn More",
+          "backgroundColor": "#000000",
+          "color": "#fff",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Shop Now Flat",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Shop Now",
+          "backgroundColor": "#ec4899",
+          "color": "#fff",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Play Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Play",
+          "backgroundColor": "#dc2626",
+          "color": "#fff",
+          "borderRadius": 999,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Vote Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Vote",
+          "backgroundColor": "#2563eb",
+          "color": "#fff",
+          "borderRadius": 999,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Book Now Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Book Now",
+          "backgroundColor": "#2563eb",
+          "color": "#fff",
+          "borderRadius": 999,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Shop Now Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Shop Now",
+          "backgroundColor": "#d97706",
+          "color": "#fff",
+          "borderRadius": 999,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Learn More Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Learn More",
+          "backgroundColor": "#2563eb",
+          "color": "#fff",
+          "borderRadius": 999,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Vote Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Vote",
+          "backgroundColor": "#9333ea",
+          "color": "#fff",
+          "borderRadius": 999,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Watch Outline",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Watch",
+          "backgroundColor": "transparent",
+          "color": "#16a34a",
+          "border": "2px solid #16a34a",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Subscribe Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Subscribe",
+          "backgroundColor": "#0ea5e9",
+          "color": "#fff",
+          "borderRadius": 999,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Sign Up Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Sign Up",
+          "backgroundColor": "#fff",
+          "color": "#000",
+          "borderRadius": 999,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Subscribe Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Subscribe",
+          "backgroundColor": "#16a34a",
+          "color": "#fff",
+          "borderRadius": 999,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Play Flat",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Play",
+          "backgroundColor": "#16a34a",
+          "color": "#fff",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Listen Flat",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Listen",
+          "backgroundColor": "#2563eb",
+          "color": "#fff",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Buy Now Flat",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Buy Now",
+          "backgroundColor": "#9333ea",
+          "color": "#fff",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Learn More Outline",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Learn More",
+          "backgroundColor": "transparent",
+          "color": "#f43f5e",
+          "border": "2px solid #f43f5e",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Vote Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Vote",
+          "backgroundColor": "#000000",
+          "color": "#fff",
+          "borderRadius": 999,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Read More Flat",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Read More",
+          "backgroundColor": "#000000",
+          "color": "#fff",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Contact Us Flat",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Contact Us",
+          "backgroundColor": "#dc2626",
+          "color": "#fff",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Sign Up Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Sign Up",
+          "backgroundColor": "#ec4899",
+          "color": "#fff",
+          "borderRadius": 999,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Buy Now Outline",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Buy Now",
+          "backgroundColor": "transparent",
+          "color": "#9333ea",
+          "border": "2px solid #9333ea",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Play Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Play",
+          "backgroundColor": "#16a34a",
+          "color": "#fff",
+          "borderRadius": 999,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Book Now Outline",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Book Now",
+          "backgroundColor": "transparent",
+          "color": "#16a34a",
+          "border": "2px solid #16a34a",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Read More Outline",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Read More",
+          "backgroundColor": "transparent",
+          "color": "#ec4899",
+          "border": "2px solid #ec4899",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      },
+      {
+        "label": "Shop Now Flat",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "Shop Now",
+          "backgroundColor": "#16a34a",
+          "color": "#fff",
+          "borderRadius": 6,
+          "padding": 12,
+          "fontSize": 16,
+          "textAlign": "center",
+          "width": 120,
+          "height": 44,
+          "fontWeight": "600"
+        }
+      }
+    ]
+  },
+  {
+    "category": "badges",
+    "items": [
+      {
+        "label": "50%",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "50%",
+          "backgroundColor": "#7c3aed",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "FREE Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "FREE",
+          "backgroundColor": "#7c3aed",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "40% Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "40%",
+          "backgroundColor": "#ea580c",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "50% OFF Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "50% OFF",
+          "backgroundColor": "#000000",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "60% Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "60%",
+          "backgroundColor": "#475569",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "40% Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "40%",
+          "backgroundColor": "#2563eb",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "VIP Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "VIP",
+          "backgroundColor": "#ca8a04",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "90%",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "90%",
+          "backgroundColor": "#0891b2",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "40% Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "40%",
+          "backgroundColor": "#000000",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "100% Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "100%",
+          "backgroundColor": "#0891b2",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "BETA",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "BETA",
+          "backgroundColor": "#7c3aed",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "BEST Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "BEST",
+          "backgroundColor": "#16a34a",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "80%",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "80%",
+          "backgroundColor": "#0891b2",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "SALE Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "SALE",
+          "backgroundColor": "#16a34a",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "PRO Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "PRO",
+          "backgroundColor": "#0891b2",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "BETA Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "BETA",
+          "backgroundColor": "#2563eb",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "VIP Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "VIP",
+          "backgroundColor": "#16a34a",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "BETA Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "BETA",
+          "backgroundColor": "#ca8a04",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "90% Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "90%",
+          "backgroundColor": "#16a34a",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "FREE",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "FREE",
+          "backgroundColor": "#475569",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "90%",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "90%",
+          "backgroundColor": "#dc2626",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "70%",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "70%",
+          "backgroundColor": "#ea580c",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "PRO",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "PRO",
+          "backgroundColor": "#db2777",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "30% Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "30%",
+          "backgroundColor": "#db2777",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "100% Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "100%",
+          "backgroundColor": "#000000",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "50%",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "50%",
+          "backgroundColor": "#16a34a",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "90% Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "90%",
+          "backgroundColor": "#7c3aed",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "NEW Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "NEW",
+          "backgroundColor": "#0891b2",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "20%",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "20%",
+          "backgroundColor": "#dc2626",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "40% Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "40%",
+          "backgroundColor": "#7c3aed",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "HOT",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "HOT",
+          "backgroundColor": "#0891b2",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "FREE",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "FREE",
+          "backgroundColor": "#ca8a04",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "BEST",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "BEST",
+          "backgroundColor": "#db2777",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "LIMITED Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "LIMITED",
+          "backgroundColor": "#db2777",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "HOT",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "HOT",
+          "backgroundColor": "#dc2626",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "90%",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "90%",
+          "backgroundColor": "#db2777",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "80% Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "80%",
+          "backgroundColor": "#db2777",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "PRO",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "PRO",
+          "backgroundColor": "#dc2626",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "FREE Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "FREE",
+          "backgroundColor": "#dc2626",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "VIP",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "VIP",
+          "backgroundColor": "#ea580c",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "PRO Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "PRO",
+          "backgroundColor": "#000000",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "BETA Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "BETA",
+          "backgroundColor": "#db2777",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "NEW Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "NEW",
+          "backgroundColor": "#2563eb",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "50% Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "50%",
+          "backgroundColor": "#ca8a04",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "VIP",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "VIP",
+          "backgroundColor": "#2563eb",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "BEST",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "BEST",
+          "backgroundColor": "#0891b2",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "70%",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "70%",
+          "backgroundColor": "#ca8a04",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "70%",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "70%",
+          "backgroundColor": "#000000",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "100%",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "100%",
+          "backgroundColor": "#db2777",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "FREE Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "FREE",
+          "backgroundColor": "#0891b2",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "10% Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "10%",
+          "backgroundColor": "#0891b2",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "100% Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "100%",
+          "backgroundColor": "#ea580c",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "90% Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "90%",
+          "backgroundColor": "#000000",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "BEST",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "BEST",
+          "backgroundColor": "#dc2626",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "100% Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "100%",
+          "backgroundColor": "#db2777",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "30%",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "30%",
+          "backgroundColor": "#7c3aed",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "50% OFF Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "50% OFF",
+          "backgroundColor": "#ea580c",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "FREE Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "FREE",
+          "backgroundColor": "#ca8a04",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "30% Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "30%",
+          "backgroundColor": "#16a34a",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "10%",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "10%",
+          "backgroundColor": "#ca8a04",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "30% Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "30%",
+          "backgroundColor": "#0891b2",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "100% Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "100%",
+          "backgroundColor": "#ca8a04",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "VIP",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "VIP",
+          "backgroundColor": "#dc2626",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "50%",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "50%",
+          "backgroundColor": "#dc2626",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "50% OFF Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "50% OFF",
+          "backgroundColor": "#db2777",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "HOT Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "HOT",
+          "backgroundColor": "#db2777",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "TOP Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "TOP",
+          "backgroundColor": "#ea580c",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "50% OFF Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "50% OFF",
+          "backgroundColor": "#475569",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "TOP Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "TOP",
+          "backgroundColor": "#7c3aed",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "20% Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "20%",
+          "backgroundColor": "#ca8a04",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "30%",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "30%",
+          "backgroundColor": "#2563eb",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "SALE",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "SALE",
+          "backgroundColor": "#2563eb",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "40%",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "40%",
+          "backgroundColor": "#2563eb",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "LIMITED",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "LIMITED",
+          "backgroundColor": "#ea580c",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "70% Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "70%",
+          "backgroundColor": "#ea580c",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "50%",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "50%",
+          "backgroundColor": "#ca8a04",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "60% Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "60%",
+          "backgroundColor": "#dc2626",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "BEST Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "BEST",
+          "backgroundColor": "#ea580c",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "70%",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "70%",
+          "backgroundColor": "#dc2626",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "TOP",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "TOP",
+          "backgroundColor": "#ea580c",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "30% Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "30%",
+          "backgroundColor": "#ca8a04",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "50% Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "50%",
+          "backgroundColor": "#7c3aed",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "60%",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "60%",
+          "backgroundColor": "#2563eb",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "10% Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "10%",
+          "backgroundColor": "#475569",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "HOT Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "HOT",
+          "backgroundColor": "#0891b2",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "NEW",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "NEW",
+          "backgroundColor": "#ea580c",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "40% Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "40%",
+          "backgroundColor": "#dc2626",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "SALE",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "SALE",
+          "backgroundColor": "#ea580c",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "FREE",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "FREE",
+          "backgroundColor": "#dc2626",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "LIMITED Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "LIMITED",
+          "backgroundColor": "#475569",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "BETA Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "BETA",
+          "backgroundColor": "#0891b2",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "100%",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "100%",
+          "backgroundColor": "#16a34a",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "20%",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "20%",
+          "backgroundColor": "#000000",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "HOT",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "HOT",
+          "backgroundColor": "#ea580c",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "NEW",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "NEW",
+          "backgroundColor": "#2563eb",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "SOLD OUT",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "SOLD OUT",
+          "backgroundColor": "#000000",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "30%",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "30%",
+          "backgroundColor": "#16a34a",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "LIMITED",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "LIMITED",
+          "backgroundColor": "#ca8a04",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "BETA",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "BETA",
+          "backgroundColor": "#dc2626",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "NEW Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "NEW",
+          "backgroundColor": "#7c3aed",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "SALE",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "SALE",
+          "backgroundColor": "#475569",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "SALE",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "SALE",
+          "backgroundColor": "#ca8a04",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "VIP Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "VIP",
+          "backgroundColor": "#000000",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "60%",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "60%",
+          "backgroundColor": "#ca8a04",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "SOLD OUT",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "SOLD OUT",
+          "backgroundColor": "#16a34a",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "80% Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "80%",
+          "backgroundColor": "#2563eb",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "SOLD OUT Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "SOLD OUT",
+          "backgroundColor": "#000000",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "SOLD OUT Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "SOLD OUT",
+          "backgroundColor": "#475569",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "50% Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "50%",
+          "backgroundColor": "#2563eb",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "HOT",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "HOT",
+          "backgroundColor": "#db2777",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "80% Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "80%",
+          "backgroundColor": "#000000",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "50% Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "50%",
+          "backgroundColor": "#000000",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "BEST Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "BEST",
+          "backgroundColor": "#000000",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "HOT",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "HOT",
+          "backgroundColor": "#7c3aed",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "70% Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "70%",
+          "backgroundColor": "#ca8a04",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "90% Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "90%",
+          "backgroundColor": "#db2777",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "PRO Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "PRO",
+          "backgroundColor": "#ea580c",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "FREE",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "FREE",
+          "backgroundColor": "#16a34a",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "90%",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "90%",
+          "backgroundColor": "#475569",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "SOLD OUT",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "SOLD OUT",
+          "backgroundColor": "#ca8a04",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "LIMITED Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "LIMITED",
+          "backgroundColor": "#16a34a",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "SOLD OUT",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "SOLD OUT",
+          "backgroundColor": "#0891b2",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "20%",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "20%",
+          "backgroundColor": "#ca8a04",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "90%",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "90%",
+          "backgroundColor": "#16a34a",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "HOT Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "HOT",
+          "backgroundColor": "#ea580c",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "LIMITED Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "LIMITED",
+          "backgroundColor": "#0891b2",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "BEST Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "BEST",
+          "backgroundColor": "#2563eb",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "SOLD OUT Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "SOLD OUT",
+          "backgroundColor": "#0891b2",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "BETA",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "BETA",
+          "backgroundColor": "#ca8a04",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "NEW Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "NEW",
+          "backgroundColor": "#ca8a04",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "PRO",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "PRO",
+          "backgroundColor": "#16a34a",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "NEW",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "NEW",
+          "backgroundColor": "#ca8a04",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "80%",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "80%",
+          "backgroundColor": "#7c3aed",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "80%",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "80%",
+          "backgroundColor": "#2563eb",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "10%",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "10%",
+          "backgroundColor": "#dc2626",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "40%",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "40%",
+          "backgroundColor": "#dc2626",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "PRO",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "PRO",
+          "backgroundColor": "#0891b2",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "100%",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "100%",
+          "backgroundColor": "#ea580c",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "PRO Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "PRO",
+          "backgroundColor": "#16a34a",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "HOT",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "HOT",
+          "backgroundColor": "#ca8a04",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "90% Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "90%",
+          "backgroundColor": "#2563eb",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "TOP Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "TOP",
+          "backgroundColor": "#0891b2",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "30%",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "30%",
+          "backgroundColor": "#475569",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "BETA",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "BETA",
+          "backgroundColor": "#16a34a",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "100% Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "100%",
+          "backgroundColor": "#dc2626",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "20% Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "20%",
+          "backgroundColor": "#7c3aed",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "10% Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "10%",
+          "backgroundColor": "#ea580c",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "90% Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "90%",
+          "backgroundColor": "#0891b2",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "20% Pill",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "20%",
+          "backgroundColor": "#2563eb",
+          "color": "#fff",
+          "borderRadius": 999,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      },
+      {
+        "label": "FREE",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "FREE",
+          "backgroundColor": "#7c3aed",
+          "color": "#fff",
+          "borderRadius": 4,
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "width": "auto",
+          "padding": "4px 8px"
+        }
+      }
+    ]
+  },
+  {
+    "category": "titles",
+    "items": [
+      {
+        "label": "TRENDING NOW",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "TRENDING NOW",
+          "color": "#16a34a",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Fantasy",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "FINAL CLEARANCE",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "FINAL CLEARANCE",
+          "color": "#d97706",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Cursive",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "AUTUMN LOOK",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "AUTUMN LOOK",
+          "color": "#2563eb",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Fantasy",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "HELLO WORLD",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "HELLO WORLD",
+          "color": "#000",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Inter",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "GRAND OPENING",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "GRAND OPENING",
+          "color": "#d97706",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Inter",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "BIG SALE",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "BIG SALE",
+          "color": "#9333ea",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Monospace",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "TOP RATED",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "TOP RATED",
+          "color": "#d97706",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Monospace",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "HELLO WORLD",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "HELLO WORLD",
+          "color": "#16a34a",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Fantasy",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "COMING SOON",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "COMING SOON",
+          "color": "#9333ea",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Monospace",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "EDITOR'S PICK",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "EDITOR'S PICK",
+          "color": "#2563eb",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Inter",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "GOOD VIBES",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "GOOD VIBES",
+          "color": "#16a34a",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Fantasy",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "WELCOME",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "WELCOME",
+          "color": "#333",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Fantasy",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "HELLO WORLD",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "HELLO WORLD",
+          "color": "#2563eb",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Monospace",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "SPRING COLLECTION",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "SPRING COLLECTION",
+          "color": "#2563eb",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Monospace",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "GOOD VIBES",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "GOOD VIBES",
+          "color": "#9333ea",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Serif",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "WINTER SALE",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "WINTER SALE",
+          "color": "#2563eb",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Cursive",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "WINTER SALE",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "WINTER SALE",
+          "color": "#333",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Serif",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "STAY TUNED",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "STAY TUNED",
+          "color": "#333",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Inter",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "DON'T MISS OUT",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "DON'T MISS OUT",
+          "color": "#333",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Serif",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "MEMBERS ONLY",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "MEMBERS ONLY",
+          "color": "#d97706",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Serif",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "HUGE SAVINGS",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "HUGE SAVINGS",
+          "color": "#d97706",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Serif",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "COMING SOON",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "COMING SOON",
+          "color": "#db2777",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Monospace",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "FINAL CLEARANCE",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "FINAL CLEARANCE",
+          "color": "#000",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Monospace",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "TOP RATED",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "TOP RATED",
+          "color": "#16a34a",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Monospace",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "EXCLUSIVE DEAL",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "EXCLUSIVE DEAL",
+          "color": "#16a34a",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Inter",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "GRAND OPENING",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "GRAND OPENING",
+          "color": "#db2777",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Cursive",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "HUGE SAVINGS",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "HUGE SAVINGS",
+          "color": "#db2777",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Serif",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "WINTER SALE",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "WINTER SALE",
+          "color": "#9333ea",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Inter",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "EDITOR'S PICK",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "EDITOR'S PICK",
+          "color": "#db2777",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Monospace",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "AUTUMN LOOK",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "AUTUMN LOOK",
+          "color": "#000",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Serif",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "AUTUMN LOOK",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "AUTUMN LOOK",
+          "color": "#16a34a",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Inter",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "TRENDING NOW",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "TRENDING NOW",
+          "color": "#000",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Cursive",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "BEST SELLER",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "BEST SELLER",
+          "color": "#000",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Cursive",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "SPRING COLLECTION",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "SPRING COLLECTION",
+          "color": "#16a34a",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Serif",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "FINAL CLEARANCE",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "FINAL CLEARANCE",
+          "color": "#db2777",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Monospace",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "GRAND OPENING",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "GRAND OPENING",
+          "color": "#9333ea",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Fantasy",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "FLASH SALE",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "FLASH SALE",
+          "color": "#db2777",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Inter",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "EDITOR'S PICK",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "EDITOR'S PICK",
+          "color": "#9333ea",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Monospace",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "WELCOME",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "WELCOME",
+          "color": "#16a34a",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Cursive",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "EXCLUSIVE DEAL",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "EXCLUSIVE DEAL",
+          "color": "#db2777",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Monospace",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "GOOD VIBES",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "GOOD VIBES",
+          "color": "#333",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Inter",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "AUTUMN LOOK",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "AUTUMN LOOK",
+          "color": "#db2777",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Fantasy",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "BIG SALE",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "BIG SALE",
+          "color": "#db2777",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Monospace",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "NEW ARRIVALS",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "NEW ARRIVALS",
+          "color": "#dc2626",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Inter",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "TRENDING NOW",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "TRENDING NOW",
+          "color": "#9333ea",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Serif",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "NEW ARRIVALS",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "NEW ARRIVALS",
+          "color": "#000",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Fantasy",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "NEW ARRIVALS",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "NEW ARRIVALS",
+          "color": "#333",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Monospace",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "BIG SALE",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "BIG SALE",
+          "color": "#16a34a",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Cursive",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "LIMITED TIME",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "LIMITED TIME",
+          "color": "#9333ea",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Monospace",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "BIG SALE",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "BIG SALE",
+          "color": "#d97706",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Monospace",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "SPRING COLLECTION",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "SPRING COLLECTION",
+          "color": "#000",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Serif",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "JOIN THE CLUB",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "JOIN THE CLUB",
+          "color": "#d97706",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Serif",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "SPECIAL OFFER",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "SPECIAL OFFER",
+          "color": "#9333ea",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Serif",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "JOIN THE CLUB",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "JOIN THE CLUB",
+          "color": "#db2777",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Fantasy",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "GOOD VIBES",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "GOOD VIBES",
+          "color": "#db2777",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Monospace",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "SUMMER VIBES",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "SUMMER VIBES",
+          "color": "#000",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Cursive",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "SPECIAL OFFER",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "SPECIAL OFFER",
+          "color": "#2563eb",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Fantasy",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "WINTER SALE",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "WINTER SALE",
+          "color": "#dc2626",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Cursive",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "SUMMER VIBES",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "SUMMER VIBES",
+          "color": "#d97706",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Cursive",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "EDITOR'S PICK",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "EDITOR'S PICK",
+          "color": "#333",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Fantasy",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "AUTUMN LOOK",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "AUTUMN LOOK",
+          "color": "#9333ea",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Cursive",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "TOP RATED",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "TOP RATED",
+          "color": "#9333ea",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Monospace",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "TRENDING NOW",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "TRENDING NOW",
+          "color": "#db2777",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Monospace",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "SPRING COLLECTION",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "SPRING COLLECTION",
+          "color": "#333",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Monospace",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "AUTUMN LOOK",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "AUTUMN LOOK",
+          "color": "#333",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Serif",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "SPRING COLLECTION",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "SPRING COLLECTION",
+          "color": "#d97706",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Cursive",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "FINAL CLEARANCE",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "FINAL CLEARANCE",
+          "color": "#16a34a",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Fantasy",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "WELCOME",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "WELCOME",
+          "color": "#db2777",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Monospace",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "SPRING COLLECTION",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "SPRING COLLECTION",
+          "color": "#dc2626",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Serif",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "COMING SOON",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "COMING SOON",
+          "color": "#dc2626",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Serif",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "FINAL CLEARANCE",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "FINAL CLEARANCE",
+          "color": "#dc2626",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Serif",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "WELCOME",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "WELCOME",
+          "color": "#dc2626",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Monospace",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "AUTUMN LOOK",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "AUTUMN LOOK",
+          "color": "#d97706",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Monospace",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "TRENDING NOW",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "TRENDING NOW",
+          "color": "#2563eb",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Fantasy",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "BACK IN STOCK",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "BACK IN STOCK",
+          "color": "#dc2626",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Fantasy",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "SPECIAL OFFER",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "SPECIAL OFFER",
+          "color": "#dc2626",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Fantasy",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "FLASH SALE",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "FLASH SALE",
+          "color": "#2563eb",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Fantasy",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "STAY TUNED",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "STAY TUNED",
+          "color": "#16a34a",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Cursive",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "BIG SALE",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "BIG SALE",
+          "color": "#dc2626",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Serif",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "STAY TUNED",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "STAY TUNED",
+          "color": "#dc2626",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Cursive",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "BEST SELLER",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "BEST SELLER",
+          "color": "#db2777",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Serif",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "MEMBERS ONLY",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "MEMBERS ONLY",
+          "color": "#000",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Monospace",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "SPECIAL OFFER",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "SPECIAL OFFER",
+          "color": "#16a34a",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Monospace",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "GRAND OPENING",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "GRAND OPENING",
+          "color": "#dc2626",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Inter",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "BACK IN STOCK",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "BACK IN STOCK",
+          "color": "#16a34a",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Monospace",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "FINAL CLEARANCE",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "FINAL CLEARANCE",
+          "color": "#333",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Cursive",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "TRENDING NOW",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "TRENDING NOW",
+          "color": "#d97706",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Inter",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "TRENDING NOW",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "TRENDING NOW",
+          "color": "#333",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Serif",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "SPECIAL OFFER",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "SPECIAL OFFER",
+          "color": "#000",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Monospace",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "DON'T MISS OUT",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "DON'T MISS OUT",
+          "color": "#000",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Monospace",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "EDITOR'S PICK",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "EDITOR'S PICK",
+          "color": "#16a34a",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Inter",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "BACK IN STOCK",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "BACK IN STOCK",
+          "color": "#d97706",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Inter",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "MEMBERS ONLY",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "MEMBERS ONLY",
+          "color": "#dc2626",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Monospace",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "COMING SOON",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "COMING SOON",
+          "color": "#16a34a",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Serif",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "GOOD VIBES",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "GOOD VIBES",
+          "color": "#d97706",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Fantasy",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "COMING SOON",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "COMING SOON",
+          "color": "#000",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Cursive",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "EXCLUSIVE DEAL",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "EXCLUSIVE DEAL",
+          "color": "#9333ea",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Inter",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "SPECIAL OFFER",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "SPECIAL OFFER",
+          "color": "#d97706",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Cursive",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "EXCLUSIVE DEAL",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "EXCLUSIVE DEAL",
+          "color": "#dc2626",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Serif",
+          "textTransform": "uppercase"
+        }
+      },
+      {
+        "label": "MEMBERS ONLY",
+        "previewType": "css",
+        "type": "text",
+        "payload": {
+          "content": "MEMBERS ONLY",
+          "color": "#16a34a",
+          "fontSize": 32,
+          "fontWeight": "900",
+          "textAlign": "center",
+          "fontFamily": "Monospace",
+          "textTransform": "uppercase"
+        }
+      }
+    ]
+  }
+]

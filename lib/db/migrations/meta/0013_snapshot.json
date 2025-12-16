@@ -1,6 +1,6 @@
 {
-  "id": "dc4558d9-5193-4547-afd9-1a8d77c35b1d",
-  "prevId": "92a526e0-08b8-4f27-9a74-51b098962872",
+  "id": "599ded24-43b3-4aac-a5e3-48f1fb6b3161",
+  "prevId": "746ad92f-2b5c-4495-ad37-9091f0e68353",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -291,6 +291,12 @@
         "social_media_handles": {
           "name": "social_media_handles",
           "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "content_matrix": {
+          "name": "content_matrix",
+          "type": "json",
           "primaryKey": false,
           "notNull": false
         },
@@ -825,19 +831,25 @@
           "name": "html_template",
           "type": "text",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
         "css_template": {
           "name": "css_template",
           "type": "text",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
         "llm_schema": {
           "name": "llm_schema",
           "type": "json",
           "primaryKey": false,
           "notNull": true
+        },
+        "elements": {
+          "name": "elements",
+          "type": "json",
+          "primaryKey": false,
+          "notNull": false
         },
         "visual_editor_data": {
           "name": "visual_editor_data",

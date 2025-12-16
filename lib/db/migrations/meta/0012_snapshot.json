@@ -1,6 +1,6 @@
 {
-  "id": "f8dd6f3f-0ed7-42b7-b63e-c57149006d17",
-  "prevId": "b0fe8e9e-c07c-4943-943b-271f642b32ea",
+  "id": "746ad92f-2b5c-4495-ad37-9091f0e68353",
+  "prevId": "f8dd6f3f-0ed7-42b7-b63e-c57149006d17",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -294,6 +294,12 @@
           "primaryKey": false,
           "notNull": false
         },
+        "content_matrix": {
+          "name": "content_matrix",
+          "type": "json",
+          "primaryKey": false,
+          "notNull": false
+        },
         "created_at": {
           "name": "created_at",
           "type": "timestamp",
@@ -335,6 +341,91 @@
           ]
         }
       },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.generated_template_values": {
+      "name": "generated_template_values",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "template_id": {
+          "name": "template_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "values": {
+          "name": "values",
+          "type": "json",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "version": {
+          "name": "version",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "default": 1
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "generated_template_values_user_id_users_id_fk": {
+          "name": "generated_template_values_user_id_users_id_fk",
+          "tableFrom": "generated_template_values",
+          "tableTo": "users",
+          "columnsFrom": [
+            "user_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "generated_template_values_template_id_templates_id_fk": {
+          "name": "generated_template_values_template_id_templates_id_fk",
+          "tableFrom": "generated_template_values",
+          "tableTo": "templates",
+          "columnsFrom": [
+            "template_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
       "policies": {},
       "checkConstraints": {},
       "isRLSEnabled": false
@@ -754,11 +845,17 @@
           "primaryKey": false,
           "notNull": true
         },
+        "visual_editor_data": {
+          "name": "visual_editor_data",
+          "type": "json",
+          "primaryKey": false,
+          "notNull": false
+        },
         "variables": {
           "name": "variables",
           "type": "json",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
         "semantic_tags": {
           "name": "semantic_tags",

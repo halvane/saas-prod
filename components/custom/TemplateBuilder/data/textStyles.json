@@ -1,0 +1,6752 @@
+[
+  {
+    "category": "Headlines",
+    "label": "TRENDING NOW",
+    "preview": "TRENDING NOW",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#b91c1c",
+      "textTransform": "uppercase",
+      "letterSpacing": 2,
+      "lineHeight": 1.1
+    }
+  },
+  {
+    "category": "Headlines",
+    "label": "IMPORTANT",
+    "preview": "IMPORTANT",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "#000000",
+      "textTransform": "uppercase",
+      "letterSpacing": 2,
+      "lineHeight": 1.1
+    }
+  },
+  {
+    "category": "Headlines",
+    "label": "TRENDING NOW",
+    "preview": "TRENDING NOW",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Tahoma, sans-serif",
+      "fontWeight": "900",
+      "color": "#000000",
+      "textTransform": "uppercase",
+      "letterSpacing": 0,
+      "lineHeight": 1.1
+    }
+  },
+  {
+    "category": "Headlines",
+    "label": "IMPORTANT",
+    "preview": "IMPORTANT",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#1e3a8a",
+      "textTransform": "uppercase",
+      "letterSpacing": 1,
+      "lineHeight": 1.1
+    }
+  },
+  {
+    "category": "Headlines",
+    "label": "BEST SELLER",
+    "preview": "BEST SELLER",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Tahoma, sans-serif",
+      "fontWeight": "900",
+      "color": "#2d3748",
+      "textTransform": "uppercase",
+      "letterSpacing": -1,
+      "lineHeight": 1.1
+    }
+  },
+  {
+    "category": "Headlines",
+    "label": "LIMITED TIME",
+    "preview": "LIMITED TIME",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Tahoma, sans-serif",
+      "fontWeight": "900",
+      "color": "#b91c1c",
+      "textTransform": "uppercase",
+      "letterSpacing": -1,
+      "lineHeight": 1.1
+    }
+  },
+  {
+    "category": "Headlines",
+    "label": "IMPORTANT",
+    "preview": "IMPORTANT",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Tahoma, sans-serif",
+      "fontWeight": "900",
+      "color": "#1a1a1a",
+      "textTransform": "uppercase",
+      "letterSpacing": 1,
+      "lineHeight": 1.1
+    }
+  },
+  {
+    "category": "Headlines",
+    "label": "BREAKING NEWS",
+    "preview": "BREAKING NEWS",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#1a1a1a",
+      "textTransform": "uppercase",
+      "letterSpacing": 0,
+      "lineHeight": 1.1
+    }
+  },
+  {
+    "category": "Headlines",
+    "label": "UPDATE",
+    "preview": "UPDATE",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "#1a1a1a",
+      "textTransform": "uppercase",
+      "letterSpacing": 0,
+      "lineHeight": 1.1
+    }
+  },
+  {
+    "category": "Headlines",
+    "label": "HEADLINE",
+    "preview": "HEADLINE",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#000000",
+      "textTransform": "uppercase",
+      "letterSpacing": -2,
+      "lineHeight": 1.1
+    }
+  },
+  {
+    "category": "Headlines",
+    "label": "EXCLUSIVE",
+    "preview": "EXCLUSIVE",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Tahoma, sans-serif",
+      "fontWeight": "900",
+      "color": "#1a1a1a",
+      "textTransform": "uppercase",
+      "letterSpacing": -2,
+      "lineHeight": 1.1
+    }
+  },
+  {
+    "category": "Headlines",
+    "label": "NOTICE",
+    "preview": "NOTICE",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Tahoma, sans-serif",
+      "fontWeight": "900",
+      "color": "#b91c1c",
+      "textTransform": "uppercase",
+      "letterSpacing": -2,
+      "lineHeight": 1.1
+    }
+  },
+  {
+    "category": "Headlines",
+    "label": "NEW ARRIVAL",
+    "preview": "NEW ARRIVAL",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "#1a1a1a",
+      "textTransform": "uppercase",
+      "letterSpacing": 2,
+      "lineHeight": 1.1
+    }
+  },
+  {
+    "category": "Headlines",
+    "label": "DON'T MISS OUT",
+    "preview": "DON'T MISS OUT",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Tahoma, sans-serif",
+      "fontWeight": "900",
+      "color": "#b91c1c",
+      "textTransform": "uppercase",
+      "letterSpacing": 1,
+      "lineHeight": 1.1
+    }
+  },
+  {
+    "category": "Headlines",
+    "label": "UPDATE",
+    "preview": "UPDATE",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "#2d3748",
+      "textTransform": "uppercase",
+      "letterSpacing": -1,
+      "lineHeight": 1.1
+    }
+  },
+  {
+    "category": "Headlines",
+    "label": "EXCLUSIVE",
+    "preview": "EXCLUSIVE",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "#1a1a1a",
+      "textTransform": "uppercase",
+      "letterSpacing": 1,
+      "lineHeight": 1.1
+    }
+  },
+  {
+    "category": "Headlines",
+    "label": "NOTICE",
+    "preview": "NOTICE",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Tahoma, sans-serif",
+      "fontWeight": "900",
+      "color": "#b91c1c",
+      "textTransform": "uppercase",
+      "letterSpacing": 1,
+      "lineHeight": 1.1
+    }
+  },
+  {
+    "category": "Headlines",
+    "label": "TRENDING NOW",
+    "preview": "TRENDING NOW",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Verdana, sans-serif",
+      "fontWeight": "900",
+      "color": "#b91c1c",
+      "textTransform": "uppercase",
+      "letterSpacing": 1,
+      "lineHeight": 1.1
+    }
+  },
+  {
+    "category": "Headlines",
+    "label": "DON'T MISS OUT",
+    "preview": "DON'T MISS OUT",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Tahoma, sans-serif",
+      "fontWeight": "900",
+      "color": "#1a1a1a",
+      "textTransform": "uppercase",
+      "letterSpacing": 1,
+      "lineHeight": 1.1
+    }
+  },
+  {
+    "category": "Headlines",
+    "label": "BIG ANNOUNCEMENT",
+    "preview": "BIG ANNOUNCEMENT",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Verdana, sans-serif",
+      "fontWeight": "900",
+      "color": "#b91c1c",
+      "textTransform": "uppercase",
+      "letterSpacing": 0,
+      "lineHeight": 1.1
+    }
+  },
+  {
+    "category": "Headlines",
+    "label": "TOP RATED",
+    "preview": "TOP RATED",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Tahoma, sans-serif",
+      "fontWeight": "900",
+      "color": "#2d3748",
+      "textTransform": "uppercase",
+      "letterSpacing": 0,
+      "lineHeight": 1.1
+    }
+  },
+  {
+    "category": "Headlines",
+    "label": "LIMITED TIME",
+    "preview": "LIMITED TIME",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#1a1a1a",
+      "textTransform": "uppercase",
+      "letterSpacing": -2,
+      "lineHeight": 1.1
+    }
+  },
+  {
+    "category": "Headlines",
+    "label": "NEW ARRIVAL",
+    "preview": "NEW ARRIVAL",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "#1e3a8a",
+      "textTransform": "uppercase",
+      "letterSpacing": -2,
+      "lineHeight": 1.1
+    }
+  },
+  {
+    "category": "Headlines",
+    "label": "DON'T MISS OUT",
+    "preview": "DON'T MISS OUT",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Verdana, sans-serif",
+      "fontWeight": "900",
+      "color": "#000000",
+      "textTransform": "uppercase",
+      "letterSpacing": -1,
+      "lineHeight": 1.1
+    }
+  },
+  {
+    "category": "Headlines",
+    "label": "ATTENTION",
+    "preview": "ATTENTION",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "#000000",
+      "textTransform": "uppercase",
+      "letterSpacing": -1,
+      "lineHeight": 1.1
+    }
+  },
+  {
+    "category": "Headlines",
+    "label": "JUST IN",
+    "preview": "JUST IN",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Tahoma, sans-serif",
+      "fontWeight": "900",
+      "color": "#2d3748",
+      "textTransform": "uppercase",
+      "letterSpacing": 0,
+      "lineHeight": 1.1
+    }
+  },
+  {
+    "category": "Headlines",
+    "label": "UPDATE",
+    "preview": "UPDATE",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "#1a1a1a",
+      "textTransform": "uppercase",
+      "letterSpacing": 0,
+      "lineHeight": 1.1
+    }
+  },
+  {
+    "category": "Headlines",
+    "label": "BREAKING NEWS",
+    "preview": "BREAKING NEWS",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Tahoma, sans-serif",
+      "fontWeight": "900",
+      "color": "#b91c1c",
+      "textTransform": "uppercase",
+      "letterSpacing": -2,
+      "lineHeight": 1.1
+    }
+  },
+  {
+    "category": "Headlines",
+    "label": "ATTENTION",
+    "preview": "ATTENTION",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "#1e3a8a",
+      "textTransform": "uppercase",
+      "letterSpacing": 2,
+      "lineHeight": 1.1
+    }
+  },
+  {
+    "category": "Headlines",
+    "label": "NEW ARRIVAL",
+    "preview": "NEW ARRIVAL",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "#2d3748",
+      "textTransform": "uppercase",
+      "letterSpacing": -1,
+      "lineHeight": 1.1
+    }
+  },
+  {
+    "category": "Headlines",
+    "label": "EXCLUSIVE",
+    "preview": "EXCLUSIVE",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#000000",
+      "textTransform": "uppercase",
+      "letterSpacing": 0,
+      "lineHeight": 1.1
+    }
+  },
+  {
+    "category": "Headlines",
+    "label": "NEW ARRIVAL",
+    "preview": "NEW ARRIVAL",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Verdana, sans-serif",
+      "fontWeight": "900",
+      "color": "#1e3a8a",
+      "textTransform": "uppercase",
+      "letterSpacing": 2,
+      "lineHeight": 1.1
+    }
+  },
+  {
+    "category": "Headlines",
+    "label": "LIMITED TIME",
+    "preview": "LIMITED TIME",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Tahoma, sans-serif",
+      "fontWeight": "900",
+      "color": "#b91c1c",
+      "textTransform": "uppercase",
+      "letterSpacing": 1,
+      "lineHeight": 1.1
+    }
+  },
+  {
+    "category": "Headlines",
+    "label": "BREAKING NEWS",
+    "preview": "BREAKING NEWS",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Tahoma, sans-serif",
+      "fontWeight": "900",
+      "color": "#000000",
+      "textTransform": "uppercase",
+      "letterSpacing": -1,
+      "lineHeight": 1.1
+    }
+  },
+  {
+    "category": "Headlines",
+    "label": "EXCLUSIVE",
+    "preview": "EXCLUSIVE",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#1a1a1a",
+      "textTransform": "uppercase",
+      "letterSpacing": -1,
+      "lineHeight": 1.1
+    }
+  },
+  {
+    "category": "Headlines",
+    "label": "ATTENTION",
+    "preview": "ATTENTION",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#1e3a8a",
+      "textTransform": "uppercase",
+      "letterSpacing": -1,
+      "lineHeight": 1.1
+    }
+  },
+  {
+    "category": "Headlines",
+    "label": "BIG ANNOUNCEMENT",
+    "preview": "BIG ANNOUNCEMENT",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Tahoma, sans-serif",
+      "fontWeight": "900",
+      "color": "#000000",
+      "textTransform": "uppercase",
+      "letterSpacing": 0,
+      "lineHeight": 1.1
+    }
+  },
+  {
+    "category": "Headlines",
+    "label": "TRENDING NOW",
+    "preview": "TRENDING NOW",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "#000000",
+      "textTransform": "uppercase",
+      "letterSpacing": -2,
+      "lineHeight": 1.1
+    }
+  },
+  {
+    "category": "Headlines",
+    "label": "BREAKING NEWS",
+    "preview": "BREAKING NEWS",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#000000",
+      "textTransform": "uppercase",
+      "letterSpacing": 1,
+      "lineHeight": 1.1
+    }
+  },
+  {
+    "category": "Headlines",
+    "label": "NOTICE",
+    "preview": "NOTICE",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#1a1a1a",
+      "textTransform": "uppercase",
+      "letterSpacing": 2,
+      "lineHeight": 1.1
+    }
+  },
+  {
+    "category": "Headlines",
+    "label": "ATTENTION",
+    "preview": "ATTENTION",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#1e3a8a",
+      "textTransform": "uppercase",
+      "letterSpacing": 2,
+      "lineHeight": 1.1
+    }
+  },
+  {
+    "category": "Headlines",
+    "label": "JUST IN",
+    "preview": "JUST IN",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Tahoma, sans-serif",
+      "fontWeight": "900",
+      "color": "#1a1a1a",
+      "textTransform": "uppercase",
+      "letterSpacing": -2,
+      "lineHeight": 1.1
+    }
+  },
+  {
+    "category": "Headlines",
+    "label": "HEADLINE",
+    "preview": "HEADLINE",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#b91c1c",
+      "textTransform": "uppercase",
+      "letterSpacing": 1,
+      "lineHeight": 1.1
+    }
+  },
+  {
+    "category": "Headlines",
+    "label": "LIMITED TIME",
+    "preview": "LIMITED TIME",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Verdana, sans-serif",
+      "fontWeight": "900",
+      "color": "#1e3a8a",
+      "textTransform": "uppercase",
+      "letterSpacing": -2,
+      "lineHeight": 1.1
+    }
+  },
+  {
+    "category": "Headlines",
+    "label": "DON'T MISS OUT",
+    "preview": "DON'T MISS OUT",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Verdana, sans-serif",
+      "fontWeight": "900",
+      "color": "#1a1a1a",
+      "textTransform": "uppercase",
+      "letterSpacing": 2,
+      "lineHeight": 1.1
+    }
+  },
+  {
+    "category": "Headlines",
+    "label": "JUST IN",
+    "preview": "JUST IN",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Tahoma, sans-serif",
+      "fontWeight": "900",
+      "color": "#1a1a1a",
+      "textTransform": "uppercase",
+      "letterSpacing": -2,
+      "lineHeight": 1.1
+    }
+  },
+  {
+    "category": "Headlines",
+    "label": "JUST IN",
+    "preview": "JUST IN",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "#000000",
+      "textTransform": "uppercase",
+      "letterSpacing": -2,
+      "lineHeight": 1.1
+    }
+  },
+  {
+    "category": "Headlines",
+    "label": "UPDATE",
+    "preview": "UPDATE",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Tahoma, sans-serif",
+      "fontWeight": "900",
+      "color": "#b91c1c",
+      "textTransform": "uppercase",
+      "letterSpacing": 0,
+      "lineHeight": 1.1
+    }
+  },
+  {
+    "category": "Headlines",
+    "label": "DON'T MISS OUT",
+    "preview": "DON'T MISS OUT",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#1e3a8a",
+      "textTransform": "uppercase",
+      "letterSpacing": 1,
+      "lineHeight": 1.1
+    }
+  },
+  {
+    "category": "Headlines",
+    "label": "UPDATE",
+    "preview": "UPDATE",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Tahoma, sans-serif",
+      "fontWeight": "900",
+      "color": "#1a1a1a",
+      "textTransform": "uppercase",
+      "letterSpacing": 0,
+      "lineHeight": 1.1
+    }
+  },
+  {
+    "category": "Sale",
+    "label": "SALE",
+    "preview": "SALE",
+    "style": {
+      "fontSize": 72,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#eab308",
+      "textTransform": "uppercase",
+      "textShadow": "2px 2px 0px #ffffff, 4px 4px 0px #000000",
+      "transform": "rotate(-5deg)"
+    }
+  },
+  {
+    "category": "Sale",
+    "label": "HOT DEAL",
+    "preview": "HOT DEAL",
+    "style": {
+      "fontSize": 72,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#ef4444",
+      "textTransform": "uppercase",
+      "textShadow": "2px 2px 0px #ffffff, 4px 4px 0px #000000",
+      "transform": "rotate(4deg)"
+    }
+  },
+  {
+    "category": "Sale",
+    "label": "CLEARANCE",
+    "preview": "CLEARANCE",
+    "style": {
+      "fontSize": 72,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#f97316",
+      "textTransform": "uppercase",
+      "textShadow": "2px 2px 0px #ffffff, 4px 4px 0px #000000",
+      "transform": "rotate(0deg)"
+    }
+  },
+  {
+    "category": "Sale",
+    "label": "DISCOUNT",
+    "preview": "DISCOUNT",
+    "style": {
+      "fontSize": 72,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#dc2626",
+      "textTransform": "uppercase",
+      "textShadow": "2px 2px 0px #ffffff, 4px 4px 0px #000000",
+      "transform": "rotate(-5deg)"
+    }
+  },
+  {
+    "category": "Sale",
+    "label": "DISCOUNT",
+    "preview": "DISCOUNT",
+    "style": {
+      "fontSize": 72,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#f97316",
+      "textTransform": "uppercase",
+      "textShadow": "2px 2px 0px #ffffff, 4px 4px 0px #000000",
+      "transform": "rotate(-2deg)"
+    }
+  },
+  {
+    "category": "Sale",
+    "label": "FLASH SALE",
+    "preview": "FLASH SALE",
+    "style": {
+      "fontSize": 72,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#f97316",
+      "textTransform": "uppercase",
+      "textShadow": "2px 2px 0px #ffffff, 4px 4px 0px #000000",
+      "transform": "rotate(4deg)"
+    }
+  },
+  {
+    "category": "Sale",
+    "label": "BUY 1 GET 1",
+    "preview": "BUY 1 GET 1",
+    "style": {
+      "fontSize": 72,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#ef4444",
+      "textTransform": "uppercase",
+      "textShadow": "2px 2px 0px #ffffff, 4px 4px 0px #000000",
+      "transform": "rotate(-1deg)"
+    }
+  },
+  {
+    "category": "Sale",
+    "label": "BUY 1 GET 1",
+    "preview": "BUY 1 GET 1",
+    "style": {
+      "fontSize": 72,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#dc2626",
+      "textTransform": "uppercase",
+      "textShadow": "2px 2px 0px #ffffff, 4px 4px 0px #000000",
+      "transform": "rotate(-1deg)"
+    }
+  },
+  {
+    "category": "Sale",
+    "label": "BUY 1 GET 1",
+    "preview": "BUY 1 GET 1",
+    "style": {
+      "fontSize": 72,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#dc2626",
+      "textTransform": "uppercase",
+      "textShadow": "2px 2px 0px #ffffff, 4px 4px 0px #000000",
+      "transform": "rotate(-1deg)"
+    }
+  },
+  {
+    "category": "Sale",
+    "label": "PROMO",
+    "preview": "PROMO",
+    "style": {
+      "fontSize": 72,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#f97316",
+      "textTransform": "uppercase",
+      "textShadow": "2px 2px 0px #ffffff, 4px 4px 0px #000000",
+      "transform": "rotate(5deg)"
+    }
+  },
+  {
+    "category": "Sale",
+    "label": "CLEARANCE",
+    "preview": "CLEARANCE",
+    "style": {
+      "fontSize": 72,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#f97316",
+      "textTransform": "uppercase",
+      "textShadow": "2px 2px 0px #ffffff, 4px 4px 0px #000000",
+      "transform": "rotate(1deg)"
+    }
+  },
+  {
+    "category": "Sale",
+    "label": "LIMITED OFFER",
+    "preview": "LIMITED OFFER",
+    "style": {
+      "fontSize": 72,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#ef4444",
+      "textTransform": "uppercase",
+      "textShadow": "2px 2px 0px #ffffff, 4px 4px 0px #000000",
+      "transform": "rotate(4deg)"
+    }
+  },
+  {
+    "category": "Sale",
+    "label": "PROMO",
+    "preview": "PROMO",
+    "style": {
+      "fontSize": 72,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#f97316",
+      "textTransform": "uppercase",
+      "textShadow": "2px 2px 0px #ffffff, 4px 4px 0px #000000",
+      "transform": "rotate(5deg)"
+    }
+  },
+  {
+    "category": "Sale",
+    "label": "BUY 1 GET 1",
+    "preview": "BUY 1 GET 1",
+    "style": {
+      "fontSize": 72,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#ef4444",
+      "textTransform": "uppercase",
+      "textShadow": "2px 2px 0px #ffffff, 4px 4px 0px #000000",
+      "transform": "rotate(5deg)"
+    }
+  },
+  {
+    "category": "Sale",
+    "label": "SALE",
+    "preview": "SALE",
+    "style": {
+      "fontSize": 72,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#ef4444",
+      "textTransform": "uppercase",
+      "textShadow": "2px 2px 0px #ffffff, 4px 4px 0px #000000",
+      "transform": "rotate(-2deg)"
+    }
+  },
+  {
+    "category": "Sale",
+    "label": "FLASH SALE",
+    "preview": "FLASH SALE",
+    "style": {
+      "fontSize": 72,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#ef4444",
+      "textTransform": "uppercase",
+      "textShadow": "2px 2px 0px #ffffff, 4px 4px 0px #000000",
+      "transform": "rotate(3deg)"
+    }
+  },
+  {
+    "category": "Sale",
+    "label": "DISCOUNT",
+    "preview": "DISCOUNT",
+    "style": {
+      "fontSize": 72,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#ef4444",
+      "textTransform": "uppercase",
+      "textShadow": "2px 2px 0px #ffffff, 4px 4px 0px #000000",
+      "transform": "rotate(0deg)"
+    }
+  },
+  {
+    "category": "Sale",
+    "label": "FINAL CALL",
+    "preview": "FINAL CALL",
+    "style": {
+      "fontSize": 72,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#dc2626",
+      "textTransform": "uppercase",
+      "textShadow": "2px 2px 0px #ffffff, 4px 4px 0px #000000",
+      "transform": "rotate(4deg)"
+    }
+  },
+  {
+    "category": "Sale",
+    "label": "DEAL",
+    "preview": "DEAL",
+    "style": {
+      "fontSize": 72,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#ef4444",
+      "textTransform": "uppercase",
+      "textShadow": "2px 2px 0px #ffffff, 4px 4px 0px #000000",
+      "transform": "rotate(2deg)"
+    }
+  },
+  {
+    "category": "Sale",
+    "label": "LIMITED OFFER",
+    "preview": "LIMITED OFFER",
+    "style": {
+      "fontSize": 72,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#f97316",
+      "textTransform": "uppercase",
+      "textShadow": "2px 2px 0px #ffffff, 4px 4px 0px #000000",
+      "transform": "rotate(5deg)"
+    }
+  },
+  {
+    "category": "Sale",
+    "label": "FINAL CALL",
+    "preview": "FINAL CALL",
+    "style": {
+      "fontSize": 72,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#f97316",
+      "textTransform": "uppercase",
+      "textShadow": "2px 2px 0px #ffffff, 4px 4px 0px #000000",
+      "transform": "rotate(1deg)"
+    }
+  },
+  {
+    "category": "Sale",
+    "label": "HUGE SAVINGS",
+    "preview": "HUGE SAVINGS",
+    "style": {
+      "fontSize": 72,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#dc2626",
+      "textTransform": "uppercase",
+      "textShadow": "2px 2px 0px #ffffff, 4px 4px 0px #000000",
+      "transform": "rotate(-3deg)"
+    }
+  },
+  {
+    "category": "Sale",
+    "label": "DISCOUNT",
+    "preview": "DISCOUNT",
+    "style": {
+      "fontSize": 72,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#eab308",
+      "textTransform": "uppercase",
+      "textShadow": "2px 2px 0px #ffffff, 4px 4px 0px #000000",
+      "transform": "rotate(-3deg)"
+    }
+  },
+  {
+    "category": "Sale",
+    "label": "LIMITED OFFER",
+    "preview": "LIMITED OFFER",
+    "style": {
+      "fontSize": 72,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#ef4444",
+      "textTransform": "uppercase",
+      "textShadow": "2px 2px 0px #ffffff, 4px 4px 0px #000000",
+      "transform": "rotate(5deg)"
+    }
+  },
+  {
+    "category": "Sale",
+    "label": "BEST PRICE",
+    "preview": "BEST PRICE",
+    "style": {
+      "fontSize": 72,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#dc2626",
+      "textTransform": "uppercase",
+      "textShadow": "2px 2px 0px #ffffff, 4px 4px 0px #000000",
+      "transform": "rotate(5deg)"
+    }
+  },
+  {
+    "category": "Sale",
+    "label": "DISCOUNT",
+    "preview": "DISCOUNT",
+    "style": {
+      "fontSize": 72,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#f97316",
+      "textTransform": "uppercase",
+      "textShadow": "2px 2px 0px #ffffff, 4px 4px 0px #000000",
+      "transform": "rotate(-2deg)"
+    }
+  },
+  {
+    "category": "Sale",
+    "label": "CLEARANCE",
+    "preview": "CLEARANCE",
+    "style": {
+      "fontSize": 72,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#f97316",
+      "textTransform": "uppercase",
+      "textShadow": "2px 2px 0px #ffffff, 4px 4px 0px #000000",
+      "transform": "rotate(-3deg)"
+    }
+  },
+  {
+    "category": "Sale",
+    "label": "BEST PRICE",
+    "preview": "BEST PRICE",
+    "style": {
+      "fontSize": 72,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#f97316",
+      "textTransform": "uppercase",
+      "textShadow": "2px 2px 0px #ffffff, 4px 4px 0px #000000",
+      "transform": "rotate(1deg)"
+    }
+  },
+  {
+    "category": "Sale",
+    "label": "FINAL CALL",
+    "preview": "FINAL CALL",
+    "style": {
+      "fontSize": 72,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#f97316",
+      "textTransform": "uppercase",
+      "textShadow": "2px 2px 0px #ffffff, 4px 4px 0px #000000",
+      "transform": "rotate(-1deg)"
+    }
+  },
+  {
+    "category": "Sale",
+    "label": "SAVE BIG",
+    "preview": "SAVE BIG",
+    "style": {
+      "fontSize": 72,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#dc2626",
+      "textTransform": "uppercase",
+      "textShadow": "2px 2px 0px #ffffff, 4px 4px 0px #000000",
+      "transform": "rotate(-1deg)"
+    }
+  },
+  {
+    "category": "Sale",
+    "label": "PROMO",
+    "preview": "PROMO",
+    "style": {
+      "fontSize": 72,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#f97316",
+      "textTransform": "uppercase",
+      "textShadow": "2px 2px 0px #ffffff, 4px 4px 0px #000000",
+      "transform": "rotate(0deg)"
+    }
+  },
+  {
+    "category": "Sale",
+    "label": "FINAL CALL",
+    "preview": "FINAL CALL",
+    "style": {
+      "fontSize": 72,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#eab308",
+      "textTransform": "uppercase",
+      "textShadow": "2px 2px 0px #ffffff, 4px 4px 0px #000000",
+      "transform": "rotate(3deg)"
+    }
+  },
+  {
+    "category": "Sale",
+    "label": "HUGE SAVINGS",
+    "preview": "HUGE SAVINGS",
+    "style": {
+      "fontSize": 72,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#eab308",
+      "textTransform": "uppercase",
+      "textShadow": "2px 2px 0px #ffffff, 4px 4px 0px #000000",
+      "transform": "rotate(-5deg)"
+    }
+  },
+  {
+    "category": "Sale",
+    "label": "CLEARANCE",
+    "preview": "CLEARANCE",
+    "style": {
+      "fontSize": 72,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#eab308",
+      "textTransform": "uppercase",
+      "textShadow": "2px 2px 0px #ffffff, 4px 4px 0px #000000",
+      "transform": "rotate(3deg)"
+    }
+  },
+  {
+    "category": "Sale",
+    "label": "OFFER",
+    "preview": "OFFER",
+    "style": {
+      "fontSize": 72,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#ef4444",
+      "textTransform": "uppercase",
+      "textShadow": "2px 2px 0px #ffffff, 4px 4px 0px #000000",
+      "transform": "rotate(4deg)"
+    }
+  },
+  {
+    "category": "Sale",
+    "label": "CLEARANCE",
+    "preview": "CLEARANCE",
+    "style": {
+      "fontSize": 72,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#f97316",
+      "textTransform": "uppercase",
+      "textShadow": "2px 2px 0px #ffffff, 4px 4px 0px #000000",
+      "transform": "rotate(-4deg)"
+    }
+  },
+  {
+    "category": "Sale",
+    "label": "CLEARANCE",
+    "preview": "CLEARANCE",
+    "style": {
+      "fontSize": 72,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#ef4444",
+      "textTransform": "uppercase",
+      "textShadow": "2px 2px 0px #ffffff, 4px 4px 0px #000000",
+      "transform": "rotate(3deg)"
+    }
+  },
+  {
+    "category": "Sale",
+    "label": "SALE",
+    "preview": "SALE",
+    "style": {
+      "fontSize": 72,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#ef4444",
+      "textTransform": "uppercase",
+      "textShadow": "2px 2px 0px #ffffff, 4px 4px 0px #000000",
+      "transform": "rotate(-3deg)"
+    }
+  },
+  {
+    "category": "Sale",
+    "label": "50% OFF",
+    "preview": "50% OFF",
+    "style": {
+      "fontSize": 72,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#f97316",
+      "textTransform": "uppercase",
+      "textShadow": "2px 2px 0px #ffffff, 4px 4px 0px #000000",
+      "transform": "rotate(-2deg)"
+    }
+  },
+  {
+    "category": "Sale",
+    "label": "SAVE BIG",
+    "preview": "SAVE BIG",
+    "style": {
+      "fontSize": 72,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#f97316",
+      "textTransform": "uppercase",
+      "textShadow": "2px 2px 0px #ffffff, 4px 4px 0px #000000",
+      "transform": "rotate(2deg)"
+    }
+  },
+  {
+    "category": "Sale",
+    "label": "DEAL",
+    "preview": "DEAL",
+    "style": {
+      "fontSize": 72,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#ef4444",
+      "textTransform": "uppercase",
+      "textShadow": "2px 2px 0px #ffffff, 4px 4px 0px #000000",
+      "transform": "rotate(2deg)"
+    }
+  },
+  {
+    "category": "Sale",
+    "label": "SAVE BIG",
+    "preview": "SAVE BIG",
+    "style": {
+      "fontSize": 72,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#ef4444",
+      "textTransform": "uppercase",
+      "textShadow": "2px 2px 0px #ffffff, 4px 4px 0px #000000",
+      "transform": "rotate(5deg)"
+    }
+  },
+  {
+    "category": "Sale",
+    "label": "50% OFF",
+    "preview": "50% OFF",
+    "style": {
+      "fontSize": 72,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#eab308",
+      "textTransform": "uppercase",
+      "textShadow": "2px 2px 0px #ffffff, 4px 4px 0px #000000",
+      "transform": "rotate(-4deg)"
+    }
+  },
+  {
+    "category": "Sale",
+    "label": "DEAL",
+    "preview": "DEAL",
+    "style": {
+      "fontSize": 72,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#f97316",
+      "textTransform": "uppercase",
+      "textShadow": "2px 2px 0px #ffffff, 4px 4px 0px #000000",
+      "transform": "rotate(5deg)"
+    }
+  },
+  {
+    "category": "Sale",
+    "label": "OFFER",
+    "preview": "OFFER",
+    "style": {
+      "fontSize": 72,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#ef4444",
+      "textTransform": "uppercase",
+      "textShadow": "2px 2px 0px #ffffff, 4px 4px 0px #000000",
+      "transform": "rotate(1deg)"
+    }
+  },
+  {
+    "category": "Sale",
+    "label": "FINAL CALL",
+    "preview": "FINAL CALL",
+    "style": {
+      "fontSize": 72,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#f97316",
+      "textTransform": "uppercase",
+      "textShadow": "2px 2px 0px #ffffff, 4px 4px 0px #000000",
+      "transform": "rotate(1deg)"
+    }
+  },
+  {
+    "category": "Sale",
+    "label": "OFFER",
+    "preview": "OFFER",
+    "style": {
+      "fontSize": 72,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#dc2626",
+      "textTransform": "uppercase",
+      "textShadow": "2px 2px 0px #ffffff, 4px 4px 0px #000000",
+      "transform": "rotate(4deg)"
+    }
+  },
+  {
+    "category": "Sale",
+    "label": "DEAL",
+    "preview": "DEAL",
+    "style": {
+      "fontSize": 72,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#f97316",
+      "textTransform": "uppercase",
+      "textShadow": "2px 2px 0px #ffffff, 4px 4px 0px #000000",
+      "transform": "rotate(-1deg)"
+    }
+  },
+  {
+    "category": "Sale",
+    "label": "BEST PRICE",
+    "preview": "BEST PRICE",
+    "style": {
+      "fontSize": 72,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#dc2626",
+      "textTransform": "uppercase",
+      "textShadow": "2px 2px 0px #ffffff, 4px 4px 0px #000000",
+      "transform": "rotate(0deg)"
+    }
+  },
+  {
+    "category": "Sale",
+    "label": "OFFER",
+    "preview": "OFFER",
+    "style": {
+      "fontSize": 72,
+      "fontFamily": "Arial Black, sans-serif",
+      "fontWeight": "900",
+      "color": "#ef4444",
+      "textTransform": "uppercase",
+      "textShadow": "2px 2px 0px #ffffff, 4px 4px 0px #000000",
+      "transform": "rotate(-1deg)"
+    }
+  },
+  {
+    "category": "Luxury",
+    "label": "Finest Quality",
+    "preview": "Finest Quality",
+    "style": {
+      "fontSize": 54,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "400",
+      "fontStyle": "italic",
+      "color": "#C0C0C0",
+      "letterSpacing": 1,
+      "textShadow": "1px 1px 2px rgba(0,0,0,0.1)"
+    }
+  },
+  {
+    "category": "Luxury",
+    "label": "Sophisticated",
+    "preview": "Sophisticated",
+    "style": {
+      "fontSize": 54,
+      "fontFamily": "Times New Roman, serif",
+      "fontWeight": "400",
+      "fontStyle": "normal",
+      "color": "#2C3E50",
+      "letterSpacing": 4,
+      "textShadow": "1px 1px 2px rgba(0,0,0,0.1)"
+    }
+  },
+  {
+    "category": "Luxury",
+    "label": "Finest Quality",
+    "preview": "Finest Quality",
+    "style": {
+      "fontSize": 54,
+      "fontFamily": "Palatino, serif",
+      "fontWeight": "400",
+      "fontStyle": "italic",
+      "color": "#000000",
+      "letterSpacing": 4,
+      "textShadow": "1px 1px 2px rgba(0,0,0,0.1)"
+    }
+  },
+  {
+    "category": "Luxury",
+    "label": "Elite",
+    "preview": "Elite",
+    "style": {
+      "fontSize": 54,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "400",
+      "fontStyle": "italic",
+      "color": "#000000",
+      "letterSpacing": 2,
+      "textShadow": "1px 1px 2px rgba(0,0,0,0.1)"
+    }
+  },
+  {
+    "category": "Luxury",
+    "label": "Signature",
+    "preview": "Signature",
+    "style": {
+      "fontSize": 54,
+      "fontFamily": "Palatino, serif",
+      "fontWeight": "400",
+      "fontStyle": "italic",
+      "color": "#800020",
+      "letterSpacing": 4,
+      "textShadow": "1px 1px 2px rgba(0,0,0,0.1)"
+    }
+  },
+  {
+    "category": "Luxury",
+    "label": "Prestige",
+    "preview": "Prestige",
+    "style": {
+      "fontSize": 54,
+      "fontFamily": "Palatino, serif",
+      "fontWeight": "400",
+      "fontStyle": "normal",
+      "color": "#800020",
+      "letterSpacing": 1,
+      "textShadow": "1px 1px 2px rgba(0,0,0,0.1)"
+    }
+  },
+  {
+    "category": "Luxury",
+    "label": "Collection",
+    "preview": "Collection",
+    "style": {
+      "fontSize": 54,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "400",
+      "fontStyle": "italic",
+      "color": "#C0C0C0",
+      "letterSpacing": 4,
+      "textShadow": "1px 1px 2px rgba(0,0,0,0.1)"
+    }
+  },
+  {
+    "category": "Luxury",
+    "label": "Collection",
+    "preview": "Collection",
+    "style": {
+      "fontSize": 54,
+      "fontFamily": "Palatino, serif",
+      "fontWeight": "400",
+      "fontStyle": "italic",
+      "color": "#C0C0C0",
+      "letterSpacing": 3,
+      "textShadow": "1px 1px 2px rgba(0,0,0,0.1)"
+    }
+  },
+  {
+    "category": "Luxury",
+    "label": "Refined",
+    "preview": "Refined",
+    "style": {
+      "fontSize": 54,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "400",
+      "fontStyle": "italic",
+      "color": "#C0C0C0",
+      "letterSpacing": 4,
+      "textShadow": "1px 1px 2px rgba(0,0,0,0.1)"
+    }
+  },
+  {
+    "category": "Luxury",
+    "label": "Exclusive",
+    "preview": "Exclusive",
+    "style": {
+      "fontSize": 54,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "400",
+      "fontStyle": "italic",
+      "color": "#2C3E50",
+      "letterSpacing": 4,
+      "textShadow": "1px 1px 2px rgba(0,0,0,0.1)"
+    }
+  },
+  {
+    "category": "Luxury",
+    "label": "Grandeur",
+    "preview": "Grandeur",
+    "style": {
+      "fontSize": 54,
+      "fontFamily": "Palatino, serif",
+      "fontWeight": "400",
+      "fontStyle": "italic",
+      "color": "#2C3E50",
+      "letterSpacing": 4,
+      "textShadow": "1px 1px 2px rgba(0,0,0,0.1)"
+    }
+  },
+  {
+    "category": "Luxury",
+    "label": "Elite",
+    "preview": "Elite",
+    "style": {
+      "fontSize": 54,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "400",
+      "fontStyle": "normal",
+      "color": "#2C3E50",
+      "letterSpacing": 4,
+      "textShadow": "1px 1px 2px rgba(0,0,0,0.1)"
+    }
+  },
+  {
+    "category": "Luxury",
+    "label": "Premium",
+    "preview": "Premium",
+    "style": {
+      "fontSize": 54,
+      "fontFamily": "Palatino, serif",
+      "fontWeight": "400",
+      "fontStyle": "normal",
+      "color": "#000000",
+      "letterSpacing": 4,
+      "textShadow": "1px 1px 2px rgba(0,0,0,0.1)"
+    }
+  },
+  {
+    "category": "Luxury",
+    "label": "Premium",
+    "preview": "Premium",
+    "style": {
+      "fontSize": 54,
+      "fontFamily": "Palatino, serif",
+      "fontWeight": "400",
+      "fontStyle": "italic",
+      "color": "#D4AF37",
+      "letterSpacing": 4,
+      "textShadow": "1px 1px 2px rgba(0,0,0,0.1)"
+    }
+  },
+  {
+    "category": "Luxury",
+    "label": "Collection",
+    "preview": "Collection",
+    "style": {
+      "fontSize": 54,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "400",
+      "fontStyle": "normal",
+      "color": "#D4AF37",
+      "letterSpacing": 3,
+      "textShadow": "1px 1px 2px rgba(0,0,0,0.1)"
+    }
+  },
+  {
+    "category": "Luxury",
+    "label": "Premium",
+    "preview": "Premium",
+    "style": {
+      "fontSize": 54,
+      "fontFamily": "Times New Roman, serif",
+      "fontWeight": "400",
+      "fontStyle": "italic",
+      "color": "#800020",
+      "letterSpacing": 4,
+      "textShadow": "1px 1px 2px rgba(0,0,0,0.1)"
+    }
+  },
+  {
+    "category": "Luxury",
+    "label": "Refined",
+    "preview": "Refined",
+    "style": {
+      "fontSize": 54,
+      "fontFamily": "Times New Roman, serif",
+      "fontWeight": "400",
+      "fontStyle": "normal",
+      "color": "#C0C0C0",
+      "letterSpacing": 3,
+      "textShadow": "1px 1px 2px rgba(0,0,0,0.1)"
+    }
+  },
+  {
+    "category": "Luxury",
+    "label": "Premium",
+    "preview": "Premium",
+    "style": {
+      "fontSize": 54,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "400",
+      "fontStyle": "normal",
+      "color": "#000000",
+      "letterSpacing": 1,
+      "textShadow": "1px 1px 2px rgba(0,0,0,0.1)"
+    }
+  },
+  {
+    "category": "Luxury",
+    "label": "Opulence",
+    "preview": "Opulence",
+    "style": {
+      "fontSize": 54,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "400",
+      "fontStyle": "italic",
+      "color": "#D4AF37",
+      "letterSpacing": 4,
+      "textShadow": "1px 1px 2px rgba(0,0,0,0.1)"
+    }
+  },
+  {
+    "category": "Luxury",
+    "label": "Premium",
+    "preview": "Premium",
+    "style": {
+      "fontSize": 54,
+      "fontFamily": "Palatino, serif",
+      "fontWeight": "400",
+      "fontStyle": "normal",
+      "color": "#2C3E50",
+      "letterSpacing": 4,
+      "textShadow": "1px 1px 2px rgba(0,0,0,0.1)"
+    }
+  },
+  {
+    "category": "Luxury",
+    "label": "Exclusive",
+    "preview": "Exclusive",
+    "style": {
+      "fontSize": 54,
+      "fontFamily": "Times New Roman, serif",
+      "fontWeight": "400",
+      "fontStyle": "normal",
+      "color": "#C0C0C0",
+      "letterSpacing": 4,
+      "textShadow": "1px 1px 2px rgba(0,0,0,0.1)"
+    }
+  },
+  {
+    "category": "Luxury",
+    "label": "Premium",
+    "preview": "Premium",
+    "style": {
+      "fontSize": 54,
+      "fontFamily": "Palatino, serif",
+      "fontWeight": "400",
+      "fontStyle": "normal",
+      "color": "#000000",
+      "letterSpacing": 4,
+      "textShadow": "1px 1px 2px rgba(0,0,0,0.1)"
+    }
+  },
+  {
+    "category": "Luxury",
+    "label": "Exclusive",
+    "preview": "Exclusive",
+    "style": {
+      "fontSize": 54,
+      "fontFamily": "Times New Roman, serif",
+      "fontWeight": "400",
+      "fontStyle": "italic",
+      "color": "#2C3E50",
+      "letterSpacing": 1,
+      "textShadow": "1px 1px 2px rgba(0,0,0,0.1)"
+    }
+  },
+  {
+    "category": "Luxury",
+    "label": "Exclusive",
+    "preview": "Exclusive",
+    "style": {
+      "fontSize": 54,
+      "fontFamily": "Palatino, serif",
+      "fontWeight": "400",
+      "fontStyle": "normal",
+      "color": "#D4AF37",
+      "letterSpacing": 2,
+      "textShadow": "1px 1px 2px rgba(0,0,0,0.1)"
+    }
+  },
+  {
+    "category": "Luxury",
+    "label": "Signature",
+    "preview": "Signature",
+    "style": {
+      "fontSize": 54,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "400",
+      "fontStyle": "italic",
+      "color": "#C0C0C0",
+      "letterSpacing": 3,
+      "textShadow": "1px 1px 2px rgba(0,0,0,0.1)"
+    }
+  },
+  {
+    "category": "Luxury",
+    "label": "Timeless",
+    "preview": "Timeless",
+    "style": {
+      "fontSize": 54,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "400",
+      "fontStyle": "italic",
+      "color": "#D4AF37",
+      "letterSpacing": 3,
+      "textShadow": "1px 1px 2px rgba(0,0,0,0.1)"
+    }
+  },
+  {
+    "category": "Luxury",
+    "label": "Elite",
+    "preview": "Elite",
+    "style": {
+      "fontSize": 54,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "400",
+      "fontStyle": "italic",
+      "color": "#2C3E50",
+      "letterSpacing": 1,
+      "textShadow": "1px 1px 2px rgba(0,0,0,0.1)"
+    }
+  },
+  {
+    "category": "Luxury",
+    "label": "Elegant",
+    "preview": "Elegant",
+    "style": {
+      "fontSize": 54,
+      "fontFamily": "Palatino, serif",
+      "fontWeight": "400",
+      "fontStyle": "italic",
+      "color": "#800020",
+      "letterSpacing": 4,
+      "textShadow": "1px 1px 2px rgba(0,0,0,0.1)"
+    }
+  },
+  {
+    "category": "Luxury",
+    "label": "Elegant",
+    "preview": "Elegant",
+    "style": {
+      "fontSize": 54,
+      "fontFamily": "Times New Roman, serif",
+      "fontWeight": "400",
+      "fontStyle": "italic",
+      "color": "#2C3E50",
+      "letterSpacing": 1,
+      "textShadow": "1px 1px 2px rgba(0,0,0,0.1)"
+    }
+  },
+  {
+    "category": "Luxury",
+    "label": "Finest Quality",
+    "preview": "Finest Quality",
+    "style": {
+      "fontSize": 54,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "400",
+      "fontStyle": "normal",
+      "color": "#000000",
+      "letterSpacing": 3,
+      "textShadow": "1px 1px 2px rgba(0,0,0,0.1)"
+    }
+  },
+  {
+    "category": "Luxury",
+    "label": "Timeless",
+    "preview": "Timeless",
+    "style": {
+      "fontSize": 54,
+      "fontFamily": "Palatino, serif",
+      "fontWeight": "400",
+      "fontStyle": "normal",
+      "color": "#2C3E50",
+      "letterSpacing": 4,
+      "textShadow": "1px 1px 2px rgba(0,0,0,0.1)"
+    }
+  },
+  {
+    "category": "Luxury",
+    "label": "Opulence",
+    "preview": "Opulence",
+    "style": {
+      "fontSize": 54,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "400",
+      "fontStyle": "normal",
+      "color": "#D4AF37",
+      "letterSpacing": 1,
+      "textShadow": "1px 1px 2px rgba(0,0,0,0.1)"
+    }
+  },
+  {
+    "category": "Luxury",
+    "label": "Sophisticated",
+    "preview": "Sophisticated",
+    "style": {
+      "fontSize": 54,
+      "fontFamily": "Times New Roman, serif",
+      "fontWeight": "400",
+      "fontStyle": "normal",
+      "color": "#D4AF37",
+      "letterSpacing": 1,
+      "textShadow": "1px 1px 2px rgba(0,0,0,0.1)"
+    }
+  },
+  {
+    "category": "Luxury",
+    "label": "Elite",
+    "preview": "Elite",
+    "style": {
+      "fontSize": 54,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "400",
+      "fontStyle": "normal",
+      "color": "#C0C0C0",
+      "letterSpacing": 1,
+      "textShadow": "1px 1px 2px rgba(0,0,0,0.1)"
+    }
+  },
+  {
+    "category": "Luxury",
+    "label": "Opulence",
+    "preview": "Opulence",
+    "style": {
+      "fontSize": 54,
+      "fontFamily": "Palatino, serif",
+      "fontWeight": "400",
+      "fontStyle": "normal",
+      "color": "#D4AF37",
+      "letterSpacing": 2,
+      "textShadow": "1px 1px 2px rgba(0,0,0,0.1)"
+    }
+  },
+  {
+    "category": "Luxury",
+    "label": "Premium",
+    "preview": "Premium",
+    "style": {
+      "fontSize": 54,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "400",
+      "fontStyle": "normal",
+      "color": "#2C3E50",
+      "letterSpacing": 1,
+      "textShadow": "1px 1px 2px rgba(0,0,0,0.1)"
+    }
+  },
+  {
+    "category": "Luxury",
+    "label": "Elite",
+    "preview": "Elite",
+    "style": {
+      "fontSize": 54,
+      "fontFamily": "Palatino, serif",
+      "fontWeight": "400",
+      "fontStyle": "normal",
+      "color": "#C0C0C0",
+      "letterSpacing": 1,
+      "textShadow": "1px 1px 2px rgba(0,0,0,0.1)"
+    }
+  },
+  {
+    "category": "Luxury",
+    "label": "Finest Quality",
+    "preview": "Finest Quality",
+    "style": {
+      "fontSize": 54,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "400",
+      "fontStyle": "italic",
+      "color": "#C0C0C0",
+      "letterSpacing": 4,
+      "textShadow": "1px 1px 2px rgba(0,0,0,0.1)"
+    }
+  },
+  {
+    "category": "Luxury",
+    "label": "Elite",
+    "preview": "Elite",
+    "style": {
+      "fontSize": 54,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "400",
+      "fontStyle": "normal",
+      "color": "#000000",
+      "letterSpacing": 4,
+      "textShadow": "1px 1px 2px rgba(0,0,0,0.1)"
+    }
+  },
+  {
+    "category": "Luxury",
+    "label": "Refined",
+    "preview": "Refined",
+    "style": {
+      "fontSize": 54,
+      "fontFamily": "Times New Roman, serif",
+      "fontWeight": "400",
+      "fontStyle": "italic",
+      "color": "#C0C0C0",
+      "letterSpacing": 3,
+      "textShadow": "1px 1px 2px rgba(0,0,0,0.1)"
+    }
+  },
+  {
+    "category": "Luxury",
+    "label": "Opulence",
+    "preview": "Opulence",
+    "style": {
+      "fontSize": 54,
+      "fontFamily": "Times New Roman, serif",
+      "fontWeight": "400",
+      "fontStyle": "italic",
+      "color": "#000000",
+      "letterSpacing": 4,
+      "textShadow": "1px 1px 2px rgba(0,0,0,0.1)"
+    }
+  },
+  {
+    "category": "Luxury",
+    "label": "Sophisticated",
+    "preview": "Sophisticated",
+    "style": {
+      "fontSize": 54,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "400",
+      "fontStyle": "italic",
+      "color": "#800020",
+      "letterSpacing": 4,
+      "textShadow": "1px 1px 2px rgba(0,0,0,0.1)"
+    }
+  },
+  {
+    "category": "Luxury",
+    "label": "Premium",
+    "preview": "Premium",
+    "style": {
+      "fontSize": 54,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "400",
+      "fontStyle": "normal",
+      "color": "#C0C0C0",
+      "letterSpacing": 2,
+      "textShadow": "1px 1px 2px rgba(0,0,0,0.1)"
+    }
+  },
+  {
+    "category": "Luxury",
+    "label": "Boutique",
+    "preview": "Boutique",
+    "style": {
+      "fontSize": 54,
+      "fontFamily": "Times New Roman, serif",
+      "fontWeight": "400",
+      "fontStyle": "normal",
+      "color": "#800020",
+      "letterSpacing": 3,
+      "textShadow": "1px 1px 2px rgba(0,0,0,0.1)"
+    }
+  },
+  {
+    "category": "Luxury",
+    "label": "Exclusive",
+    "preview": "Exclusive",
+    "style": {
+      "fontSize": 54,
+      "fontFamily": "Palatino, serif",
+      "fontWeight": "400",
+      "fontStyle": "normal",
+      "color": "#D4AF37",
+      "letterSpacing": 1,
+      "textShadow": "1px 1px 2px rgba(0,0,0,0.1)"
+    }
+  },
+  {
+    "category": "Luxury",
+    "label": "Elite",
+    "preview": "Elite",
+    "style": {
+      "fontSize": 54,
+      "fontFamily": "Palatino, serif",
+      "fontWeight": "400",
+      "fontStyle": "italic",
+      "color": "#C0C0C0",
+      "letterSpacing": 4,
+      "textShadow": "1px 1px 2px rgba(0,0,0,0.1)"
+    }
+  },
+  {
+    "category": "Luxury",
+    "label": "Prestige",
+    "preview": "Prestige",
+    "style": {
+      "fontSize": 54,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "400",
+      "fontStyle": "italic",
+      "color": "#C0C0C0",
+      "letterSpacing": 3,
+      "textShadow": "1px 1px 2px rgba(0,0,0,0.1)"
+    }
+  },
+  {
+    "category": "Luxury",
+    "label": "Premium",
+    "preview": "Premium",
+    "style": {
+      "fontSize": 54,
+      "fontFamily": "Times New Roman, serif",
+      "fontWeight": "400",
+      "fontStyle": "italic",
+      "color": "#800020",
+      "letterSpacing": 1,
+      "textShadow": "1px 1px 2px rgba(0,0,0,0.1)"
+    }
+  },
+  {
+    "category": "Luxury",
+    "label": "Prestige",
+    "preview": "Prestige",
+    "style": {
+      "fontSize": 54,
+      "fontFamily": "Times New Roman, serif",
+      "fontWeight": "400",
+      "fontStyle": "italic",
+      "color": "#D4AF37",
+      "letterSpacing": 1,
+      "textShadow": "1px 1px 2px rgba(0,0,0,0.1)"
+    }
+  },
+  {
+    "category": "Luxury",
+    "label": "Timeless",
+    "preview": "Timeless",
+    "style": {
+      "fontSize": 54,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "400",
+      "fontStyle": "normal",
+      "color": "#000000",
+      "letterSpacing": 1,
+      "textShadow": "1px 1px 2px rgba(0,0,0,0.1)"
+    }
+  },
+  {
+    "category": "Tech",
+    "label": "MATRIX",
+    "preview": "MATRIX",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Courier New, monospace",
+      "fontWeight": "bold",
+      "color": "#ffffff",
+      "textShadow": "0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 20px #00ffff",
+      "textTransform": "uppercase",
+      "letterSpacing": 2
+    }
+  },
+  {
+    "category": "Tech",
+    "label": "GLITCH",
+    "preview": "GLITCH",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Courier New, monospace",
+      "fontWeight": "bold",
+      "color": "#ffffff",
+      "textShadow": "0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 20px #ff00ff",
+      "textTransform": "uppercase",
+      "letterSpacing": 2
+    }
+  },
+  {
+    "category": "Tech",
+    "label": "GLITCH",
+    "preview": "GLITCH",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Lucida Console, monospace",
+      "fontWeight": "bold",
+      "color": "#ffffff",
+      "textShadow": "0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 20px #00ffff",
+      "textTransform": "uppercase",
+      "letterSpacing": 2
+    }
+  },
+  {
+    "category": "Tech",
+    "label": "GLITCH",
+    "preview": "GLITCH",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Courier New, monospace",
+      "fontWeight": "bold",
+      "color": "#ffffff",
+      "textShadow": "0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 20px #00ff00",
+      "textTransform": "uppercase",
+      "letterSpacing": 2
+    }
+  },
+  {
+    "category": "Tech",
+    "label": "CYBER MONDAY",
+    "preview": "CYBER MONDAY",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Courier New, monospace",
+      "fontWeight": "bold",
+      "color": "#ffffff",
+      "textShadow": "0 0 5px #ffff00, 0 0 10px #ffff00, 0 0 20px #ffff00",
+      "textTransform": "uppercase",
+      "letterSpacing": 2
+    }
+  },
+  {
+    "category": "Tech",
+    "label": "NETWORK",
+    "preview": "NETWORK",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Lucida Console, monospace",
+      "fontWeight": "bold",
+      "color": "#ffffff",
+      "textShadow": "0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 20px #00ff00",
+      "textTransform": "uppercase",
+      "letterSpacing": 2
+    }
+  },
+  {
+    "category": "Tech",
+    "label": "CODE",
+    "preview": "CODE",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Courier New, monospace",
+      "fontWeight": "bold",
+      "color": "#ffffff",
+      "textShadow": "0 0 5px #ffff00, 0 0 10px #ffff00, 0 0 20px #ffff00",
+      "textTransform": "uppercase",
+      "letterSpacing": 2
+    }
+  },
+  {
+    "category": "Tech",
+    "label": "APP EXCLUSIVE",
+    "preview": "APP EXCLUSIVE",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Courier New, monospace",
+      "fontWeight": "bold",
+      "color": "#ffffff",
+      "textShadow": "0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 20px #00ff00",
+      "textTransform": "uppercase",
+      "letterSpacing": 2
+    }
+  },
+  {
+    "category": "Tech",
+    "label": "FUTURE",
+    "preview": "FUTURE",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Courier New, monospace",
+      "fontWeight": "bold",
+      "color": "#ffffff",
+      "textShadow": "0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 20px #ff00ff",
+      "textTransform": "uppercase",
+      "letterSpacing": 2
+    }
+  },
+  {
+    "category": "Tech",
+    "label": "VIRTUAL",
+    "preview": "VIRTUAL",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Courier New, monospace",
+      "fontWeight": "bold",
+      "color": "#ffffff",
+      "textShadow": "0 0 5px #ffff00, 0 0 10px #ffff00, 0 0 20px #ffff00",
+      "textTransform": "uppercase",
+      "letterSpacing": 2
+    }
+  },
+  {
+    "category": "Tech",
+    "label": "CYBER MONDAY",
+    "preview": "CYBER MONDAY",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Lucida Console, monospace",
+      "fontWeight": "bold",
+      "color": "#ffffff",
+      "textShadow": "0 0 5px #ffff00, 0 0 10px #ffff00, 0 0 20px #ffff00",
+      "textTransform": "uppercase",
+      "letterSpacing": 2
+    }
+  },
+  {
+    "category": "Tech",
+    "label": "ONLINE ONLY",
+    "preview": "ONLINE ONLY",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Lucida Console, monospace",
+      "fontWeight": "bold",
+      "color": "#ffffff",
+      "textShadow": "0 0 5px #ffff00, 0 0 10px #ffff00, 0 0 20px #ffff00",
+      "textTransform": "uppercase",
+      "letterSpacing": 2
+    }
+  },
+  {
+    "category": "Tech",
+    "label": "CODE",
+    "preview": "CODE",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Courier New, monospace",
+      "fontWeight": "bold",
+      "color": "#ffffff",
+      "textShadow": "0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 20px #00ffff",
+      "textTransform": "uppercase",
+      "letterSpacing": 2
+    }
+  },
+  {
+    "category": "Tech",
+    "label": "APP EXCLUSIVE",
+    "preview": "APP EXCLUSIVE",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Lucida Console, monospace",
+      "fontWeight": "bold",
+      "color": "#ffffff",
+      "textShadow": "0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 20px #ff00ff",
+      "textTransform": "uppercase",
+      "letterSpacing": 2
+    }
+  },
+  {
+    "category": "Tech",
+    "label": "CODE",
+    "preview": "CODE",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Courier New, monospace",
+      "fontWeight": "bold",
+      "color": "#ffffff",
+      "textShadow": "0 0 5px #ffff00, 0 0 10px #ffff00, 0 0 20px #ffff00",
+      "textTransform": "uppercase",
+      "letterSpacing": 2
+    }
+  },
+  {
+    "category": "Tech",
+    "label": "NETWORK",
+    "preview": "NETWORK",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Courier New, monospace",
+      "fontWeight": "bold",
+      "color": "#ffffff",
+      "textShadow": "0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 20px #00ff00",
+      "textTransform": "uppercase",
+      "letterSpacing": 2
+    }
+  },
+  {
+    "category": "Tech",
+    "label": "TECH WEEK",
+    "preview": "TECH WEEK",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Courier New, monospace",
+      "fontWeight": "bold",
+      "color": "#ffffff",
+      "textShadow": "0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 20px #00ff00",
+      "textTransform": "uppercase",
+      "letterSpacing": 2
+    }
+  },
+  {
+    "category": "Tech",
+    "label": "MATRIX",
+    "preview": "MATRIX",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Lucida Console, monospace",
+      "fontWeight": "bold",
+      "color": "#ffffff",
+      "textShadow": "0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 20px #00ffff",
+      "textTransform": "uppercase",
+      "letterSpacing": 2
+    }
+  },
+  {
+    "category": "Tech",
+    "label": "SYSTEM READY",
+    "preview": "SYSTEM READY",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Courier New, monospace",
+      "fontWeight": "bold",
+      "color": "#ffffff",
+      "textShadow": "0 0 5px #ffff00, 0 0 10px #ffff00, 0 0 20px #ffff00",
+      "textTransform": "uppercase",
+      "letterSpacing": 2
+    }
+  },
+  {
+    "category": "Tech",
+    "label": "APP EXCLUSIVE",
+    "preview": "APP EXCLUSIVE",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Courier New, monospace",
+      "fontWeight": "bold",
+      "color": "#ffffff",
+      "textShadow": "0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 20px #00ff00",
+      "textTransform": "uppercase",
+      "letterSpacing": 2
+    }
+  },
+  {
+    "category": "Tech",
+    "label": "MATRIX",
+    "preview": "MATRIX",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Lucida Console, monospace",
+      "fontWeight": "bold",
+      "color": "#ffffff",
+      "textShadow": "0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 20px #00ffff",
+      "textTransform": "uppercase",
+      "letterSpacing": 2
+    }
+  },
+  {
+    "category": "Tech",
+    "label": "INNOVATION",
+    "preview": "INNOVATION",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Lucida Console, monospace",
+      "fontWeight": "bold",
+      "color": "#ffffff",
+      "textShadow": "0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 20px #ff00ff",
+      "textTransform": "uppercase",
+      "letterSpacing": 2
+    }
+  },
+  {
+    "category": "Tech",
+    "label": "VIRTUAL",
+    "preview": "VIRTUAL",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Lucida Console, monospace",
+      "fontWeight": "bold",
+      "color": "#ffffff",
+      "textShadow": "0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 20px #00ffff",
+      "textTransform": "uppercase",
+      "letterSpacing": 2
+    }
+  },
+  {
+    "category": "Tech",
+    "label": "TECH WEEK",
+    "preview": "TECH WEEK",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Courier New, monospace",
+      "fontWeight": "bold",
+      "color": "#ffffff",
+      "textShadow": "0 0 5px #ffff00, 0 0 10px #ffff00, 0 0 20px #ffff00",
+      "textTransform": "uppercase",
+      "letterSpacing": 2
+    }
+  },
+  {
+    "category": "Tech",
+    "label": "VIRTUAL",
+    "preview": "VIRTUAL",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Lucida Console, monospace",
+      "fontWeight": "bold",
+      "color": "#ffffff",
+      "textShadow": "0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 20px #ff00ff",
+      "textTransform": "uppercase",
+      "letterSpacing": 2
+    }
+  },
+  {
+    "category": "Tech",
+    "label": "INNOVATION",
+    "preview": "INNOVATION",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Courier New, monospace",
+      "fontWeight": "bold",
+      "color": "#ffffff",
+      "textShadow": "0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 20px #00ff00",
+      "textTransform": "uppercase",
+      "letterSpacing": 2
+    }
+  },
+  {
+    "category": "Tech",
+    "label": "INNOVATION",
+    "preview": "INNOVATION",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Courier New, monospace",
+      "fontWeight": "bold",
+      "color": "#ffffff",
+      "textShadow": "0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 20px #00ffff",
+      "textTransform": "uppercase",
+      "letterSpacing": 2
+    }
+  },
+  {
+    "category": "Tech",
+    "label": "DIGITAL",
+    "preview": "DIGITAL",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Lucida Console, monospace",
+      "fontWeight": "bold",
+      "color": "#ffffff",
+      "textShadow": "0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 20px #00ff00",
+      "textTransform": "uppercase",
+      "letterSpacing": 2
+    }
+  },
+  {
+    "category": "Tech",
+    "label": "ONLINE ONLY",
+    "preview": "ONLINE ONLY",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Lucida Console, monospace",
+      "fontWeight": "bold",
+      "color": "#ffffff",
+      "textShadow": "0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 20px #ff00ff",
+      "textTransform": "uppercase",
+      "letterSpacing": 2
+    }
+  },
+  {
+    "category": "Tech",
+    "label": "CODE",
+    "preview": "CODE",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Lucida Console, monospace",
+      "fontWeight": "bold",
+      "color": "#ffffff",
+      "textShadow": "0 0 5px #ffff00, 0 0 10px #ffff00, 0 0 20px #ffff00",
+      "textTransform": "uppercase",
+      "letterSpacing": 2
+    }
+  },
+  {
+    "category": "Tech",
+    "label": "DIGITAL",
+    "preview": "DIGITAL",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Lucida Console, monospace",
+      "fontWeight": "bold",
+      "color": "#ffffff",
+      "textShadow": "0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 20px #00ffff",
+      "textTransform": "uppercase",
+      "letterSpacing": 2
+    }
+  },
+  {
+    "category": "Tech",
+    "label": "SYSTEM READY",
+    "preview": "SYSTEM READY",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Lucida Console, monospace",
+      "fontWeight": "bold",
+      "color": "#ffffff",
+      "textShadow": "0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 20px #ff00ff",
+      "textTransform": "uppercase",
+      "letterSpacing": 2
+    }
+  },
+  {
+    "category": "Tech",
+    "label": "MATRIX",
+    "preview": "MATRIX",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Lucida Console, monospace",
+      "fontWeight": "bold",
+      "color": "#ffffff",
+      "textShadow": "0 0 5px #ffff00, 0 0 10px #ffff00, 0 0 20px #ffff00",
+      "textTransform": "uppercase",
+      "letterSpacing": 2
+    }
+  },
+  {
+    "category": "Tech",
+    "label": "VIRTUAL",
+    "preview": "VIRTUAL",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Lucida Console, monospace",
+      "fontWeight": "bold",
+      "color": "#ffffff",
+      "textShadow": "0 0 5px #ffff00, 0 0 10px #ffff00, 0 0 20px #ffff00",
+      "textTransform": "uppercase",
+      "letterSpacing": 2
+    }
+  },
+  {
+    "category": "Tech",
+    "label": "TECH WEEK",
+    "preview": "TECH WEEK",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Courier New, monospace",
+      "fontWeight": "bold",
+      "color": "#ffffff",
+      "textShadow": "0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 20px #ff00ff",
+      "textTransform": "uppercase",
+      "letterSpacing": 2
+    }
+  },
+  {
+    "category": "Tech",
+    "label": "NETWORK",
+    "preview": "NETWORK",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Lucida Console, monospace",
+      "fontWeight": "bold",
+      "color": "#ffffff",
+      "textShadow": "0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 20px #00ffff",
+      "textTransform": "uppercase",
+      "letterSpacing": 2
+    }
+  },
+  {
+    "category": "Tech",
+    "label": "DATA",
+    "preview": "DATA",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Courier New, monospace",
+      "fontWeight": "bold",
+      "color": "#ffffff",
+      "textShadow": "0 0 5px #ffff00, 0 0 10px #ffff00, 0 0 20px #ffff00",
+      "textTransform": "uppercase",
+      "letterSpacing": 2
+    }
+  },
+  {
+    "category": "Tech",
+    "label": "FUTURE",
+    "preview": "FUTURE",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Lucida Console, monospace",
+      "fontWeight": "bold",
+      "color": "#ffffff",
+      "textShadow": "0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 20px #ff00ff",
+      "textTransform": "uppercase",
+      "letterSpacing": 2
+    }
+  },
+  {
+    "category": "Tech",
+    "label": "INNOVATION",
+    "preview": "INNOVATION",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Lucida Console, monospace",
+      "fontWeight": "bold",
+      "color": "#ffffff",
+      "textShadow": "0 0 5px #ffff00, 0 0 10px #ffff00, 0 0 20px #ffff00",
+      "textTransform": "uppercase",
+      "letterSpacing": 2
+    }
+  },
+  {
+    "category": "Tech",
+    "label": "DIGITAL",
+    "preview": "DIGITAL",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Lucida Console, monospace",
+      "fontWeight": "bold",
+      "color": "#ffffff",
+      "textShadow": "0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 20px #00ffff",
+      "textTransform": "uppercase",
+      "letterSpacing": 2
+    }
+  },
+  {
+    "category": "Tech",
+    "label": "INNOVATION",
+    "preview": "INNOVATION",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Courier New, monospace",
+      "fontWeight": "bold",
+      "color": "#ffffff",
+      "textShadow": "0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 20px #00ffff",
+      "textTransform": "uppercase",
+      "letterSpacing": 2
+    }
+  },
+  {
+    "category": "Tech",
+    "label": "DATA",
+    "preview": "DATA",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Courier New, monospace",
+      "fontWeight": "bold",
+      "color": "#ffffff",
+      "textShadow": "0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 20px #00ffff",
+      "textTransform": "uppercase",
+      "letterSpacing": 2
+    }
+  },
+  {
+    "category": "Tech",
+    "label": "LOADING...",
+    "preview": "LOADING...",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Lucida Console, monospace",
+      "fontWeight": "bold",
+      "color": "#ffffff",
+      "textShadow": "0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 20px #00ffff",
+      "textTransform": "uppercase",
+      "letterSpacing": 2
+    }
+  },
+  {
+    "category": "Tech",
+    "label": "DATA",
+    "preview": "DATA",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Courier New, monospace",
+      "fontWeight": "bold",
+      "color": "#ffffff",
+      "textShadow": "0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 20px #00ffff",
+      "textTransform": "uppercase",
+      "letterSpacing": 2
+    }
+  },
+  {
+    "category": "Tech",
+    "label": "CYBER MONDAY",
+    "preview": "CYBER MONDAY",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Courier New, monospace",
+      "fontWeight": "bold",
+      "color": "#ffffff",
+      "textShadow": "0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 20px #ff00ff",
+      "textTransform": "uppercase",
+      "letterSpacing": 2
+    }
+  },
+  {
+    "category": "Tech",
+    "label": "LOADING...",
+    "preview": "LOADING...",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Lucida Console, monospace",
+      "fontWeight": "bold",
+      "color": "#ffffff",
+      "textShadow": "0 0 5px #ffff00, 0 0 10px #ffff00, 0 0 20px #ffff00",
+      "textTransform": "uppercase",
+      "letterSpacing": 2
+    }
+  },
+  {
+    "category": "Tech",
+    "label": "FUTURE",
+    "preview": "FUTURE",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Lucida Console, monospace",
+      "fontWeight": "bold",
+      "color": "#ffffff",
+      "textShadow": "0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 20px #00ff00",
+      "textTransform": "uppercase",
+      "letterSpacing": 2
+    }
+  },
+  {
+    "category": "Tech",
+    "label": "ONLINE ONLY",
+    "preview": "ONLINE ONLY",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Lucida Console, monospace",
+      "fontWeight": "bold",
+      "color": "#ffffff",
+      "textShadow": "0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 20px #00ff00",
+      "textTransform": "uppercase",
+      "letterSpacing": 2
+    }
+  },
+  {
+    "category": "Tech",
+    "label": "VIRTUAL",
+    "preview": "VIRTUAL",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Courier New, monospace",
+      "fontWeight": "bold",
+      "color": "#ffffff",
+      "textShadow": "0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 20px #00ffff",
+      "textTransform": "uppercase",
+      "letterSpacing": 2
+    }
+  },
+  {
+    "category": "Tech",
+    "label": "DATA",
+    "preview": "DATA",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Courier New, monospace",
+      "fontWeight": "bold",
+      "color": "#ffffff",
+      "textShadow": "0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 20px #ff00ff",
+      "textTransform": "uppercase",
+      "letterSpacing": 2
+    }
+  },
+  {
+    "category": "Retro",
+    "label": "CLASSIC",
+    "preview": "CLASSIC",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "900",
+      "color": "#FF1493",
+      "textShadow": "3px 3px 0px #32CD32, 6px 6px 0px #000000",
+      "fontStyle": "italic"
+    }
+  },
+  {
+    "category": "Retro",
+    "label": "RADICAL",
+    "preview": "RADICAL",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "900",
+      "color": "#FF0000",
+      "textShadow": "3px 3px 0px #00FFFF, 6px 6px 0px #000000",
+      "fontStyle": "italic"
+    }
+  },
+  {
+    "category": "Retro",
+    "label": "THROWBACK",
+    "preview": "THROWBACK",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "900",
+      "color": "#00FF00",
+      "textShadow": "3px 3px 0px #FFFF00, 6px 6px 0px #000000",
+      "fontStyle": "italic"
+    }
+  },
+  {
+    "category": "Retro",
+    "label": "COOL",
+    "preview": "COOL",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "900",
+      "color": "#0000FF",
+      "textShadow": "3px 3px 0px #FF0000, 6px 6px 0px #000000",
+      "fontStyle": "italic"
+    }
+  },
+  {
+    "category": "Retro",
+    "label": "OLD SCHOOL",
+    "preview": "OLD SCHOOL",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "900",
+      "color": "#00FF00",
+      "textShadow": "3px 3px 0px #00BFFF, 6px 6px 0px #000000",
+      "fontStyle": "italic"
+    }
+  },
+  {
+    "category": "Retro",
+    "label": "ARCADE",
+    "preview": "ARCADE",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "900",
+      "color": "#FF0000",
+      "textShadow": "3px 3px 0px #FFFF00, 6px 6px 0px #000000",
+      "fontStyle": "italic"
+    }
+  },
+  {
+    "category": "Retro",
+    "label": "FUNKY",
+    "preview": "FUNKY",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "900",
+      "color": "#00BFFF",
+      "textShadow": "3px 3px 0px #FF0000, 6px 6px 0px #000000",
+      "fontStyle": "italic"
+    }
+  },
+  {
+    "category": "Retro",
+    "label": "DISCO",
+    "preview": "DISCO",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "900",
+      "color": "#FF4500",
+      "textShadow": "3px 3px 0px #32CD32, 6px 6px 0px #000000",
+      "fontStyle": "italic"
+    }
+  },
+  {
+    "category": "Retro",
+    "label": "COOL",
+    "preview": "COOL",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "900",
+      "color": "#FF0000",
+      "textShadow": "3px 3px 0px #00FF00, 6px 6px 0px #000000",
+      "fontStyle": "italic"
+    }
+  },
+  {
+    "category": "Retro",
+    "label": "NOSTALGIA",
+    "preview": "NOSTALGIA",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "900",
+      "color": "#FF4500",
+      "textShadow": "3px 3px 0px #FF4500, 6px 6px 0px #000000",
+      "fontStyle": "italic"
+    }
+  },
+  {
+    "category": "Retro",
+    "label": "GROOVY",
+    "preview": "GROOVY",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "900",
+      "color": "#32CD32",
+      "textShadow": "3px 3px 0px #FF1493, 6px 6px 0px #000000",
+      "fontStyle": "italic"
+    }
+  },
+  {
+    "category": "Retro",
+    "label": "THROWBACK",
+    "preview": "THROWBACK",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "900",
+      "color": "#00FFFF",
+      "textShadow": "3px 3px 0px #FF00FF, 6px 6px 0px #000000",
+      "fontStyle": "italic"
+    }
+  },
+  {
+    "category": "Retro",
+    "label": "FUNKY",
+    "preview": "FUNKY",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "900",
+      "color": "#FFFF00",
+      "textShadow": "3px 3px 0px #00FF00, 6px 6px 0px #000000",
+      "fontStyle": "italic"
+    }
+  },
+  {
+    "category": "Retro",
+    "label": "DISCO",
+    "preview": "DISCO",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "900",
+      "color": "#00FF00",
+      "textShadow": "3px 3px 0px #32CD32, 6px 6px 0px #000000",
+      "fontStyle": "italic"
+    }
+  },
+  {
+    "category": "Retro",
+    "label": "RETRO",
+    "preview": "RETRO",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "900",
+      "color": "#FFFF00",
+      "textShadow": "3px 3px 0px #00BFFF, 6px 6px 0px #000000",
+      "fontStyle": "italic"
+    }
+  },
+  {
+    "category": "Retro",
+    "label": "OLD SCHOOL",
+    "preview": "OLD SCHOOL",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "900",
+      "color": "#FF4500",
+      "textShadow": "3px 3px 0px #FF4500, 6px 6px 0px #000000",
+      "fontStyle": "italic"
+    }
+  },
+  {
+    "category": "Retro",
+    "label": "FUNKY",
+    "preview": "FUNKY",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "900",
+      "color": "#00FF00",
+      "textShadow": "3px 3px 0px #00FFFF, 6px 6px 0px #000000",
+      "fontStyle": "italic"
+    }
+  },
+  {
+    "category": "Retro",
+    "label": "THROWBACK",
+    "preview": "THROWBACK",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "900",
+      "color": "#0000FF",
+      "textShadow": "3px 3px 0px #FF00FF, 6px 6px 0px #000000",
+      "fontStyle": "italic"
+    }
+  },
+  {
+    "category": "Retro",
+    "label": "GROOVY",
+    "preview": "GROOVY",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "900",
+      "color": "#FF0000",
+      "textShadow": "3px 3px 0px #FF1493, 6px 6px 0px #000000",
+      "fontStyle": "italic"
+    }
+  },
+  {
+    "category": "Retro",
+    "label": "CLASSIC",
+    "preview": "CLASSIC",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "900",
+      "color": "#FF4500",
+      "textShadow": "3px 3px 0px #00FFFF, 6px 6px 0px #000000",
+      "fontStyle": "italic"
+    }
+  },
+  {
+    "category": "Retro",
+    "label": "THROWBACK",
+    "preview": "THROWBACK",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "900",
+      "color": "#00FF00",
+      "textShadow": "3px 3px 0px #FFFF00, 6px 6px 0px #000000",
+      "fontStyle": "italic"
+    }
+  },
+  {
+    "category": "Retro",
+    "label": "GROOVY",
+    "preview": "GROOVY",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "900",
+      "color": "#00BFFF",
+      "textShadow": "3px 3px 0px #FF00FF, 6px 6px 0px #000000",
+      "fontStyle": "italic"
+    }
+  },
+  {
+    "category": "Retro",
+    "label": "FUNKY",
+    "preview": "FUNKY",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "900",
+      "color": "#FFFF00",
+      "textShadow": "3px 3px 0px #00FF00, 6px 6px 0px #000000",
+      "fontStyle": "italic"
+    }
+  },
+  {
+    "category": "Retro",
+    "label": "RETRO",
+    "preview": "RETRO",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "900",
+      "color": "#FF0000",
+      "textShadow": "3px 3px 0px #FF1493, 6px 6px 0px #000000",
+      "fontStyle": "italic"
+    }
+  },
+  {
+    "category": "Retro",
+    "label": "COOL",
+    "preview": "COOL",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "900",
+      "color": "#FF00FF",
+      "textShadow": "3px 3px 0px #32CD32, 6px 6px 0px #000000",
+      "fontStyle": "italic"
+    }
+  },
+  {
+    "category": "Retro",
+    "label": "DISCO",
+    "preview": "DISCO",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "900",
+      "color": "#FFFF00",
+      "textShadow": "3px 3px 0px #32CD32, 6px 6px 0px #000000",
+      "fontStyle": "italic"
+    }
+  },
+  {
+    "category": "Retro",
+    "label": "NOSTALGIA",
+    "preview": "NOSTALGIA",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "900",
+      "color": "#0000FF",
+      "textShadow": "3px 3px 0px #00FF00, 6px 6px 0px #000000",
+      "fontStyle": "italic"
+    }
+  },
+  {
+    "category": "Retro",
+    "label": "VINTAGE",
+    "preview": "VINTAGE",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "900",
+      "color": "#FF1493",
+      "textShadow": "3px 3px 0px #FF4500, 6px 6px 0px #000000",
+      "fontStyle": "italic"
+    }
+  },
+  {
+    "category": "Retro",
+    "label": "ARCADE",
+    "preview": "ARCADE",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "900",
+      "color": "#00FF00",
+      "textShadow": "3px 3px 0px #00BFFF, 6px 6px 0px #000000",
+      "fontStyle": "italic"
+    }
+  },
+  {
+    "category": "Retro",
+    "label": "THROWBACK",
+    "preview": "THROWBACK",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "900",
+      "color": "#00FF00",
+      "textShadow": "3px 3px 0px #00FFFF, 6px 6px 0px #000000",
+      "fontStyle": "italic"
+    }
+  },
+  {
+    "category": "Retro",
+    "label": "NOSTALGIA",
+    "preview": "NOSTALGIA",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "900",
+      "color": "#FF0000",
+      "textShadow": "3px 3px 0px #FF1493, 6px 6px 0px #000000",
+      "fontStyle": "italic"
+    }
+  },
+  {
+    "category": "Retro",
+    "label": "CLASSIC",
+    "preview": "CLASSIC",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "900",
+      "color": "#FF00FF",
+      "textShadow": "3px 3px 0px #00FFFF, 6px 6px 0px #000000",
+      "fontStyle": "italic"
+    }
+  },
+  {
+    "category": "Retro",
+    "label": "STYLE",
+    "preview": "STYLE",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "900",
+      "color": "#0000FF",
+      "textShadow": "3px 3px 0px #FF4500, 6px 6px 0px #000000",
+      "fontStyle": "italic"
+    }
+  },
+  {
+    "category": "Retro",
+    "label": "GROOVY",
+    "preview": "GROOVY",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "900",
+      "color": "#FF00FF",
+      "textShadow": "3px 3px 0px #32CD32, 6px 6px 0px #000000",
+      "fontStyle": "italic"
+    }
+  },
+  {
+    "category": "Retro",
+    "label": "ARCADE",
+    "preview": "ARCADE",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "900",
+      "color": "#00FF00",
+      "textShadow": "3px 3px 0px #FF4500, 6px 6px 0px #000000",
+      "fontStyle": "italic"
+    }
+  },
+  {
+    "category": "Retro",
+    "label": "ARCADE",
+    "preview": "ARCADE",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "900",
+      "color": "#FF0000",
+      "textShadow": "3px 3px 0px #0000FF, 6px 6px 0px #000000",
+      "fontStyle": "italic"
+    }
+  },
+  {
+    "category": "Retro",
+    "label": "CLASSIC",
+    "preview": "CLASSIC",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "900",
+      "color": "#32CD32",
+      "textShadow": "3px 3px 0px #FF4500, 6px 6px 0px #000000",
+      "fontStyle": "italic"
+    }
+  },
+  {
+    "category": "Retro",
+    "label": "DISCO",
+    "preview": "DISCO",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "900",
+      "color": "#FF00FF",
+      "textShadow": "3px 3px 0px #FF00FF, 6px 6px 0px #000000",
+      "fontStyle": "italic"
+    }
+  },
+  {
+    "category": "Retro",
+    "label": "FUNKY",
+    "preview": "FUNKY",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "900",
+      "color": "#00BFFF",
+      "textShadow": "3px 3px 0px #FFFF00, 6px 6px 0px #000000",
+      "fontStyle": "italic"
+    }
+  },
+  {
+    "category": "Retro",
+    "label": "REWIND",
+    "preview": "REWIND",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "900",
+      "color": "#00FFFF",
+      "textShadow": "3px 3px 0px #FF1493, 6px 6px 0px #000000",
+      "fontStyle": "italic"
+    }
+  },
+  {
+    "category": "Retro",
+    "label": "VINTAGE",
+    "preview": "VINTAGE",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "900",
+      "color": "#FF4500",
+      "textShadow": "3px 3px 0px #00FF00, 6px 6px 0px #000000",
+      "fontStyle": "italic"
+    }
+  },
+  {
+    "category": "Retro",
+    "label": "DISCO",
+    "preview": "DISCO",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "900",
+      "color": "#00FFFF",
+      "textShadow": "3px 3px 0px #FF0000, 6px 6px 0px #000000",
+      "fontStyle": "italic"
+    }
+  },
+  {
+    "category": "Retro",
+    "label": "FUNKY",
+    "preview": "FUNKY",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "900",
+      "color": "#00BFFF",
+      "textShadow": "3px 3px 0px #0000FF, 6px 6px 0px #000000",
+      "fontStyle": "italic"
+    }
+  },
+  {
+    "category": "Retro",
+    "label": "GROOVY",
+    "preview": "GROOVY",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "900",
+      "color": "#FFFF00",
+      "textShadow": "3px 3px 0px #FF1493, 6px 6px 0px #000000",
+      "fontStyle": "italic"
+    }
+  },
+  {
+    "category": "Retro",
+    "label": "ARCADE",
+    "preview": "ARCADE",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "900",
+      "color": "#00FFFF",
+      "textShadow": "3px 3px 0px #00FF00, 6px 6px 0px #000000",
+      "fontStyle": "italic"
+    }
+  },
+  {
+    "category": "Retro",
+    "label": "STYLE",
+    "preview": "STYLE",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "900",
+      "color": "#0000FF",
+      "textShadow": "3px 3px 0px #00FF00, 6px 6px 0px #000000",
+      "fontStyle": "italic"
+    }
+  },
+  {
+    "category": "Retro",
+    "label": "RADICAL",
+    "preview": "RADICAL",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "900",
+      "color": "#32CD32",
+      "textShadow": "3px 3px 0px #00FF00, 6px 6px 0px #000000",
+      "fontStyle": "italic"
+    }
+  },
+  {
+    "category": "Retro",
+    "label": "VIBE",
+    "preview": "VIBE",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "900",
+      "color": "#0000FF",
+      "textShadow": "3px 3px 0px #00BFFF, 6px 6px 0px #000000",
+      "fontStyle": "italic"
+    }
+  },
+  {
+    "category": "Retro",
+    "label": "COOL",
+    "preview": "COOL",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "900",
+      "color": "#FF00FF",
+      "textShadow": "3px 3px 0px #00FFFF, 6px 6px 0px #000000",
+      "fontStyle": "italic"
+    }
+  },
+  {
+    "category": "Retro",
+    "label": "DISCO",
+    "preview": "DISCO",
+    "style": {
+      "fontSize": 60,
+      "fontFamily": "Georgia, serif",
+      "fontWeight": "900",
+      "color": "#00FFFF",
+      "textShadow": "3px 3px 0px #FF00FF, 6px 6px 0px #000000",
+      "fontStyle": "italic"
+    }
+  },
+  {
+    "category": "Minimal",
+    "label": "Minimal.",
+    "preview": "Minimal.",
+    "style": {
+      "fontSize": 42,
+      "fontFamily": "Segoe UI, sans-serif",
+      "fontWeight": "400",
+      "color": "#333333",
+      "letterSpacing": 1,
+      "textTransform": "none"
+    }
+  },
+  {
+    "category": "Minimal",
+    "label": "Space.",
+    "preview": "Space.",
+    "style": {
+      "fontSize": 42,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "400",
+      "color": "#333333",
+      "letterSpacing": 2,
+      "textTransform": "lowercase"
+    }
+  },
+  {
+    "category": "Minimal",
+    "label": "Clean.",
+    "preview": "Clean.",
+    "style": {
+      "fontSize": 42,
+      "fontFamily": "Helvetica, sans-serif",
+      "fontWeight": "400",
+      "color": "#333333",
+      "letterSpacing": 2,
+      "textTransform": "none"
+    }
+  },
+  {
+    "category": "Minimal",
+    "label": "Pure.",
+    "preview": "Pure.",
+    "style": {
+      "fontSize": 42,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "500",
+      "color": "#333333",
+      "letterSpacing": 2,
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Minimal",
+    "label": "Less is more.",
+    "preview": "Less is more.",
+    "style": {
+      "fontSize": 42,
+      "fontFamily": "Helvetica, sans-serif",
+      "fontWeight": "300",
+      "color": "#333333",
+      "letterSpacing": 2,
+      "textTransform": "none"
+    }
+  },
+  {
+    "category": "Minimal",
+    "label": "Basic.",
+    "preview": "Basic.",
+    "style": {
+      "fontSize": 42,
+      "fontFamily": "Segoe UI, sans-serif",
+      "fontWeight": "400",
+      "color": "#333333",
+      "letterSpacing": 3,
+      "textTransform": "lowercase"
+    }
+  },
+  {
+    "category": "Minimal",
+    "label": "Essential.",
+    "preview": "Essential.",
+    "style": {
+      "fontSize": 42,
+      "fontFamily": "Segoe UI, sans-serif",
+      "fontWeight": "400",
+      "color": "#333333",
+      "letterSpacing": 1,
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Minimal",
+    "label": "Less is more.",
+    "preview": "Less is more.",
+    "style": {
+      "fontSize": 42,
+      "fontFamily": "Helvetica, sans-serif",
+      "fontWeight": "300",
+      "color": "#333333",
+      "letterSpacing": 1,
+      "textTransform": "none"
+    }
+  },
+  {
+    "category": "Minimal",
+    "label": "Soft.",
+    "preview": "Soft.",
+    "style": {
+      "fontSize": 42,
+      "fontFamily": "Helvetica, sans-serif",
+      "fontWeight": "300",
+      "color": "#333333",
+      "letterSpacing": 3,
+      "textTransform": "none"
+    }
+  },
+  {
+    "category": "Minimal",
+    "label": "White.",
+    "preview": "White.",
+    "style": {
+      "fontSize": 42,
+      "fontFamily": "Segoe UI, sans-serif",
+      "fontWeight": "500",
+      "color": "#333333",
+      "letterSpacing": 2,
+      "textTransform": "lowercase"
+    }
+  },
+  {
+    "category": "Minimal",
+    "label": "Modern.",
+    "preview": "Modern.",
+    "style": {
+      "fontSize": 42,
+      "fontFamily": "Segoe UI, sans-serif",
+      "fontWeight": "500",
+      "color": "#333333",
+      "letterSpacing": 3,
+      "textTransform": "none"
+    }
+  },
+  {
+    "category": "Minimal",
+    "label": "Space.",
+    "preview": "Space.",
+    "style": {
+      "fontSize": 42,
+      "fontFamily": "Helvetica, sans-serif",
+      "fontWeight": "300",
+      "color": "#333333",
+      "letterSpacing": 3,
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Minimal",
+    "label": "Basic.",
+    "preview": "Basic.",
+    "style": {
+      "fontSize": 42,
+      "fontFamily": "Helvetica, sans-serif",
+      "fontWeight": "500",
+      "color": "#333333",
+      "letterSpacing": 3,
+      "textTransform": "lowercase"
+    }
+  },
+  {
+    "category": "Minimal",
+    "label": "Modern.",
+    "preview": "Modern.",
+    "style": {
+      "fontSize": 42,
+      "fontFamily": "Segoe UI, sans-serif",
+      "fontWeight": "300",
+      "color": "#333333",
+      "letterSpacing": 3,
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Minimal",
+    "label": "Soft.",
+    "preview": "Soft.",
+    "style": {
+      "fontSize": 42,
+      "fontFamily": "Helvetica, sans-serif",
+      "fontWeight": "300",
+      "color": "#333333",
+      "letterSpacing": 3,
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Minimal",
+    "label": "Clean.",
+    "preview": "Clean.",
+    "style": {
+      "fontSize": 42,
+      "fontFamily": "Segoe UI, sans-serif",
+      "fontWeight": "500",
+      "color": "#333333",
+      "letterSpacing": 1,
+      "textTransform": "lowercase"
+    }
+  },
+  {
+    "category": "Minimal",
+    "label": "Fresh.",
+    "preview": "Fresh.",
+    "style": {
+      "fontSize": 42,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "500",
+      "color": "#333333",
+      "letterSpacing": 3,
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Minimal",
+    "label": "Less is more.",
+    "preview": "Less is more.",
+    "style": {
+      "fontSize": 42,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "300",
+      "color": "#333333",
+      "letterSpacing": 2,
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Minimal",
+    "label": "Fresh.",
+    "preview": "Fresh.",
+    "style": {
+      "fontSize": 42,
+      "fontFamily": "Segoe UI, sans-serif",
+      "fontWeight": "300",
+      "color": "#333333",
+      "letterSpacing": 3,
+      "textTransform": "lowercase"
+    }
+  },
+  {
+    "category": "Minimal",
+    "label": "Soft.",
+    "preview": "Soft.",
+    "style": {
+      "fontSize": 42,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "500",
+      "color": "#333333",
+      "letterSpacing": 2,
+      "textTransform": "lowercase"
+    }
+  },
+  {
+    "category": "Minimal",
+    "label": "Sleek.",
+    "preview": "Sleek.",
+    "style": {
+      "fontSize": 42,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "400",
+      "color": "#333333",
+      "letterSpacing": 3,
+      "textTransform": "lowercase"
+    }
+  },
+  {
+    "category": "Minimal",
+    "label": "Clean.",
+    "preview": "Clean.",
+    "style": {
+      "fontSize": 42,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "400",
+      "color": "#333333",
+      "letterSpacing": 3,
+      "textTransform": "lowercase"
+    }
+  },
+  {
+    "category": "Minimal",
+    "label": "Pure.",
+    "preview": "Pure.",
+    "style": {
+      "fontSize": 42,
+      "fontFamily": "Helvetica, sans-serif",
+      "fontWeight": "300",
+      "color": "#333333",
+      "letterSpacing": 2,
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Minimal",
+    "label": "Modern.",
+    "preview": "Modern.",
+    "style": {
+      "fontSize": 42,
+      "fontFamily": "Helvetica, sans-serif",
+      "fontWeight": "400",
+      "color": "#333333",
+      "letterSpacing": 2,
+      "textTransform": "lowercase"
+    }
+  },
+  {
+    "category": "Minimal",
+    "label": "Simple.",
+    "preview": "Simple.",
+    "style": {
+      "fontSize": 42,
+      "fontFamily": "Segoe UI, sans-serif",
+      "fontWeight": "500",
+      "color": "#333333",
+      "letterSpacing": 2,
+      "textTransform": "none"
+    }
+  },
+  {
+    "category": "Minimal",
+    "label": "Modern.",
+    "preview": "Modern.",
+    "style": {
+      "fontSize": 42,
+      "fontFamily": "Segoe UI, sans-serif",
+      "fontWeight": "300",
+      "color": "#333333",
+      "letterSpacing": 3,
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Minimal",
+    "label": "Pure.",
+    "preview": "Pure.",
+    "style": {
+      "fontSize": 42,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "300",
+      "color": "#333333",
+      "letterSpacing": 2,
+      "textTransform": "lowercase"
+    }
+  },
+  {
+    "category": "Minimal",
+    "label": "Light.",
+    "preview": "Light.",
+    "style": {
+      "fontSize": 42,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "400",
+      "color": "#333333",
+      "letterSpacing": 3,
+      "textTransform": "none"
+    }
+  },
+  {
+    "category": "Minimal",
+    "label": "Sleek.",
+    "preview": "Sleek.",
+    "style": {
+      "fontSize": 42,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "500",
+      "color": "#333333",
+      "letterSpacing": 2,
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Minimal",
+    "label": "Sleek.",
+    "preview": "Sleek.",
+    "style": {
+      "fontSize": 42,
+      "fontFamily": "Helvetica, sans-serif",
+      "fontWeight": "300",
+      "color": "#333333",
+      "letterSpacing": 2,
+      "textTransform": "lowercase"
+    }
+  },
+  {
+    "category": "Minimal",
+    "label": "Less is more.",
+    "preview": "Less is more.",
+    "style": {
+      "fontSize": 42,
+      "fontFamily": "Helvetica, sans-serif",
+      "fontWeight": "500",
+      "color": "#333333",
+      "letterSpacing": 1,
+      "textTransform": "lowercase"
+    }
+  },
+  {
+    "category": "Minimal",
+    "label": "Clean.",
+    "preview": "Clean.",
+    "style": {
+      "fontSize": 42,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "500",
+      "color": "#333333",
+      "letterSpacing": 3,
+      "textTransform": "lowercase"
+    }
+  },
+  {
+    "category": "Minimal",
+    "label": "Basic.",
+    "preview": "Basic.",
+    "style": {
+      "fontSize": 42,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "500",
+      "color": "#333333",
+      "letterSpacing": 1,
+      "textTransform": "lowercase"
+    }
+  },
+  {
+    "category": "Minimal",
+    "label": "Fresh.",
+    "preview": "Fresh.",
+    "style": {
+      "fontSize": 42,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "400",
+      "color": "#333333",
+      "letterSpacing": 1,
+      "textTransform": "lowercase"
+    }
+  },
+  {
+    "category": "Minimal",
+    "label": "Light.",
+    "preview": "Light.",
+    "style": {
+      "fontSize": 42,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "400",
+      "color": "#333333",
+      "letterSpacing": 3,
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Minimal",
+    "label": "Soft.",
+    "preview": "Soft.",
+    "style": {
+      "fontSize": 42,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "500",
+      "color": "#333333",
+      "letterSpacing": 3,
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Minimal",
+    "label": "Clean.",
+    "preview": "Clean.",
+    "style": {
+      "fontSize": 42,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "400",
+      "color": "#333333",
+      "letterSpacing": 3,
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Minimal",
+    "label": "Simple.",
+    "preview": "Simple.",
+    "style": {
+      "fontSize": 42,
+      "fontFamily": "Helvetica, sans-serif",
+      "fontWeight": "400",
+      "color": "#333333",
+      "letterSpacing": 1,
+      "textTransform": "lowercase"
+    }
+  },
+  {
+    "category": "Minimal",
+    "label": "Less is more.",
+    "preview": "Less is more.",
+    "style": {
+      "fontSize": 42,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "500",
+      "color": "#333333",
+      "letterSpacing": 3,
+      "textTransform": "lowercase"
+    }
+  },
+  {
+    "category": "Minimal",
+    "label": "Fresh.",
+    "preview": "Fresh.",
+    "style": {
+      "fontSize": 42,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "500",
+      "color": "#333333",
+      "letterSpacing": 2,
+      "textTransform": "none"
+    }
+  },
+  {
+    "category": "Minimal",
+    "label": "Soft.",
+    "preview": "Soft.",
+    "style": {
+      "fontSize": 42,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "300",
+      "color": "#333333",
+      "letterSpacing": 1,
+      "textTransform": "none"
+    }
+  },
+  {
+    "category": "Minimal",
+    "label": "Modern.",
+    "preview": "Modern.",
+    "style": {
+      "fontSize": 42,
+      "fontFamily": "Helvetica, sans-serif",
+      "fontWeight": "400",
+      "color": "#333333",
+      "letterSpacing": 2,
+      "textTransform": "none"
+    }
+  },
+  {
+    "category": "Minimal",
+    "label": "Light.",
+    "preview": "Light.",
+    "style": {
+      "fontSize": 42,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "500",
+      "color": "#333333",
+      "letterSpacing": 2,
+      "textTransform": "lowercase"
+    }
+  },
+  {
+    "category": "Minimal",
+    "label": "Less is more.",
+    "preview": "Less is more.",
+    "style": {
+      "fontSize": 42,
+      "fontFamily": "Segoe UI, sans-serif",
+      "fontWeight": "500",
+      "color": "#333333",
+      "letterSpacing": 2,
+      "textTransform": "lowercase"
+    }
+  },
+  {
+    "category": "Minimal",
+    "label": "Light.",
+    "preview": "Light.",
+    "style": {
+      "fontSize": 42,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "300",
+      "color": "#333333",
+      "letterSpacing": 1,
+      "textTransform": "lowercase"
+    }
+  },
+  {
+    "category": "Minimal",
+    "label": "Minimal.",
+    "preview": "Minimal.",
+    "style": {
+      "fontSize": 42,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "500",
+      "color": "#333333",
+      "letterSpacing": 2,
+      "textTransform": "lowercase"
+    }
+  },
+  {
+    "category": "Minimal",
+    "label": "Pure.",
+    "preview": "Pure.",
+    "style": {
+      "fontSize": 42,
+      "fontFamily": "Helvetica, sans-serif",
+      "fontWeight": "300",
+      "color": "#333333",
+      "letterSpacing": 1,
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Minimal",
+    "label": "White.",
+    "preview": "White.",
+    "style": {
+      "fontSize": 42,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "400",
+      "color": "#333333",
+      "letterSpacing": 1,
+      "textTransform": "lowercase"
+    }
+  },
+  {
+    "category": "Minimal",
+    "label": "Sleek.",
+    "preview": "Sleek.",
+    "style": {
+      "fontSize": 42,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "500",
+      "color": "#333333",
+      "letterSpacing": 3,
+      "textTransform": "none"
+    }
+  },
+  {
+    "category": "Minimal",
+    "label": "Calm.",
+    "preview": "Calm.",
+    "style": {
+      "fontSize": 42,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "400",
+      "color": "#333333",
+      "letterSpacing": 2,
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Fun",
+    "label": "Yolo!",
+    "preview": "Yolo!",
+    "style": {
+      "fontSize": 56,
+      "fontFamily": "Arial Rounded MT Bold, sans-serif",
+      "fontWeight": "bold",
+      "color": "#FF4500",
+      "WebkitTextStroke": "1px #000000",
+      "textShadow": "2px 2px 0px rgba(0,0,0,0.2)"
+    }
+  },
+  {
+    "category": "Fun",
+    "label": "Yay!",
+    "preview": "Yay!",
+    "style": {
+      "fontSize": 56,
+      "fontFamily": "Arial Rounded MT Bold, sans-serif",
+      "fontWeight": "bold",
+      "color": "#00FF00",
+      "WebkitTextStroke": "1px #000000",
+      "textShadow": "2px 2px 0px rgba(0,0,0,0.2)"
+    }
+  },
+  {
+    "category": "Fun",
+    "label": "Boom!",
+    "preview": "Boom!",
+    "style": {
+      "fontSize": 56,
+      "fontFamily": "Arial Rounded MT Bold, sans-serif",
+      "fontWeight": "bold",
+      "color": "#FF0000",
+      "WebkitTextStroke": "1px #000000",
+      "textShadow": "2px 2px 0px rgba(0,0,0,0.2)"
+    }
+  },
+  {
+    "category": "Fun",
+    "label": "Party!",
+    "preview": "Party!",
+    "style": {
+      "fontSize": 56,
+      "fontFamily": "Comic Sans MS, cursive",
+      "fontWeight": "bold",
+      "color": "#00BFFF",
+      "WebkitTextStroke": "1px #000000",
+      "textShadow": "2px 2px 0px rgba(0,0,0,0.2)"
+    }
+  },
+  {
+    "category": "Fun",
+    "label": "Yay!",
+    "preview": "Yay!",
+    "style": {
+      "fontSize": 56,
+      "fontFamily": "Arial Rounded MT Bold, sans-serif",
+      "fontWeight": "bold",
+      "color": "#FF00FF",
+      "WebkitTextStroke": "1px #000000",
+      "textShadow": "2px 2px 0px rgba(0,0,0,0.2)"
+    }
+  },
+  {
+    "category": "Fun",
+    "label": "Cool!",
+    "preview": "Cool!",
+    "style": {
+      "fontSize": 56,
+      "fontFamily": "Comic Sans MS, cursive",
+      "fontWeight": "bold",
+      "color": "#FFFF00",
+      "WebkitTextStroke": "1px #000000",
+      "textShadow": "2px 2px 0px rgba(0,0,0,0.2)"
+    }
+  },
+  {
+    "category": "Fun",
+    "label": "Cool!",
+    "preview": "Cool!",
+    "style": {
+      "fontSize": 56,
+      "fontFamily": "Comic Sans MS, cursive",
+      "fontWeight": "bold",
+      "color": "#0000FF",
+      "WebkitTextStroke": "1px #000000",
+      "textShadow": "2px 2px 0px rgba(0,0,0,0.2)"
+    }
+  },
+  {
+    "category": "Fun",
+    "label": "Pop!",
+    "preview": "Pop!",
+    "style": {
+      "fontSize": 56,
+      "fontFamily": "Comic Sans MS, cursive",
+      "fontWeight": "bold",
+      "color": "#FF4500",
+      "WebkitTextStroke": "1px #000000",
+      "textShadow": "2px 2px 0px rgba(0,0,0,0.2)"
+    }
+  },
+  {
+    "category": "Fun",
+    "label": "Nice!",
+    "preview": "Nice!",
+    "style": {
+      "fontSize": 56,
+      "fontFamily": "Arial Rounded MT Bold, sans-serif",
+      "fontWeight": "bold",
+      "color": "#FF0000",
+      "WebkitTextStroke": "1px #000000",
+      "textShadow": "2px 2px 0px rgba(0,0,0,0.2)"
+    }
+  },
+  {
+    "category": "Fun",
+    "label": "Yolo!",
+    "preview": "Yolo!",
+    "style": {
+      "fontSize": 56,
+      "fontFamily": "Comic Sans MS, cursive",
+      "fontWeight": "bold",
+      "color": "#FF0000",
+      "WebkitTextStroke": "1px #000000",
+      "textShadow": "2px 2px 0px rgba(0,0,0,0.2)"
+    }
+  },
+  {
+    "category": "Fun",
+    "label": "Cool!",
+    "preview": "Cool!",
+    "style": {
+      "fontSize": 56,
+      "fontFamily": "Comic Sans MS, cursive",
+      "fontWeight": "bold",
+      "color": "#FF4500",
+      "WebkitTextStroke": "1px #000000",
+      "textShadow": "2px 2px 0px rgba(0,0,0,0.2)"
+    }
+  },
+  {
+    "category": "Fun",
+    "label": "Sweet!",
+    "preview": "Sweet!",
+    "style": {
+      "fontSize": 56,
+      "fontFamily": "Arial Rounded MT Bold, sans-serif",
+      "fontWeight": "bold",
+      "color": "#00FFFF",
+      "WebkitTextStroke": "1px #000000",
+      "textShadow": "2px 2px 0px rgba(0,0,0,0.2)"
+    }
+  },
+  {
+    "category": "Fun",
+    "label": "Fun!",
+    "preview": "Fun!",
+    "style": {
+      "fontSize": 56,
+      "fontFamily": "Arial Rounded MT Bold, sans-serif",
+      "fontWeight": "bold",
+      "color": "#00BFFF",
+      "WebkitTextStroke": "1px #000000",
+      "textShadow": "2px 2px 0px rgba(0,0,0,0.2)"
+    }
+  },
+  {
+    "category": "Fun",
+    "label": "Cool!",
+    "preview": "Cool!",
+    "style": {
+      "fontSize": 56,
+      "fontFamily": "Comic Sans MS, cursive",
+      "fontWeight": "bold",
+      "color": "#32CD32",
+      "WebkitTextStroke": "1px #000000",
+      "textShadow": "2px 2px 0px rgba(0,0,0,0.2)"
+    }
+  },
+  {
+    "category": "Fun",
+    "label": "Zap!",
+    "preview": "Zap!",
+    "style": {
+      "fontSize": 56,
+      "fontFamily": "Arial Rounded MT Bold, sans-serif",
+      "fontWeight": "bold",
+      "color": "#FF4500",
+      "WebkitTextStroke": "1px #000000",
+      "textShadow": "2px 2px 0px rgba(0,0,0,0.2)"
+    }
+  },
+  {
+    "category": "Fun",
+    "label": "Cool!",
+    "preview": "Cool!",
+    "style": {
+      "fontSize": 56,
+      "fontFamily": "Arial Rounded MT Bold, sans-serif",
+      "fontWeight": "bold",
+      "color": "#FF00FF",
+      "WebkitTextStroke": "1px #000000",
+      "textShadow": "2px 2px 0px rgba(0,0,0,0.2)"
+    }
+  },
+  {
+    "category": "Fun",
+    "label": "Yay!",
+    "preview": "Yay!",
+    "style": {
+      "fontSize": 56,
+      "fontFamily": "Comic Sans MS, cursive",
+      "fontWeight": "bold",
+      "color": "#00FF00",
+      "WebkitTextStroke": "1px #000000",
+      "textShadow": "2px 2px 0px rgba(0,0,0,0.2)"
+    }
+  },
+  {
+    "category": "Fun",
+    "label": "Nice!",
+    "preview": "Nice!",
+    "style": {
+      "fontSize": 56,
+      "fontFamily": "Comic Sans MS, cursive",
+      "fontWeight": "bold",
+      "color": "#FF1493",
+      "WebkitTextStroke": "1px #000000",
+      "textShadow": "2px 2px 0px rgba(0,0,0,0.2)"
+    }
+  },
+  {
+    "category": "Fun",
+    "label": "Super!",
+    "preview": "Super!",
+    "style": {
+      "fontSize": 56,
+      "fontFamily": "Comic Sans MS, cursive",
+      "fontWeight": "bold",
+      "color": "#FFFF00",
+      "WebkitTextStroke": "1px #000000",
+      "textShadow": "2px 2px 0px rgba(0,0,0,0.2)"
+    }
+  },
+  {
+    "category": "Fun",
+    "label": "Wow!",
+    "preview": "Wow!",
+    "style": {
+      "fontSize": 56,
+      "fontFamily": "Comic Sans MS, cursive",
+      "fontWeight": "bold",
+      "color": "#0000FF",
+      "WebkitTextStroke": "1px #000000",
+      "textShadow": "2px 2px 0px rgba(0,0,0,0.2)"
+    }
+  },
+  {
+    "category": "Fun",
+    "label": "Yolo!",
+    "preview": "Yolo!",
+    "style": {
+      "fontSize": 56,
+      "fontFamily": "Comic Sans MS, cursive",
+      "fontWeight": "bold",
+      "color": "#00FF00",
+      "WebkitTextStroke": "1px #000000",
+      "textShadow": "2px 2px 0px rgba(0,0,0,0.2)"
+    }
+  },
+  {
+    "category": "Fun",
+    "label": "Amazing!",
+    "preview": "Amazing!",
+    "style": {
+      "fontSize": 56,
+      "fontFamily": "Comic Sans MS, cursive",
+      "fontWeight": "bold",
+      "color": "#32CD32",
+      "WebkitTextStroke": "1px #000000",
+      "textShadow": "2px 2px 0px rgba(0,0,0,0.2)"
+    }
+  },
+  {
+    "category": "Fun",
+    "label": "Omg!",
+    "preview": "Omg!",
+    "style": {
+      "fontSize": 56,
+      "fontFamily": "Arial Rounded MT Bold, sans-serif",
+      "fontWeight": "bold",
+      "color": "#FF00FF",
+      "WebkitTextStroke": "1px #000000",
+      "textShadow": "2px 2px 0px rgba(0,0,0,0.2)"
+    }
+  },
+  {
+    "category": "Fun",
+    "label": "Yay!",
+    "preview": "Yay!",
+    "style": {
+      "fontSize": 56,
+      "fontFamily": "Comic Sans MS, cursive",
+      "fontWeight": "bold",
+      "color": "#00BFFF",
+      "WebkitTextStroke": "1px #000000",
+      "textShadow": "2px 2px 0px rgba(0,0,0,0.2)"
+    }
+  },
+  {
+    "category": "Fun",
+    "label": "Nice!",
+    "preview": "Nice!",
+    "style": {
+      "fontSize": 56,
+      "fontFamily": "Comic Sans MS, cursive",
+      "fontWeight": "bold",
+      "color": "#32CD32",
+      "WebkitTextStroke": "1px #000000",
+      "textShadow": "2px 2px 0px rgba(0,0,0,0.2)"
+    }
+  },
+  {
+    "category": "Fun",
+    "label": "Wow!",
+    "preview": "Wow!",
+    "style": {
+      "fontSize": 56,
+      "fontFamily": "Comic Sans MS, cursive",
+      "fontWeight": "bold",
+      "color": "#00FFFF",
+      "WebkitTextStroke": "1px #000000",
+      "textShadow": "2px 2px 0px rgba(0,0,0,0.2)"
+    }
+  },
+  {
+    "category": "Fun",
+    "label": "Yolo!",
+    "preview": "Yolo!",
+    "style": {
+      "fontSize": 56,
+      "fontFamily": "Arial Rounded MT Bold, sans-serif",
+      "fontWeight": "bold",
+      "color": "#00FF00",
+      "WebkitTextStroke": "1px #000000",
+      "textShadow": "2px 2px 0px rgba(0,0,0,0.2)"
+    }
+  },
+  {
+    "category": "Fun",
+    "label": "Epic!",
+    "preview": "Epic!",
+    "style": {
+      "fontSize": 56,
+      "fontFamily": "Arial Rounded MT Bold, sans-serif",
+      "fontWeight": "bold",
+      "color": "#FF0000",
+      "WebkitTextStroke": "1px #000000",
+      "textShadow": "2px 2px 0px rgba(0,0,0,0.2)"
+    }
+  },
+  {
+    "category": "Fun",
+    "label": "Nice!",
+    "preview": "Nice!",
+    "style": {
+      "fontSize": 56,
+      "fontFamily": "Comic Sans MS, cursive",
+      "fontWeight": "bold",
+      "color": "#00FF00",
+      "WebkitTextStroke": "1px #000000",
+      "textShadow": "2px 2px 0px rgba(0,0,0,0.2)"
+    }
+  },
+  {
+    "category": "Fun",
+    "label": "Fun!",
+    "preview": "Fun!",
+    "style": {
+      "fontSize": 56,
+      "fontFamily": "Arial Rounded MT Bold, sans-serif",
+      "fontWeight": "bold",
+      "color": "#FF00FF",
+      "WebkitTextStroke": "1px #000000",
+      "textShadow": "2px 2px 0px rgba(0,0,0,0.2)"
+    }
+  },
+  {
+    "category": "Fun",
+    "label": "Cool!",
+    "preview": "Cool!",
+    "style": {
+      "fontSize": 56,
+      "fontFamily": "Comic Sans MS, cursive",
+      "fontWeight": "bold",
+      "color": "#FF1493",
+      "WebkitTextStroke": "1px #000000",
+      "textShadow": "2px 2px 0px rgba(0,0,0,0.2)"
+    }
+  },
+  {
+    "category": "Fun",
+    "label": "Yay!",
+    "preview": "Yay!",
+    "style": {
+      "fontSize": 56,
+      "fontFamily": "Arial Rounded MT Bold, sans-serif",
+      "fontWeight": "bold",
+      "color": "#0000FF",
+      "WebkitTextStroke": "1px #000000",
+      "textShadow": "2px 2px 0px rgba(0,0,0,0.2)"
+    }
+  },
+  {
+    "category": "Fun",
+    "label": "Sweet!",
+    "preview": "Sweet!",
+    "style": {
+      "fontSize": 56,
+      "fontFamily": "Comic Sans MS, cursive",
+      "fontWeight": "bold",
+      "color": "#0000FF",
+      "WebkitTextStroke": "1px #000000",
+      "textShadow": "2px 2px 0px rgba(0,0,0,0.2)"
+    }
+  },
+  {
+    "category": "Fun",
+    "label": "Nice!",
+    "preview": "Nice!",
+    "style": {
+      "fontSize": 56,
+      "fontFamily": "Arial Rounded MT Bold, sans-serif",
+      "fontWeight": "bold",
+      "color": "#FF1493",
+      "WebkitTextStroke": "1px #000000",
+      "textShadow": "2px 2px 0px rgba(0,0,0,0.2)"
+    }
+  },
+  {
+    "category": "Fun",
+    "label": "Party!",
+    "preview": "Party!",
+    "style": {
+      "fontSize": 56,
+      "fontFamily": "Arial Rounded MT Bold, sans-serif",
+      "fontWeight": "bold",
+      "color": "#0000FF",
+      "WebkitTextStroke": "1px #000000",
+      "textShadow": "2px 2px 0px rgba(0,0,0,0.2)"
+    }
+  },
+  {
+    "category": "Fun",
+    "label": "Fun!",
+    "preview": "Fun!",
+    "style": {
+      "fontSize": 56,
+      "fontFamily": "Comic Sans MS, cursive",
+      "fontWeight": "bold",
+      "color": "#FF00FF",
+      "WebkitTextStroke": "1px #000000",
+      "textShadow": "2px 2px 0px rgba(0,0,0,0.2)"
+    }
+  },
+  {
+    "category": "Fun",
+    "label": "Wow!",
+    "preview": "Wow!",
+    "style": {
+      "fontSize": 56,
+      "fontFamily": "Arial Rounded MT Bold, sans-serif",
+      "fontWeight": "bold",
+      "color": "#FFFF00",
+      "WebkitTextStroke": "1px #000000",
+      "textShadow": "2px 2px 0px rgba(0,0,0,0.2)"
+    }
+  },
+  {
+    "category": "Fun",
+    "label": "Pop!",
+    "preview": "Pop!",
+    "style": {
+      "fontSize": 56,
+      "fontFamily": "Comic Sans MS, cursive",
+      "fontWeight": "bold",
+      "color": "#FFFF00",
+      "WebkitTextStroke": "1px #000000",
+      "textShadow": "2px 2px 0px rgba(0,0,0,0.2)"
+    }
+  },
+  {
+    "category": "Fun",
+    "label": "Boom!",
+    "preview": "Boom!",
+    "style": {
+      "fontSize": 56,
+      "fontFamily": "Arial Rounded MT Bold, sans-serif",
+      "fontWeight": "bold",
+      "color": "#00FF00",
+      "WebkitTextStroke": "1px #000000",
+      "textShadow": "2px 2px 0px rgba(0,0,0,0.2)"
+    }
+  },
+  {
+    "category": "Fun",
+    "label": "Nice!",
+    "preview": "Nice!",
+    "style": {
+      "fontSize": 56,
+      "fontFamily": "Arial Rounded MT Bold, sans-serif",
+      "fontWeight": "bold",
+      "color": "#FF1493",
+      "WebkitTextStroke": "1px #000000",
+      "textShadow": "2px 2px 0px rgba(0,0,0,0.2)"
+    }
+  },
+  {
+    "category": "Fun",
+    "label": "Cool!",
+    "preview": "Cool!",
+    "style": {
+      "fontSize": 56,
+      "fontFamily": "Arial Rounded MT Bold, sans-serif",
+      "fontWeight": "bold",
+      "color": "#FF4500",
+      "WebkitTextStroke": "1px #000000",
+      "textShadow": "2px 2px 0px rgba(0,0,0,0.2)"
+    }
+  },
+  {
+    "category": "Fun",
+    "label": "Super!",
+    "preview": "Super!",
+    "style": {
+      "fontSize": 56,
+      "fontFamily": "Arial Rounded MT Bold, sans-serif",
+      "fontWeight": "bold",
+      "color": "#32CD32",
+      "WebkitTextStroke": "1px #000000",
+      "textShadow": "2px 2px 0px rgba(0,0,0,0.2)"
+    }
+  },
+  {
+    "category": "Fun",
+    "label": "Cool!",
+    "preview": "Cool!",
+    "style": {
+      "fontSize": 56,
+      "fontFamily": "Comic Sans MS, cursive",
+      "fontWeight": "bold",
+      "color": "#FF4500",
+      "WebkitTextStroke": "1px #000000",
+      "textShadow": "2px 2px 0px rgba(0,0,0,0.2)"
+    }
+  },
+  {
+    "category": "Fun",
+    "label": "Party!",
+    "preview": "Party!",
+    "style": {
+      "fontSize": 56,
+      "fontFamily": "Comic Sans MS, cursive",
+      "fontWeight": "bold",
+      "color": "#32CD32",
+      "WebkitTextStroke": "1px #000000",
+      "textShadow": "2px 2px 0px rgba(0,0,0,0.2)"
+    }
+  },
+  {
+    "category": "Fun",
+    "label": "Yay!",
+    "preview": "Yay!",
+    "style": {
+      "fontSize": 56,
+      "fontFamily": "Arial Rounded MT Bold, sans-serif",
+      "fontWeight": "bold",
+      "color": "#00BFFF",
+      "WebkitTextStroke": "1px #000000",
+      "textShadow": "2px 2px 0px rgba(0,0,0,0.2)"
+    }
+  },
+  {
+    "category": "Fun",
+    "label": "Yay!",
+    "preview": "Yay!",
+    "style": {
+      "fontSize": 56,
+      "fontFamily": "Arial Rounded MT Bold, sans-serif",
+      "fontWeight": "bold",
+      "color": "#FF1493",
+      "WebkitTextStroke": "1px #000000",
+      "textShadow": "2px 2px 0px rgba(0,0,0,0.2)"
+    }
+  },
+  {
+    "category": "Fun",
+    "label": "Cool!",
+    "preview": "Cool!",
+    "style": {
+      "fontSize": 56,
+      "fontFamily": "Comic Sans MS, cursive",
+      "fontWeight": "bold",
+      "color": "#0000FF",
+      "WebkitTextStroke": "1px #000000",
+      "textShadow": "2px 2px 0px rgba(0,0,0,0.2)"
+    }
+  },
+  {
+    "category": "Fun",
+    "label": "Amazing!",
+    "preview": "Amazing!",
+    "style": {
+      "fontSize": 56,
+      "fontFamily": "Comic Sans MS, cursive",
+      "fontWeight": "bold",
+      "color": "#FF4500",
+      "WebkitTextStroke": "1px #000000",
+      "textShadow": "2px 2px 0px rgba(0,0,0,0.2)"
+    }
+  },
+  {
+    "category": "Fun",
+    "label": "Zap!",
+    "preview": "Zap!",
+    "style": {
+      "fontSize": 56,
+      "fontFamily": "Comic Sans MS, cursive",
+      "fontWeight": "bold",
+      "color": "#FF0000",
+      "WebkitTextStroke": "1px #000000",
+      "textShadow": "2px 2px 0px rgba(0,0,0,0.2)"
+    }
+  },
+  {
+    "category": "Fun",
+    "label": "Amazing!",
+    "preview": "Amazing!",
+    "style": {
+      "fontSize": 56,
+      "fontFamily": "Comic Sans MS, cursive",
+      "fontWeight": "bold",
+      "color": "#00BFFF",
+      "WebkitTextStroke": "1px #000000",
+      "textShadow": "2px 2px 0px rgba(0,0,0,0.2)"
+    }
+  },
+  {
+    "category": "Quote",
+    "label": "\u201cBelieve\u201d",
+    "preview": "\u201cBelieve\u201d",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Georgia, serif",
+      "fontStyle": "italic",
+      "color": "#4a5568",
+      "textAlign": "center",
+      "lineHeight": 1.4
+    }
+  },
+  {
+    "category": "Quote",
+    "label": "\u201cStay Focused\u201d",
+    "preview": "\u201cStay Focused\u201d",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Georgia, serif",
+      "fontStyle": "italic",
+      "color": "#4a5568",
+      "textAlign": "center",
+      "lineHeight": 1.4
+    }
+  },
+  {
+    "category": "Quote",
+    "label": "\u201cGood Vibes\u201d",
+    "preview": "\u201cGood Vibes\u201d",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Georgia, serif",
+      "fontStyle": "italic",
+      "color": "#4a5568",
+      "textAlign": "center",
+      "lineHeight": 1.4
+    }
+  },
+  {
+    "category": "Quote",
+    "label": "\u201cStay Focused\u201d",
+    "preview": "\u201cStay Focused\u201d",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Georgia, serif",
+      "fontStyle": "italic",
+      "color": "#4a5568",
+      "textAlign": "center",
+      "lineHeight": 1.4
+    }
+  },
+  {
+    "category": "Quote",
+    "label": "\u201cLive Laugh Love\u201d",
+    "preview": "\u201cLive Laugh Love\u201d",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Georgia, serif",
+      "fontStyle": "italic",
+      "color": "#4a5568",
+      "textAlign": "center",
+      "lineHeight": 1.4
+    }
+  },
+  {
+    "category": "Quote",
+    "label": "\u201cLive Laugh Love\u201d",
+    "preview": "\u201cLive Laugh Love\u201d",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Georgia, serif",
+      "fontStyle": "italic",
+      "color": "#4a5568",
+      "textAlign": "center",
+      "lineHeight": 1.4
+    }
+  },
+  {
+    "category": "Quote",
+    "label": "\u201cCreate\u201d",
+    "preview": "\u201cCreate\u201d",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Georgia, serif",
+      "fontStyle": "italic",
+      "color": "#4a5568",
+      "textAlign": "center",
+      "lineHeight": 1.4
+    }
+  },
+  {
+    "category": "Quote",
+    "label": "\u201cDream Big\u201d",
+    "preview": "\u201cDream Big\u201d",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Georgia, serif",
+      "fontStyle": "italic",
+      "color": "#4a5568",
+      "textAlign": "center",
+      "lineHeight": 1.4
+    }
+  },
+  {
+    "category": "Quote",
+    "label": "\u201cJust Do It\u201d",
+    "preview": "\u201cJust Do It\u201d",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Georgia, serif",
+      "fontStyle": "italic",
+      "color": "#4a5568",
+      "textAlign": "center",
+      "lineHeight": 1.4
+    }
+  },
+  {
+    "category": "Quote",
+    "label": "\u201cInspire\u201d",
+    "preview": "\u201cInspire\u201d",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Georgia, serif",
+      "fontStyle": "italic",
+      "color": "#4a5568",
+      "textAlign": "center",
+      "lineHeight": 1.4
+    }
+  },
+  {
+    "category": "Quote",
+    "label": "\u201cGood Vibes\u201d",
+    "preview": "\u201cGood Vibes\u201d",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Georgia, serif",
+      "fontStyle": "italic",
+      "color": "#4a5568",
+      "textAlign": "center",
+      "lineHeight": 1.4
+    }
+  },
+  {
+    "category": "Quote",
+    "label": "\u201cInspire\u201d",
+    "preview": "\u201cInspire\u201d",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Georgia, serif",
+      "fontStyle": "italic",
+      "color": "#4a5568",
+      "textAlign": "center",
+      "lineHeight": 1.4
+    }
+  },
+  {
+    "category": "Quote",
+    "label": "\u201cHope\u201d",
+    "preview": "\u201cHope\u201d",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Georgia, serif",
+      "fontStyle": "italic",
+      "color": "#4a5568",
+      "textAlign": "center",
+      "lineHeight": 1.4
+    }
+  },
+  {
+    "category": "Quote",
+    "label": "\u201cGood Vibes\u201d",
+    "preview": "\u201cGood Vibes\u201d",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Georgia, serif",
+      "fontStyle": "italic",
+      "color": "#4a5568",
+      "textAlign": "center",
+      "lineHeight": 1.4
+    }
+  },
+  {
+    "category": "Quote",
+    "label": "\u201cStay Wild\u201d",
+    "preview": "\u201cStay Wild\u201d",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Georgia, serif",
+      "fontStyle": "italic",
+      "color": "#4a5568",
+      "textAlign": "center",
+      "lineHeight": 1.4
+    }
+  },
+  {
+    "category": "Quote",
+    "label": "\u201cCarpe Diem\u201d",
+    "preview": "\u201cCarpe Diem\u201d",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Georgia, serif",
+      "fontStyle": "italic",
+      "color": "#4a5568",
+      "textAlign": "center",
+      "lineHeight": 1.4
+    }
+  },
+  {
+    "category": "Quote",
+    "label": "\u201cCarpe Diem\u201d",
+    "preview": "\u201cCarpe Diem\u201d",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Georgia, serif",
+      "fontStyle": "italic",
+      "color": "#4a5568",
+      "textAlign": "center",
+      "lineHeight": 1.4
+    }
+  },
+  {
+    "category": "Quote",
+    "label": "\u201cHope\u201d",
+    "preview": "\u201cHope\u201d",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Georgia, serif",
+      "fontStyle": "italic",
+      "color": "#4a5568",
+      "textAlign": "center",
+      "lineHeight": 1.4
+    }
+  },
+  {
+    "category": "Quote",
+    "label": "\u201cLive Laugh Love\u201d",
+    "preview": "\u201cLive Laugh Love\u201d",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Georgia, serif",
+      "fontStyle": "italic",
+      "color": "#4a5568",
+      "textAlign": "center",
+      "lineHeight": 1.4
+    }
+  },
+  {
+    "category": "Quote",
+    "label": "\u201cCreate\u201d",
+    "preview": "\u201cCreate\u201d",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Georgia, serif",
+      "fontStyle": "italic",
+      "color": "#4a5568",
+      "textAlign": "center",
+      "lineHeight": 1.4
+    }
+  },
+  {
+    "category": "Quote",
+    "label": "\u201cLive Laugh Love\u201d",
+    "preview": "\u201cLive Laugh Love\u201d",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Georgia, serif",
+      "fontStyle": "italic",
+      "color": "#4a5568",
+      "textAlign": "center",
+      "lineHeight": 1.4
+    }
+  },
+  {
+    "category": "Quote",
+    "label": "\u201cInspire\u201d",
+    "preview": "\u201cInspire\u201d",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Georgia, serif",
+      "fontStyle": "italic",
+      "color": "#4a5568",
+      "textAlign": "center",
+      "lineHeight": 1.4
+    }
+  },
+  {
+    "category": "Quote",
+    "label": "\u201cKeep Going\u201d",
+    "preview": "\u201cKeep Going\u201d",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Georgia, serif",
+      "fontStyle": "italic",
+      "color": "#4a5568",
+      "textAlign": "center",
+      "lineHeight": 1.4
+    }
+  },
+  {
+    "category": "Quote",
+    "label": "\u201cStay Wild\u201d",
+    "preview": "\u201cStay Wild\u201d",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Georgia, serif",
+      "fontStyle": "italic",
+      "color": "#4a5568",
+      "textAlign": "center",
+      "lineHeight": 1.4
+    }
+  },
+  {
+    "category": "Quote",
+    "label": "\u201cLive Laugh Love\u201d",
+    "preview": "\u201cLive Laugh Love\u201d",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Georgia, serif",
+      "fontStyle": "italic",
+      "color": "#4a5568",
+      "textAlign": "center",
+      "lineHeight": 1.4
+    }
+  },
+  {
+    "category": "Quote",
+    "label": "\u201cYou Got This\u201d",
+    "preview": "\u201cYou Got This\u201d",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Georgia, serif",
+      "fontStyle": "italic",
+      "color": "#4a5568",
+      "textAlign": "center",
+      "lineHeight": 1.4
+    }
+  },
+  {
+    "category": "Quote",
+    "label": "\u201cLove\u201d",
+    "preview": "\u201cLove\u201d",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Georgia, serif",
+      "fontStyle": "italic",
+      "color": "#4a5568",
+      "textAlign": "center",
+      "lineHeight": 1.4
+    }
+  },
+  {
+    "category": "Quote",
+    "label": "\u201cBe Kind\u201d",
+    "preview": "\u201cBe Kind\u201d",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Georgia, serif",
+      "fontStyle": "italic",
+      "color": "#4a5568",
+      "textAlign": "center",
+      "lineHeight": 1.4
+    }
+  },
+  {
+    "category": "Quote",
+    "label": "\u201cBelieve\u201d",
+    "preview": "\u201cBelieve\u201d",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Georgia, serif",
+      "fontStyle": "italic",
+      "color": "#4a5568",
+      "textAlign": "center",
+      "lineHeight": 1.4
+    }
+  },
+  {
+    "category": "Quote",
+    "label": "\u201cBelieve\u201d",
+    "preview": "\u201cBelieve\u201d",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Georgia, serif",
+      "fontStyle": "italic",
+      "color": "#4a5568",
+      "textAlign": "center",
+      "lineHeight": 1.4
+    }
+  },
+  {
+    "category": "Quote",
+    "label": "\u201cLove\u201d",
+    "preview": "\u201cLove\u201d",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Georgia, serif",
+      "fontStyle": "italic",
+      "color": "#4a5568",
+      "textAlign": "center",
+      "lineHeight": 1.4
+    }
+  },
+  {
+    "category": "Quote",
+    "label": "\u201cBe Kind\u201d",
+    "preview": "\u201cBe Kind\u201d",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Georgia, serif",
+      "fontStyle": "italic",
+      "color": "#4a5568",
+      "textAlign": "center",
+      "lineHeight": 1.4
+    }
+  },
+  {
+    "category": "Quote",
+    "label": "\u201cKeep Going\u201d",
+    "preview": "\u201cKeep Going\u201d",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Georgia, serif",
+      "fontStyle": "italic",
+      "color": "#4a5568",
+      "textAlign": "center",
+      "lineHeight": 1.4
+    }
+  },
+  {
+    "category": "Quote",
+    "label": "\u201cCarpe Diem\u201d",
+    "preview": "\u201cCarpe Diem\u201d",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Georgia, serif",
+      "fontStyle": "italic",
+      "color": "#4a5568",
+      "textAlign": "center",
+      "lineHeight": 1.4
+    }
+  },
+  {
+    "category": "Quote",
+    "label": "\u201cBe Kind\u201d",
+    "preview": "\u201cBe Kind\u201d",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Georgia, serif",
+      "fontStyle": "italic",
+      "color": "#4a5568",
+      "textAlign": "center",
+      "lineHeight": 1.4
+    }
+  },
+  {
+    "category": "Quote",
+    "label": "\u201cCarpe Diem\u201d",
+    "preview": "\u201cCarpe Diem\u201d",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Georgia, serif",
+      "fontStyle": "italic",
+      "color": "#4a5568",
+      "textAlign": "center",
+      "lineHeight": 1.4
+    }
+  },
+  {
+    "category": "Quote",
+    "label": "\u201cYou Got This\u201d",
+    "preview": "\u201cYou Got This\u201d",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Georgia, serif",
+      "fontStyle": "italic",
+      "color": "#4a5568",
+      "textAlign": "center",
+      "lineHeight": 1.4
+    }
+  },
+  {
+    "category": "Quote",
+    "label": "\u201cStay Focused\u201d",
+    "preview": "\u201cStay Focused\u201d",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Georgia, serif",
+      "fontStyle": "italic",
+      "color": "#4a5568",
+      "textAlign": "center",
+      "lineHeight": 1.4
+    }
+  },
+  {
+    "category": "Quote",
+    "label": "\u201cBe Kind\u201d",
+    "preview": "\u201cBe Kind\u201d",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Georgia, serif",
+      "fontStyle": "italic",
+      "color": "#4a5568",
+      "textAlign": "center",
+      "lineHeight": 1.4
+    }
+  },
+  {
+    "category": "Quote",
+    "label": "\u201cBelieve\u201d",
+    "preview": "\u201cBelieve\u201d",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Georgia, serif",
+      "fontStyle": "italic",
+      "color": "#4a5568",
+      "textAlign": "center",
+      "lineHeight": 1.4
+    }
+  },
+  {
+    "category": "Quote",
+    "label": "\u201cCreate\u201d",
+    "preview": "\u201cCreate\u201d",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Georgia, serif",
+      "fontStyle": "italic",
+      "color": "#4a5568",
+      "textAlign": "center",
+      "lineHeight": 1.4
+    }
+  },
+  {
+    "category": "Quote",
+    "label": "\u201cCarpe Diem\u201d",
+    "preview": "\u201cCarpe Diem\u201d",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Georgia, serif",
+      "fontStyle": "italic",
+      "color": "#4a5568",
+      "textAlign": "center",
+      "lineHeight": 1.4
+    }
+  },
+  {
+    "category": "Quote",
+    "label": "\u201cStay Focused\u201d",
+    "preview": "\u201cStay Focused\u201d",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Georgia, serif",
+      "fontStyle": "italic",
+      "color": "#4a5568",
+      "textAlign": "center",
+      "lineHeight": 1.4
+    }
+  },
+  {
+    "category": "Quote",
+    "label": "\u201cCarpe Diem\u201d",
+    "preview": "\u201cCarpe Diem\u201d",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Georgia, serif",
+      "fontStyle": "italic",
+      "color": "#4a5568",
+      "textAlign": "center",
+      "lineHeight": 1.4
+    }
+  },
+  {
+    "category": "Quote",
+    "label": "\u201cKeep Going\u201d",
+    "preview": "\u201cKeep Going\u201d",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Georgia, serif",
+      "fontStyle": "italic",
+      "color": "#4a5568",
+      "textAlign": "center",
+      "lineHeight": 1.4
+    }
+  },
+  {
+    "category": "Quote",
+    "label": "\u201cLive Laugh Love\u201d",
+    "preview": "\u201cLive Laugh Love\u201d",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Georgia, serif",
+      "fontStyle": "italic",
+      "color": "#4a5568",
+      "textAlign": "center",
+      "lineHeight": 1.4
+    }
+  },
+  {
+    "category": "Quote",
+    "label": "\u201cBelieve\u201d",
+    "preview": "\u201cBelieve\u201d",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Georgia, serif",
+      "fontStyle": "italic",
+      "color": "#4a5568",
+      "textAlign": "center",
+      "lineHeight": 1.4
+    }
+  },
+  {
+    "category": "Quote",
+    "label": "\u201cKeep Going\u201d",
+    "preview": "\u201cKeep Going\u201d",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Georgia, serif",
+      "fontStyle": "italic",
+      "color": "#4a5568",
+      "textAlign": "center",
+      "lineHeight": 1.4
+    }
+  },
+  {
+    "category": "Quote",
+    "label": "\u201cKeep Going\u201d",
+    "preview": "\u201cKeep Going\u201d",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Georgia, serif",
+      "fontStyle": "italic",
+      "color": "#4a5568",
+      "textAlign": "center",
+      "lineHeight": 1.4
+    }
+  },
+  {
+    "category": "Quote",
+    "label": "\u201cStay Wild\u201d",
+    "preview": "\u201cStay Wild\u201d",
+    "style": {
+      "fontSize": 48,
+      "fontFamily": "Georgia, serif",
+      "fontStyle": "italic",
+      "color": "#4a5568",
+      "textAlign": "center",
+      "lineHeight": 1.4
+    }
+  },
+  {
+    "category": "Social",
+    "label": "#Love",
+    "preview": "#Love",
+    "style": {
+      "fontSize": 52,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "800",
+      "color": "#ffffff",
+      "backgroundColor": "#FFFF00",
+      "padding": "10px",
+      "borderRadius": "8px",
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Social",
+    "label": "#Viral",
+    "preview": "#Viral",
+    "style": {
+      "fontSize": 52,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "800",
+      "color": "#ffffff",
+      "backgroundColor": "#32CD32",
+      "padding": "10px",
+      "borderRadius": "8px",
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Social",
+    "label": "#Share",
+    "preview": "#Share",
+    "style": {
+      "fontSize": 52,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "800",
+      "color": "#ffffff",
+      "backgroundColor": "#00FF00",
+      "padding": "10px",
+      "borderRadius": "8px",
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Social",
+    "label": "#FollowMe",
+    "preview": "#FollowMe",
+    "style": {
+      "fontSize": 52,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "800",
+      "color": "#ffffff",
+      "backgroundColor": "#00FFFF",
+      "padding": "10px",
+      "borderRadius": "8px",
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Social",
+    "label": "#Viral",
+    "preview": "#Viral",
+    "style": {
+      "fontSize": 52,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "800",
+      "color": "#ffffff",
+      "backgroundColor": "#FF4500",
+      "padding": "10px",
+      "borderRadius": "8px",
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Social",
+    "label": "#Trending",
+    "preview": "#Trending",
+    "style": {
+      "fontSize": 52,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "800",
+      "color": "#ffffff",
+      "backgroundColor": "#00FF00",
+      "padding": "10px",
+      "borderRadius": "8px",
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Social",
+    "label": "#Giveaway",
+    "preview": "#Giveaway",
+    "style": {
+      "fontSize": 52,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "800",
+      "color": "#ffffff",
+      "backgroundColor": "#32CD32",
+      "padding": "10px",
+      "borderRadius": "8px",
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Social",
+    "label": "#Viral",
+    "preview": "#Viral",
+    "style": {
+      "fontSize": 52,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "800",
+      "color": "#ffffff",
+      "backgroundColor": "#0000FF",
+      "padding": "10px",
+      "borderRadius": "8px",
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Social",
+    "label": "#FollowMe",
+    "preview": "#FollowMe",
+    "style": {
+      "fontSize": 52,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "800",
+      "color": "#ffffff",
+      "backgroundColor": "#00FF00",
+      "padding": "10px",
+      "borderRadius": "8px",
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Social",
+    "label": "#Contest",
+    "preview": "#Contest",
+    "style": {
+      "fontSize": 52,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "800",
+      "color": "#ffffff",
+      "backgroundColor": "#FF4500",
+      "padding": "10px",
+      "borderRadius": "8px",
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Social",
+    "label": "#Subscribe",
+    "preview": "#Subscribe",
+    "style": {
+      "fontSize": 52,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "800",
+      "color": "#ffffff",
+      "backgroundColor": "#0000FF",
+      "padding": "10px",
+      "borderRadius": "8px",
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Social",
+    "label": "#OOTD",
+    "preview": "#OOTD",
+    "style": {
+      "fontSize": 52,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "800",
+      "color": "#ffffff",
+      "backgroundColor": "#FFFF00",
+      "padding": "10px",
+      "borderRadius": "8px",
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Social",
+    "label": "#Contest",
+    "preview": "#Contest",
+    "style": {
+      "fontSize": 52,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "800",
+      "color": "#ffffff",
+      "backgroundColor": "#32CD32",
+      "padding": "10px",
+      "borderRadius": "8px",
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Social",
+    "label": "#Giveaway",
+    "preview": "#Giveaway",
+    "style": {
+      "fontSize": 52,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "800",
+      "color": "#ffffff",
+      "backgroundColor": "#FF00FF",
+      "padding": "10px",
+      "borderRadius": "8px",
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Social",
+    "label": "#NewPost",
+    "preview": "#NewPost",
+    "style": {
+      "fontSize": 52,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "800",
+      "color": "#ffffff",
+      "backgroundColor": "#FF0000",
+      "padding": "10px",
+      "borderRadius": "8px",
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Social",
+    "label": "#TBT",
+    "preview": "#TBT",
+    "style": {
+      "fontSize": 52,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "800",
+      "color": "#ffffff",
+      "backgroundColor": "#FF00FF",
+      "padding": "10px",
+      "borderRadius": "8px",
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Social",
+    "label": "#LinkInBio",
+    "preview": "#LinkInBio",
+    "style": {
+      "fontSize": 52,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "800",
+      "color": "#ffffff",
+      "backgroundColor": "#00BFFF",
+      "padding": "10px",
+      "borderRadius": "8px",
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Social",
+    "label": "#Giveaway",
+    "preview": "#Giveaway",
+    "style": {
+      "fontSize": 52,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "800",
+      "color": "#ffffff",
+      "backgroundColor": "#FF1493",
+      "padding": "10px",
+      "borderRadius": "8px",
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Social",
+    "label": "#Subscribe",
+    "preview": "#Subscribe",
+    "style": {
+      "fontSize": 52,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "800",
+      "color": "#ffffff",
+      "backgroundColor": "#FF4500",
+      "padding": "10px",
+      "borderRadius": "8px",
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Social",
+    "label": "#Giveaway",
+    "preview": "#Giveaway",
+    "style": {
+      "fontSize": 52,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "800",
+      "color": "#ffffff",
+      "backgroundColor": "#32CD32",
+      "padding": "10px",
+      "borderRadius": "8px",
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Social",
+    "label": "#TBT",
+    "preview": "#TBT",
+    "style": {
+      "fontSize": 52,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "800",
+      "color": "#ffffff",
+      "backgroundColor": "#FFFF00",
+      "padding": "10px",
+      "borderRadius": "8px",
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Social",
+    "label": "#InstaGood",
+    "preview": "#InstaGood",
+    "style": {
+      "fontSize": 52,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "800",
+      "color": "#ffffff",
+      "backgroundColor": "#00FF00",
+      "padding": "10px",
+      "borderRadius": "8px",
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Social",
+    "label": "#Love",
+    "preview": "#Love",
+    "style": {
+      "fontSize": 52,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "800",
+      "color": "#ffffff",
+      "backgroundColor": "#FF4500",
+      "padding": "10px",
+      "borderRadius": "8px",
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Social",
+    "label": "#FYP",
+    "preview": "#FYP",
+    "style": {
+      "fontSize": 52,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "800",
+      "color": "#ffffff",
+      "backgroundColor": "#FFFF00",
+      "padding": "10px",
+      "borderRadius": "8px",
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Social",
+    "label": "#TBT",
+    "preview": "#TBT",
+    "style": {
+      "fontSize": 52,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "800",
+      "color": "#ffffff",
+      "backgroundColor": "#32CD32",
+      "padding": "10px",
+      "borderRadius": "8px",
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Social",
+    "label": "#TBT",
+    "preview": "#TBT",
+    "style": {
+      "fontSize": 52,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "800",
+      "color": "#ffffff",
+      "backgroundColor": "#00FFFF",
+      "padding": "10px",
+      "borderRadius": "8px",
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Social",
+    "label": "#InstaGood",
+    "preview": "#InstaGood",
+    "style": {
+      "fontSize": 52,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "800",
+      "color": "#ffffff",
+      "backgroundColor": "#00FF00",
+      "padding": "10px",
+      "borderRadius": "8px",
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Social",
+    "label": "#TBT",
+    "preview": "#TBT",
+    "style": {
+      "fontSize": 52,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "800",
+      "color": "#ffffff",
+      "backgroundColor": "#00BFFF",
+      "padding": "10px",
+      "borderRadius": "8px",
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Social",
+    "label": "#Trending",
+    "preview": "#Trending",
+    "style": {
+      "fontSize": 52,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "800",
+      "color": "#ffffff",
+      "backgroundColor": "#32CD32",
+      "padding": "10px",
+      "borderRadius": "8px",
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Social",
+    "label": "#TBT",
+    "preview": "#TBT",
+    "style": {
+      "fontSize": 52,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "800",
+      "color": "#ffffff",
+      "backgroundColor": "#00FFFF",
+      "padding": "10px",
+      "borderRadius": "8px",
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Social",
+    "label": "#Viral",
+    "preview": "#Viral",
+    "style": {
+      "fontSize": 52,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "800",
+      "color": "#ffffff",
+      "backgroundColor": "#FFFF00",
+      "padding": "10px",
+      "borderRadius": "8px",
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Social",
+    "label": "#FollowMe",
+    "preview": "#FollowMe",
+    "style": {
+      "fontSize": 52,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "800",
+      "color": "#ffffff",
+      "backgroundColor": "#FFFF00",
+      "padding": "10px",
+      "borderRadius": "8px",
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Social",
+    "label": "#NewPost",
+    "preview": "#NewPost",
+    "style": {
+      "fontSize": 52,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "800",
+      "color": "#ffffff",
+      "backgroundColor": "#00FF00",
+      "padding": "10px",
+      "borderRadius": "8px",
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Social",
+    "label": "#OOTD",
+    "preview": "#OOTD",
+    "style": {
+      "fontSize": 52,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "800",
+      "color": "#ffffff",
+      "backgroundColor": "#FF00FF",
+      "padding": "10px",
+      "borderRadius": "8px",
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Social",
+    "label": "#FYP",
+    "preview": "#FYP",
+    "style": {
+      "fontSize": 52,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "800",
+      "color": "#ffffff",
+      "backgroundColor": "#00FFFF",
+      "padding": "10px",
+      "borderRadius": "8px",
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Social",
+    "label": "#Share",
+    "preview": "#Share",
+    "style": {
+      "fontSize": 52,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "800",
+      "color": "#ffffff",
+      "backgroundColor": "#FF0000",
+      "padding": "10px",
+      "borderRadius": "8px",
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Social",
+    "label": "#Giveaway",
+    "preview": "#Giveaway",
+    "style": {
+      "fontSize": 52,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "800",
+      "color": "#ffffff",
+      "backgroundColor": "#00FF00",
+      "padding": "10px",
+      "borderRadius": "8px",
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Social",
+    "label": "#TBT",
+    "preview": "#TBT",
+    "style": {
+      "fontSize": 52,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "800",
+      "color": "#ffffff",
+      "backgroundColor": "#FF00FF",
+      "padding": "10px",
+      "borderRadius": "8px",
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Social",
+    "label": "#Like",
+    "preview": "#Like",
+    "style": {
+      "fontSize": 52,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "800",
+      "color": "#ffffff",
+      "backgroundColor": "#FF0000",
+      "padding": "10px",
+      "borderRadius": "8px",
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Social",
+    "label": "#Subscribe",
+    "preview": "#Subscribe",
+    "style": {
+      "fontSize": 52,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "800",
+      "color": "#ffffff",
+      "backgroundColor": "#32CD32",
+      "padding": "10px",
+      "borderRadius": "8px",
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Social",
+    "label": "#Subscribe",
+    "preview": "#Subscribe",
+    "style": {
+      "fontSize": 52,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "800",
+      "color": "#ffffff",
+      "backgroundColor": "#FF1493",
+      "padding": "10px",
+      "borderRadius": "8px",
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Social",
+    "label": "#Like",
+    "preview": "#Like",
+    "style": {
+      "fontSize": 52,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "800",
+      "color": "#ffffff",
+      "backgroundColor": "#FFFF00",
+      "padding": "10px",
+      "borderRadius": "8px",
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Social",
+    "label": "#Like",
+    "preview": "#Like",
+    "style": {
+      "fontSize": 52,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "800",
+      "color": "#ffffff",
+      "backgroundColor": "#FF4500",
+      "padding": "10px",
+      "borderRadius": "8px",
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Social",
+    "label": "#Giveaway",
+    "preview": "#Giveaway",
+    "style": {
+      "fontSize": 52,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "800",
+      "color": "#ffffff",
+      "backgroundColor": "#FF1493",
+      "padding": "10px",
+      "borderRadius": "8px",
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Social",
+    "label": "#NewPost",
+    "preview": "#NewPost",
+    "style": {
+      "fontSize": 52,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "800",
+      "color": "#ffffff",
+      "backgroundColor": "#FF00FF",
+      "padding": "10px",
+      "borderRadius": "8px",
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Social",
+    "label": "#Share",
+    "preview": "#Share",
+    "style": {
+      "fontSize": 52,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "800",
+      "color": "#ffffff",
+      "backgroundColor": "#FFFF00",
+      "padding": "10px",
+      "borderRadius": "8px",
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Social",
+    "label": "#Trending",
+    "preview": "#Trending",
+    "style": {
+      "fontSize": 52,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "800",
+      "color": "#ffffff",
+      "backgroundColor": "#00FF00",
+      "padding": "10px",
+      "borderRadius": "8px",
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Social",
+    "label": "#TBT",
+    "preview": "#TBT",
+    "style": {
+      "fontSize": 52,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "800",
+      "color": "#ffffff",
+      "backgroundColor": "#FF4500",
+      "padding": "10px",
+      "borderRadius": "8px",
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Social",
+    "label": "#Viral",
+    "preview": "#Viral",
+    "style": {
+      "fontSize": 52,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "800",
+      "color": "#ffffff",
+      "backgroundColor": "#00BFFF",
+      "padding": "10px",
+      "borderRadius": "8px",
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Social",
+    "label": "#Subscribe",
+    "preview": "#Subscribe",
+    "style": {
+      "fontSize": 52,
+      "fontFamily": "Arial, sans-serif",
+      "fontWeight": "800",
+      "color": "#ffffff",
+      "backgroundColor": "#FFFF00",
+      "padding": "10px",
+      "borderRadius": "8px",
+      "textTransform": "uppercase"
+    }
+  },
+  {
+    "category": "Outline",
+    "label": "DRAWING",
+    "preview": "DRAWING",
+    "style": {
+      "fontSize": 64,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "transparent",
+      "WebkitTextStroke": "2px #FFFF00"
+    }
+  },
+  {
+    "category": "Outline",
+    "label": "DRAWING",
+    "preview": "DRAWING",
+    "style": {
+      "fontSize": 64,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "transparent",
+      "WebkitTextStroke": "2px #FF4500"
+    }
+  },
+  {
+    "category": "Outline",
+    "label": "HOLLOW",
+    "preview": "HOLLOW",
+    "style": {
+      "fontSize": 64,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "transparent",
+      "WebkitTextStroke": "2px #FF00FF"
+    }
+  },
+  {
+    "category": "Outline",
+    "label": "TRACE",
+    "preview": "TRACE",
+    "style": {
+      "fontSize": 64,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "transparent",
+      "WebkitTextStroke": "2px #FF00FF"
+    }
+  },
+  {
+    "category": "Outline",
+    "label": "STROKE",
+    "preview": "STROKE",
+    "style": {
+      "fontSize": 64,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "transparent",
+      "WebkitTextStroke": "2px #FF0000"
+    }
+  },
+  {
+    "category": "Outline",
+    "label": "BORDER",
+    "preview": "BORDER",
+    "style": {
+      "fontSize": 64,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "transparent",
+      "WebkitTextStroke": "2px #0000FF"
+    }
+  },
+  {
+    "category": "Outline",
+    "label": "SKETCH",
+    "preview": "SKETCH",
+    "style": {
+      "fontSize": 64,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "transparent",
+      "WebkitTextStroke": "2px #00FF00"
+    }
+  },
+  {
+    "category": "Outline",
+    "label": "GHOST",
+    "preview": "GHOST",
+    "style": {
+      "fontSize": 64,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "transparent",
+      "WebkitTextStroke": "2px #00FF00"
+    }
+  },
+  {
+    "category": "Outline",
+    "label": "DRAWING",
+    "preview": "DRAWING",
+    "style": {
+      "fontSize": 64,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "transparent",
+      "WebkitTextStroke": "2px #FF0000"
+    }
+  },
+  {
+    "category": "Outline",
+    "label": "FRAME",
+    "preview": "FRAME",
+    "style": {
+      "fontSize": 64,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "transparent",
+      "WebkitTextStroke": "2px #0000FF"
+    }
+  },
+  {
+    "category": "Outline",
+    "label": "FRAME",
+    "preview": "FRAME",
+    "style": {
+      "fontSize": 64,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "transparent",
+      "WebkitTextStroke": "2px #FF1493"
+    }
+  },
+  {
+    "category": "Outline",
+    "label": "TRACE",
+    "preview": "TRACE",
+    "style": {
+      "fontSize": 64,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "transparent",
+      "WebkitTextStroke": "2px #FF00FF"
+    }
+  },
+  {
+    "category": "Outline",
+    "label": "SKETCH",
+    "preview": "SKETCH",
+    "style": {
+      "fontSize": 64,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "transparent",
+      "WebkitTextStroke": "2px #32CD32"
+    }
+  },
+  {
+    "category": "Outline",
+    "label": "DRAWING",
+    "preview": "DRAWING",
+    "style": {
+      "fontSize": 64,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "transparent",
+      "WebkitTextStroke": "2px #FF00FF"
+    }
+  },
+  {
+    "category": "Outline",
+    "label": "LINE",
+    "preview": "LINE",
+    "style": {
+      "fontSize": 64,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "transparent",
+      "WebkitTextStroke": "2px #00FF00"
+    }
+  },
+  {
+    "category": "Outline",
+    "label": "SKETCH",
+    "preview": "SKETCH",
+    "style": {
+      "fontSize": 64,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "transparent",
+      "WebkitTextStroke": "2px #00FFFF"
+    }
+  },
+  {
+    "category": "Outline",
+    "label": "HOLLOW",
+    "preview": "HOLLOW",
+    "style": {
+      "fontSize": 64,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "transparent",
+      "WebkitTextStroke": "2px #32CD32"
+    }
+  },
+  {
+    "category": "Outline",
+    "label": "LINE",
+    "preview": "LINE",
+    "style": {
+      "fontSize": 64,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "transparent",
+      "WebkitTextStroke": "2px #00FF00"
+    }
+  },
+  {
+    "category": "Outline",
+    "label": "DRAWING",
+    "preview": "DRAWING",
+    "style": {
+      "fontSize": 64,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "transparent",
+      "WebkitTextStroke": "2px #FFFF00"
+    }
+  },
+  {
+    "category": "Outline",
+    "label": "BORDER",
+    "preview": "BORDER",
+    "style": {
+      "fontSize": 64,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "transparent",
+      "WebkitTextStroke": "2px #00FF00"
+    }
+  },
+  {
+    "category": "Outline",
+    "label": "TRANSPARENT",
+    "preview": "TRANSPARENT",
+    "style": {
+      "fontSize": 64,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "transparent",
+      "WebkitTextStroke": "2px #FF0000"
+    }
+  },
+  {
+    "category": "Outline",
+    "label": "STROKE",
+    "preview": "STROKE",
+    "style": {
+      "fontSize": 64,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "transparent",
+      "WebkitTextStroke": "2px #32CD32"
+    }
+  },
+  {
+    "category": "Outline",
+    "label": "TRACE",
+    "preview": "TRACE",
+    "style": {
+      "fontSize": 64,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "transparent",
+      "WebkitTextStroke": "2px #FF4500"
+    }
+  },
+  {
+    "category": "Outline",
+    "label": "BORDER",
+    "preview": "BORDER",
+    "style": {
+      "fontSize": 64,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "transparent",
+      "WebkitTextStroke": "2px #00FFFF"
+    }
+  },
+  {
+    "category": "Outline",
+    "label": "TRACE",
+    "preview": "TRACE",
+    "style": {
+      "fontSize": 64,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "transparent",
+      "WebkitTextStroke": "2px #FF4500"
+    }
+  },
+  {
+    "category": "Outline",
+    "label": "SKETCH",
+    "preview": "SKETCH",
+    "style": {
+      "fontSize": 64,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "transparent",
+      "WebkitTextStroke": "2px #FF0000"
+    }
+  },
+  {
+    "category": "Outline",
+    "label": "SKETCH",
+    "preview": "SKETCH",
+    "style": {
+      "fontSize": 64,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "transparent",
+      "WebkitTextStroke": "2px #FFFF00"
+    }
+  },
+  {
+    "category": "Outline",
+    "label": "FORM",
+    "preview": "FORM",
+    "style": {
+      "fontSize": 64,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "transparent",
+      "WebkitTextStroke": "2px #FF00FF"
+    }
+  },
+  {
+    "category": "Outline",
+    "label": "BORDER",
+    "preview": "BORDER",
+    "style": {
+      "fontSize": 64,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "transparent",
+      "WebkitTextStroke": "2px #FF00FF"
+    }
+  },
+  {
+    "category": "Outline",
+    "label": "CONTOUR",
+    "preview": "CONTOUR",
+    "style": {
+      "fontSize": 64,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "transparent",
+      "WebkitTextStroke": "2px #0000FF"
+    }
+  },
+  {
+    "category": "Outline",
+    "label": "BORDER",
+    "preview": "BORDER",
+    "style": {
+      "fontSize": 64,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "transparent",
+      "WebkitTextStroke": "2px #FF0000"
+    }
+  },
+  {
+    "category": "Outline",
+    "label": "BORDER",
+    "preview": "BORDER",
+    "style": {
+      "fontSize": 64,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "transparent",
+      "WebkitTextStroke": "2px #00FF00"
+    }
+  },
+  {
+    "category": "Outline",
+    "label": "DRAWING",
+    "preview": "DRAWING",
+    "style": {
+      "fontSize": 64,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "transparent",
+      "WebkitTextStroke": "2px #0000FF"
+    }
+  },
+  {
+    "category": "Outline",
+    "label": "BORDER",
+    "preview": "BORDER",
+    "style": {
+      "fontSize": 64,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "transparent",
+      "WebkitTextStroke": "2px #FF00FF"
+    }
+  },
+  {
+    "category": "Outline",
+    "label": "OUTLINE",
+    "preview": "OUTLINE",
+    "style": {
+      "fontSize": 64,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "transparent",
+      "WebkitTextStroke": "2px #FF0000"
+    }
+  },
+  {
+    "category": "Outline",
+    "label": "OUTLINE",
+    "preview": "OUTLINE",
+    "style": {
+      "fontSize": 64,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "transparent",
+      "WebkitTextStroke": "2px #00FF00"
+    }
+  },
+  {
+    "category": "Outline",
+    "label": "OUTLINE",
+    "preview": "OUTLINE",
+    "style": {
+      "fontSize": 64,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "transparent",
+      "WebkitTextStroke": "2px #0000FF"
+    }
+  },
+  {
+    "category": "Outline",
+    "label": "HOLLOW",
+    "preview": "HOLLOW",
+    "style": {
+      "fontSize": 64,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "transparent",
+      "WebkitTextStroke": "2px #FFFF00"
+    }
+  },
+  {
+    "category": "Outline",
+    "label": "HOLLOW",
+    "preview": "HOLLOW",
+    "style": {
+      "fontSize": 64,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "transparent",
+      "WebkitTextStroke": "2px #FF1493"
+    }
+  },
+  {
+    "category": "Outline",
+    "label": "LINE",
+    "preview": "LINE",
+    "style": {
+      "fontSize": 64,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "transparent",
+      "WebkitTextStroke": "2px #32CD32"
+    }
+  },
+  {
+    "category": "Outline",
+    "label": "SKETCH",
+    "preview": "SKETCH",
+    "style": {
+      "fontSize": 64,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "transparent",
+      "WebkitTextStroke": "2px #00FFFF"
+    }
+  },
+  {
+    "category": "Outline",
+    "label": "EDGE",
+    "preview": "EDGE",
+    "style": {
+      "fontSize": 64,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "transparent",
+      "WebkitTextStroke": "2px #32CD32"
+    }
+  },
+  {
+    "category": "Outline",
+    "label": "DRAWING",
+    "preview": "DRAWING",
+    "style": {
+      "fontSize": 64,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "transparent",
+      "WebkitTextStroke": "2px #0000FF"
+    }
+  },
+  {
+    "category": "Outline",
+    "label": "BORDER",
+    "preview": "BORDER",
+    "style": {
+      "fontSize": 64,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "transparent",
+      "WebkitTextStroke": "2px #00FFFF"
+    }
+  },
+  {
+    "category": "Outline",
+    "label": "EDGE",
+    "preview": "EDGE",
+    "style": {
+      "fontSize": 64,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "transparent",
+      "WebkitTextStroke": "2px #FF4500"
+    }
+  },
+  {
+    "category": "Outline",
+    "label": "CONTOUR",
+    "preview": "CONTOUR",
+    "style": {
+      "fontSize": 64,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "transparent",
+      "WebkitTextStroke": "2px #FFFF00"
+    }
+  },
+  {
+    "category": "Outline",
+    "label": "BORDER",
+    "preview": "BORDER",
+    "style": {
+      "fontSize": 64,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "transparent",
+      "WebkitTextStroke": "2px #FF00FF"
+    }
+  },
+  {
+    "category": "Outline",
+    "label": "LINE",
+    "preview": "LINE",
+    "style": {
+      "fontSize": 64,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "transparent",
+      "WebkitTextStroke": "2px #32CD32"
+    }
+  },
+  {
+    "category": "Outline",
+    "label": "OUTLINE",
+    "preview": "OUTLINE",
+    "style": {
+      "fontSize": 64,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "transparent",
+      "WebkitTextStroke": "2px #FF1493"
+    }
+  },
+  {
+    "category": "Outline",
+    "label": "TRANSPARENT",
+    "preview": "TRANSPARENT",
+    "style": {
+      "fontSize": 64,
+      "fontFamily": "Impact, sans-serif",
+      "fontWeight": "900",
+      "color": "transparent",
+      "WebkitTextStroke": "2px #FF0000"
+    }
+  }
+]

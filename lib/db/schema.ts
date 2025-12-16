@@ -62,6 +62,9 @@ export const brandSettings = pgTable('brand_settings', {
   adAngles: text('ad_angles'), // JSON array
   socialMediaHandles: text('social_media_handles'), // JSON object
   
+  // Content Matrix for efficient template population
+  contentMatrix: json('content_matrix'), // Stores pre-generated brand assets (headlines, ctas, etc.)
+
   createdAt: timestamp('created_at').notNull().defaultNow(),
   updatedAt: timestamp('updated_at').notNull().defaultNow(),
 });
@@ -208,11 +211,12 @@ export const templates = pgTable('templates', {
   id: text('id').primaryKey(),
   name: varchar('name', { length: 255 }).notNull(),
   description: text('description'),
-  htmlTemplate: text('html_template').notNull(),
-  cssTemplate: text('css_template').notNull(),
+  htmlTemplate: text('html_template'), // Made optional as we move to JSON-based storage
+  cssTemplate: text('css_template'),   // Made optional as we move to JSON-based storage
   llmSchema: json('llm_schema').notNull(), // Minified JSON schema for LLM
-  visualEditorData: json('visual_editor_data'), // Stores the canvas state (elements, etc.)
-  variables: json('variables'), // Default variable values (colors, text, images) - nullable for existing templates
+  elements: json('elements'), // The new source of truth: Array of VisualElement
+  visualEditorData: json('visual_editor_data'), // Legacy/Backup
+  variables: json('variables'), // Default variable values (colors, text, images)
   semanticTags: json('semantic_tags'), // Array of strings
   category: varchar('category', { length: 50 }),
   platform: json('platform'), // Array of strings: ["instagram", "linkedin"]

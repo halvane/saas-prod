@@ -1,90 +1,162 @@
-
+import { db } from '@/lib/db/drizzle';
+import { templates, templateEmbeddings } from '@/lib/db/schema';
+import { MASTER_TEMPLATES } from '@/lib/templates/master-templates';
+import { SECTIONS, buildTemplateFromSections } from '@/lib/builder/library';
+import { eq } from 'drizzle-orm';
+import { generateEmbedding } from '@/lib/ai/templates/ingestion';
+import dotenv from 'dotenv';
 import fs from 'fs';
 import path from 'path';
-import { db } from '@/lib/db/drizzle';
-import { templates } from '@/lib/db/schema';
-import * as dotenv from 'dotenv';
 
 // Load environment variables
 dotenv.config({ path: '.env' });
 
-const JSON_PATH = path.join(process.cwd(), '..', 'purlema', 'Purval', 'purlema-ai-platform', 'backups', 'templates', 'templates_2025-12-10_13-38_408-templates.json');
+// Helper to generate simple LLM schema from variables
+function generateLlmSchema(variables: Record<string, any>) {
+  const properties: Record<string, any> = {};
+  for (const [key, value] of Object.entries(variables)) {
+    properties[key] = {
+      type: 'string',
+      description: `Content for ${key}`,
+      default: value
+    };
+  }
+  return {
+    type: 'object',
+    properties,
+    required: Object.keys(variables)
+  };
+}
 
-async function seedTemplates() {
+// Define New Pro Templates
+const PRO_TEMPLATES = [
+  buildTemplateFromSections(
+    'Neon Cyber Launch',
+    'High contrast dark theme with gradient overlay and bold typography.',
+    ['overlay-dark-gradient', 'header-modern-nav', 'hero-impact-overlay', 'footer-bold-cta']
+  ),
+  buildTemplateFromSections(
+    'Minimalist Collection',
+    'Modern split layout with product focus and light aesthetic.',
+    ['header-centered-logo', 'hero-split-modern', 'product-feature-list', 'footer-social-minimal']
+  ),
+  buildTemplateFromSections(
+    'Glass Product Showcase',
+    'Trendy glass effect product showcase with mesh gradient.',
+    ['overlay-brand-mesh', 'header-modern-nav', 'product-glass-card', 'footer-bold-cta']
+  ),
+  buildTemplateFromSections(
+    'Storyteller Brand',
+    'Simple centered layout for storytelling.',
+    ['header-centered-logo', 'hero-split-modern', 'testimonial-modern-card', 'footer-social-minimal']
+  ),
+  buildTemplateFromSections(
+    'Feature Heavy Promo',
+    'Detailed product features with strong call to action.',
+    ['overlay-dark-gradient', 'header-modern-nav', 'product-feature-list', 'footer-bold-cta']
+  ),
+  buildTemplateFromSections(
+    'Trust & Social Proof',
+    'Build trust with testimonials and feature highlights.',
+    ['header-centered-logo', 'testimonial-modern-card', 'features-grid-4', 'footer-social-minimal']
+  ),
+  buildTemplateFromSections(
+    'Bold Statement',
+    'Impactful hero section with strong footer.',
+    ['overlay-dark-gradient', 'hero-impact-overlay', 'footer-bold-cta']
+  ),
+  buildTemplateFromSections(
+    'Elegant Product',
+    'Clean product presentation with minimal footer.',
+    ['header-centered-logo', 'product-glass-card', 'footer-social-minimal']
+  ),
+  buildTemplateFromSections(
+    'Modern Split',
+    'Split layout for balanced content.',
+    ['header-modern-nav', 'hero-split-modern', 'footer-bold-cta']
+  ),
+  buildTemplateFromSections(
+    'Quick Promo',
+    'Fast and effective promotional template.',
+    ['overlay-brand-mesh', 'hero-impact-overlay', 'footer-social-minimal']
+  )
+];
+
+async function seed() {
+  console.log('🌱 Starting template seed (V2 Architecture)...');
+
   try {
-    console.log('Reading templates from:', JSON_PATH);
-    if (!fs.existsSync(JSON_PATH)) {
-        console.error('File not found:', JSON_PATH);
-        process.exit(1);
-    }
-    const fileContent = fs.readFileSync(JSON_PATH, 'utf-8');
-    const allTemplates = JSON.parse(fileContent);
+    // 1. Clean old templates
+    console.log('🧹 Cleaning old templates...');
+    await db.delete(templates);
+    await db.delete(templateEmbeddings);
+    console.log('✅ Database cleaned.');
 
-    const templatesToInsert = allTemplates;
-    console.log(`Found ${allTemplates.length} templates. Inserting all...`);
+    // 2. Insert Master Templates (Original + Pro)
+    const allTemplates = [
+      ...MASTER_TEMPLATES,
+      ...PRO_TEMPLATES.map(t => ({
+        id: `pro-${t.name.toLowerCase().replace(/\s+/g, '-')}`,
+        ...t,
+        cssTemplate: '', // Modular templates use inline styles
+        tags: ['pro', 'dynamic', 'v2']
+      }))
+    ];
 
-    for (const t of templatesToInsert) {
-      // Use the variables exactly as they are in the JSON
-      const variables = t.variables || {};
+    console.log(`Found ${allTemplates.length} templates to insert.`);
 
-      // Generate a simple LLM schema: "key": "Value for key"
-      const llmSchema = Object.keys(variables).reduce((acc: any, key) => {
-        acc[key] = `Value for ${key}`;
-        return acc;
-      }, {});
+    for (const tmpl of allTemplates) {
+      console.log(`Processing: ${tmpl.name}`);
 
+      const llmSchema = generateLlmSchema(tmpl.variables);
+
+      // Note: We are NOT pre-generating the 'elements' JSON here because
+      // extractElementsFromHTMLAsync relies on a real browser environment (iframe rendering)
+      // which is hard to polyfill perfectly in Node.js.
+      // Instead, we rely on the "Legacy Fallback" in the Loader to generate it 
+      // the first time the user opens the template.
+      
+      console.log(`  - Inserting new template...`);
       await db.insert(templates).values({
-        id: t.id,
-        name: t.name,
-        description: t.description,
-        htmlTemplate: t.htmlTemplate,
-        cssTemplate: t.cssTemplate || '', // Ensure not null
+        id: tmpl.id,
+        name: tmpl.name,
+        description: tmpl.description,
+        htmlTemplate: tmpl.htmlTemplate, // Stored for legacy fallback extraction
+        cssTemplate: tmpl.cssTemplate,   // Stored for legacy fallback extraction
+        variables: tmpl.variables,
         llmSchema: llmSchema,
-        variables: t.variables,
-        semanticTags: t.tags,
-        category: t.category,
-        platform: t.platform,
-        thumbnailUrl: t.thumbnailUrl,
-        previewUrl: t.previewUrl,
-        isPublic: t.isPublic,
-        isActive: t.isActive,
-        width: t.width,
-        height: t.height,
-        usageCount: t.usageCount,
-        thumbsUpCount: 0,
-        thumbsDownCount: 0,
-        createdAt: t.createdAt ? new Date(t.createdAt) : new Date(),
-        updatedAt: t.updatedAt ? new Date(t.updatedAt) : new Date(),
-      }).onConflictDoUpdate({
-        target: templates.id,
-        set: {
-            name: t.name,
-            description: t.description,
-            htmlTemplate: t.htmlTemplate,
-            cssTemplate: t.cssTemplate || '',
-            llmSchema: llmSchema,
-            variables: t.variables,
-            semanticTags: t.tags,
-            category: t.category,
-            platform: t.platform,
-            thumbnailUrl: t.thumbnailUrl,
-            previewUrl: t.previewUrl,
-            isPublic: t.isPublic,
-            isActive: t.isActive,
-            width: t.width,
-            height: t.height,
-            updatedAt: new Date(),
-        }
+        category: tmpl.category,
+        platform: tmpl.platform,
+        isActive: true,
+        isPublic: true,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        elements: [], // Empty initially, will be populated by the editor on first load
       });
-      console.log(`Inserted/Updated template: ${t.name}`);
+
+      // 3. Generate Embedding (if possible)
+      try {
+        if (process.env.OPENAI_API_KEY || process.env.AI_GATEWAY_TOKEN) {
+          console.log(`  - Generating embedding...`);
+          const embedding = await generateEmbedding(tmpl.description);
+          
+          await db.insert(templateEmbeddings).values({
+            templateId: tmpl.id,
+            embedding: embedding,
+            sourceText: tmpl.description
+          });
+        }
+      } catch (err) {
+        console.warn(`  ⚠️ Failed to generate embedding: ${err}`);
+      }
     }
 
-    console.log('Done!');
+    console.log('✅ Seed completed successfully!');
     process.exit(0);
   } catch (error) {
-    console.error('Error seeding templates:', error);
+    console.error('❌ Seed failed:', error);
     process.exit(1);
   }
 }
 
-seedTemplates();
+seed();

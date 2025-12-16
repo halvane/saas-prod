@@ -15,7 +15,8 @@ const protectedRoutes = [
   '/settings',
   '/templates',
   '/timeline',
-  '/admin'
+  '/admin',
+  '/template-builder'
 ];
 
 export async function middleware(request: NextRequest) {

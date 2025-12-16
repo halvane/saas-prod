@@ -48,6 +48,14 @@ export interface VisualElement {
     blur: number;
     color: string;
   };
+  boxShadow?: string;
+  padding?: number | string;
+  backdropFilter?: string;
+  backgroundSize?: string;
+  backgroundPosition?: string;
+  
+  // Raw inline styles (fallback to preserve all CSS)
+  rawStyle?: string;
   
   // Layer management
   zIndex: number;

@@ -1,1 +1,0 @@
-ALTER TABLE "templates" ADD COLUMN "visual_editor_data" json;

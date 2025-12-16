@@ -19,8 +19,9 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Label } from '@/components/ui/label';
-import { Palette, Globe, Zap, CheckCircle, ExternalLink, Upload, Plus, X, Loader2, Target, Lightbulb, Heart, Tag, BrainCircuit, Sparkles, Image as ImageIcon, Trash2, Edit2, ChevronLeft, ChevronRight, ShoppingBag } from 'lucide-react';
+import { Palette, Globe, Zap, CheckCircle, ExternalLink, Upload, Plus, X, Loader2, Target, Lightbulb, Heart, Tag, BrainCircuit, Sparkles, Image as ImageIcon, Trash2, Edit2, ChevronLeft, ChevronRight, ShoppingBag, Download, FileJson } from 'lucide-react';
 import { getBrandSettings, saveBrandSettings, deleteBrandSettings } from '@/app/(dashboard)/settings/actions';
+import { generateAllTemplatesJSON, checkIsAdmin } from './actions';
 import { AIProcessingLoader } from '@/components/custom/AI/AIProcessingLoader';
 import { toast } from 'sonner';
 import {
@@ -62,6 +63,133 @@ export default function BrandPage() {
   const [hasSavedData, setHasSavedData] = React.useState(false);
   const [isSaving, setIsSaving] = React.useState(false);
   const [isDirty, setIsDirty] = React.useState(false);
+  const [isViewMode, setIsViewMode] = React.useState(true);
+
+  // Admin Debug State
+  const [isAdmin, setIsAdmin] = React.useState(false);
+  const [isDebugModalOpen, setIsDebugModalOpen] = React.useState(false);
+  const [debugJson, setDebugJson] = React.useState<string>('');
+  const [isGeneratingDebug, setIsGeneratingDebug] = React.useState(false);
+
+  React.useEffect(() => {
+    checkIsAdmin().then(setIsAdmin);
+  }, []);
+
+  const handleGenerateDebug = async () => {
+    setIsGeneratingDebug(true);
+    try {
+      const data = await generateAllTemplatesJSON();
+      setDebugJson(JSON.stringify(data, null, 2));
+      setIsDebugModalOpen(true);
+      toast.success('Debug JSON generated!');
+    } catch (error) {
+      toast.error('Failed to generate debug JSON');
+      console.error(error);
+    } finally {
+      setIsGeneratingDebug(false);
+    }
+  };
+
+  const handleDownloadDebug = () => {
+    const blob = new Blob([debugJson], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'templates-debug.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
+  const handleAnalyzeBrand = async () => {
+    if (!brandUrl) {
+      toast.error('Please enter a website URL');
+      return;
+    }
+
+    setIsScrapingBrand(true);
+    setScrapingProgress(0);
+    setScrapingStep(0);
+
+    try {
+      const progressInterval = setInterval(() => {
+        setScrapingProgress(prev => Math.min(prev + 1, 90));
+      }, 500);
+
+      const stepInterval = setInterval(() => {
+        setScrapingStep(prev => (prev < 4 ? prev + 1 : prev));
+      }, 2000);
+
+      const response = await fetch('/api/brand/scrape', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url: brandUrl }),
+      });
+
+      clearInterval(progressInterval);
+      clearInterval(stepInterval);
+      setScrapingProgress(100);
+      setScrapingStep(4);
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || 'Failed to analyze brand');
+      }
+
+      const data = await response.json();
+      
+      // Map API response (scraper format) to Page state (DB format)
+      setBrandName(data.name || data.brandName || '');
+      setBrandLogo(data.logo || data.brandLogo || null);
+      
+      // Handle colors which might be 'colors' (scraper) or 'brandColors' (DB)
+      const colors = data.colors || data.brandColors || [];
+      if (colors.length > 0) setBrandColors(colors);
+      
+      setBrandVoice(data.tone || data.brandVoice || '');
+      setBrandAudience(data.audience || data.brandAudience || '');
+      setBrandIndustry(data.industry || data.brandIndustry || '');
+      setBrandValues(data.values || data.brandValues || '');
+      setBrandStory(data.story || data.brandStory || '');
+      
+      setBrandArchetype(data.archetype || data.brandArchetype || '');
+      setBrandTagline(data.tagline || data.brandTagline || '');
+      setBrandMission(data.mission || data.brandMission || '');
+      
+      setBrandUsps(data.usps || data.brandUsps || []);
+      setBrandPainPoints(data.painPoints || data.brandPainPoints || []);
+      setCustomerDesires(data.customerDesires || []);
+      setAdAngles(data.adAngles || []);
+      
+      // Handle products
+      if (data.products && Array.isArray(data.products)) {
+        // Map scraper product format to UI format if needed
+        const mappedProducts = data.products.map((p: any) => ({
+          name: p.name,
+          price: p.price || '',
+          description: p.description || '',
+          imageUrl: p.image || p.imageUrl || '', // Scraper uses 'image', UI uses 'imageUrl'
+          metadata: p.metadata || {}
+        }));
+        setProducts(mappedProducts);
+      }
+
+      // Handle images
+      const images = data.images || data.brandImages || [];
+      setBrandImages(dedupeImages(images));
+
+      toast.success('Brand analysis complete!');
+      setIsViewMode(false); 
+      setHasSavedData(true);
+
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : 'Failed to analyze brand');
+      console.error(error);
+    } finally {
+      setTimeout(() => setIsScrapingBrand(false), 1000);
+    }
+  };
 
   // Manual Add State
   const [isAddProductOpen, setIsAddProductOpen] = React.useState(false);
@@ -189,6 +317,7 @@ export default function BrandPage() {
 
       if (brandSettings) {
         setHasSavedData(true);
+        setIsViewMode(true);
         setBrandName(brandSettings.brandName || '');
         setBrandUrl(brandSettings.brandUrl || '');
         setBrandLogo(brandSettings.brandLogo || null);
@@ -247,6 +376,7 @@ export default function BrandPage() {
       await saveBrandSettings(dataToSave);
       toast.success('✨ Brand DNA saved to database!');
       setIsDirty(false);
+      setIsViewMode(true);
       
       setTimeout(async () => {
         const freshData = await getBrandSettings();
@@ -352,34 +482,36 @@ export default function BrandPage() {
           <Icon className="w-4 h-4" style={{ color: brandTheme.primary }} />
           <span style={{ color: brandTheme.primary, fontWeight: 600 }}>{label}</span>
         </label>
-        <div className="flex gap-2 mb-2">
-          <Input
-            value={newItem}
-            onChange={(e) => setNewItem(e.target.value)}
-            onKeyDown={(e) => e.key === 'Enter' && add()}
-            placeholder={placeholder}
-            className="flex-1 backdrop-blur-sm border-white/40 focus:border-white/60 transition-all"
-            style={{ 
-              backgroundColor: `rgba(${brandTheme.primaryRgb}, 0.05)`,
-              borderColor: `rgba(${brandTheme.primaryRgb}, 0.2)`
-            }}
-          />
-          <Button 
-            onClick={add} 
-            size="sm" 
-            variant="outline"
-            className="backdrop-blur-sm hover:scale-105 transition-all"
-            style={{ 
-              backgroundColor: `rgba(${brandTheme.primaryRgb}, 0.1)`,
-              borderColor: `rgba(${brandTheme.primaryRgb}, 0.3)`,
-              color: brandTheme.primary
-            }}
-          >
-            <Plus className="w-4 h-4" />
-          </Button>
-        </div>
+        {!isViewMode && (
+          <div className="flex gap-2 mb-2">
+            <Input
+              value={newItem}
+              onChange={(e) => setNewItem(e.target.value)}
+              onKeyDown={(e) => e.key === 'Enter' && add()}
+              placeholder={placeholder}
+              className="flex-1 backdrop-blur-sm border-white/40 focus:border-white/60 transition-all"
+              style={{ 
+                backgroundColor: `rgba(${brandTheme.primaryRgb}, 0.05)`,
+                borderColor: `rgba(${brandTheme.primaryRgb}, 0.2)`
+              }}
+            />
+            <Button 
+              onClick={add} 
+              size="sm" 
+              variant="outline"
+              className="backdrop-blur-sm hover:scale-105 transition-all"
+              style={{ 
+                backgroundColor: `rgba(${brandTheme.primaryRgb}, 0.1)`,
+                borderColor: `rgba(${brandTheme.primaryRgb}, 0.3)`,
+                color: brandTheme.primary
+              }}
+            >
+              <Plus className="w-4 h-4" />
+            </Button>
+          </div>
+        )}
         <div className="flex flex-col gap-2">
-          {items.map((item, i) => (
+          {items.length > 0 ? items.map((item, i) => (
             <div 
               key={i} 
               className="px-3 py-2 rounded-lg text-sm flex items-start justify-between gap-2 backdrop-blur-sm border transition-all hover:scale-[1.02] hover:shadow-md"
@@ -390,15 +522,19 @@ export default function BrandPage() {
               }}
             >
               <span className="whitespace-pre-wrap font-medium">{item}</span>
-              <button 
-                onClick={() => setItems(items.filter((_, idx) => idx !== i))} 
-                className="mt-0.5 flex-shrink-0 transition-all hover:scale-110"
-                style={{ color: brandTheme.secondary }}
-              >
-                <X className="w-4 h-4" />
-              </button>
+              {!isViewMode && (
+                <button 
+                  onClick={() => setItems(items.filter((_, idx) => idx !== i))} 
+                  className="mt-0.5 flex-shrink-0 transition-all hover:scale-110"
+                  style={{ color: brandTheme.secondary }}
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              )}
             </div>
-          ))}
+          )) : (
+            isViewMode && <div className="text-sm text-gray-500 italic">No items</div>
+          )}
         </div>
       </div>
     );
@@ -456,28 +592,58 @@ export default function BrandPage() {
           </h2>
           <p className="text-gray-700 mt-3 text-lg font-semibold tracking-wide">Manage your brand identity, assets, and strategic positioning</p>
         </div>
-        <Button 
-          onClick={() => handleSaveBrandDNA()} 
-          disabled={isSaving}
-          size="lg"
-          style={{
-            background: brandTheme.gradient,
-            color: 'white'
-          }}
-          className="hover:opacity-90 transition-opacity shadow-lg"
-        >
-          {isSaving ? (
-            <>
-              <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-              Saving...
-            </>
-          ) : (
-            <>
-              <CheckCircle className="w-5 h-5 mr-2" />
-              Save Changes
-            </>
+        <div className="flex gap-3">
+          {isAdmin && (
+            <Button
+              onClick={handleGenerateDebug}
+              disabled={isGeneratingDebug}
+              variant="outline"
+              className="bg-white/50 backdrop-blur-sm border-white/40 hover:bg-white/80"
+            >
+              {isGeneratingDebug ? (
+                <Loader2 className="w-5 h-5 animate-spin" />
+              ) : (
+                <FileJson className="w-5 h-5" />
+              )}
+            </Button>
           )}
-        </Button>
+          {hasSavedData && isViewMode && (
+            <Button 
+              onClick={() => setIsViewMode(false)} 
+              size="lg"
+              variant="outline"
+              className="bg-white/50 backdrop-blur-sm border-white/40 hover:bg-white/80"
+            >
+              <Edit2 className="w-5 h-5 mr-2" />
+              Edit Brand DNA
+            </Button>
+          )}
+          
+          {(!isViewMode || !hasSavedData) && (
+            <Button 
+              onClick={() => handleSaveBrandDNA()} 
+              disabled={isSaving}
+              size="lg"
+              style={{
+                background: brandTheme.gradient,
+                color: 'white'
+              }}
+              className="hover:opacity-90 transition-opacity shadow-lg"
+            >
+              {isSaving ? (
+                <>
+                  <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                  Saving...
+                </>
+              ) : (
+                <>
+                  <CheckCircle className="w-5 h-5 mr-2" />
+                  Save Changes
+                </>
+              )}
+            </Button>
+          )}
+        </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -513,26 +679,32 @@ export default function BrandPage() {
                     {brandLogo ? (
                       <>
                         <img src={brandLogo} alt="Brand Logo" className="w-full h-full object-contain" />
-                        <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                          <Button variant="ghost" size="icon" className="text-white" onClick={() => setBrandLogo(null)}>
-                            <X className="w-4 h-4" />
-                          </Button>
-                        </div>
+                        {!isViewMode && (
+                          <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <Button variant="ghost" size="icon" className="text-white" onClick={() => setBrandLogo(null)}>
+                              <X className="w-4 h-4" />
+                            </Button>
+                          </div>
+                        )}
                       </>
                     ) : (
                       <Upload className="w-6 h-6 text-gray-400" />
                     )}
-                    <input 
-                      type="file" 
-                      accept="image/*" 
-                      className="absolute inset-0 opacity-0 cursor-pointer" 
-                      onChange={(e) => handleFileUpload(e, setBrandLogo)}
-                    />
+                    {!isViewMode && (
+                      <input 
+                        type="file" 
+                        accept="image/*" 
+                        className="absolute inset-0 opacity-0 cursor-pointer" 
+                        onChange={(e) => handleFileUpload(e, setBrandLogo)}
+                      />
+                    )}
                   </div>
-                  <div className="text-sm text-gray-500">
-                    <p>Recommended: 512x512px</p>
-                    <p>PNG or SVG with transparent background</p>
-                  </div>
+                  {!isViewMode && (
+                    <div className="text-sm text-gray-500">
+                      <p>Recommended: 512x512px</p>
+                      <p>PNG or SVG with transparent background</p>
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -542,26 +714,34 @@ export default function BrandPage() {
                 <div className="flex flex-wrap gap-3 mt-2">
                   {brandColors.map((color, index) => (
                     <div key={index} className="group relative">
-                      <Popover>
-                        <PopoverTrigger asChild>
-                          <div 
-                            className="w-10 h-10 rounded-full border border-gray-200 shadow-sm cursor-pointer transition-transform hover:scale-110"
-                            style={{ backgroundColor: color }}
-                          />
-                        </PopoverTrigger>
-                        <PopoverContent className="w-auto p-3">
-                          <HexColorPicker color={color} onChange={(newColor) => updateBrandColor(index, newColor)} />
-                          <div className="mt-2 flex items-center gap-2">
-                             <span className="text-xs text-gray-500">Hex:</span>
-                             <Input 
-                               value={color} 
-                               onChange={(e) => updateBrandColor(index, e.target.value)}
-                               className="h-8 text-xs font-mono"
-                             />
-                          </div>
-                        </PopoverContent>
-                      </Popover>
-                      {brandColors.length > 1 && (
+                      {isViewMode ? (
+                        <div 
+                          className="w-10 h-10 rounded-full border border-gray-200 shadow-sm"
+                          style={{ backgroundColor: color }}
+                          title={color}
+                        />
+                      ) : (
+                        <Popover>
+                          <PopoverTrigger asChild>
+                            <div 
+                              className="w-10 h-10 rounded-full border border-gray-200 shadow-sm cursor-pointer transition-transform hover:scale-110"
+                              style={{ backgroundColor: color }}
+                            />
+                          </PopoverTrigger>
+                          <PopoverContent className="w-auto p-3">
+                            <HexColorPicker color={color} onChange={(newColor) => updateBrandColor(index, newColor)} />
+                            <div className="mt-2 flex items-center gap-2">
+                               <span className="text-xs text-gray-500">Hex:</span>
+                               <Input 
+                                 value={color} 
+                                 onChange={(e) => updateBrandColor(index, e.target.value)}
+                                 className="h-8 text-xs font-mono"
+                               />
+                            </div>
+                          </PopoverContent>
+                        </Popover>
+                      )}
+                      {!isViewMode && brandColors.length > 1 && (
                         <button 
                           onClick={() => removeBrandColor(index)}
                           className="absolute -top-1 -right-1 bg-white rounded-full p-0.5 shadow-md opacity-0 group-hover:opacity-100 transition-opacity"
@@ -571,7 +751,7 @@ export default function BrandPage() {
                       )}
                     </div>
                   ))}
-                  {brandColors.length < 5 && (
+                  {!isViewMode && brandColors.length < 5 && (
                     <button
                       onClick={addBrandColor}
                       className="w-10 h-10 rounded-full border-2 border-dashed border-gray-300 hover:border-gray-400 flex items-center justify-center cursor-pointer transition-all hover:scale-110 bg-white/50 backdrop-blur-sm"
@@ -610,27 +790,72 @@ export default function BrandPage() {
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              <Input 
-                label="Brand Name" 
-                value={brandName} 
-                onChange={(e) => setBrandName(e.target.value)} 
-                placeholder="e.g. Acme Corp"
-                brandColor={brandTheme.primary}
-              />
-              <Input 
-                label="Website URL" 
-                value={brandUrl} 
-                onChange={(e) => setBrandUrl(e.target.value)} 
-                placeholder="https://example.com"
-                brandColor={brandTheme.primary}
-              />
-              <Input 
-                label="Industry" 
-                value={brandIndustry} 
-                onChange={(e) => setBrandIndustry(e.target.value)} 
-                placeholder="e.g. SaaS, Fashion, Health"
-                brandColor={brandTheme.primary}
-              />
+              {isViewMode ? (
+                <div className="space-y-4">
+                  <div>
+                    <Label className="text-xs text-gray-500 uppercase tracking-wider font-semibold mb-1">Brand Name</Label>
+                    <div className="text-lg font-medium text-gray-900">{brandName || '-'}</div>
+                  </div>
+                  <div>
+                    <Label className="text-xs text-gray-500 uppercase tracking-wider font-semibold mb-1">Website URL</Label>
+                    <a href={brandUrl} target="_blank" rel="noopener noreferrer" className="text-lg font-medium text-blue-600 hover:underline flex items-center gap-2">
+                      {brandUrl || '-'}
+                      {brandUrl && <ExternalLink className="w-4 h-4" />}
+                    </a>
+                  </div>
+                  <div>
+                    <Label className="text-xs text-gray-500 uppercase tracking-wider font-semibold mb-1">Industry</Label>
+                    <div className="text-lg font-medium text-gray-900">{brandIndustry || '-'}</div>
+                  </div>
+                </div>
+              ) : (
+                <>
+                  <Input 
+                    label="Brand Name" 
+                    value={brandName} 
+                    onChange={(e) => setBrandName(e.target.value)} 
+                    placeholder="e.g. Acme Corp"
+                    brandColor={brandTheme.primary}
+                  />
+                  <div className="space-y-2">
+                    <Input 
+                      label="Website URL" 
+                      value={brandUrl} 
+                      onChange={(e) => setBrandUrl(e.target.value)} 
+                      placeholder="https://example.com"
+                      brandColor={brandTheme.primary}
+                    />
+                    <Button 
+                      onClick={handleAnalyzeBrand}
+                      disabled={isScrapingBrand || !brandUrl}
+                      className="w-full"
+                      style={{
+                        background: brandTheme.gradient,
+                        color: 'white'
+                      }}
+                    >
+                      {isScrapingBrand ? (
+                        <>
+                          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                          Analyzing...
+                        </>
+                      ) : (
+                        <>
+                          <Sparkles className="w-4 h-4 mr-2" />
+                          Analyze Brand
+                        </>
+                      )}
+                    </Button>
+                  </div>
+                  <Input 
+                    label="Industry" 
+                    value={brandIndustry} 
+                    onChange={(e) => setBrandIndustry(e.target.value)} 
+                    placeholder="e.g. SaaS, Fashion, Health"
+                    brandColor={brandTheme.primary}
+                  />
+                </>
+              )}
             </CardContent>
           </GlassCard>
 
@@ -657,11 +882,13 @@ export default function BrandPage() {
                   </span>
                 </div>
                 <Dialog open={isAddProductOpen} onOpenChange={setIsAddProductOpen}>
-                  <DialogTrigger asChild>
-                    <Button variant="ghost" size="sm">
-                      <Plus className="w-4 h-4" />
-                    </Button>
-                  </DialogTrigger>
+                  {!isViewMode && (
+                    <DialogTrigger asChild>
+                      <Button variant="ghost" size="sm">
+                        <Plus className="w-4 h-4" />
+                      </Button>
+                    </DialogTrigger>
+                  )}
                   <DialogContent>
                     <DialogHeader>
                       <DialogTitle>Add Product</DialogTitle>
@@ -753,14 +980,16 @@ export default function BrandPage() {
                                     <p className="text-sm font-semibold mt-0.5" style={{ color: brandTheme.secondary }}>{product.price}</p>
                                   )}
                                 </div>
-                                <Button 
-                                  variant="ghost" 
-                                  size="icon" 
-                                  className="h-6 w-6 -mt-1 -mr-1 text-gray-400 hover:text-red-500 shrink-0"
-                                  onClick={() => setProducts(products.filter((_, i) => i !== index))}
-                                >
-                                  <X className="w-3 h-3" />
-                                </Button>
+                                {!isViewMode && (
+                                  <Button 
+                                    variant="ghost" 
+                                    size="icon" 
+                                    className="h-6 w-6 -mt-1 -mr-1 text-gray-400 hover:text-red-500 shrink-0"
+                                    onClick={() => setProducts(products.filter((_, i) => i !== index))}
+                                  >
+                                    <X className="w-3 h-3" />
+                                  </Button>
+                                )}
                               </div>
                               <p className="text-xs text-gray-500 line-clamp-2 mt-1">{product.description}</p>
                             </div>
@@ -809,16 +1038,18 @@ export default function BrandPage() {
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Button variant="outline" size="sm" className="relative">
-                    <Upload className="w-4 h-4 mr-2" />
-                    Upload
-                    <input 
-                      type="file" 
-                      accept="image/*" 
-                      className="absolute inset-0 opacity-0 cursor-pointer" 
-                      onChange={(e) => handleFileUpload(e, (url) => setBrandImages([...brandImages, { url, metadata: {} }]))}
-                    />
-                  </Button>
+                  {!isViewMode && (
+                    <Button variant="outline" size="sm" className="relative">
+                      <Upload className="w-4 h-4 mr-2" />
+                      Upload
+                      <input 
+                        type="file" 
+                        accept="image/*" 
+                        className="absolute inset-0 opacity-0 cursor-pointer" 
+                        onChange={(e) => handleFileUpload(e, (url) => setBrandImages([...brandImages, { url, metadata: {} }]))}
+                      />
+                    </Button>
+                  )}
                 </div>
               </CardTitle>
             </CardHeader>
@@ -856,14 +1087,16 @@ export default function BrandPage() {
                                   </div>
                                 </DialogContent>
                               </Dialog>
-                              <Button 
-                                variant="destructive" 
-                                size="icon" 
-                                className="h-8 w-8"
-                                onClick={() => setBrandImages(brandImages.filter((_, i) => i !== index))}
-                              >
-                                <Trash2 className="w-4 h-4" />
-                              </Button>
+                              {!isViewMode && (
+                                <Button 
+                                  variant="destructive" 
+                                  size="icon" 
+                                  className="h-8 w-8"
+                                  onClick={() => setBrandImages(brandImages.filter((_, i) => i !== index))}
+                                >
+                                  <Trash2 className="w-4 h-4" />
+                                </Button>
+                              )}
                             </div>
                           </div>
                         </div>
@@ -905,34 +1138,53 @@ export default function BrandPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <Input 
-                  label="Brand Archetype" 
-                  value={brandArchetype} 
-                  onChange={(e) => setBrandArchetype(e.target.value)} 
-                  placeholder="e.g. The Creator, The Hero"
-                  brandColor={brandTheme.primary}
-                />
-                <Input 
-                  label="Tagline" 
-                  value={brandTagline} 
-                  onChange={(e) => setBrandTagline(e.target.value)} 
-                  placeholder="Your catchy slogan"
-                  brandColor={brandTheme.primary}
-                />
-                <div>
-                  <Label className="mb-2 block" style={{ color: brandTheme.primary, fontWeight: 600 }}>Mission Statement</Label>
-                  <textarea 
-                    className="w-full min-h-[100px] p-3 rounded-md border text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 backdrop-blur-sm transition-all"
-                    style={{
-                      backgroundColor: `rgba(${brandTheme.primaryRgb}, 0.05)`,
-                      borderColor: `rgba(${brandTheme.primaryRgb}, 0.2)`,
-                      color: brandTheme.primary
-                    }}
-                    value={brandMission}
-                    onChange={(e) => setBrandMission(e.target.value)}
-                    placeholder="What is your brand's mission?"
-                  />
-                </div>
+                {isViewMode ? (
+                  <div className="space-y-4">
+                    <div>
+                      <Label className="text-xs text-gray-500 uppercase tracking-wider font-semibold mb-1">Brand Archetype</Label>
+                      <div className="text-lg font-medium text-gray-900">{brandArchetype || '-'}</div>
+                    </div>
+                    <div>
+                      <Label className="text-xs text-gray-500 uppercase tracking-wider font-semibold mb-1">Tagline</Label>
+                      <div className="text-lg font-medium text-gray-900">{brandTagline || '-'}</div>
+                    </div>
+                    <div>
+                      <Label className="text-xs text-gray-500 uppercase tracking-wider font-semibold mb-1">Mission Statement</Label>
+                      <div className="text-gray-800 font-medium whitespace-pre-wrap">{brandMission || '-'}</div>
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    <Input 
+                      label="Brand Archetype" 
+                      value={brandArchetype} 
+                      onChange={(e) => setBrandArchetype(e.target.value)} 
+                      placeholder="e.g. The Creator, The Hero"
+                      brandColor={brandTheme.primary}
+                    />
+                    <Input 
+                      label="Tagline" 
+                      value={brandTagline} 
+                      onChange={(e) => setBrandTagline(e.target.value)} 
+                      placeholder="Your catchy slogan"
+                      brandColor={brandTheme.primary}
+                    />
+                    <div>
+                      <Label className="mb-2 block" style={{ color: brandTheme.primary, fontWeight: 600 }}>Mission Statement</Label>
+                      <textarea 
+                        className="w-full min-h-[100px] p-3 rounded-md border text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 backdrop-blur-sm transition-all"
+                        style={{
+                          backgroundColor: `rgba(${brandTheme.primaryRgb}, 0.05)`,
+                          borderColor: `rgba(${brandTheme.primaryRgb}, 0.2)`,
+                          color: brandTheme.primary
+                        }}
+                        value={brandMission}
+                        onChange={(e) => setBrandMission(e.target.value)}
+                        placeholder="What is your brand's mission?"
+                      />
+                    </div>
+                  </>
+                )}
               </CardContent>
             </GlassCard>
 
@@ -958,34 +1210,53 @@ export default function BrandPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <Input 
-                  label="Brand Voice" 
-                  value={brandVoice} 
-                  onChange={(e) => setBrandVoice(e.target.value)} 
-                  placeholder="e.g. Professional, Friendly, Witty"
-                  brandColor={brandTheme.primary}
-                />
-                <Input 
-                  label="Target Audience" 
-                  value={brandAudience} 
-                  onChange={(e) => setBrandAudience(e.target.value)} 
-                  placeholder="e.g. Small Business Owners"
-                  brandColor={brandTheme.primary}
-                />
-                <div>
-                  <Label className="mb-2 block" style={{ color: brandTheme.primary, fontWeight: 600 }}>Brand Story</Label>
-                  <textarea 
-                    className="w-full min-h-[100px] p-3 rounded-md border text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 backdrop-blur-sm transition-all"
-                    style={{
-                      backgroundColor: `rgba(${brandTheme.primaryRgb}, 0.05)`,
-                      borderColor: `rgba(${brandTheme.primaryRgb}, 0.2)`,
-                      color: brandTheme.primary
-                    }}
-                    value={brandStory}
-                    onChange={(e) => setBrandStory(e.target.value)}
-                    placeholder="Tell your brand's story..."
-                  />
-                </div>
+                {isViewMode ? (
+                  <div className="space-y-4">
+                    <div>
+                      <Label className="text-xs text-gray-500 uppercase tracking-wider font-semibold mb-1">Brand Voice</Label>
+                      <div className="text-lg font-medium text-gray-900">{brandVoice || '-'}</div>
+                    </div>
+                    <div>
+                      <Label className="text-xs text-gray-500 uppercase tracking-wider font-semibold mb-1">Target Audience</Label>
+                      <div className="text-lg font-medium text-gray-900">{brandAudience || '-'}</div>
+                    </div>
+                    <div>
+                      <Label className="text-xs text-gray-500 uppercase tracking-wider font-semibold mb-1">Brand Story</Label>
+                      <div className="text-gray-800 font-medium whitespace-pre-wrap">{brandStory || '-'}</div>
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    <Input 
+                      label="Brand Voice" 
+                      value={brandVoice} 
+                      onChange={(e) => setBrandVoice(e.target.value)} 
+                      placeholder="e.g. Professional, Friendly, Witty"
+                      brandColor={brandTheme.primary}
+                    />
+                    <Input 
+                      label="Target Audience" 
+                      value={brandAudience} 
+                      onChange={(e) => setBrandAudience(e.target.value)} 
+                      placeholder="e.g. Small Business Owners"
+                      brandColor={brandTheme.primary}
+                    />
+                    <div>
+                      <Label className="mb-2 block" style={{ color: brandTheme.primary, fontWeight: 600 }}>Brand Story</Label>
+                      <textarea 
+                        className="w-full min-h-[100px] p-3 rounded-md border text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 backdrop-blur-sm transition-all"
+                        style={{
+                          backgroundColor: `rgba(${brandTheme.primaryRgb}, 0.05)`,
+                          borderColor: `rgba(${brandTheme.primaryRgb}, 0.2)`,
+                          color: brandTheme.primary
+                        }}
+                        value={brandStory}
+                        onChange={(e) => setBrandStory(e.target.value)}
+                        placeholder="Tell your brand's story..."
+                      />
+                    </div>
+                  </>
+                )}
               </CardContent>
             </GlassCard>
           </div>
@@ -1084,6 +1355,27 @@ export default function BrandPage() {
           </AlertDialog>
         </div>
       )}
+
+      {/* Admin Debug Modal */}
+      <Dialog open={isDebugModalOpen} onOpenChange={setIsDebugModalOpen}>
+        <DialogContent className="max-w-4xl max-h-[80vh] flex flex-col">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <FileJson className="w-5 h-5" />
+              Template Variables Debug
+            </DialogTitle>
+          </DialogHeader>
+          <div className="flex-1 overflow-auto bg-slate-950 text-slate-50 p-4 rounded-md font-mono text-xs">
+            <pre>{debugJson}</pre>
+          </div>
+          <DialogFooter>
+            <Button onClick={handleDownloadDebug} className="gap-2">
+              <Download className="w-4 h-4" />
+              Download JSON
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
       </motion.div>
     </div>
   );

@@ -1,6 +1,7 @@
 import { generateObject } from 'ai';
 import { z } from 'zod';
 import { gateway } from '@/lib/ai/gateway';
+import { getModel } from '@/lib/ai/models';
 
 export async function populateTemplate(llmSchema: any, userContent: string, brandContext?: string) {
   if (!gateway.isConfigured()) {
@@ -22,7 +23,7 @@ export async function populateTemplate(llmSchema: any, userContent: string, bran
   `;
 
   const { object } = await generateObject({
-    model: gateway.getModel('gpt-4o-mini'), // Fast model is enough for population
+    model: getModel('fast'), // Fast model is enough for population
     schema: z.record(z.any()), // We expect a JSON object matching the schema
     prompt,
   });

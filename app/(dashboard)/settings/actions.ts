@@ -9,7 +9,7 @@ import { revalidatePath } from 'next/cache';
 import { createUserProfile, generateJwt, getUserProfile } from '@/lib/upload-post/service';
 import { getShopifyIntegration } from '@/lib/shopify/service';
 import { uploadAsset } from '@/lib/storage';
-import { regenerateAllTemplatesForUser } from '@/lib/templates/service';
+import { generateBrandContentMatrix } from '@/lib/ai/content-matrix';
 
 // Helper to process and upload images to Vercel Blob
 async function processImage(imageUrl: string | null | undefined, folder: string): Promise<string | null> {
@@ -271,13 +271,19 @@ export async function saveBrandSettings(data: any) {
   revalidatePath('/brand');
   revalidatePath('/(dashboard)/brand');
   
-  // Trigger template generation
+  // Trigger Content Matrix regeneration (since brand settings changed)
   try {
-    console.log('[saveBrandSettings] Triggering template generation...');
-    await regenerateAllTemplatesForUser(user.id);
-    console.log('[saveBrandSettings] Template generation triggered successfully');
+    console.log('[saveBrandSettings] Regenerating Content Matrix...');
+    const brandContext = `
+      Brand: ${data.brandName}
+      Industry: ${data.brandIndustry}
+      Description: ${data.brandStory || ''}
+      Values: ${data.brandValues}
+    `;
+    await generateBrandContentMatrix(brandId, brandContext);
+    console.log('[saveBrandSettings] Content Matrix regenerated successfully');
   } catch (error) {
-    console.error('[saveBrandSettings] Template generation failed:', error);
+    console.error('[saveBrandSettings] Content Matrix generation failed:', error);
     // Don't fail the save operation if generation fails
   }
 

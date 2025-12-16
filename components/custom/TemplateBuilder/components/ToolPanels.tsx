@@ -2,28 +2,101 @@ import React from 'react';
 import { 
   Type, Image, Square, Circle, Triangle, Minus, Upload, Search, Layers, Lock, Eye, EyeOff, Trash2, MoveUp, MoveDown,
   Hexagon, Octagon, Pentagon, Star, Heart, Cloud, MessageCircle, Zap, Sun, Moon, Check, X, Shield, Tag, Bookmark, 
-  Layout, Smartphone, Monitor, CreditCard, Ticket, Stamp, Facebook, Instagram, Twitter, Linkedin, Youtube, Github
+  Layout, Smartphone, Monitor, CreditCard, Ticket, Stamp, Facebook, Instagram, Twitter, Linkedin, Youtube, Github,
+  ArrowRight, ArrowLeft, Diamond, CircleDot, User, Home, Settings, Bell, Tablet, CircleDashed, MessageSquareQuote, 
+  Laptop, Watch, AppWindow, Film, Mail, Folder, Book, Clipboard, Contact
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Slider } from '@/components/ui/slider';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import stockElements from '../data/stockElements.json';
+import textStyles from '../data/textStyles.json';
+import elementsData from '../data/elements.json';
+import { SECTIONS } from '@/lib/builder/library';
+
+export const DEFAULT_VARIABLES: Record<string, string> = {
+  brand_name: 'ACME CORP',
+  brandName: 'ACME CORP',
+  BRAND_NAME: 'ACME CORP',
+  tagline: 'Innovation for Future',
+  TAGLINE: 'Innovation for Future',
+  headline: 'Transform Your Business',
+  HEADLINE: 'Transform Your Business',
+  subheadline: 'Leverage the power of AI to streamline your workflow and boost productivity.',
+  SUBHEADLINE: 'Leverage the power of AI to streamline your workflow and boost productivity.',
+  hero_image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600',
+  heroImage: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600',
+  HERO_IMAGE: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600',
+  product_image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800',
+  productImage: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800',
+  PRODUCT_IMAGE: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800',
+  product_name: 'Premium Watch',
+  productName: 'Premium Watch',
+  PRODUCT_NAME: 'Premium Watch',
+  price: '$299',
+  PRICE: '$299',
+  feature_1: 'Smart Tracking',
+  feature1: 'Smart Tracking',
+  FEATURE_1: 'Smart Tracking',
+  feature_2: 'All-day Battery',
+  feature2: 'All-day Battery',
+  FEATURE_2: 'All-day Battery',
+  feature_3: 'Water Resistant',
+  feature3: 'Water Resistant',
+  FEATURE_3: 'Water Resistant',
+  website: 'www.acme.com',
+  websiteUrl: 'www.acme.com',
+  WEBSITE: 'www.acme.com',
+  cta: 'Get Started',
+  ctaText: 'Get Started',
+  CTA: 'Get Started',
+  quote: 'This product completely changed my workflow. Highly recommended!',
+  avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100',
+  author: 'Sarah Jenkins',
+  role: 'Creative Director',
+  feat1_title: 'Fast', feat1_desc: 'Lightning speed',
+  feat2_title: 'Powerful', feat2_desc: 'Do more',
+  feat3_title: 'Secure', feat3_desc: 'Bank-grade',
+  feat4_title: 'Premium', feat4_desc: 'Top quality'
+};
+
+// Icon mapping
+const IconMap: Record<string, any> = {
+  Square, Circle, Triangle, Star, Heart, Hexagon, Octagon, Pentagon, Cloud, MessageCircle, Zap, Sun, Moon, Check, X, 
+  Shield, Tag, Bookmark, ArrowRight, ArrowLeft, Diamond, CircleDot, User, Home, Settings, Bell, Smartphone, Tablet, 
+  Layout, Image, CircleDashed, CreditCard, Ticket, Stamp, MessageSquareQuote, Monitor, Laptop, Watch, AppWindow, 
+  Film, Mail, Folder, Book, Clipboard, Contact
+};
+
+interface BrandAssets {
+  images: Array<string | { url: string; metadata?: any }>;
+  products: Array<{ imageUrl: string; name: string; price?: string }>;
+}
 
 interface ToolPanelProps {
   onClose: () => void;
   addElement: (type: any, payload?: any) => void;
+  onAddHtml?: (html: string) => void;
+  brandAssets?: BrandAssets;
 }
 
 export function TextPanel({ onClose, addElement }: ToolPanelProps) {
+  const [activeCategory, setActiveCategory] = React.useState('Neon');
+  
+  // Get unique categories
+  const categories = Array.from(new Set(textStyles.map(s => s.category)));
+
   return (
-    <div className="absolute top-16 left-4 w-80 bg-white/95 backdrop-blur-md rounded-xl shadow-2xl border border-white/20 p-4 z-50 animate-in slide-in-from-left-5 fade-in duration-200">
-      <div className="flex justify-between items-center mb-4">
+    <div className="absolute top-16 left-4 w-80 bg-white/95 backdrop-blur-md rounded-xl shadow-2xl border border-white/20 p-4 z-50 animate-in slide-in-from-left-5 fade-in duration-200 h-[80vh] flex flex-col">
+      <div className="flex justify-between items-center mb-4 shrink-0">
         <h3 className="font-semibold text-slate-800">Text</h3>
         <Button variant="ghost" size="sm" onClick={onClose} className="h-6 w-6 p-0 rounded-full">×</Button>
       </div>
       
-      <div className="space-y-3">
+      <div className="space-y-3 shrink-0 mb-4">
         <Button 
           variant="outline" 
           className="w-full justify-start text-left h-12 text-2xl font-bold"
@@ -47,28 +120,152 @@ export function TextPanel({ onClose, addElement }: ToolPanelProps) {
         </Button>
       </div>
 
-      <div className="mt-6">
-        <h4 className="text-xs font-medium text-slate-500 mb-2 uppercase tracking-wider">Font Combinations</h4>
-        <ScrollArea className="h-48 rounded-md border p-2">
-          <div className="grid grid-cols-1 gap-2">
-            {/* Placeholders for font combinations */}
-            <div className="p-2 hover:bg-slate-50 rounded cursor-pointer border border-transparent hover:border-purple-200 transition-all" onClick={() => addElement('text', { text: 'GLOW', fontSize: 60, fontFamily: 'Inter', fontWeight: '900', fill: '#8b5cf6' })}>
-              <span className="text-4xl font-black text-purple-500">GLOW</span>
-            </div>
-            <div className="p-2 hover:bg-slate-50 rounded cursor-pointer border border-transparent hover:border-pink-200 transition-all" onClick={() => addElement('text', { text: 'Sale', fontSize: 60, fontFamily: 'Serif', fontStyle: 'italic', fill: '#ec4899' })}>
-              <span className="text-4xl font-serif italic text-pink-500">Sale</span>
-            </div>
-             <div className="p-2 hover:bg-slate-50 rounded cursor-pointer border border-transparent hover:border-blue-200 transition-all" onClick={() => addElement('text', { text: 'Modern', fontSize: 40, fontFamily: 'Monospace', letterSpacing: '0.2em', fill: '#3b82f6' })}>
-              <span className="text-2xl font-mono tracking-widest text-blue-500 uppercase">Modern</span>
-            </div>
+      <div className="flex-1 min-h-0 flex flex-col">
+        <h4 className="text-xs font-medium text-slate-500 mb-2 uppercase tracking-wider shrink-0">Font Combinations</h4>
+        
+        <Tabs defaultValue="Neon" value={activeCategory} onValueChange={setActiveCategory} className="w-full flex-1 flex flex-col min-h-0 overflow-hidden">
+          <div className="shrink-0 mb-2 overflow-x-auto">
+            <TabsList className="w-full justify-start inline-flex">
+              {categories.map(cat => (
+                <TabsTrigger key={cat} value={cat} className="text-xs px-3">{cat}</TabsTrigger>
+              ))}
+            </TabsList>
           </div>
-        </ScrollArea>
+
+          <ScrollArea className="flex-1 w-full min-h-0">
+            {categories.map(cat => (
+              <TabsContent key={cat} value={cat} className="mt-0">
+                <div className="grid grid-cols-2 gap-2 pr-3 pb-4">
+                  {textStyles.filter(s => s.category === cat).map((style, i) => (
+                    <div 
+                      key={i}
+                      className="aspect-video bg-slate-50 hover:bg-purple-50 rounded cursor-pointer border border-transparent hover:border-purple-200 transition-all flex items-center justify-center overflow-hidden p-2"
+                      onClick={() => addElement('text', { text: style.preview, ...style.style })}
+                    >
+                      <span 
+                        style={{
+                          fontSize: '24px',
+                          whiteSpace: 'nowrap' as const,
+                          textAlign: ((style.style as any)?.textAlign || 'left') as React.CSSProperties['textAlign']
+                        } as React.CSSProperties}
+                        className="text-center"
+                      >
+                        {style.preview}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </TabsContent>
+            ))}
+          </ScrollArea>
+        </Tabs>
       </div>
     </div>
   );
 }
 
-export function MediaPanel({ onClose, addElement }: ToolPanelProps) {
+// Helper component for stock photos
+function StockPhotosList({ addElement, query, type }: { addElement: (type: any, payload?: any) => void, query: string, type: string }) {
+  const [photos, setPhotos] = React.useState<any[]>([]);
+  const [loading, setLoading] = React.useState(false);
+  const [error, setError] = React.useState(false);
+
+  React.useEffect(() => {
+    const fetchImages = async () => {
+      setLoading(true);
+      setError(false);
+      try {
+        const q = query || 'nature'; // Default query
+        const res = await fetch(`/api/stock?q=${encodeURIComponent(q)}&type=${type}`);
+        const data = await res.json();
+        if (data.results) {
+          setPhotos(data.results);
+        } else {
+          setPhotos([]);
+        }
+      } catch (err) {
+        console.error(err);
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchImages();
+  }, [query, type]);
+
+  if (loading) {
+    return (
+      <div className="h-[300px] flex items-center justify-center text-slate-400">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600"></div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="h-[300px] flex flex-col items-center justify-center text-red-400 text-sm text-center p-4">
+        <p>Failed to load images.</p>
+        <p className="text-xs mt-1 opacity-70">Please check your connection.</p>
+      </div>
+    );
+  }
+
+  if (photos.length === 0) {
+    return (
+      <div className="h-[300px] flex flex-col items-center justify-center text-slate-400 text-sm text-center p-4">
+        <p>No results found for "{query}".</p>
+        <p className="text-xs mt-1 opacity-70">Try a different search term.</p>
+      </div>
+    );
+  }
+
+  return (
+    <ScrollArea className="h-[300px] pr-2">
+      <div className="grid grid-cols-2 gap-2">
+        {photos.map((img) => (
+          <div 
+            key={img.id} 
+            className="aspect-square bg-slate-100 rounded-md overflow-hidden cursor-pointer hover:opacity-90 transition-opacity group relative"
+            style={{
+              backgroundImage: 'linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)',
+              backgroundSize: '20px 20px',
+              backgroundPosition: '0 0, 0 10px, 10px -10px, -10px 0px'
+            }}
+            onClick={() => addElement('image', { src: img.src.medium })}
+          >
+            <img 
+              src={img.src.small} 
+              alt={img.alt} 
+              className="w-full h-full object-cover bg-white/50 backdrop-blur-[1px]"
+              onError={(e) => {
+                e.currentTarget.style.display = 'none';
+                e.currentTarget.parentElement?.classList.add('image-error');
+              }}
+            />
+            <div className="absolute inset-0 flex items-center justify-center bg-gray-100 text-gray-400 hidden group-[.image-error]:flex">
+              <span className="text-[10px]">Broken Image</span>
+            </div>
+            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
+            <div className="absolute bottom-1 right-1 bg-black/50 text-white text-[8px] px-1 rounded opacity-70">
+              {img.provider}
+            </div>
+          </div>
+        ))}
+      </div>
+    </ScrollArea>
+  );
+}
+
+export function MediaPanel({ onClose, addElement, brandAssets }: ToolPanelProps) {
+  const [mediaType, setMediaType] = React.useState('photo');
+  const [searchQuery, setSearchQuery] = React.useState('');
+  const [activeQuery, setActiveQuery] = React.useState('nature');
+
+  const triggerSearch = () => {
+    if (searchQuery) setActiveQuery(searchQuery);
+  };
+
   return (
     <div className="absolute top-16 left-4 w-80 bg-white/95 backdrop-blur-md rounded-xl shadow-2xl border border-white/20 p-4 z-50 animate-in slide-in-from-left-5 fade-in duration-200">
       <div className="flex justify-between items-center mb-4">
@@ -82,36 +279,94 @@ export function MediaPanel({ onClose, addElement }: ToolPanelProps) {
         </Button>
       </div>
 
-      <Tabs defaultValue="photos" className="w-full">
-        <TabsList className="w-full grid grid-cols-2 mb-4">
-          <TabsTrigger value="photos">Photos</TabsTrigger>
+      <Tabs defaultValue="brand" className="w-full">
+        <TabsList className="w-full grid grid-cols-3 mb-4">
+          <TabsTrigger value="brand">Brand</TabsTrigger>
+          <TabsTrigger value="photos">Stock</TabsTrigger>
           <TabsTrigger value="videos">Videos</TabsTrigger>
         </TabsList>
         
-        <div className="relative mb-4">
-          <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
-          <Input placeholder="Search Unsplash..." className="pl-8" />
-        </div>
+        <TabsContent value="brand" className="mt-0">
+          <ScrollArea className="h-[350px] pr-2">
+            {brandAssets && (brandAssets.images.length > 0 || brandAssets.products.length > 0) ? (
+              <div className="space-y-4">
+                {brandAssets.products.length > 0 && (
+                  <div>
+                    <h4 className="text-xs font-semibold text-slate-500 mb-2 uppercase">Products</h4>
+                    <div className="grid grid-cols-2 gap-2">
+                      {brandAssets.products.map((prod, i) => (
+                        <div 
+                          key={i} 
+                          className="aspect-square bg-slate-100 rounded-md overflow-hidden cursor-pointer hover:opacity-90 transition-opacity group relative border border-slate-200"
+                          onClick={() => addElement('image', { src: prod.imageUrl })}
+                        >
+                          <img src={prod.imageUrl} alt={prod.name} className="w-full h-full object-cover" />
+                          <div className="absolute bottom-0 left-0 right-0 bg-black/60 text-white text-[10px] p-1 truncate">
+                            {prod.name}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                
+                {brandAssets.images.length > 0 && (
+                  <div>
+                    <h4 className="text-xs font-semibold text-slate-500 mb-2 uppercase">Brand Assets</h4>
+                    <div className="grid grid-cols-2 gap-2">
+                      {brandAssets.images.map((img, i) => {
+                        const url = typeof img === 'string' ? img : img.url;
+                        return (
+                          <div 
+                            key={i} 
+                            className="aspect-square bg-slate-100 rounded-md overflow-hidden cursor-pointer hover:opacity-90 transition-opacity group relative border border-slate-200"
+                            onClick={() => addElement('image', { src: url })}
+                          >
+                            <img src={url} alt="Brand Asset" className="w-full h-full object-cover" />
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div className="flex flex-col items-center justify-center h-[300px] text-slate-400 text-sm text-center p-4">
+                <p>No brand assets found.</p>
+                <p className="text-xs mt-1 opacity-70">Upload assets in Brand Settings.</p>
+              </div>
+            )}
+          </ScrollArea>
+        </TabsContent>
 
         <TabsContent value="photos" className="mt-0">
-          <ScrollArea className="h-[300px] pr-2">
-            <div className="grid grid-cols-2 gap-2">
-              {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
-                <div 
-                  key={i} 
-                  className="aspect-square bg-slate-100 rounded-md overflow-hidden cursor-pointer hover:opacity-90 transition-opacity group relative"
-                  onClick={() => addElement('image', { src: `https://picsum.photos/400/400?random=${i}` })}
-                >
-                  <img 
-                    src={`https://picsum.photos/200/200?random=${i}`} 
-                    alt="Stock" 
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
-                </div>
-              ))}
+          <div className="flex gap-2 mb-4">
+            <div className="relative flex-1">
+              <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
+              <Input 
+                placeholder={`Search ${mediaType}s...`}
+                className="pl-8" 
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    triggerSearch();
+                  }
+                }}
+              />
             </div>
-          </ScrollArea>
+            <Select value={mediaType} onValueChange={(val) => setMediaType(val)}>
+              <SelectTrigger className="w-[100px]">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="photo">Photos</SelectItem>
+                <SelectItem value="illustration">Art</SelectItem>
+                <SelectItem value="vector">Vectors</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          <StockPhotosList addElement={addElement} query={activeQuery} type={mediaType} />
         </TabsContent>
         <TabsContent value="videos">
           <div className="flex flex-col items-center justify-center h-[300px] text-slate-400 text-sm">
@@ -123,162 +378,217 @@ export function MediaPanel({ onClose, addElement }: ToolPanelProps) {
   );
 }
 
-export function ElementsPanel({ onClose, addElement }: ToolPanelProps) {
+export function ElementsPanel({ onClose, addElement, onAddHtml, brandAssets }: ToolPanelProps) {
   const [searchQuery, setSearchQuery] = React.useState('');
-  const [activeCategory, setActiveCategory] = React.useState('shapes');
+  const [activeCategory, setActiveCategory] = React.useState('sections');
+
+  // Construct dynamic default variables based on brand assets
+  const dynamicDefaults = React.useMemo(() => {
+    const defaults = { ...DEFAULT_VARIABLES };
+    
+    if (brandAssets) {
+      // Use first product image if available
+      if (brandAssets.products.length > 0) {
+        defaults.product_image = brandAssets.products[0].imageUrl;
+        defaults.productImage = brandAssets.products[0].imageUrl;
+        defaults.product_name = brandAssets.products[0].name;
+        defaults.productName = brandAssets.products[0].name;
+        if (brandAssets.products[0].price) {
+          defaults.price = brandAssets.products[0].price;
+        }
+      }
+      
+      // Use brand assets if available
+      if (brandAssets.images.length > 0) {
+        // Use first image as hero fallback
+        const firstImage = brandAssets.images[0];
+        const url = typeof firstImage === 'string' ? firstImage : firstImage?.url;
+        
+        if (url) {
+          defaults.hero_image = url;
+          defaults.heroImage = url;
+        }
+      }
+    }
+    return defaults;
+  }, [brandAssets]);
 
   const categories = [
+    { id: 'sections', label: 'Smart Blocks' },
     { id: 'shapes', label: 'Shapes' },
     { id: 'frames', label: 'Frames' },
     { id: 'buttons', label: 'Buttons' },
     { id: 'badges', label: 'Badges' },
+    { id: 'titles', label: 'Titles' },
     { id: 'social', label: 'Social' },
   ];
 
-  // --- SHAPES ---
-  const shapes = [
-    { label: 'Rectangle', icon: <Square className="w-6 h-6" />, action: () => addElement('rectangle') },
-    { label: 'Circle', icon: <Circle className="w-6 h-6" />, action: () => addElement('circle') },
-    { label: 'Triangle', icon: <Triangle className="w-6 h-6" />, action: () => addElement('image', { src: 'https://api.iconify.design/mdi:triangle.svg?color=%23666' }) },
-    { label: 'Star', icon: <Star className="w-6 h-6" />, action: () => addElement('image', { src: 'https://api.iconify.design/mdi:star.svg?color=%23666' }) },
-    { label: 'Heart', icon: <Heart className="w-6 h-6" />, action: () => addElement('image', { src: 'https://api.iconify.design/mdi:heart.svg?color=%23666' }) },
-    { label: 'Hexagon', icon: <Hexagon className="w-6 h-6" />, action: () => addElement('image', { src: 'https://api.iconify.design/mdi:hexagon.svg?color=%23666' }) },
-    { label: 'Octagon', icon: <Octagon className="w-6 h-6" />, action: () => addElement('image', { src: 'https://api.iconify.design/mdi:octagon.svg?color=%23666' }) },
-    { label: 'Pentagon', icon: <Pentagon className="w-6 h-6" />, action: () => addElement('image', { src: 'https://api.iconify.design/mdi:pentagon.svg?color=%23666' }) },
-    { label: 'Cloud', icon: <Cloud className="w-6 h-6" />, action: () => addElement('image', { src: 'https://api.iconify.design/mdi:cloud.svg?color=%23666' }) },
-    { label: 'Message', icon: <MessageCircle className="w-6 h-6" />, action: () => addElement('image', { src: 'https://api.iconify.design/mdi:message.svg?color=%23666' }) },
-    { label: 'Zap', icon: <Zap className="w-6 h-6" />, action: () => addElement('image', { src: 'https://api.iconify.design/mdi:lightning-bolt.svg?color=%23666' }) },
-    { label: 'Sun', icon: <Sun className="w-6 h-6" />, action: () => addElement('image', { src: 'https://api.iconify.design/mdi:white-balance-sunny.svg?color=%23666' }) },
-    { label: 'Moon', icon: <Moon className="w-6 h-6" />, action: () => addElement('image', { src: 'https://api.iconify.design/mdi:moon-waning-crescent.svg?color=%23666' }) },
-    { label: 'Check', icon: <Check className="w-6 h-6" />, action: () => addElement('image', { src: 'https://api.iconify.design/mdi:check-bold.svg?color=%23666' }) },
-    { label: 'X', icon: <X className="w-6 h-6" />, action: () => addElement('image', { src: 'https://api.iconify.design/mdi:close-thick.svg?color=%23666' }) },
-    { label: 'Shield', icon: <Shield className="w-6 h-6" />, action: () => addElement('image', { src: 'https://api.iconify.design/mdi:shield.svg?color=%23666' }) },
-    { label: 'Tag', icon: <Tag className="w-6 h-6" />, action: () => addElement('image', { src: 'https://api.iconify.design/mdi:tag.svg?color=%23666' }) },
-    { label: 'Bookmark', icon: <Bookmark className="w-6 h-6" />, action: () => addElement('image', { src: 'https://api.iconify.design/mdi:bookmark.svg?color=%23666' }) },
-    { label: 'Arrow R', icon: <span className="text-xl">→</span>, action: () => addElement('image', { src: 'https://api.iconify.design/mdi:arrow-right.svg?color=%23666' }) },
-    { label: 'Arrow L', icon: <span className="text-xl">←</span>, action: () => addElement('image', { src: 'https://api.iconify.design/mdi:arrow-left.svg?color=%23666' }) },
-  ];
-
-  // --- FRAMES ---
-  const frames = [
-    { label: 'Phone', icon: <Smartphone className="w-6 h-6" />, action: () => addElement('rectangle', { width: 180, height: 320, borderRadius: 24, border: '4px solid #333', backgroundColor: 'transparent' }) },
-    { label: 'Tablet', icon: <div className="w-5 h-6 border-2 border-current rounded-sm" />, action: () => addElement('rectangle', { width: 240, height: 320, borderRadius: 16, border: '4px solid #333', backgroundColor: 'transparent' }) },
-    { label: 'Browser', icon: <Layout className="w-6 h-6" />, action: () => addElement('rectangle', { width: 300, height: 200, borderRadius: 8, border: '2px solid #ccc', backgroundColor: '#fff', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }) },
-    { label: 'Polaroid', icon: <div className="w-5 h-6 bg-white border border-current p-1"><div className="w-full h-3/4 bg-slate-200"/></div>, action: () => addElement('rectangle', { width: 220, height: 260, backgroundColor: '#fff', padding: '16px 16px 60px 16px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }) },
-    { label: 'Circle Frame', icon: <Circle className="w-6 h-6 border-2 border-dashed border-current rounded-full" />, action: () => addElement('circle', { width: 200, height: 200, border: '4px solid #333', backgroundColor: 'transparent' }) },
-    { label: 'Card', icon: <CreditCard className="w-6 h-6" />, action: () => addElement('rectangle', { width: 300, height: 180, borderRadius: 12, backgroundColor: '#fff', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)' }) },
-    { label: 'Ticket', icon: <Ticket className="w-6 h-6" />, action: () => addElement('rectangle', { width: 200, height: 100, borderRadius: 8, border: '2px dashed #333', backgroundColor: '#fef3c7' }) },
-    { label: 'Stamp', icon: <Stamp className="w-6 h-6" />, action: () => addElement('rectangle', { width: 120, height: 120, border: '4px dotted #333', borderRadius: 8, backgroundColor: '#f1f5f9' }) },
-    { label: 'Quote', icon: <MessageCircle className="w-6 h-6" />, action: () => addElement('rectangle', { width: 280, height: 120, borderRadius: 0, borderLeft: '4px solid #333', backgroundColor: '#f8fafc', padding: 16 }) },
-    { label: 'Monitor', icon: <Monitor className="w-6 h-6" />, action: () => addElement('rectangle', { width: 320, height: 180, borderRadius: 8, border: '8px solid #1e293b', backgroundColor: '#0f172a' }) },
-  ];
-
-  // --- BUTTONS ---
-  const createButton = (label: string, bg: string, color: string, radius: number = 6, outline: boolean = false) => ({
-    label: `${label} ${outline ? 'Outline' : ''}`,
-    preview: <div className={`px-3 py-1.5 text-[10px] rounded-${radius > 20 ? 'full' : 'sm'} ${outline ? 'border border-current' : ''}`} style={{ backgroundColor: outline ? 'transparent' : bg, color: outline ? bg : color, borderColor: bg }}>Button</div>,
-    action: () => addElement('text', { 
-      content: 'Button', 
-      backgroundColor: outline ? 'transparent' : bg, 
-      color: outline ? bg : color, 
-      border: outline ? `2px solid ${bg}` : 'none',
-      borderRadius: radius, 
-      padding: 12,
-      fontSize: 16,
-      textAlign: 'center',
-      width: 120,
-      height: 44,
-      fontWeight: '600'
-    })
-  });
-
-  const buttons = [
-    createButton('Blue', '#2563eb', '#fff'),
-    createButton('Purple', '#9333ea', '#fff'),
-    createButton('Black', '#000000', '#fff'),
-    createButton('Red', '#dc2626', '#fff'),
-    createButton('Green', '#16a34a', '#fff'),
-    createButton('Blue', '#2563eb', '#fff', 6, true),
-    createButton('Purple', '#9333ea', '#fff', 6, true),
-    createButton('Black', '#000000', '#fff', 6, true),
-    createButton('Pill Blue', '#2563eb', '#fff', 999),
-    createButton('Pill Black', '#000000', '#fff', 999),
-    createButton('Pill Outline', '#000000', '#fff', 999, true),
-    createButton('Ghost', 'transparent', '#64748b', 6),
-    { 
-      label: 'Gradient', 
-      preview: <div className="px-3 py-1.5 text-[10px] rounded bg-gradient-to-r from-pink-500 to-violet-500 text-white">Button</div>,
-      action: () => addElement('text', { content: 'Button', backgroundImage: 'linear-gradient(to right, #ec4899, #8b5cf6)', color: '#fff', borderRadius: 6, padding: 12, fontSize: 16, textAlign: 'center', width: 120, height: 44, fontWeight: '600' }) 
-    },
-    { 
-      label: '3D', 
-      preview: <div className="px-3 py-1.5 text-[10px] rounded bg-blue-500 text-white border-b-4 border-blue-700">Button</div>,
-      action: () => addElement('text', { content: 'Button', backgroundColor: '#3b82f6', color: '#fff', borderRadius: 6, borderBottom: '4px solid #1d4ed8', padding: 12, fontSize: 16, textAlign: 'center', width: 120, height: 48, fontWeight: '600' }) 
-    },
-  ];
-
-  // --- BADGES ---
-  const createBadge = (text: string, bg: string, color: string = '#fff', radius: number = 4) => ({
-    label: text,
-    preview: <div className="px-2 py-0.5 text-[9px] font-bold" style={{ backgroundColor: bg, color, borderRadius: radius }}>{text}</div>,
-    action: () => addElement('text', { content: text, backgroundColor: bg, color, borderRadius: radius, fontSize: 14, fontWeight: 'bold', textAlign: 'center', width: 'auto', padding: '4px 12px' })
-  });
-
-  const badges = [
-    createBadge('SALE', '#dc2626'),
-    createBadge('NEW', '#16a34a'),
-    createBadge('HOT', '#ea580c'),
-    createBadge('FREE', '#2563eb'),
-    createBadge('PRO', '#000000'),
-    createBadge('BETA', '#7c3aed'),
-    createBadge('50% OFF', '#db2777'),
-    createBadge('SOLD OUT', '#475569'),
-    createBadge('LIMITED', '#ca8a04'),
-    createBadge('TOP', '#0891b2'),
-    createBadge('VERIFIED', '#059669', '#fff', 999),
-    createBadge('PREMIUM', '#f59e0b', '#fff', 999),
-    createBadge('ELITE', '#4f46e5', '#fff', 999),
-    createBadge('VIP', '#be185d', '#fff', 999),
-    {
-      label: 'VS Badge',
-      preview: <div className="w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center font-bold text-[8px] border border-black">VS</div>,
-      action: () => addElement('text', { content: 'VS', backgroundColor: '#facc15', color: '#000000', borderRadius: 999, border: '4px solid #000000', fontSize: 24, fontWeight: '900', textAlign: 'center', width: 80, height: 80, lineHeight: 3.3 })
-    },
-    {
-      label: 'Ribbon',
-      preview: <div className="px-2 py-0.5 bg-red-500 text-white text-[9px] relative">Ribbon</div>,
-      action: () => addElement('text', { content: 'BEST VALUE', backgroundColor: '#ef4444', color: '#fff', fontSize: 14, fontWeight: 'bold', textAlign: 'center', width: 120, padding: '8px' })
+  // --- SECTIONS ---
+  const legacySections = elementsData.map((item: any) => ({
+    id: item.id,
+    label: item.name,
+    category: item.category,
+    preview: (
+      <div className="w-full h-full flex flex-col items-center justify-center bg-slate-50 p-2 text-center overflow-hidden">
+        <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">{item.category}</div>
+        <div className="text-xs font-medium text-slate-700 leading-tight">{item.name}</div>
+      </div>
+    ),
+    action: () => { 
+      if (onAddHtml) {
+        let content = item.content;
+        // Interpolate with dynamic variables
+        Object.entries(dynamicDefaults).forEach(([key, value]) => {
+          content = content.replace(new RegExp(`{{${key}}}`, 'g'), value);
+        });
+        onAddHtml(content);
+        onClose();
+      }
     }
+  }));
+
+  const smartSections = SECTIONS.map((item) => ({
+    id: item.id,
+    label: item.name,
+    category: 'Smart Blocks',
+    preview: (
+      <div className="w-full h-full flex flex-col items-center justify-center bg-purple-50 p-2 text-center overflow-hidden border border-purple-100">
+        <div className="text-[10px] font-bold text-purple-400 uppercase tracking-wider mb-1">Tailwind</div>
+        <div className="text-xs font-medium text-purple-900 leading-tight">{item.name}</div>
+      </div>
+    ),
+    action: () => { 
+      if (onAddHtml) {
+        let content = item.html;
+        // Interpolate variables with dynamic values, merging item-specific variables with global defaults
+        const variables = { ...dynamicDefaults, ...(item.variables || {}) };
+        
+        Object.entries(variables).forEach(([key, value]) => {
+          let strValue = String(value);
+          // Handle object values (e.g. image objects)
+          if (typeof value === 'object' && value !== null) {
+             if ('src' in value) strValue = (value as any).src;
+             else if ('url' in value) strValue = (value as any).url;
+             else strValue = JSON.stringify(value);
+          }
+          content = content.replace(new RegExp(`{{${key}}}`, 'g'), strValue);
+        });
+        onAddHtml(content);
+        onClose();
+      }
+    }
+  }));
+
+  // Filter out duplicates from legacy if they exist in smart sections (by ID)
+  const sections = [
+    ...smartSections,
+    ...legacySections.filter(l => !SECTIONS.find(s => s.id === l.id))
   ];
 
   // --- SOCIAL ---
   const social = [
-    { label: 'Facebook', icon: <Facebook className="w-6 h-6 text-blue-600" />, action: () => addElement('image', { src: 'https://api.iconify.design/logos:facebook.svg' }) },
-    { label: 'Instagram', icon: <Instagram className="w-6 h-6 text-pink-600" />, action: () => addElement('image', { src: 'https://api.iconify.design/skill-icons:instagram.svg' }) },
-    { label: 'Twitter', icon: <Twitter className="w-6 h-6 text-sky-500" />, action: () => addElement('image', { src: 'https://api.iconify.design/logos:twitter.svg' }) },
-    { label: 'LinkedIn', icon: <Linkedin className="w-6 h-6 text-blue-700" />, action: () => addElement('image', { src: 'https://api.iconify.design/logos:linkedin-icon.svg' }) },
-    { label: 'YouTube', icon: <Youtube className="w-6 h-6 text-red-600" />, action: () => addElement('image', { src: 'https://api.iconify.design/logos:youtube-icon.svg' }) },
-    { label: 'GitHub', icon: <Github className="w-6 h-6" />, action: () => addElement('image', { src: 'https://api.iconify.design/logos:github-icon.svg' }) },
-    { label: 'TikTok', icon: <span className="font-bold">TikTok</span>, action: () => addElement('image', { src: 'https://api.iconify.design/logos:tiktok-icon.svg' }) },
-    { label: 'Pinterest', icon: <span className="font-bold text-red-600">Pin</span>, action: () => addElement('image', { src: 'https://api.iconify.design/logos:pinterest.svg' }) },
-    { label: 'Discord', icon: <span className="font-bold text-indigo-500">Discord</span>, action: () => addElement('image', { src: 'https://api.iconify.design/logos:discord-icon.svg' }) },
-    { label: 'WhatsApp', icon: <span className="font-bold text-green-500">WA</span>, action: () => addElement('image', { src: 'https://api.iconify.design/logos:whatsapp-icon.svg' }) },
-    { label: 'Telegram', icon: <span className="font-bold text-sky-400">TG</span>, action: () => addElement('image', { src: 'https://api.iconify.design/logos:telegram.svg' }) },
-    { label: 'Snapchat', icon: <span className="font-bold text-yellow-400">Snap</span>, action: () => addElement('image', { src: 'https://api.iconify.design/logos:snapchat.svg' }) },
-    { label: 'Reddit', icon: <span className="font-bold text-orange-500">Reddit</span>, action: () => addElement('image', { src: 'https://api.iconify.design/logos:reddit-icon.svg' }) },
-    { label: 'Medium', icon: <span className="font-bold">Medium</span>, action: () => addElement('image', { src: 'https://api.iconify.design/logos:medium-icon.svg' }) },
-    { label: 'Spotify', icon: <span className="font-bold text-green-500">Spotify</span>, action: () => addElement('image', { src: 'https://api.iconify.design/logos:spotify-icon.svg' }) },
-    { label: 'Twitch', icon: <span className="font-bold text-purple-500">Twitch</span>, action: () => addElement('image', { src: 'https://api.iconify.design/logos:twitch.svg' }) },
-    { label: 'Slack', icon: <span className="font-bold text-purple-600">Slack</span>, action: () => addElement('image', { src: 'https://api.iconify.design/logos:slack-icon.svg' }) },
-    { label: 'Dribbble', icon: <span className="font-bold text-pink-500">Drib</span>, action: () => addElement('image', { src: 'https://api.iconify.design/logos:dribbble-icon.svg' }) },
-    { label: 'Behance', icon: <span className="font-bold text-blue-600">Be</span>, action: () => addElement('image', { src: 'https://api.iconify.design/logos:behance.svg' }) },
-    { label: 'Figma', icon: <span className="font-bold text-purple-400">Figma</span>, action: () => addElement('image', { src: 'https://api.iconify.design/logos:figma.svg' }) },
+    { label: 'Facebook', icon: <Facebook className="w-6 h-6 text-blue-600" />, action: () => { addElement('image', { src: 'https://api.iconify.design/logos:facebook.svg' }); onClose(); } },
+    { label: 'Instagram', icon: <Instagram className="w-6 h-6 text-pink-600" />, action: () => { addElement('image', { src: 'https://api.iconify.design/skill-icons:instagram.svg' }); onClose(); } },
+    { label: 'Twitter', icon: <Twitter className="w-6 h-6 text-sky-500" />, action: () => { addElement('image', { src: 'https://api.iconify.design/logos:twitter.svg' }); onClose(); } },
+    { label: 'LinkedIn', icon: <Linkedin className="w-6 h-6 text-blue-700" />, action: () => { addElement('image', { src: 'https://api.iconify.design/logos:linkedin-icon.svg' }); onClose(); } },
+    { label: 'YouTube', icon: <Youtube className="w-6 h-6 text-red-600" />, action: () => { addElement('image', { src: 'https://api.iconify.design/logos:youtube-icon.svg' }); onClose(); } },
+    { label: 'GitHub', icon: <Github className="w-6 h-6" />, action: () => { addElement('image', { src: 'https://api.iconify.design/logos:github-icon.svg' }); onClose(); } },
+    { label: 'TikTok', icon: <span className="font-bold">TikTok</span>, action: () => { addElement('image', { src: 'https://api.iconify.design/logos:tiktok-icon.svg' }); onClose(); } },
+    { label: 'Pinterest', icon: <span className="font-bold text-red-600">Pin</span>, action: () => { addElement('image', { src: 'https://api.iconify.design/logos:pinterest.svg' }); onClose(); } },
+    { label: 'Discord', icon: <span className="font-bold text-indigo-500">Discord</span>, action: () => { addElement('image', { src: 'https://api.iconify.design/logos:discord-icon.svg' }); onClose(); } },
+    { label: 'WhatsApp', icon: <span className="font-bold text-green-500">WA</span>, action: () => { addElement('image', { src: 'https://api.iconify.design/logos:whatsapp-icon.svg' }); onClose(); } },
+    { label: 'Telegram', icon: <span className="font-bold text-sky-400">TG</span>, action: () => { addElement('image', { src: 'https://api.iconify.design/logos:telegram.svg' }); onClose(); } },
+    { label: 'Snapchat', icon: <span className="font-bold text-yellow-400">Snap</span>, action: () => { addElement('image', { src: 'https://api.iconify.design/logos:snapchat.svg' }); onClose(); } },
+    { label: 'Reddit', icon: <span className="font-bold text-orange-500">Reddit</span>, action: () => { addElement('image', { src: 'https://api.iconify.design/logos:reddit-icon.svg' }); onClose(); } },
+    { label: 'Medium', icon: <span className="font-bold">Medium</span>, action: () => { addElement('image', { src: 'https://api.iconify.design/logos:medium-icon.svg' }); onClose(); } },
+    { label: 'Spotify', icon: <span className="font-bold text-green-500">Spotify</span>, action: () => { addElement('image', { src: 'https://api.iconify.design/logos:spotify-icon.svg' }); onClose(); } },
+    { label: 'Twitch', icon: <span className="font-bold text-purple-500">Twitch</span>, action: () => { addElement('image', { src: 'https://api.iconify.design/logos:twitch.svg' }); onClose(); } },
+    { label: 'Slack', icon: <span className="font-bold text-purple-600">Slack</span>, action: () => { addElement('image', { src: 'https://api.iconify.design/logos:slack-icon.svg' }); onClose(); } },
+    { label: 'Dribbble', icon: <span className="font-bold text-pink-500">Drib</span>, action: () => { addElement('image', { src: 'https://api.iconify.design/logos:dribbble-icon.svg' }); onClose(); } },
+    { label: 'Behance', icon: <span className="font-bold text-blue-600">Be</span>, action: () => { addElement('image', { src: 'https://api.iconify.design/logos:behance.svg' }); onClose(); } },
+    { label: 'Figma', icon: <span className="font-bold text-purple-400">Figma</span>, action: () => { addElement('image', { src: 'https://api.iconify.design/logos:figma.svg' }); onClose(); } },
   ];
+
+  // Helper to get items from JSON
+  const getItems = (category: string) => {
+    const cat = stockElements.find(c => c.category === category);
+    return cat ? cat.items : [];
+  };
+
+  const shapes = getItems('shapes').map((item: any) => ({
+    ...item,
+    icon: React.createElement(IconMap[item.icon] || Square, { className: "w-6 h-6" }),
+    action: () => { addElement(item.type, item.payload); onClose(); }
+  }));
+
+  const frames = getItems('frames').map((item: any) => ({
+    ...item,
+    icon: React.createElement(IconMap[item.icon] || Layout, { className: "w-6 h-6" }),
+    action: () => { addElement(item.type, item.payload); onClose(); }
+  }));
+
+  const buttons = getItems('buttons').map((item: any) => ({
+    ...item,
+    preview: item.previewType === 'css' ? (
+      <div className="flex items-center justify-center w-full h-full scale-75 origin-center" style={{ pointerEvents: 'none' }}>
+        <div style={{
+          ...item.payload,
+          width: 'auto',
+          height: 'auto',
+          minWidth: 60,
+          minHeight: 24,
+          fontSize: 10,
+          padding: '4px 8px',
+          textAlign: (item.payload?.textAlign || 'left') as React.CSSProperties['textAlign']
+        } as React.CSSProperties}>
+          {item.payload.content}
+        </div>
+      </div>
+    ) : null,
+    action: () => { addElement(item.type, item.payload); onClose(); }
+  }));
+
+  const badges = getItems('badges').map((item: any) => ({
+    ...item,
+    preview: item.previewType === 'css' ? (
+      <div className="flex items-center justify-center w-full h-full scale-90 origin-center" style={{ pointerEvents: 'none' }}>
+        <div style={{
+          ...item.payload,
+          width: 'auto',
+          height: 'auto',
+          fontSize: 8,
+          padding: '2px 6px',
+          textAlign: (item.payload?.textAlign || 'left') as React.CSSProperties['textAlign']
+        } as React.CSSProperties}>
+          {item.payload.content}
+        </div>
+      </div>
+    ) : null,
+    action: () => { addElement(item.type, item.payload); onClose(); }
+  }));
+
+  const titles = getItems('titles').map((item: any) => ({
+    ...item,
+    preview: item.previewType === 'css' ? (
+      <div className="flex items-center justify-center w-full h-full scale-50 origin-center" style={{ pointerEvents: 'none' }}>
+        <div style={{
+          ...item.payload,
+          width: 'auto',
+          height: 'auto',
+          whiteSpace: 'nowrap',
+          textAlign: (item.payload?.textAlign || 'left') as React.CSSProperties['textAlign']
+        } as React.CSSProperties}>
+          {item.payload.content}
+        </div>
+      </div>
+    ) : null,
+    action: () => { addElement(item.type, item.payload); onClose(); }
+  }));
 
   const filterItems = (items: any[]) => items.filter(item => item.label.toLowerCase().includes(searchQuery.toLowerCase()));
 
   return (
-    <div className="absolute top-16 left-4 w-80 bg-white/95 backdrop-blur-md rounded-xl shadow-2xl border border-white/20 p-4 z-50 animate-in slide-in-from-left-5 fade-in duration-200 flex flex-col max-h-[80vh]">
+    <div className="absolute top-16 left-4 w-80 bg-white/95 backdrop-blur-md rounded-xl shadow-2xl border border-white/20 p-4 z-50 animate-in slide-in-from-left-5 fade-in duration-200 flex flex-col h-[80vh] overflow-hidden">
       <div className="flex justify-between items-center mb-4 shrink-0">
         <h3 className="font-semibold text-slate-800">Elements</h3>
         <Button variant="ghost" size="sm" onClick={onClose} className="h-6 w-6 p-0 rounded-full">×</Button>
@@ -294,18 +604,30 @@ export function ElementsPanel({ onClose, addElement }: ToolPanelProps) {
         />
       </div>
 
-      <Tabs defaultValue="shapes" value={activeCategory} onValueChange={setActiveCategory} className="w-full flex-1 flex flex-col min-h-0">
-        <ScrollArea className="w-full shrink-0 mb-2">
-          <TabsList className="w-full justify-start">
+      <Tabs defaultValue="shapes" value={activeCategory} onValueChange={setActiveCategory} className="w-full flex-1 flex flex-col min-h-0 overflow-hidden">
+        <div className="shrink-0 mb-2 overflow-x-auto">
+          <TabsList className="w-full justify-start inline-flex">
             {categories.map(cat => (
               <TabsTrigger key={cat.id} value={cat.id} className="text-xs px-3">{cat.label}</TabsTrigger>
             ))}
           </TabsList>
-        </ScrollArea>
+        </div>
 
-        <ScrollArea className="flex-1 -mr-3 pr-3">
+        <ScrollArea className="flex-1 w-full min-h-0">            <TabsContent value="sections" className="mt-0">
+              <div className="grid grid-cols-2 gap-2 pr-2 pb-4">
+                {filterItems(sections).map((item, i) => (
+                  <div 
+                    key={i}
+                    className="aspect-video bg-white hover:bg-purple-50 rounded-lg cursor-pointer border border-slate-200 hover:border-purple-200 transition-all flex items-center justify-center overflow-hidden relative group shadow-sm"
+                    onClick={item.action}
+                  >
+                    {item.preview}
+                  </div>
+                ))}
+              </div>
+            </TabsContent>
           <TabsContent value="shapes" className="mt-0">
-            <div className="grid grid-cols-4 gap-2">
+            <div className="grid grid-cols-3 gap-2 pr-3 pb-4">
               {filterItems(shapes).map((shape, i) => (
                 <button 
                   key={i}
@@ -313,63 +635,85 @@ export function ElementsPanel({ onClose, addElement }: ToolPanelProps) {
                   className="aspect-square bg-slate-50 hover:bg-purple-50 rounded-lg flex flex-col items-center justify-center gap-1 transition-colors border border-slate-100 hover:border-purple-200 group p-1"
                   title={shape.label}
                 >
-                  <div className="text-slate-600 group-hover:text-purple-600 transition-colors scale-75">
+                  <div className="text-slate-600 group-hover:text-purple-600 transition-colors">
                     {shape.icon}
                   </div>
+                  <span className="text-[8px] text-slate-600 font-medium text-center truncate w-full">{shape.label}</span>
                 </button>
               ))}
             </div>
           </TabsContent>
 
           <TabsContent value="frames" className="mt-0">
-            <div className="grid grid-cols-3 gap-3">
+            <div className="grid grid-cols-3 gap-2 pr-3 pb-4">
               {filterItems(frames).map((frame, i) => (
                 <button 
                   key={i}
                   onClick={frame.action}
-                  className="aspect-square bg-slate-50 hover:bg-purple-50 rounded-lg flex flex-col items-center justify-center gap-2 transition-colors border border-slate-100 hover:border-purple-200 p-2 group"
+                  className="aspect-square bg-slate-50 hover:bg-purple-50 rounded-lg flex flex-col items-center justify-center gap-1 transition-colors border border-slate-100 hover:border-purple-200 p-1 group"
                 >
                   <div className="text-slate-400 group-hover:text-purple-500 transition-colors">
                     {frame.icon}
                   </div>
-                  <span className="text-[9px] text-slate-500 font-medium truncate w-full text-center">{frame.label}</span>
+                  <span className="text-[8px] text-slate-600 font-medium text-center truncate w-full">{frame.label}</span>
                 </button>
               ))}
             </div>
           </TabsContent>
 
           <TabsContent value="buttons" className="mt-0">
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-3 gap-2 pr-3 pb-4">
               {filterItems(buttons).map((btn, i) => (
                 <button 
                   key={i}
                   onClick={btn.action}
-                  className="h-16 bg-slate-50 hover:bg-purple-50 rounded-lg flex flex-col items-center justify-center gap-2 transition-colors border border-slate-100 hover:border-purple-200 p-2"
+                  className="aspect-square bg-slate-50 hover:bg-purple-50 rounded-lg flex flex-col items-center justify-center gap-1 transition-colors border border-slate-100 hover:border-purple-200 p-1 overflow-hidden"
                 >
-                  {btn.preview}
-                  <span className="text-[9px] text-slate-500 font-medium">{btn.label}</span>
+                  <div className="scale-100 origin-center">
+                    {btn.preview}
+                  </div>
+                  <span className="text-[8px] text-slate-600 font-medium text-center truncate w-full">{btn.label}</span>
                 </button>
               ))}
             </div>
           </TabsContent>
 
           <TabsContent value="badges" className="mt-0">
-            <div className="grid grid-cols-3 gap-3">
+            <div className="grid grid-cols-3 gap-2 pr-3 pb-4">
               {filterItems(badges).map((badge, i) => (
                 <button 
                   key={i}
                   onClick={badge.action}
-                  className="aspect-square bg-slate-50 hover:bg-purple-50 rounded-lg flex flex-col items-center justify-center gap-2 transition-colors border border-slate-100 hover:border-purple-200 p-1"
+                  className="aspect-square bg-slate-50 hover:bg-purple-50 rounded-lg flex flex-col items-center justify-center gap-1 transition-colors border border-slate-100 hover:border-purple-200 p-1 overflow-hidden"
                 >
-                  {badge.preview}
-                  <span className="text-[9px] text-slate-500 font-medium truncate w-full text-center">{badge.label}</span>
+                  <div className="scale-100 origin-center">
+                    {badge.preview}
+                  </div>
+                  <span className="text-[8px] text-slate-600 font-medium text-center truncate w-full">{badge.label}</span>
+                </button>
+              ))}
+            </div>
+          </TabsContent>
+
+          <TabsContent value="titles" className="mt-0">
+            <div className="grid grid-cols-3 gap-2 pr-3 pb-4">
+              {filterItems(titles).map((title, i) => (
+                <button 
+                  key={i}
+                  onClick={title.action}
+                  className="aspect-square bg-slate-50 hover:bg-purple-50 rounded-lg flex flex-col items-center justify-center gap-1 transition-colors border border-slate-100 hover:border-purple-200 p-1 overflow-hidden"
+                >
+                  <div className="scale-100 origin-center w-full flex justify-center">
+                    {title.preview}
+                  </div>
+                  <span className="text-[8px] text-slate-600 font-medium text-center truncate w-full">{title.label}</span>
                 </button>
               ))}
             </div>
           </TabsContent>
 
           <TabsContent value="social" className="mt-0">
-            <div className="grid grid-cols-4 gap-2">
+            <div className="grid grid-cols-3 gap-2 pr-3 pb-4">
               {filterItems(social).map((item, i) => (
                 <button 
                   key={i}
@@ -380,6 +724,7 @@ export function ElementsPanel({ onClose, addElement }: ToolPanelProps) {
                   <div className="scale-75">
                     {item.icon}
                   </div>
+                  <span className="text-[8px] text-slate-600 font-medium text-center truncate w-full">{item.label}</span>
                 </button>
               ))}
             </div>

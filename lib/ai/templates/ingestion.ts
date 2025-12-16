@@ -1,6 +1,7 @@
 import { generateObject, embed } from 'ai';
 import { z } from 'zod';
 import { gateway } from '@/lib/ai/gateway';
+import { getModel } from '@/lib/ai/models';
 
 export const TemplateMetadataSchema = z.object({
   description: z.string().describe('A verbose description of the template for vector search'),
@@ -27,7 +28,7 @@ export async function analyzeTemplate(html: string, css: string) {
   `;
 
   const { object } = await generateObject({
-    model: gateway.getModel('gpt-4o'), // Use a strong model for analysis
+    model: getModel('advanced'), // Use a strong model for analysis
     schema: TemplateMetadataSchema,
     prompt,
   });

@@ -14,12 +14,21 @@ function TemplatePreview({ template, brand }: { template: any, brand: any }) {
 
   useEffect(() => {
     if (template && brand && template.htmlTemplate) {
+      console.log(`[TemplatePreview] Rendering ${template.name}`);
+      console.log(`[TemplatePreview] Mapped Variables:`, template.mappedVariables);
+      console.log(`[TemplatePreview] Original Variables:`, template.variables);
+      
+      // Prefer mappedVariables if available
+      const activeVariables = template.mappedVariables || template.variables || {};
+
       const { html: mergedHtml, css: mergedCss } = mergeTemplate({
         html: template.htmlTemplate,
         css: template.cssTemplate,
-        variables: template.variables || {}, // Use the pre-populated variables
+        variables: activeVariables, 
         brandSettings: brand,
       });
+      
+      console.log(`[TemplatePreview] Merged HTML (first 200 chars):`, mergedHtml.substring(0, 200));
 
       const fullHtml = `
         <html>
@@ -36,14 +45,21 @@ function TemplatePreview({ template, brand }: { template: any, brand: any }) {
     }
   }, [template, brand]);
 
-  if (!template.htmlTemplate && template.previewUrl) {
+  if (!template.htmlTemplate) {
+    if (template.previewUrl) {
+      return (
+        <div className="w-full aspect-square bg-muted/20 rounded-md overflow-hidden border relative">
+          <img 
+            src={template.previewUrl} 
+            alt={template.name} 
+            className="w-full h-full object-cover"
+          />
+        </div>
+      );
+    }
     return (
-      <div className="w-full aspect-square bg-muted/20 rounded-md overflow-hidden border relative">
-        <img 
-          src={template.previewUrl} 
-          alt={template.name} 
-          className="w-full h-full object-cover"
-        />
+      <div className="w-full aspect-square bg-muted/20 rounded-md flex items-center justify-center border">
+        <span className="text-muted-foreground text-xs">No Preview</span>
       </div>
     );
   }
@@ -68,11 +84,17 @@ export default function TemplatesPage() {
   const loadTemplates = async () => {
     setLoading(true);
     try {
-      const { templates: fetchedTemplates, brand: fetchedBrand } = await getUserTemplatesAction();
+      console.log('[TemplatesPage] Loading templates...');
+      // Pass timestamp to bust cache
+      const { templates: fetchedTemplates, brand: fetchedBrand } = await getUserTemplatesAction(Date.now());
+      console.log('[TemplatesPage] Received templates:', fetchedTemplates.length);
+      if (fetchedTemplates.length > 0) {
+          console.log('[TemplatesPage] First template variables:', fetchedTemplates[0].variables);
+      }
       setTemplates(fetchedTemplates);
       setBrand(fetchedBrand);
     } catch (error) {
-      console.error('Failed to load templates:', error);
+      console.error('[TemplatesPage] Failed to load templates:', error);
     } finally {
       setLoading(false);
     }
