@@ -173,15 +173,22 @@ export function TemplateManagement({ initialTemplates }: { initialTemplates: Tem
       
       const newTemplates = await getTemplates(nextPage, 20, searchQuery, categoryFilter, platformFilter, statusFilter);
       
+      // Sanitize templates to ensure non-null strings
+      const sanitizedTemplates = newTemplates.map(t => ({
+        ...t,
+        htmlTemplate: t.htmlTemplate || '',
+        cssTemplate: t.cssTemplate || '',
+      }));
+      
       // Cache the results
-      TEMPLATE_CACHE.set(cacheKey, newTemplates);
+      TEMPLATE_CACHE.set(cacheKey, sanitizedTemplates);
       CACHE_TIMESTAMP.set(cacheKey, Date.now());
       
-      if (newTemplates.length < 20) {
+      if (sanitizedTemplates.length < 20) {
         setHasMore(false);
       }
       
-      setTemplates(prev => [...prev, ...newTemplates]);
+      setTemplates(prev => [...prev, ...sanitizedTemplates]);
       setPage(nextPage);
     } catch (error) {
       console.error('Error loading more templates:', error);
@@ -256,12 +263,19 @@ export function TemplateManagement({ initialTemplates }: { initialTemplates: Tem
       try {
         const data = await getTemplates(1, 20, searchQuery, categoryFilter, platformFilter, statusFilter);
         
+        // Sanitize
+        const sanitizedData = data.map(t => ({
+          ...t,
+          htmlTemplate: t.htmlTemplate || '',
+          cssTemplate: t.cssTemplate || '',
+        }));
+        
         // Cache the results
-        TEMPLATE_CACHE.set(cacheKey, data);
+        TEMPLATE_CACHE.set(cacheKey, sanitizedData);
         CACHE_TIMESTAMP.set(cacheKey, Date.now());
         
-        setTemplates(data);
-        setHasMore(data.length === 20);
+        setTemplates(sanitizedData);
+        setHasMore(sanitizedData.length === 20);
       } catch (e) {
         console.error(e);
       } finally {

@@ -97,6 +97,9 @@ export default function CustomTemplateBuilderVisual() {
       try {
         const settings = await getBrandSettings();
         if (settings) {
+          // Store the complete brand settings for CSS variable injection
+          setBrandSettingsState(settings);
+          
           setBrandAssets({
             images: settings.brandImages || [],
             products: settings.products || []
@@ -271,6 +274,76 @@ export default function CustomTemplateBuilderVisual() {
   const [resizeHandle, setResizeHandle] = useState<string | null>(null);
   const [elementDragStart, setElementDragStart] = useState<any>(null);
   const textInputRef = useRef<HTMLTextAreaElement>(null);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const [selectedElementData, setSelectedElementData] = useState<VisualElement | null>(null);
+
+  const handleElementSelected = (data: any) => {
+    setSelectedElementId(data.id);
+    
+    // Map bridge data to VisualElement structure for RightPanel
+    const el: VisualElement = {
+      id: data.id,
+      type: data.tagName.toLowerCase() === 'img' ? 'image' : 'text', // Basic inference
+      content: data.content,
+      x: data.rect.left,
+      y: data.rect.top,
+      width: data.rect.width,
+      height: data.rect.height,
+      zIndex: 1,
+      rotation: 0,
+      visible: true,
+      locked: false,
+      
+      // Styles
+      fontSize: parseFloat(data.computedStyle.fontSize) || 16,
+      color: data.computedStyle.color,
+      backgroundColor: data.computedStyle.backgroundColor,
+      fontFamily: data.computedStyle.fontFamily,
+      fontWeight: data.computedStyle.fontWeight,
+      textAlign: data.computedStyle.textAlign,
+      lineHeight: parseFloat(data.computedStyle.lineHeight) / parseFloat(data.computedStyle.fontSize) || 1.4,
+      letterSpacing: parseFloat(data.computedStyle.letterSpacing) || 0,
+    };
+    
+    setSelectedElementData(el);
+  };
+
+  const handleSelectionCleared = () => {
+    setSelectedElementId(null);
+    setSelectedElementData(null);
+  };
+
+  const handleUpdateElement = (id: string, updates: Partial<VisualElement>) => {
+    // Update local state for immediate feedback in RightPanel
+    if (selectedElementData && selectedElementData.id === id) {
+      setSelectedElementData({ ...selectedElementData, ...updates });
+    }
+
+    // Send to iframe
+    if (iframeRef.current?.contentWindow) {
+      if (updates.content !== undefined) {
+        iframeRef.current.contentWindow.postMessage({
+          type: 'UPDATE_CONTENT',
+          payload: { id, content: updates.content }
+        }, '*');
+      }
+
+      const styleUpdates: Record<string, string> = {};
+      if (updates.color) styleUpdates.color = updates.color;
+      if (updates.backgroundColor) styleUpdates.backgroundColor = updates.backgroundColor;
+      if (updates.fontSize) styleUpdates.fontSize = `${updates.fontSize}px`;
+      if (updates.fontWeight) styleUpdates.fontWeight = String(updates.fontWeight);
+      if (updates.textAlign) styleUpdates.textAlign = String(updates.textAlign);
+      if (updates.fontFamily) styleUpdates.fontFamily = updates.fontFamily;
+      
+      if (Object.keys(styleUpdates).length > 0) {
+        iframeRef.current.contentWindow.postMessage({
+          type: 'UPDATE_STYLE',
+          payload: { id, styles: styleUpdates }
+        }, '*');
+      }
+    }
+  };
 
   // Context Menu Handler
   const handleContextMenu = (e: React.MouseEvent) => {
@@ -560,20 +633,35 @@ export default function CustomTemplateBuilderVisual() {
   const handleSave = async () => {
     setIsSaving(true);
     try {
-      // Generate high-fidelity HTML/CSS for preview/export
-      const { html, css } = generateHtmlFromElements(
-        visualElements,
-        selectedTemplate.width || 1080,
-        selectedTemplate.height || 1080,
-        canvasBackground
-      );
+      // Get HTML directly from iframe
+      const getHtml = (): Promise<string> => {
+        return new Promise((resolve) => {
+          if (!iframeRef.current?.contentWindow) {
+            resolve(selectedTemplate.htmlTemplate || '');
+            return;
+          }
+          const handler = (event: MessageEvent) => {
+            if (event.data.type === 'HTML_RESPONSE') {
+              window.removeEventListener('message', handler);
+              resolve(event.data.payload.html);
+            }
+          };
+          window.addEventListener('message', handler);
+          iframeRef.current.contentWindow.postMessage({ type: 'GET_HTML' }, '*');
+          setTimeout(() => {
+            window.removeEventListener('message', handler);
+            resolve(selectedTemplate.htmlTemplate || '');
+          }, 1000);
+        });
+      };
+
+      const html = await getHtml();
 
       const templateData = {
         ...selectedTemplate,
         name: templateName,
-        elements: visualElements, // Save the JSON source of truth
-        htmlTemplate: html,       // Save generated HTML for backward compatibility
-        cssTemplate: css,         // Save generated CSS for backward compatibility
+        htmlTemplate: html,       
+        cssTemplate: selectedTemplate.cssTemplate,
         variables: variableValues,
         updatedAt: new Date().toISOString(),
       };
@@ -645,8 +733,8 @@ export default function CustomTemplateBuilderVisual() {
           <div className="flex-1 flex flex-col items-center justify-center p-12 overflow-hidden relative">
             {/* Tool Panels - Rendered absolutely within the editor area */}
             {tool === 'text' && <TextPanel onClose={() => setTool('select')} addElement={addElement} />}
-            {tool === 'image' && <MediaPanel onClose={() => setTool('select')} addElement={addElement} brandAssets={brandAssets} />}
-            {tool === 'elements' && <ElementsPanel onClose={() => setTool('select')} addElement={addElement} onAddHtml={handleAddHtml} brandAssets={brandAssets} />}
+            {tool === 'image' && <MediaPanel onClose={() => setTool('select')} addElement={addElement} brandAssets={brandAssets || undefined} />}
+            {tool === 'elements' && <ElementsPanel onClose={() => setTool('select')} addElement={addElement} onAddHtml={handleAddHtml} brandAssets={brandAssets || undefined} />}
             {tool === 'layers' && (
               <LayersPanel 
                 elements={visualElements} 
@@ -661,37 +749,13 @@ export default function CustomTemplateBuilderVisual() {
             <div className="relative" onContextMenu={handleContextMenu}>
               <Canvas
                 selectedTemplate={selectedTemplate}
-                canvasTemplates={canvasTemplates}
-                templatePreviewUrls={templatePreviewUrls}
-                visualElements={visualElements}
-                selectedElementId={selectedElementId}
-                setSelectedElementId={setSelectedElementId}
+                variableValues={variableValues}
                 zoom={zoom}
-                setZoom={setZoom}
-                canvasBackground="#ffffff"
-                tool="select"
-                previewUrl={previewUrl}
-                isDragging={false}
-                dragStart={null}
-                isEditingText={isEditingText}
-                setIsEditingText={setIsEditingText}
-                isResizing={isResizing}
-                setIsResizing={setIsResizing}
-                resizeHandle={resizeHandle}
-                setResizeHandle={setResizeHandle}
-                elementDragStart={elementDragStart}
-                setElementDragStart={setElementDragStart}
-                handleCanvasMouseDown={handleCanvasMouseDown}
-                handleCanvasMouseMove={handleCanvasMouseMove}
-                handleCanvasMouseUp={handleCanvasMouseUp}
-                handleElementDoubleClick={handleElementDoubleClick}
-                updateElement={updateElement}
-                duplicateElement={duplicateElement}
-                deleteElement={deleteElement}
-                saveToHistory={saveToHistory}
-                toast={customToast}
-                textInputRef={textInputRef}
-                isExtracting={isExtracting}
+                iframeRef={iframeRef}
+                onElementSelected={handleElementSelected}
+                onSelectionCleared={handleSelectionCleared}
+                selectedElementId={selectedElementId}
+                brandSettings={brandSettings}
               />
               
               {/* Context Menu */}
@@ -726,12 +790,12 @@ export default function CustomTemplateBuilderVisual() {
             activeRightSection={activeRightSection}
             setActiveRightSection={setActiveRightSection}
             selectedElementId={selectedElementId}
-            visualElements={visualElements}
+            visualElements={selectedElementData ? [selectedElementData] : []}
             selectedTemplate={selectedTemplate}
             setSelectedTemplate={setSelectedTemplate}
             variableValues={variableValues}
             setVariableValues={setVariableValues}
-            updateElement={updateElement}
+            updateElement={handleUpdateElement}
             deleteElement={deleteElement}
             duplicateElement={duplicateElement}
             moveElementZIndex={moveElementZIndex}
@@ -778,7 +842,7 @@ export default function CustomTemplateBuilderVisual() {
         updateElement={updateElement}
         saveToHistory={saveToHistory}
         toast={customToast}
-        brandAssets={brandAssets}
+        brandAssets={brandAssets || undefined}
       />
     </div>
   );

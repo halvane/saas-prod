@@ -1,0 +1,1 @@
+ALTER TABLE "brand_settings" ADD COLUMN "brand_font" varchar(255);

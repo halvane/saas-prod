@@ -15,6 +15,13 @@ export default async function AdminTemplatesPage() {
   // Load only 20 templates initially for ultra-fast first paint
   const limit = 20;
   const allTemplates = await db.select().from(templates).orderBy(desc(templates.createdAt)).limit(limit);
+  
+  // Ensure templates match the expected type (handle nulls)
+  const sanitizedTemplates = allTemplates.map(t => ({
+    ...t,
+    htmlTemplate: t.htmlTemplate || '',
+    cssTemplate: t.cssTemplate || '',
+  }));
 
   return (
     <div className="flex-1 space-y-4 p-8 pt-6">
@@ -34,7 +41,7 @@ export default async function AdminTemplatesPage() {
         </CardHeader>
         <CardContent>
           <TemplateManagement 
-            initialTemplates={allTemplates} 
+            initialTemplates={sanitizedTemplates} 
           />
         </CardContent>
       </Card>

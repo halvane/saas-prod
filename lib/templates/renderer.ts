@@ -51,38 +51,50 @@ export function mergeTemplate({ html, css, variables, brandSettings }: RenderOpt
   }
 
   // 2. Inject Brand Settings (CSS Variables)
-  if (brandSettings) {
-    const brandColors = typeof brandSettings.brandColors === 'string' 
-      ? JSON.parse(brandSettings.brandColors) 
-      : brandSettings.brandColors || [];
+  if (brandSettings && Object.keys(brandSettings).length > 0) {
+    try {
+      let brandColors: string[] = [];
       
-    const primary = brandColors[0] || '#000000';
-    const secondary = brandColors[1] || '#ffffff';
-    const accent = brandColors[2] || '#cccccc';
-    
-    const rootStyles = `
-      :root {
-        --brand-primary: ${primary};
-        --brand-primary-light: ${adjustColor(primary, 40)};
-        --brand-primary-dark: ${adjustColor(primary, -40)};
-        --brand-primary-rgb: ${hexToRgb(primary)};
-        
-        --brand-secondary: ${secondary};
-        --brand-secondary-light: ${adjustColor(secondary, 40)};
-        --brand-secondary-dark: ${adjustColor(secondary, -40)};
-        --brand-secondary-rgb: ${hexToRgb(secondary)};
-        
-        --brand-accent: ${accent};
-        --brand-accent-light: ${adjustColor(accent, 40)};
-        --brand-accent-dark: ${adjustColor(accent, -40)};
-        --brand-accent-rgb: ${hexToRgb(accent)};
-        
-        --font-heading: ${brandSettings.brandFont || 'sans-serif'};
-        --font-body: ${brandSettings.brandFont || 'sans-serif'};
+      // Handle brandColors as string or array
+      if (brandSettings.brandColors) {
+        if (typeof brandSettings.brandColors === 'string') {
+          brandColors = JSON.parse(brandSettings.brandColors);
+        } else if (Array.isArray(brandSettings.brandColors)) {
+          brandColors = brandSettings.brandColors;
+        }
       }
-    `;
-    
-    mergedCss = `${rootStyles}\n${mergedCss}`;
+      
+      const primary = (brandColors[0] || '#000000').trim();
+      const secondary = (brandColors[1] || '#ffffff').trim();
+      const accent = (brandColors[2] || '#0066cc').trim();
+      const fontFamily = (brandSettings.brandFont || 'system-ui, -apple-system, sans-serif').trim();
+      
+      const rootStyles = `
+        :root {
+          --brand-primary: ${primary};
+          --brand-primary-light: ${adjustColor(primary, 40)};
+          --brand-primary-dark: ${adjustColor(primary, -40)};
+          --brand-primary-rgb: ${hexToRgb(primary)};
+          
+          --brand-secondary: ${secondary};
+          --brand-secondary-light: ${adjustColor(secondary, 40)};
+          --brand-secondary-dark: ${adjustColor(secondary, -40)};
+          --brand-secondary-rgb: ${hexToRgb(secondary)};
+          
+          --brand-accent: ${accent};
+          --brand-accent-light: ${adjustColor(accent, 40)};
+          --brand-accent-dark: ${adjustColor(accent, -40)};
+          --brand-accent-rgb: ${hexToRgb(accent)};
+          
+          --font-heading: ${fontFamily};
+          --font-body: ${fontFamily};
+        }
+      `;
+      
+      mergedCss = `${rootStyles}\n${mergedCss}`;
+    } catch (error) {
+      console.error('Error injecting brand settings:', error);
+    }
   }
 
   return { html: mergedHtml, css: mergedCss };

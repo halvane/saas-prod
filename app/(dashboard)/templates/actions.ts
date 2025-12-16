@@ -105,7 +105,7 @@ export async function getUserTemplatesAction(timestamp?: number) {
   // 5. Populate Templates using Matrix
   const templates = rawTemplates.map(template => {
     console.log(`[getUserTemplatesAction] Mapping template: ${template.name} (${template.id})`);
-    const mappedVariables = fillTemplateFromMatrix(template.llmSchema, matrix, images);
+    const mappedVariables = fillTemplateFromMatrix(template.llmSchema as Record<string, any>, matrix, images);
     console.log(`[getUserTemplatesAction] Variables mapped for ${template.name}:`, JSON.stringify(mappedVariables, null, 2));
     return {
       ...template,

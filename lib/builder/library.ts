@@ -119,7 +119,7 @@ export const SECTIONS: Section[] = [
   {
     id: 'testimonial-modern-card',
     name: 'Modern Testimonial Card',
-    category: 'content',
+    category: 'text',
     height: 400,
     html: `<div style="position:absolute;top:0;left:0;width:100%;height:400px;display:flex;align-items:center;justify-content:center;z-index:5"><div style="background:#fff;padding:40px;border-radius:20px;box-shadow:0 20px 40px rgba(0,0,0,0.1);max-width:800px;text-align:center"><div style="color:var(--brand-accent);font-size:60px;line-height:1;margin-bottom:20px">"</div><p style="font-size:28px;font-style:italic;color:var(--brand-primary);margin-bottom:30px;line-height:1.4">{{quote}}</p><div style="display:flex;align-items:center;justify-content:center;gap:15px"><img src="{{avatar}}" style="width:60px;height:60px;border-radius:50%;object-fit:cover"/><div style="text-align:left"><div style="font-weight:bold;font-size:18px;color:var(--brand-primary)">{{author}}</div><div style="color:var(--brand-primary-light);font-size:14px">{{role}}</div></div></div></div></div>`,
     variables: {
@@ -134,7 +134,7 @@ export const SECTIONS: Section[] = [
   {
     id: 'features-grid-4',
     name: 'Four Column Features',
-    category: 'content',
+    category: 'text',
     height: 300,
     html: `<div style="position:absolute;top:0;left:0;width:100%;height:300px;display:flex;align-items:center;justify-content:space-between;padding:0 60px;z-index:5"><div style="text-align:center;flex:1"><div style="font-size:40px;margin-bottom:15px">🚀</div><h3 style="font-size:20px;font-weight:bold;color:var(--brand-primary);margin-bottom:10px">{{feat1_title}}</h3><p style="font-size:14px;color:var(--brand-primary-light)">{{feat1_desc}}</p></div><div style="text-align:center;flex:1"><div style="font-size:40px;margin-bottom:15px">⚡</div><h3 style="font-size:20px;font-weight:bold;color:var(--brand-primary);margin-bottom:10px">{{feat2_title}}</h3><p style="font-size:14px;color:var(--brand-primary-light)">{{feat2_desc}}</p></div><div style="text-align:center;flex:1"><div style="font-size:40px;margin-bottom:15px">🛡️</div><h3 style="font-size:20px;font-weight:bold;color:var(--brand-primary);margin-bottom:10px">{{feat3_title}}</h3><p style="font-size:14px;color:var(--brand-primary-light)">{{feat3_desc}}</p></div><div style="text-align:center;flex:1"><div style="font-size:40px;margin-bottom:15px">💎</div><h3 style="font-size:20px;font-weight:bold;color:var(--brand-primary);margin-bottom:10px">{{feat4_title}}</h3><p style="font-size:14px;color:var(--brand-primary-light)">{{feat4_desc}}</p></div></div>`,
     variables: {
@@ -149,7 +149,7 @@ export const SECTIONS: Section[] = [
   {
     id: 'tailwind-stats-simple',
     name: 'Simple Stats (Tailwind Style)',
-    category: 'content',
+    category: 'text',
     height: 200,
     html: `<div style="position:absolute;top:0;left:0;width:100%;height:200px;display:flex;align-items:center;justify-content:center;background:#f9fafb;z-index:5"><div style="display:flex;gap:80px;text-align:center"><div style="display:flex;flex-direction:column"><span style="font-size:48px;font-weight:800;color:var(--brand-primary)">{{stat1_val}}</span><span style="font-size:16px;font-weight:500;color:var(--brand-primary-light);text-transform:uppercase;letter-spacing:1px">{{stat1_label}}</span></div><div style="width:1px;height:60px;background:#e5e7eb"></div><div style="display:flex;flex-direction:column"><span style="font-size:48px;font-weight:800;color:var(--brand-primary)">{{stat2_val}}</span><span style="font-size:16px;font-weight:500;color:var(--brand-primary-light);text-transform:uppercase;letter-spacing:1px">{{stat2_label}}</span></div><div style="width:1px;height:60px;background:#e5e7eb"></div><div style="display:flex;flex-direction:column"><span style="font-size:48px;font-weight:800;color:var(--brand-primary)">{{stat3_val}}</span><span style="font-size:16px;font-weight:500;color:var(--brand-primary-light);text-transform:uppercase;letter-spacing:1px">{{stat3_label}}</span></div></div></div>`,
     variables: {
@@ -161,7 +161,7 @@ export const SECTIONS: Section[] = [
   {
     id: 'tailwind-pricing-card',
     name: 'Pricing Card (Tailwind Style)',
-    category: 'content',
+    category: 'text',
     height: 500,
     html: `<div style="position:absolute;top:0;left:0;width:100%;height:500px;display:flex;align-items:center;justify-content:center;z-index:5"><div style="width:400px;background:#fff;border-radius:16px;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);padding:40px;border:1px solid #e5e7eb"><div style="text-align:center;margin-bottom:30px"><h3 style="font-size:24px;font-weight:600;color:var(--brand-primary);margin-bottom:10px">{{plan_name}}</h3><div style="display:flex;align-items:baseline;justify-content:center"><span style="font-size:48px;font-weight:800;color:var(--brand-primary)">{{price}}</span><span style="font-size:18px;color:var(--brand-primary-light);margin-left:5px">/mo</span></div></div><ul style="list-style:none;padding:0;margin:0 0 30px 0"><li style="display:flex;align-items:center;margin-bottom:15px;color:var(--brand-primary-light);font-size:16px"><span style="color:var(--brand-accent);margin-right:10px">✓</span>{{feat1}}</li><li style="display:flex;align-items:center;margin-bottom:15px;color:var(--brand-primary-light);font-size:16px"><span style="color:var(--brand-accent);margin-right:10px">✓</span>{{feat2}}</li><li style="display:flex;align-items:center;margin-bottom:15px;color:var(--brand-primary-light);font-size:16px"><span style="color:var(--brand-accent);margin-right:10px">✓</span>{{feat3}}</li></ul><button style="width:100%;padding:15px;background:var(--brand-accent);color:#fff;border:none;border-radius:8px;font-weight:600;font-size:16px;cursor:pointer;transition:opacity 0.2s">{{cta}}</button></div></div>`,
     variables: {
