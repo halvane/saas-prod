@@ -1,3 +1,5 @@
+import { TEMPLATE_VARIABLES, getVariableDefaults } from '@/lib/templates/template-variables';
+
 export const MASTER_TEMPLATES = [
   {
     id: "podcast-interview-dual",
@@ -35,6 +37,9 @@ export const MASTER_TEMPLATES = [
     cssTemplate: "",
     width: 1080,
     height: 1080,
+    // NEW: Use variable keys instead of full variable definitions
+    variableKeys: ["headline", "subheadline", "host_name", "guest_name", "host_image", "guest_image", "date_time"],
+    // Keep variables for backward compatibility (will be auto-generated from keys)
     variables: {
       "headline": "Diving Deeper into Financial Mastery",
       "subheadline": "Strategies to Level Up",
@@ -75,6 +80,7 @@ export const MASTER_TEMPLATES = [
     cssTemplate: "",
     width: 1080,
     height: 1080,
+    variableKeys: ["headline", "subheadline", "hero_image", "date_time"],
     variables: {
       "headline": "Nations Pledge Emission Cuts",
       "subheadline": "Global Headlines Podcast",
@@ -111,6 +117,7 @@ export const MASTER_TEMPLATES = [
     cssTemplate: "",
     width: 1080,
     height: 1080,
+    variableKeys: ["subheadline", "review_text", "reviewer_name", "reviewer_role", "reviewer_image"],
     variables: {
       "subheadline": "What people are saying",
       "review_text": "This podcast keeps me informed and engaged. Each episode is a global journey that broadens my horizons. Highly recommend!",
@@ -147,6 +154,7 @@ export const MASTER_TEMPLATES = [
     cssTemplate: "",
     width: 1080,
     height: 1080,
+    variableKeys: ["headline", "subheadline", "cta"],
     variables: {
       "headline": "Kick Off: Sports Talk",
       "subheadline": "Weekly analysis of the biggest games.",

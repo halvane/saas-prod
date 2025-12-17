@@ -4,6 +4,7 @@ import { MASTER_TEMPLATES } from '@/lib/templates/master-templates';
 import { SECTIONS, buildTemplateFromSections } from '@/lib/builder/library';
 import { eq } from 'drizzle-orm';
 import { generateEmbedding } from '@/lib/ai/templates/ingestion';
+import { generateLlmSchemaFromKeys, validateVariableKeys } from '@/lib/templates/template-variables';
 import dotenv from 'dotenv';
 import fs from 'fs';
 import path from 'path';
@@ -11,7 +12,7 @@ import path from 'path';
 // Load environment variables
 dotenv.config({ path: '.env' });
 
-// Helper to generate simple LLM schema from variables
+// Helper to generate simple LLM schema from variables (LEGACY - for backward compatibility)
 function generateLlmSchema(variables: Record<string, any>) {
   const properties: Record<string, any> = {};
   for (const [key, value] of Object.entries(variables)) {
@@ -108,7 +109,24 @@ async function seed() {
     for (const tmpl of allTemplates) {
       console.log(`Processing: ${tmpl.name}`);
 
-      const llmSchema = generateLlmSchema(tmpl.variables);
+      // NEW: Use centralized variable system if variableKeys exist
+      let llmSchema;
+      if (tmpl.variableKeys && Array.isArray(tmpl.variableKeys)) {
+        console.log(`  - Using centralized variable system (${tmpl.variableKeys.length} keys)`);
+        
+        // Validate variable keys
+        const validation = validateVariableKeys(tmpl.variableKeys);
+        if (!validation.valid) {
+          console.warn(`  ⚠️ Unknown variables: ${validation.missing.join(', ')}`);
+        }
+        
+        // Generate minified LLM schema from keys (saves tokens!)
+        llmSchema = generateLlmSchemaFromKeys(tmpl.variableKeys);
+      } else {
+        // LEGACY: Use old system for backward compatibility
+        console.log(`  - Using legacy variable system`);
+        llmSchema = generateLlmSchema(tmpl.variables);
+      }
 
       // Note: We are NOT pre-generating the 'elements' JSON here because
       // extractElementsFromHTMLAsync relies on a real browser environment (iframe rendering)
