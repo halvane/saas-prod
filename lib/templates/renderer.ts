@@ -1,3 +1,6 @@
+import fs from 'fs';
+import path from 'path';
+
 export const STANDARD_CSS_VARIABLES = [
   '--brand-primary',
   '--brand-secondary',
@@ -6,6 +9,22 @@ export const STANDARD_CSS_VARIABLES = [
   '--font-body',
   '--brand-logo',
 ];
+
+// Load common CSS once (cached)
+let commonCssCache: string | null = null;
+
+function getCommonCss(): string {
+  if (commonCssCache) return commonCssCache;
+  
+  try {
+    const cssPath = path.join(process.cwd(), 'lib/templates/common-template-styles.css');
+    commonCssCache = fs.readFileSync(cssPath, 'utf-8');
+    return commonCssCache;
+  } catch (error) {
+    console.warn('Could not load common template styles:', error);
+    return '';
+  }
+}
 
 // Simple color utility to lighten/darken hex
 function adjustColor(color: string, amount: number) {
@@ -27,11 +46,18 @@ export interface RenderOptions {
   css: string;
   variables: Record<string, any>;
   brandSettings?: any; // Type from schema
+  includeCommonCss?: boolean; // Option to include common CSS
 }
 
-export function mergeTemplate({ html, css, variables, brandSettings }: RenderOptions) {
+export function mergeTemplate({ html, css, variables, brandSettings, includeCommonCss = true }: RenderOptions) {
   let mergedHtml = html || '';
   let mergedCss = css || '';
+
+  // 0. Prepend common CSS if requested
+  if (includeCommonCss) {
+    const commonCss = getCommonCss();
+    mergedCss = `${commonCss}\n${mergedCss}`;
+  }
 
   // 1. Inject Content Variables
   for (const [key, value] of Object.entries(variables || {})) {
