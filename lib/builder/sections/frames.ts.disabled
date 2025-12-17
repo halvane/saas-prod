@@ -1,0 +1,63 @@
+import { Section } from '../types';
+
+export const FRAMES: Section[] = [
+  {
+    id: 'frame-polaroid-single',
+    name: 'Polaroid Frame (Single)',
+    category: 'overlay',
+    height: 800,
+    html: `<div class="w-full h-full flex items-center justify-center p-[5cqw] transform rotate-2"><div class="bg-white p-[2.5cqw] shadow-2xl relative" style="filter: drop-shadow(0 25px 50px rgba(0,0,0,0.3))"><img src="{{photo}}" class="w-full aspect-square object-cover mb-[1.5cqw]"/><div class="text-center text-gray-600 text-[2cqw] safe-text line-clamp-1 font-body">{{caption}}</div><div class="absolute top-[0.8cqw] right-[0.8cqw] w-[6cqw] h-[3cqw] bg-yellow-100/80 transform rotate-12 shadow-md"></div></div></div>`,
+    variables: {
+      photo: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800',
+      caption: 'Summer 2025'
+    },
+    metadata: {
+      moods: ['playful', 'calm'],
+      purpose: ['engagement', 'awareness'],
+      density: 'low',
+      tags: ['polaroid', 'frame', 'vintage', 'photo', 'casual']
+    },
+    compatibleEffects: ['shadow', 'texture']
+  },
+  {
+    id: 'frame-polaroid-scatter',
+    name: 'Polaroid Scatter (Multiple)',
+    category: 'overlay',
+    height: 1080,
+    html: `<div class="relative w-full h-full p-[3cqw]"><div class="absolute top-[8cqw] left-[6cqw] bg-white p-[1.5cqw] shadow-xl transform -rotate-6 z-10" style="filter: drop-shadow(0 15px 30px rgba(0,0,0,0.2))"><img src="{{photo_1}}" class="w-[25cqw] h-[25cqw] object-cover"/><div class="text-center mt-[0.5cqw] text-gray-600 font-body text-[1.4cqw]">{{caption_1}}</div></div><div class="absolute top-[12cqw] right-[8cqw] bg-white p-[1.5cqw] shadow-xl transform rotate-12 z-20" style="filter: drop-shadow(0 15px 30px rgba(0,0,0,0.2))"><img src="{{photo_2}}" class="w-[22cqw] h-[22cqw] object-cover"/><div class="text-center mt-[0.5cqw] text-gray-600 font-body text-[1.4cqw]">{{caption_2}}</div></div><div class="absolute bottom-[10cqw] left-[10cqw] bg-white p-[1.5cqw] shadow-xl transform rotate-3 z-15" style="filter: drop-shadow(0 15px 30px rgba(0,0,0,0.2))"><img src="{{photo_3}}" class="w-[24cqw] h-[24cqw] object-cover"/><div class="text-center mt-[0.5cqw] text-gray-600 font-body text-[1.4cqw]">{{caption_3}}</div></div></div>`,
+    variables: {
+      photo_1: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400',
+      photo_2: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400',
+      photo_3: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=400',
+      caption_1: 'Moment 1',
+      caption_2: 'Moment 2',
+      caption_3: 'Moment 3'
+    },
+    metadata: {
+      moods: ['playful', 'energetic'],
+      purpose: ['engagement', 'awareness'],
+      density: 'high',
+      tags: ['polaroid', 'collage', 'scatter', 'vintage', 'memories']
+    },
+    compatibleEffects: ['shadow', 'texture']
+  },
+  {
+    id: 'frame-film-strip',
+    name: 'Film Strip Frame',
+    category: 'overlay',
+    height: 1080,
+    html: `<div class="relative w-full h-full bg-black p-[3cqw]"><div class="absolute inset-y-0 left-0 w-[5cqw] bg-black flex flex-col justify-around py-[1.5cqw]"><div class="w-full h-[3cqw] bg-gray-800 border-[0.2cqw] border-gray-600"></div><div class="w-full h-[3cqw] bg-gray-800 border-[0.2cqw] border-gray-600"></div><div class="w-full h-[3cqw] bg-gray-800 border-[0.2cqw] border-gray-600"></div><div class="w-full h-[3cqw] bg-gray-800 border-[0.2cqw] border-gray-600"></div><div class="w-full h-[3cqw] bg-gray-800 border-[0.2cqw] border-gray-600"></div><div class="w-full h-[3cqw] bg-gray-800 border-[0.2cqw] border-gray-600"></div><div class="w-full h-[3cqw] bg-gray-800 border-[0.2cqw] border-gray-600"></div><div class="w-full h-[3cqw] bg-gray-800 border-[0.2cqw] border-gray-600"></div></div><div class="absolute inset-y-0 right-0 w-[5cqw] bg-black flex flex-col justify-around py-[1.5cqw]"><div class="w-full h-[3cqw] bg-gray-800 border-[0.2cqw] border-gray-600"></div><div class="w-full h-[3cqw] bg-gray-800 border-[0.2cqw] border-gray-600"></div><div class="w-full h-[3cqw] bg-gray-800 border-[0.2cqw] border-gray-600"></div><div class="w-full h-[3cqw] bg-gray-800 border-[0.2cqw] border-gray-600"></div><div class="w-full h-[3cqw] bg-gray-800 border-[0.2cqw] border-gray-600"></div><div class="w-full h-[3cqw] bg-gray-800 border-[0.2cqw] border-gray-600"></div><div class="w-full h-[3cqw] bg-gray-800 border-[0.2cqw] border-gray-600"></div><div class="w-full h-[3cqw] bg-gray-800 border-[0.2cqw] border-gray-600"></div></div><div class="relative h-full mx-[5cqw] flex flex-col gap-[1.5cqw] overflow-hidden"><img src="{{frame_1}}" class="flex-1 object-cover"/><img src="{{frame_2}}" class="flex-1 object-cover"/><img src="{{frame_3}}" class="flex-1 object-cover"/></div></div>`,
+    variables: {
+      frame_1: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800',
+      frame_2: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800',
+      frame_3: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800'
+    },
+    metadata: {
+      moods: ['luxury', 'calm'],
+      purpose: ['engagement', 'awareness'],
+      density: 'high',
+      tags: ['film', 'vintage', 'cinema', 'strip', 'retro']
+    },
+    compatibleEffects: ['texture']
+  }
+];

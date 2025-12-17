@@ -74,6 +74,7 @@ export function EditorPage({ isOpen, generatedContent, onClose, onProceedToSched
   const [variants, setVariants] = useState(generatedContent?.variants || mockVariants);
   const [selectedVariant, setSelectedVariant] = useState<any>(null);
   const [selectedPlatform, setSelectedPlatform] = useState('blog');
+  const [canvasSize, setCanvasSize] = useState('square'); // square, portrait, landscape, story
   const [advancedEditorOpen, setAdvancedEditorOpen] = useState(false);
   const [blogEditorOpen, setBlogEditorOpen] = useState(false);
   const [twitterEditorOpen, setTwitterEditorOpen] = useState(false);
@@ -254,8 +255,34 @@ export function EditorPage({ isOpen, generatedContent, onClose, onProceedToSched
                 </div>
 
                 {/* Center - Canvas Preview */}
-                <div className="bg-[#F9FAFB] rounded-xl p-8 flex items-center justify-center">
-                  <div className="bg-white rounded-2xl shadow-2xl overflow-hidden" style={{ width: '400px', aspectRatio: '1/1' }}>
+                <div className="bg-[#F9FAFB] rounded-xl p-8 flex flex-col items-center justify-center gap-6 relative">
+                  
+                  {/* Top Bar - Size Selector */}
+                  <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-white px-4 py-2 rounded-full shadow-sm border border-gray-200 flex items-center gap-3 z-10">
+                    <span className="text-xs font-medium text-gray-500 uppercase tracking-wider">Canvas Size</span>
+                    <select 
+                      value={canvasSize}
+                      onChange={(e) => setCanvasSize(e.target.value)}
+                      className="text-sm font-semibold text-gray-900 bg-transparent border-none focus:ring-0 cursor-pointer"
+                    >
+                      <option value="square">Square (1:1)</option>
+                      <option value="portrait">Portrait (4:5)</option>
+                      <option value="landscape">Landscape (16:9)</option>
+                      <option value="story">Story (9:16)</option>
+                    </select>
+                  </div>
+
+                  <div 
+                    className="bg-white rounded-2xl shadow-2xl overflow-hidden transition-all duration-500 ease-in-out" 
+                    style={{ 
+                      width: canvasSize === 'landscape' ? '500px' : '400px', 
+                      aspectRatio: 
+                        canvasSize === 'square' ? '1/1' : 
+                        canvasSize === 'portrait' ? '4/5' : 
+                        canvasSize === 'landscape' ? '16/9' : 
+                        '9/16'
+                    }}
+                  >
                     {selectedVariant.thumbnail ? (
                       <div className="relative w-full h-full">
                         <img 

@@ -106,6 +106,20 @@
       "when": 1765905203538,
       "tag": "0014_wooden_micromax",
       "breakpoints": true
+    },
+    {
+      "idx": 15,
+      "version": "7",
+      "when": 1765926546644,
+      "tag": "0015_workable_kabuki",
+      "breakpoints": true
+    },
+    {
+      "idx": 16,
+      "version": "7",
+      "when": 1765967419171,
+      "tag": "0016_massive_stellaris",
+      "breakpoints": true
     }
   ]
 }

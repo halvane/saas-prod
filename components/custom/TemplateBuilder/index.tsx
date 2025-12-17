@@ -119,8 +119,9 @@ export default function CustomTemplateBuilderVisual() {
             brandVars.TAGLINE = settings.brandTagline;
           }
 
-          // Products
+          // Products - Map multiple products to variables
           if (settings.products && settings.products.length > 0) {
+            // First product
             const p = settings.products[0];
             brandVars.product_name = p.name;
             brandVars.productName = p.name;
@@ -139,16 +140,43 @@ export default function CustomTemplateBuilderVisual() {
                 brandVars.PRODUCT_IMAGE = url;
               }
             }
+            
+            // Additional products
+            for (let i = 1; i < Math.min(settings.products.length, 5); i++) {
+              const prod = settings.products[i];
+              brandVars[`product_${i + 1}_name`] = prod.name;
+              brandVars[`product_${i + 1}_price`] = prod.price || '';
+              
+              if (prod.imageUrl) {
+                const url = typeof prod.imageUrl === 'string' ? prod.imageUrl : (prod.imageUrl as any).url;
+                if (url) {
+                  brandVars[`product_${i + 1}_image`] = url;
+                }
+              }
+            }
           }
 
-          // Brand Images
+          // Brand Images - Map multiple images to variables
           if (settings.brandImages && settings.brandImages.length > 0) {
+            // First image
             const img = settings.brandImages[0];
             const url = typeof img === 'string' ? img : (img as any).url;
             if (url) {
               brandVars.hero_image = url;
               brandVars.heroImage = url;
               brandVars.HERO_IMAGE = url;
+              brandVars.background_image = url;
+              brandVars.backgroundImage = url;
+            }
+            
+            // Additional images
+            for (let i = 1; i < Math.min(settings.brandImages.length, 5); i++) {
+              const img = settings.brandImages[i];
+              const url = typeof img === 'string' ? img : (img as any).url;
+              if (url) {
+                brandVars[`image_${i + 1}`] = url;
+                brandVars[`hero_image_${i + 1}`] = url;
+              }
             }
           }
 
@@ -694,6 +722,75 @@ export default function CustomTemplateBuilderVisual() {
     setZoom(100);
   };
 
+  const handleSizeChange = (newWidth: number, newHeight: number) => {
+    // Save current state to history before modifying
+    saveToHistory();
+
+    const oldWidth = selectedTemplate.width || 1080;
+    const oldHeight = selectedTemplate.height || 1080;
+
+    // Update template dimensions
+    setSelectedTemplate({
+      ...selectedTemplate,
+      width: newWidth,
+      height: newHeight
+    });
+
+    // 1. Identify Background Elements
+    // Criteria: Covers > 85% of old canvas OR id includes 'background'
+    const isBackground = (el: VisualElement) => {
+      const area = el.width * el.height;
+      const canvasArea = oldWidth * oldHeight;
+      return (area / canvasArea > 0.85) || el.id.toLowerCase().includes('background');
+    };
+
+    // 2. Calculate Bounding Box of Content (Non-Background Elements)
+    const contentElements = visualElements.filter(el => !isBackground(el));
+    
+    let contentCenterY = oldHeight / 2;
+    let contentCenterX = oldWidth / 2;
+
+    if (contentElements.length > 0) {
+      const minX = Math.min(...contentElements.map(el => el.x));
+      const maxX = Math.max(...contentElements.map(el => el.x + el.width));
+      const minY = Math.min(...contentElements.map(el => el.y));
+      const maxY = Math.max(...contentElements.map(el => el.y + el.height));
+      
+      contentCenterX = (minX + maxX) / 2;
+      contentCenterY = (minY + maxY) / 2;
+    }
+
+    // 3. Calculate Offset to Center in New Canvas
+    const newCanvasCenterX = newWidth / 2;
+    const newCanvasCenterY = newHeight / 2;
+
+    const offsetX = newCanvasCenterX - contentCenterX;
+    const offsetY = newCanvasCenterY - contentCenterY;
+
+    // 4. Update Elements
+    const newElements = visualElements.map(el => {
+      if (isBackground(el)) {
+        // Resize background to fill new canvas completely
+        return {
+          ...el,
+          width: newWidth,
+          height: newHeight,
+          x: 0,
+          y: 0
+        };
+      } else {
+        // Move content to center
+        return {
+          ...el,
+          x: el.x + offsetX,
+          y: el.y + offsetY
+        };
+      }
+    });
+
+    setVisualElements(newElements);
+  };
+
   return (
     <div className="h-full overflow-hidden flex flex-col bg-slate-50">
       {/* Top Action Bar */}
@@ -714,6 +811,9 @@ export default function CustomTemplateBuilderVisual() {
         onToggleRulers={() => setShowRulers(!showRulers)}
         isSaving={isSaving}
         lastSaved={lastSaved}
+        width={selectedTemplate.width || 1080}
+        height={selectedTemplate.height || 1080}
+        onSizeChange={handleSizeChange}
       />
 
       {/* Main Editor Area */}

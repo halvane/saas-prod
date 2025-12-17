@@ -28,6 +28,9 @@ interface TopActionBarProps {
   onToggleRulers: () => void;
   isSaving?: boolean;
   lastSaved?: Date;
+  width?: number;
+  height?: number;
+  onSizeChange?: (width: number, height: number) => void;
 }
 
 export function TopActionBar({
@@ -47,8 +50,20 @@ export function TopActionBar({
   onToggleRulers,
   isSaving,
   lastSaved,
+  width = 1080,
+  height = 1080,
+  onSizeChange,
 }: TopActionBarProps) {
   const zoomPresets = [25, 50, 75, 100, 125, 150, 200];
+
+  const sizes = [
+    { label: 'Square (1:1)', width: 1080, height: 1080 },
+    { label: 'Portrait (4:5)', width: 1080, height: 1350 },
+    { label: 'Landscape (16:9)', width: 1920, height: 1080 },
+    { label: 'Story (9:16)', width: 1080, height: 1920 },
+  ];
+
+  const currentSizeLabel = sizes.find(s => s.width === width && s.height === height)?.label || 'Custom';
 
   return (
     <div className="h-14 bg-white border-b border-slate-200 flex items-center justify-between px-4 gap-4 shrink-0">
@@ -122,6 +137,30 @@ export function TopActionBar({
           <Clipboard className="w-4 h-4" />
           Paste
         </Button>
+
+        <div className="h-5 w-px bg-slate-200" />
+
+        {/* Size Selector */}
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost" size="sm" className="h-8 gap-1.5 min-w-[120px] justify-between">
+              <span className="text-sm font-medium">{currentSizeLabel}</span>
+              <ChevronDown className="w-3 h-3 opacity-50" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="center">
+            {sizes.map((size) => (
+              <DropdownMenuItem
+                key={size.label}
+                onClick={() => onSizeChange?.(size.width, size.height)}
+                className="justify-between gap-4"
+              >
+                <span>{size.label}</span>
+                <span className="text-xs text-slate-400">{size.width}×{size.height}</span>
+              </DropdownMenuItem>
+            ))}
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
 
       {/* Right: View & Export */}

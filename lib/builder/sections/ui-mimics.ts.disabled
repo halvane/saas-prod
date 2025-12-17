@@ -1,0 +1,79 @@
+import { Section } from '../types';
+
+export const UI_MIMICS: Section[] = [
+  {
+    id: 'ui-tweet-card',
+    name: 'Twitter Card Mockup',
+    category: 'text',
+    height: 540,
+    html: '<div class="w-full h-full flex items-center justify-center p-[5cqw]"><div class="bg-white rounded-[2cqw] shadow-xl p-[3cqw] w-[70cqw]"><div class="flex gap-[2cqw] mb-[2cqw]"><img src="{{avatar}}" class="w-[5cqw] h-[5cqw] rounded-full object-cover"/><div class="flex-1"><div class="flex items-center gap-[1cqw]"><span class="font-bold text-gray-900 font-heading text-[2.5cqw]">{{name}}</span><div class="w-[2cqw] h-[2cqw] bg-blue-400 rounded-full flex items-center justify-center text-white text-[1.5cqw]">✓</div></div><div class="text-gray-500 text-[2cqw] font-body">{{handle}} · {{time}}</div></div></div><p class="text-gray-900 text-[2.5cqw] leading-relaxed mb-[2cqw] font-body safe-text line-clamp-4">{{tweet_text}}</p><div class="flex gap-[4cqw] text-gray-500 text-[2cqw]"><div class="flex items-center gap-[1cqw]"><span>💬</span><span>{{comments}}</span></div><div class="flex items-center gap-[1cqw]"><span>🔄</span><span>{{retweets}}</span></div><div class="flex items-center gap-[1cqw]"><span>❤️</span><span>{{likes}}</span></div></div></div></div>',
+    variables: {
+      avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200',
+      name: 'Alex Morgan',
+      handle: '@alexmorgan',
+      time: '2h',
+      tweet_text: 'Just discovered this game-changing productivity hack. If you\'re struggling with focus, you NEED to try this.',
+      comments: '124',
+      retweets: '856',
+      likes: '3.2K'
+    },
+    metadata: {
+      moods: ['trustworthy', 'corporate'],
+      purpose: ['engagement', 'awareness'],
+      density: 'medium',
+      tags: ['twitter', 'social', 'ui-mimic', 'testimonial', 'engagement']
+    },
+    compatibleEffects: ['shadow']
+  },
+  {
+    id: 'ui-ios-notification',
+    name: 'iOS Notification Banner',
+    category: 'text',
+    height: 300,
+    html: '<div class="w-full h-full flex items-center justify-center"><div class="bg-gray-800/90 backdrop-blur-2xl rounded-[3cqw] shadow-2xl p-[3cqw] w-[60cqw] border border-white/10"><div class="flex gap-[2cqw]"><div class="flex-shrink-0 w-[4cqw] h-[4cqw] bg-[var(--brand-accent)] rounded-[1.5cqw] flex items-center justify-center text-white text-[2.5cqw]">🔔</div><div class="flex-1"><div class="text-white font-semibold text-[2cqw] mb-[0.5cqw] font-heading">{{app_name}}</div><div class="text-gray-200 text-[2.2cqw] leading-snug font-body safe-text line-clamp-2">{{notification_text}}</div><div class="text-gray-400 text-[1.5cqw] mt-[1cqw] font-body">now</div></div></div></div></div>',
+    variables: {
+      app_name: 'YourApp',
+      notification_text: 'Your order has been confirmed! Expected delivery: Tomorrow.'
+    },
+    metadata: {
+      moods: ['urgent', 'trustworthy'],
+      purpose: ['conversion', 'engagement'],
+      density: 'low',
+      tags: ['notification', 'ios', 'ui-mimic', 'alert', 'mobile']
+    },
+    compatibleEffects: ['shadow', 'animation']
+  },
+  {
+    id: 'ui-google-search',
+    name: 'Google Search Bar',
+    category: 'text',
+    height: 400,
+    html: '<div class="w-full h-full flex flex-col items-center justify-center gap-[4cqw] p-[5cqw]"><div class="w-[70cqw] bg-white rounded-full shadow-lg border border-gray-200 px-[4cqw] py-[2.5cqw] flex items-center gap-[2cqw]"><div class="text-[3cqw]">🔍</div><div class="flex-1 text-[2.5cqw] text-gray-800 font-body">{{search_query}}</div><div class="w-[2.5cqw] h-[2.5cqw] border-[0.4cqw] border-blue-500 border-t-transparent rounded-full animate-spin"></div></div><div class="text-gray-600 text-[2cqw] font-body">About {{result_count}} results</div></div>',
+    variables: {
+      search_query: 'How to 10x your productivity',
+      result_count: '2,450,000'
+    },
+    metadata: {
+      moods: ['trustworthy', 'corporate'],
+      purpose: ['education', 'engagement'],
+      density: 'low',
+      tags: ['search', 'google', 'ui-mimic', 'query', 'seo']
+    },
+    compatibleEffects: ['shadow']
+  },
+  {
+    id: 'ui-mimic-dashboard',
+    name: 'SaaS Dashboard Preview',
+    category: 'text',
+    height: 600,
+    html: `<div class="w-full h-full flex items-center justify-center p-[4cqw] bg-gray-50"><div class="w-full h-full bg-white rounded-[2cqw] shadow-2xl overflow-hidden border border-gray-200 flex flex-col"><div class="h-[4cqw] bg-gray-50 border-b border-gray-200 flex items-center px-[2cqw] gap-[1cqw]"><div class="w-[1cqw] h-[1cqw] rounded-full bg-red-400"></div><div class="w-[1cqw] h-[1cqw] rounded-full bg-yellow-400"></div><div class="w-[1cqw] h-[1cqw] rounded-full bg-green-400"></div></div><div class="flex-1 flex"><div class="w-[15cqw] bg-gray-50 border-r border-gray-200 p-[2cqw]"><div class="w-full h-[2cqw] bg-gray-200 rounded mb-[2cqw]"></div><div class="w-[80%] h-[1.5cqw] bg-gray-200 rounded mb-[1cqw]"></div><div class="w-[60%] h-[1.5cqw] bg-gray-200 rounded mb-[1cqw]"></div></div><div class="flex-1 p-[3cqw]"><div class="flex justify-between mb-[3cqw]"><div class="w-[30%] h-[3cqw] bg-gray-100 rounded"></div><div class="w-[15%] h-[3cqw] bg-[var(--brand-accent)] rounded"></div></div><div class="grid grid-cols-3 gap-[2cqw] mb-[3cqw]"><div class="h-[10cqw] bg-blue-50 rounded-[1cqw] border border-blue-100 p-[1.5cqw]"><div class="text-[2cqw] font-bold text-blue-600 mb-[0.5cqw]">+124%</div><div class="text-[1.2cqw] text-blue-400">Growth</div></div><div class="h-[10cqw] bg-green-50 rounded-[1cqw] border border-green-100 p-[1.5cqw]"><div class="text-[2cqw] font-bold text-green-600 mb-[0.5cqw]">$42.5k</div><div class="text-[1.2cqw] text-green-400">Revenue</div></div><div class="h-[10cqw] bg-purple-50 rounded-[1cqw] border border-purple-100 p-[1.5cqw]"><div class="text-[2cqw] font-bold text-purple-600 mb-[0.5cqw]">892</div><div class="text-[1.2cqw] text-purple-400">Users</div></div></div><div class="w-full h-[20cqw] bg-gray-50 rounded-[1cqw] border border-gray-100 flex items-end justify-between px-[2cqw] pb-[2cqw] gap-[1cqw]"><div class="w-full bg-blue-500/20 h-[40%] rounded-t"></div><div class="w-full bg-blue-500/40 h-[60%] rounded-t"></div><div class="w-full bg-blue-500/60 h-[30%] rounded-t"></div><div class="w-full bg-blue-500/80 h-[80%] rounded-t"></div><div class="w-full bg-blue-500 h-[50%] rounded-t"></div></div></div></div></div></div>`,
+    variables: {},
+    metadata: {
+      moods: ['corporate', 'energetic', 'complex'],
+      purpose: ['showcase', 'demo'],
+      density: 'high',
+      tags: ['dashboard', 'saas', 'ui', 'analytics', 'chart']
+    },
+    compatibleEffects: ['shadow', 'border']
+  }
+];

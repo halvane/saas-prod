@@ -9,14 +9,14 @@ import { mergeTemplate } from '@/lib/templates/renderer';
 import { Loader2, RefreshCw, Plus } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 
+import { TEMPLATE_ENGINE_CSS } from '@/lib/templates/styles';
+
 function TemplatePreview({ template, brand }: { template: any, brand: any }) {
   const [html, setHtml] = useState('');
 
   useEffect(() => {
     if (template && brand && template.htmlTemplate) {
       console.log(`[TemplatePreview] Rendering ${template.name}`);
-      console.log(`[TemplatePreview] Mapped Variables:`, template.mappedVariables);
-      console.log(`[TemplatePreview] Original Variables:`, template.variables);
       
       // Prefer mappedVariables if available
       const activeVariables = template.mappedVariables || template.variables || {};
@@ -28,17 +28,21 @@ function TemplatePreview({ template, brand }: { template: any, brand: any }) {
         brandSettings: brand,
       });
       
-      console.log(`[TemplatePreview] Merged HTML (first 200 chars):`, mergedHtml.substring(0, 200));
-
       const fullHtml = `
         <html>
           <head>
+            <script src="https://cdn.tailwindcss.com"></script>
             <style>
+              ${TEMPLATE_ENGINE_CSS}
               body { margin: 0; overflow: hidden; display: flex; align-items: center; justify-content: center; height: 100vh; background: transparent; }
               ${mergedCss}
             </style>
           </head>
-          <body>${mergedHtml}</body>
+          <body>
+            <div class="template-root">
+              ${mergedHtml}
+            </div>
+          </body>
         </html>
       `;
       setHtml(fullHtml);
@@ -80,28 +84,49 @@ export default function TemplatesPage() {
   const [templates, setTemplates] = useState<any[]>([]);
   const [brand, setBrand] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [loadingMore, setLoadingMore] = useState(false);
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
 
-  const loadTemplates = async () => {
-    setLoading(true);
+  const loadTemplates = async (reset = false) => {
+    const currentPage = reset ? 1 : page;
+    
+    if (reset) {
+      setLoading(true);
+      setTemplates([]);
+      setPage(1); // Reset page state too
+    } else {
+      setLoadingMore(true);
+    }
+
     try {
-      console.log('[TemplatesPage] Loading templates...');
-      // Pass timestamp to bust cache
-      const { templates: fetchedTemplates, brand: fetchedBrand } = await getUserTemplatesAction(Date.now());
-      console.log('[TemplatesPage] Received templates:', fetchedTemplates.length);
-      if (fetchedTemplates.length > 0) {
-          console.log('[TemplatesPage] First template variables:', fetchedTemplates[0].variables);
+      console.log(`[TemplatesPage] Loading templates page ${currentPage}...`);
+      // Pass timestamp to bust cache, and page/limit
+      const { templates: newTemplates, brand: fetchedBrand, hasMore: moreAvailable } = await getUserTemplatesAction(Date.now(), currentPage, 20);
+      
+      console.log(`[TemplatesPage] Received ${newTemplates.length} templates`);
+      
+      if (reset) {
+        setTemplates(newTemplates);
+        setBrand(fetchedBrand);
+        setPage(2); // Next page will be 2
+      } else {
+        setTemplates(prev => [...prev, ...newTemplates]);
+        setPage(prev => prev + 1);
       }
-      setTemplates(fetchedTemplates);
-      setBrand(fetchedBrand);
+      
+      setHasMore(moreAvailable);
+      
     } catch (error) {
       console.error('[TemplatesPage] Failed to load templates:', error);
     } finally {
       setLoading(false);
+      setLoadingMore(false);
     }
   };
 
   useEffect(() => {
-    loadTemplates();
+    loadTemplates(true);
   }, []);
 
   return (
@@ -114,16 +139,18 @@ export default function TemplatesPage() {
               AI-generated templates tailored to {brand?.brandName || 'your brand'}.
             </p>
           </div>
-          <Button variant="outline" onClick={loadTemplates} disabled={loading}>
-            <RefreshCw className={`mr-2 h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
-            Refresh
-          </Button>
-          <Button asChild>
-            <Link href="/template-builder">
-              <Plus className="mr-2 h-4 w-4" />
-              Create New
-            </Link>
-          </Button>
+          <div className="flex gap-2">
+            <Button variant="outline" onClick={() => loadTemplates(true)} disabled={loading || loadingMore}>
+              <RefreshCw className={`mr-2 h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
+              Refresh
+            </Button>
+            <Button asChild>
+              <Link href="/template-builder">
+                <Plus className="mr-2 h-4 w-4" />
+                Visual Builder
+              </Link>
+            </Button>
+          </div>
         </div>
       </div>
 
@@ -132,42 +159,66 @@ export default function TemplatesPage() {
           <Loader2 className="h-8 w-8 animate-spin text-primary" />
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {templates.map((template) => (
-            <Card key={template.id} className="overflow-hidden hover:shadow-lg transition-shadow">
-              <CardHeader className="p-4 pb-2">
-                <div className="flex justify-between items-start gap-2">
-                  <CardTitle className="text-lg leading-tight">{template.name}</CardTitle>
-                  {template.isPersonalized && (
-                    <Badge variant="secondary" className="text-[10px] h-5">AI Generated</Badge>
-                  )}
-                </div>
-              </CardHeader>
-              <CardContent className="p-4 pt-2 space-y-4">
-                <TemplatePreview template={template} brand={brand} />
-                
-                <div className="flex flex-wrap gap-1">
-                  {template.semanticTags?.slice(0, 3).map((tag: string) => (
-                    <span key={tag} className="px-1.5 py-0.5 bg-secondary/50 text-secondary-foreground rounded text-[10px]">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                
-                <div className="flex gap-2">
-                  <Button className="flex-1" size="sm" variant="default">
-                    Use Template
-                  </Button>
-                  <Button className="flex-1" size="sm" variant="outline" asChild>
-                    <Link href={`/template-builder/${template.id}`}>
-                      Edit
-                    </Link>
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+        <>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {templates.map((template, index) => (
+              // Use index in key to avoid duplicates if API returns same template in different pages (though it shouldn't with variations)
+              <Card key={`${template.id}-${index}`} className="overflow-hidden hover:shadow-lg transition-shadow">
+                <CardHeader className="p-4 pb-2">
+                  <div className="flex justify-between items-start gap-2">
+                    <CardTitle className="text-lg leading-tight">{template.name}</CardTitle>
+                    {template.isPersonalized && (
+                      <Badge variant="secondary" className="text-[10px] h-5">AI Generated</Badge>
+                    )}
+                  </div>
+                </CardHeader>
+                <CardContent className="p-4 pt-2 space-y-4">
+                  <TemplatePreview template={template} brand={brand} />
+                  
+                  <div className="flex flex-wrap gap-1">
+                    {template.semanticTags?.slice(0, 3).map((tag: string) => (
+                      <span key={tag} className="px-1.5 py-0.5 bg-secondary/50 text-secondary-foreground rounded text-[10px]">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  
+                  <div className="flex gap-2">
+                    <Button className="flex-1" size="sm" variant="default">
+                      Use Template
+                    </Button>
+                    <Button className="flex-1" size="sm" variant="outline" asChild>
+                      <Link href={`/template-builder/${template.id}`}>
+                        Edit
+                      </Link>
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          {hasMore && (
+            <div className="flex justify-center pt-8 pb-4">
+              <Button 
+                variant="secondary" 
+                size="lg" 
+                onClick={() => loadTemplates(false)}
+                disabled={loadingMore}
+                className="min-w-[200px]"
+              >
+                {loadingMore ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Loading Variations...
+                  </>
+                ) : (
+                  'Load More Variations'
+                )}
+              </Button>
+            </div>
+          )}
+        </>
       )}
       
       {!loading && templates.length === 0 && (

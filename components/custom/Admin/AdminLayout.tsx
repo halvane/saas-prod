@@ -1,5 +1,9 @@
+'use client';
+
 import React, { ReactNode, useState } from 'react';
-import { BarChart3, Users, CreditCard, FileText, Key, TrendingUp, Mail, MessageCircle, Settings, Menu, X } from 'lucide-react';
+import { BarChart3, Users, CreditCard, FileText, Key, TrendingUp, Mail, MessageCircle, Settings, Menu, X, LayoutTemplate } from 'lucide-react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 interface AdminLayoutProps {
   children: ReactNode;
@@ -9,6 +13,7 @@ interface AdminLayoutProps {
 
 const navItems = [
   { id: 'dashboard', icon: BarChart3, label: 'Dashboard' },
+  { id: 'sections', icon: LayoutTemplate, label: 'Sections' },
   { id: 'users', icon: Users, label: 'Users' },
   { id: 'billing', icon: CreditCard, label: 'Billing' },
   { id: 'templates', icon: FileText, label: 'Templates' },
@@ -61,11 +66,35 @@ export function AdminLayout({ children, activeTab = 'dashboard', onTabChange }: 
             {navItems.map((item) => {
               const Icon = item.icon;
               const isActive = activeTab === item.id;
+              const isSections = item.id === 'sections';
               
+              if (isSections) {
+                return (
+                  <Link
+                    key={item.id}
+                    href="/admin/sections"
+                    className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-all ${
+                      isActive
+                        ? 'bg-gradient-to-r from-[#8B5CF6] to-[#7C3AED] text-white shadow-md'
+                        : 'text-[#6B7280] hover:bg-[#F3F4F6] hover:text-[#1F2937]'
+                    }`}
+                  >
+                    <Icon className="w-5 h-5" />
+                    <span>{item.label}</span>
+                  </Link>
+                );
+              }
+
               return (
                 <button
                   key={item.id}
-                  onClick={() => onTabChange?.(item.id)}
+                  onClick={() => {
+                    if (activeTab === 'sections') {
+                      window.location.href = '/admin';
+                    } else {
+                      onTabChange?.(item.id);
+                    }
+                  }}
                   className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-all ${
                     isActive
                       ? 'bg-gradient-to-r from-[#8B5CF6] to-[#7C3AED] text-white shadow-md'
@@ -89,12 +118,35 @@ export function AdminLayout({ children, activeTab = 'dashboard', onTabChange }: 
                 {navItems.map((item) => {
                   const Icon = item.icon;
                   const isActive = activeTab === item.id;
+                  const isSections = item.id === 'sections';
+
+                  if (isSections) {
+                    return (
+                      <Link
+                        key={item.id}
+                        href="/admin/sections"
+                        onClick={() => setSidebarOpen(false)}
+                        className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-all ${
+                          isActive
+                            ? 'bg-gradient-to-r from-[#8B5CF6] to-[#7C3AED] text-white shadow-md'
+                            : 'text-[#6B7280] hover:bg-[#F3F4F6] hover:text-[#1F2937]'
+                        }`}
+                      >
+                        <Icon className="w-5 h-5" />
+                        <span>{item.label}</span>
+                      </Link>
+                    );
+                  }
                   
                   return (
                     <button
                       key={item.id}
                       onClick={() => {
-                        onTabChange?.(item.id);
+                        if (activeTab === 'sections') {
+                          window.location.href = '/admin';
+                        } else {
+                          onTabChange?.(item.id);
+                        }
                         setSidebarOpen(false);
                       }}
                       className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-all ${

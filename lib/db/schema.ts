@@ -229,6 +229,17 @@ export const templates = pgTable('templates', {
   usageCount: integer('usage_count').default(0),
   thumbsUpCount: integer('thumbs_up_count').default(0),
   thumbsDownCount: integer('thumbs_down_count').default(0),
+  
+  // AI Composition Fields
+  isMasterLayout: boolean('is_master_layout').default(false), // Pre-designed templates for AI starting point
+  layoutArchetype: varchar('layout_archetype', { length: 100 }), // 'social-proof-stack', 'feature-anatomy', etc.
+  sectionComposition: json('section_composition'), // Array of section IDs: ['hero-impact-overlay', 'bridge-review-card']
+  compositionRules: json('composition_rules'), // AI rules: { minSections: 2, maxSections: 5, requiredCategories: ['hero'] }
+  intentMapping: json('intent_mapping'), // { primary: 'product-launch', secondary: ['social-proof', 'conversion'] }
+  brandDnaCompatibility: json('brand_dna_compatibility'), // { archetypes: [...], industries: [...], tones: [...] }
+  usageGuidance: text('usage_guidance'), // Human-readable AI prompt context
+  aiGenerationPrompt: text('ai_generation_prompt'), // System prompt for AI to populate this template
+  
   createdAt: timestamp('created_at').notNull().defaultNow(),
   updatedAt: timestamp('updated_at').notNull().defaultNow(),
 });
@@ -286,4 +297,33 @@ export const generatedTemplateValuesRelations = relations(generatedTemplateValue
 
 export type GeneratedTemplateValue = typeof generatedTemplateValues.$inferSelect;
 export type NewGeneratedTemplateValue = typeof generatedTemplateValues.$inferInsert;
+
+export const templateSections = pgTable('template_sections', {
+  id: serial('id').primaryKey(),
+  name: varchar('name', { length: 255 }).notNull(),
+  category: varchar('category', { length: 50 }).notNull(), // hero, features, footer, etc.
+  html: text('html').notNull(),
+  css: text('css').notNull(),
+  variables: json('variables').default([]), // Array of variable names
+  tags: text('tags').array(),
+  thumbnailUrl: text('thumbnail_url'),
+  isActive: boolean('is_active').default(true),
+  
+  // AI Selection Metadata
+  metadata: json('metadata'), // { moods, purpose, density, compatibleEffects }
+  intentKeywords: text('intent_keywords').array(), // ['launch', 'promo', 'story', 'tutorial']
+  brandArchetypeMatch: text('brand_archetype_match').array(), // ['hero', 'sage', 'explorer']
+  industryFit: text('industry_fit').array(), // ['ecommerce', 'saas', 'fashion', 'tech']
+  platformOptimized: text('platform_optimized').array(), // ['instagram', 'linkedin', 'tiktok']
+  contentType: varchar('content_type', { length: 50 }), // 'product', 'educational', 'social-proof', 'announcement'
+  emotionalTone: text('emotional_tone').array(), // ['urgent', 'calm', 'playful', 'professional']
+  conversionGoal: varchar('conversion_goal', { length: 50 }), // 'awareness', 'engagement', 'conversion', 'retention'
+  aiScore: integer('ai_score').default(0), // AI-calculated quality score (0-100)
+  
+  createdAt: timestamp('created_at').notNull().defaultNow(),
+  updatedAt: timestamp('updated_at').notNull().defaultNow(),
+});
+
+export type TemplateSection = typeof templateSections.$inferSelect;
+export type NewTemplateSection = typeof templateSections.$inferInsert;
 

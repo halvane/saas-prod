@@ -390,10 +390,12 @@ export function RightPanel({
 }: RightPanelProps) {
   const selectedElement = visualElements.find((el) => el.id === selectedElementId);
 
+  // Map activeRightSection to tab display names
   const currentTab = 
     activeRightSection === 'properties' ? 'design' : 
     activeRightSection === 'variables' ? 'config' : 
-    'layers';
+    activeRightSection === 'settings' ? 'layers' :
+    'design'; // fallback
 
   const handleTabChange = (value: string) => {
     if (value === 'design') setActiveRightSection('properties');
@@ -783,57 +785,62 @@ export function RightPanel({
 
           {currentTab === 'layers' && (
             <div className="space-y-3">
-              <div className="flex items-center justify-between">
-                <h4 className="text-base font-semibold text-gray-950">Layers</h4>
-                <span className="text-sm text-gray-600">{visualElements.length}</span>
+              <div className="flex items-center justify-between mb-4">
+                <h4 className="text-base font-semibold text-gray-950">Elements on Canvas</h4>
+                <span className="text-sm text-gray-600 bg-purple-100 text-purple-700 px-2 py-1 rounded">iframe</span>
               </div>
-              <div className="space-y-2">
-                {[...visualElements].reverse().map((el) => (
-                  <div 
-                    key={el.id}
-                    className={`group flex items-center gap-3 p-3 rounded-lg cursor-pointer transition-all border-2 min-h-[52px] ${
-                      selectedElementId === el.id 
-                        ? 'bg-blue-50 border-blue-500 shadow-sm' 
-                        : 'bg-white border-gray-200 hover:bg-gray-50 hover:border-gray-300'
-                    }`}
-                    onClick={() => setSelectedElementId(el.id)}
-                    role="button"
-                    tabIndex={0}
-                    aria-label={`Select ${el.type} layer`}
-                    onKeyDown={(e) => e.key === 'Enter' && setSelectedElementId(el.id)}
-                  >
-                    <div className={selectedElementId === el.id ? 'text-blue-600' : 'text-gray-500'}>
-                      {el.type === 'text' && <Type className="h-5 w-5" />}
-                      {el.type === 'image' && <ImageIcon className="h-5 w-5" />}
-                      {el.type === 'rectangle' && <Square className="h-5 w-5" />}
-                      {el.type === 'circle' && <Circle className="h-5 w-5" />}
-                    </div>
-                    <span className="text-sm font-medium text-gray-950 truncate flex-1">
-                      {el.type === 'text' ? (el.content?.slice(0, 20) || 'Text') : el.type}
-                    </span>
-                    <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                      <Button 
-                        variant="ghost" 
-                        size="icon" 
-                        className="h-9 w-9 hover:bg-blue-100 focus-visible:ring-2 focus-visible:ring-blue-500" 
-                        onClick={(e) => { e.stopPropagation(); moveElementZIndex(el.id, 'up'); }}
-                        aria-label="Move layer up"
-                      >
-                        <ChevronUp className="h-4 w-4" />
-                      </Button>
-                      <Button 
-                        variant="ghost" 
-                        size="icon" 
-                        className="h-9 w-9 hover:bg-blue-100 focus-visible:ring-2 focus-visible:ring-blue-500" 
-                        onClick={(e) => { e.stopPropagation(); moveElementZIndex(el.id, 'down'); }}
-                        aria-label="Move layer down"
-                      >
-                        <ChevronDown className="h-4 w-4" />
-                      </Button>
-                    </div>
+              
+              {selectedElementId ? (
+                <div className="space-y-3">
+                  <div className="p-4 bg-blue-50 border-2 border-blue-400 rounded-lg">
+                    <p className="text-sm text-gray-700">
+                      <strong>Selected Element:</strong> {selectedElementId}
+                    </p>
+                    <p className="text-xs text-gray-600 mt-2">
+                      Click elements on the canvas to select and edit them. Use the Design tab to modify styles.
+                    </p>
                   </div>
-                ))}
-              </div>
+                  
+                  <div className="space-y-2 pt-2">
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      onClick={() => moveElementZIndex(selectedElementId, 'up')}
+                      className="w-full justify-start gap-2"
+                    >
+                      <ChevronUp className="h-4 w-4" />
+                      Bring Forward
+                    </Button>
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      onClick={() => moveElementZIndex(selectedElementId, 'down')}
+                      className="w-full justify-start gap-2"
+                    >
+                      <ChevronDown className="h-4 w-4" />
+                      Send Back
+                    </Button>
+                    <Button 
+                      variant="destructive" 
+                      size="sm" 
+                      onClick={() => deleteElement(selectedElementId)}
+                      className="w-full justify-start gap-2"
+                    >
+                      <Trash2 className="h-4 w-4" />
+                      Delete Element
+                    </Button>
+                  </div>
+                </div>
+              ) : (
+                <div className="p-4 bg-gray-50 border-2 border-dashed border-gray-300 rounded-lg text-center">
+                  <p className="text-sm text-gray-600">
+                    <strong>Click on any element</strong> in the canvas to select and manage it.
+                  </p>
+                  <p className="text-xs text-gray-500 mt-2">
+                    Elements are displayed in a live iframe with real HTML/CSS rendering.
+                  </p>
+                </div>
+              )}
             </div>
           )}
 

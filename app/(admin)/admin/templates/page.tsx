@@ -5,11 +5,8 @@ import { TemplateManagement } from '@/components/custom/Admin/TemplateManagement
 import { SeedButton } from './seed-button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
-// Enable ISR with 5 minute cache for instant page loads
-export const revalidate = 300;
-// Force static generation and aggressive caching
-export const dynamic = 'force-static';
-export const fetchCache = 'force-cache';
+// Admin pages should be dynamic to show latest data
+export const dynamic = 'force-dynamic';
 
 export default async function AdminTemplatesPage() {
   // Load only 20 templates initially for ultra-fast first paint

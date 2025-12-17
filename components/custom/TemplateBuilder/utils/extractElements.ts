@@ -1,4 +1,5 @@
 import type { VisualElement } from '../types/index';
+import { TEMPLATE_ENGINE_CSS } from '@/lib/templates/styles';
 
 /**
  * Extract visual elements from HTML/CSS for interactive editing
@@ -42,17 +43,23 @@ export async function extractElementsFromHTMLAsync(
         <head>
           ${mainStyles}
           <style>
+            ${TEMPLATE_ENGINE_CSS}
             * { margin: 0; padding: 0; box-sizing: border-box; }
             html, body { 
               width: ${templateWidth}px; 
               height: ${templateHeight}px; 
               margin: 0;
               padding: 0;
+              container-type: inline-size;
             }
             ${css}
           </style>
         </head>
-        <body>${html}</body>
+        <body>
+          <div class="template-root" style="width: 100%; height: 100%;">
+            ${html}
+          </div>
+        </body>
         </html>
       `);
       iframeDoc.close();

@@ -1,0 +1,34 @@
+import { Section } from '../types';
+
+export const OVERLAYS: Section[] = [
+  {
+    id: 'overlay-dark-gradient',
+    name: 'Dark Gradient Overlay',
+    category: 'overlay',
+    height: 1080,
+    html: `<div class="absolute inset-0 w-full h-full bg-gradient-to-br from-[#1a1a1a] to-[#2d3748] z-0"></div>`,
+    variables: {},
+    metadata: {
+      moods: ['corporate', 'minimalist', 'calm'],
+      purpose: ['awareness'],
+      density: 'low',
+      tags: ['background', 'gradient', 'calm', 'simple']
+    },
+    compatibleEffects: ['texture', 'filter']
+  },
+  {
+    id: 'overlay-brand-mesh',
+    name: 'Brand Mesh Overlay',
+    category: 'overlay',
+    height: 1080,
+    html: `<div class="absolute inset-0 w-full h-full bg-[var(--brand-secondary)] z-0 opacity-80" style="background-image: radial-gradient(circle at 0% 0%, var(--brand-primary) 0%, transparent 50%), radial-gradient(circle at 100% 100%, var(--brand-accent) 0%, transparent 50%)"></div>`,
+    variables: {},
+    metadata: {
+      moods: ['energetic', 'playful', 'luxury'],
+      purpose: ['awareness', 'engagement'],
+      density: 'medium',
+      tags: ['background', 'mesh', 'brand-colors', 'energetic']
+    },
+    compatibleEffects: ['texture', 'filter']
+  }
+];

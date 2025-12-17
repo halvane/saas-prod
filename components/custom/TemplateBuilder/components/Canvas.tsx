@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { BRIDGE_SCRIPT } from '@/lib/builder/bridge';
 import { mergeTemplate } from '@/lib/templates/renderer';
+import { TEMPLATE_ENGINE_CSS } from '@/lib/templates/styles';
 import type { CustomTemplate } from '../types';
 
 interface CanvasProps {
@@ -38,13 +39,25 @@ export function Canvas({
     <!DOCTYPE html>
     <html>
       <head>
-        <style>${css}</style>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+        <script src="https://cdn.tailwindcss.com"></script>
+        <style>
+          ${TEMPLATE_ENGINE_CSS}
+          ${css}
+          html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; }
+          .template-root { width: 100%; height: 100%; }
+          body { font-family: 'Inter', sans-serif; }
+        </style>
         <script>
           ${BRIDGE_SCRIPT}
         </script>
       </head>
       <body>
-        ${html}
+        <div class="template-root">
+          ${html}
+        </div>
       </body>
     </html>
   `;

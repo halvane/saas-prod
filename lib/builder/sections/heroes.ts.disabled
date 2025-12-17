@@ -1,0 +1,42 @@
+import { Section } from '../types';
+
+export const HEROES: Section[] = [
+  {
+    id: 'hero-impact-overlay',
+    name: 'Impact Hero Overlay',
+    category: 'hero',
+    height: 600,
+    html: `<div class="relative w-full h-full overflow-hidden group"><img src="{{hero_image}}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"/><div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div><div class="absolute inset-0 p-[6cqw] flex flex-col justify-end items-start"><h1 class="font-heading font-black text-white mb-[2cqw] safe-text line-clamp-3 text-[6cqw] leading-[1.1] tracking-tight drop-shadow-lg">{{headline}}</h1><div class="w-[8cqw] h-[0.6cqw] bg-[var(--brand-accent)] mb-[3cqw] rounded-full shadow-lg"></div><p class="font-body font-medium text-gray-100 max-w-[65cqw] safe-text line-clamp-2 text-[2.2cqw] leading-relaxed drop-shadow-md">{{subheadline}}</p></div></div>`,
+    variables: { 
+      headline: 'UNLEASH POWER', 
+      subheadline: 'Experience the next generation of performance.',
+      hero_image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800'
+    },
+    metadata: {
+      moods: ['energetic', 'urgent', 'luxury'],
+      purpose: ['conversion', 'awareness'],
+      density: 'high',
+      tags: ['overlay', 'full-width', 'impact', 'calm', 'hero']
+    },
+    compatibleEffects: ['shadow', 'filter', 'overlay', 'animation']
+  },
+  {
+    id: 'hero-split-modern',
+    name: 'Split Modern Hero',
+    category: 'hero',
+    height: 500,
+    html: `<div class="relative w-full h-full flex z-[5] bg-white"><div class="flex-1 p-[6cqw] flex flex-col justify-center bg-[var(--brand-secondary)]"><h1 class="mb-[2.5cqw] font-heading font-black text-[var(--brand-primary)] safe-text line-clamp-3 text-[5cqw] leading-[1.1] tracking-tight">{{headline}}</h1><p class="font-body text-[var(--brand-primary-light)] safe-text line-clamp-4 text-[2cqw] leading-relaxed opacity-90">{{subheadline}}</p></div><div class="flex-1 relative overflow-hidden"><img src="{{hero_image}}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"/></div></div>`,
+    variables: { 
+      headline: 'New Collection', 
+      subheadline: 'Discover the latest trends.',
+      hero_image: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800'
+    },
+    metadata: {
+      moods: ['minimalist', 'trustworthy', 'corporate'],
+      purpose: ['education', 'engagement'],
+      density: 'medium',
+      tags: ['split', 'calm', 'minimalist', 'image-text', 'hero']
+    },
+    compatibleEffects: ['border', 'shadow', 'background']
+  }
+];

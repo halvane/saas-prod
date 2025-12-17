@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import type { CustomTemplate, VisualElement } from '../types';
 import { DEMO_TEMPLATES_FALLBACK } from '../data/demoTemplates';
+import { FULL_DEMO_TEMPLATES } from '@/lib/builder/fullTemplates';
 import { extractElementsFromHTMLAsync } from '../utils/extractElements';
 import { getTemplateWithMatrixAction } from '@/app/(dashboard)/templates/actions';
 
@@ -45,14 +46,14 @@ export function useTemplateLoader(
         if (data.templates && data.templates.length > 0) {
           setTemplates(data.templates);
         } else {
-          setTemplates(DEMO_TEMPLATES_FALLBACK);
+          setTemplates([...FULL_DEMO_TEMPLATES, ...DEMO_TEMPLATES_FALLBACK]);
         }
       } else {
-        setTemplates(DEMO_TEMPLATES_FALLBACK);
+        setTemplates([...FULL_DEMO_TEMPLATES, ...DEMO_TEMPLATES_FALLBACK]);
       }
     } catch (error: any) {
       console.error('Failed to load templates:', error);
-      setTemplates(DEMO_TEMPLATES_FALLBACK);
+      setTemplates([...FULL_DEMO_TEMPLATES, ...DEMO_TEMPLATES_FALLBACK]);
     } finally {
       setIsLoadingTemplates(false);
     }
@@ -252,6 +253,14 @@ export function useTemplateLoader(
 
   const loadTemplate = async (templateId: string) => {
     try {
+      // Check in full demo templates first
+      const fullDemoTemplate = FULL_DEMO_TEMPLATES.find(t => t.id === templateId);
+      if (fullDemoTemplate) {
+        parseHTMLToVisualElements(fullDemoTemplate);
+        return;
+      }
+
+      // Check in fallback demo templates
       const demoTemplate = DEMO_TEMPLATES_FALLBACK.find(t => t.id === templateId);
       if (demoTemplate) {
         parseHTMLToVisualElements(demoTemplate);

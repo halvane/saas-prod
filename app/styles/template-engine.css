@@ -1,0 +1,275 @@
+/* 
+  🛡️ IRON GRID TEMPLATE ENGINE
+  --------------------------------------------------------------------------
+  This file contains the "Rendering Engine" for user content.
+  It is separated from globals.css so it can be:
+  1. Injected into headless browsers for image generation.
+  2. Included in standalone HTML exports.
+  3. Used in the Editor Canvas without Dashboard UI pollution.
+*/
+
+/* 
+  1. SMART CONTAINER CONTEXT 
+  Enables container queries so templates adapt to their own width,
+  not the screen width. Essential for "Sidebar Previews" and "Social Media Sizes".
+*/
+.template-root {
+  container-type: inline-size;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  
+  /* Default Fallbacks (Safety Net) */
+  --brand-primary: #111827;
+  --brand-secondary: #ffffff;
+  --brand-accent: #3b82f6;
+}
+
+/* 
+  2. FLUID VARIABLES (The "Smart Scale")
+  Uses cqw (Container Query Width) to scale elements relative to the template size.
+  This ensures the design looks perfect on a 4K screen OR a 200px thumbnail.
+*/
+.template-root {
+  /* Spacing scales with container */
+  --safe-zone: clamp(1.5rem, 5cqw, 3.75rem); /* 24px -> 60px */
+  --grid-gap: clamp(0.5rem, 1cqw, 1rem);      /* 8px -> 16px */
+  
+  /* Typography scales with container */
+  --text-h1: clamp(2rem, 10cqw, 4.5rem);      /* 32px -> 72px */
+  --text-h2: clamp(1.75rem, 8cqw, 3.5rem);    /* 28px -> 56px */
+  --text-h3: clamp(1.5rem, 6cqw, 2.5rem);     /* 24px -> 40px */
+  --text-body: clamp(1rem, 3cqw, 1.25rem);    /* 16px -> 20px */
+  --text-caption: clamp(0.75rem, 2cqw, 1rem); /* 12px -> 16px */
+
+  /* Z-Index Registry (Prevents Glitches) */
+  --z-background: 0;
+  --z-decoration: 10;
+  --z-content: 20;
+  --z-overlay: 30;
+  --z-floating: 40;
+}
+
+/* 3. SOCIAL MEDIA ASPECT RATIOS */
+.aspect-square    { aspect-ratio: 1 / 1; }   /* Instagram Post (1080x1080) */
+.aspect-portrait  { aspect-ratio: 4 / 5; }   /* Instagram Portrait (1080x1350) */
+.aspect-story     { aspect-ratio: 9 / 16; }  /* TikTok / Reels (1080x1920) */
+.aspect-landscape { aspect-ratio: 16 / 9; }  /* YouTube / Twitter (1920x1080) */
+.aspect-vertical  { aspect-ratio: 2 / 3; }   /* Pinterest (1000x1500) */
+
+/* Iron Grid Utility Classes */
+.safe-text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Pro Typography System */
+.pro-h1 {
+  font-size: var(--text-h1);
+  line-height: 1.1;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.pro-h2 {
+  font-size: var(--text-h2);
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.pro-h3 {
+  font-size: var(--text-h3);
+  line-height: 1.3;
+  font-weight: 600;
+}
+
+.pro-body {
+  font-size: var(--text-body);
+  line-height: 1.6;
+}
+
+.pro-caption {
+  font-size: var(--text-caption);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.9;
+}
+
+/* Pro Visibility & Contrast */
+.text-shadow-sm {
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+.text-shadow-lg {
+  text-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 1rem;
+}
+
+.dark-panel {
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 1rem;
+}
+
+/* Pro Layout & Spacing */
+.safe-padding {
+  padding: var(--safe-zone);
+}
+
+.safe-margin-bottom {
+  margin-bottom: 2rem;
+}
+
+.center-absolute {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: var(--z-content);
+}
+
+.line-clamp-1 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.line-clamp-3 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.line-clamp-4 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+}
+
+.smart-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--grid-gap);
+  padding: var(--safe-zone);
+  width: 100%;
+  height: 100%;
+  z-index: var(--z-content);
+}
+
+/* Smart Adaptability for Small Containers */
+@container (max-width: 400px) {
+  .smart-grid {
+    grid-template-columns: 1fr; /* Stack columns */
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .hide-on-mobile {
+    display: none;
+  }
+}
+
+.auto-contrast-dark {
+  background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.8) 100%);
+  z-index: var(--z-overlay);
+}
+
+.auto-contrast-light {
+  background: linear-gradient(to bottom, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.95) 100%);
+  z-index: var(--z-overlay);
+}
+
+.img-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: var(--z-background);
+}
+
+.anchor-bottom-left {
+  position: absolute;
+  bottom: var(--safe-zone);
+  left: var(--safe-zone);
+  max-width: 60%;
+  z-index: var(--z-content);
+}
+
+.anchor-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: var(--z-content);
+}
+
+/* Print Optimization */
+@media print {
+  .template-root {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .no-print {
+    display: none;
+  }
+}
+
+/* 
+  4. ACCESSIBILITY & MOTION SAFETY
+  Ensures the design is usable by everyone and safe for photosensitive users.
+*/
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Touch Target Safety (Mobile) */
+button, 
+a, 
+[role="button"] {
+  min-height: 44px;
+  min-width: 44px;
+  touch-action: manipulation;
+}
